@@ -1,0 +1,66 @@
+{
+  "name": "gatsby-tailwind-styled-components-storybook-starter",
+  "description": "A bare-bones Tailwind CSS + Styled-Components + Storybook starter for Gatsby",
+  "version": "1.0.0",
+  "author": "Dennis Vash <dennisvash@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "gatsby",
+    "template",
+    "tailwind",
+    "storybook",
+    "styled-components",
+    "css-in-js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/denvash/gatsby-styled-tailwind-storybook-starter"
+  },
+  "bugs": {
+    "url": "https://github.com/denvash/gatsby-styled-tailwind-storybook-starter/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "yarn develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
+    "storybook": "NODE_ENV=production start-storybook -p 6006",
+    "build-storybook": "yarn build; NODE_PATH=src/ NODE_ENV=production build-storybook -s public --quiet"
+  },
+  "dependencies": {
+    "gatsby": "^2.17.0",
+    "gatsby-plugin-postcss": "^2.1.13",
+    "gatsby-plugin-react-helmet": "^3.1.13",
+    "gatsby-plugin-resolve-src": "^2.0.0",
+    "postcss-import": "^12.0.1",
+    "prettier": "^1.18.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-helmet": "^5.2.1",
+    "styled-components": "^5.0.0-rc.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@storybook/addon-actions": "^5.2.5",
+    "@storybook/addon-links": "^5.2.5",
+    "@storybook/addons": "^5.2.5",
+    "@storybook/react": "^5.2.5",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
+    "babel-preset-gatsby": "^0.2.20",
+    "gatsby-plugin-styled-components": "^3.1.11",
+    "husky": "^3.0.9",
+    "postcss-preset-env": "^6.7.0",
+    "pretty-quick": "^2.0.1",
+    "tailwind.macro": "^1.0.0-alpha.10",
+    "tailwindcss": "^1.1.2"
+  }
+}
