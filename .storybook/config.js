@@ -1,10 +1,21 @@
-import { configure, addParameters } from '@storybook/react';
+import { addParameters, configure } from '@storybook/react';
+import { create } from '@storybook/theming';
 import '../src/styles/globals.css';
+
+const theme = create({
+  base: 'light',
+  colorPrimary: 'hotpink',
+  brandTitle: 'DennisVash.com Storybook',
+  brandUrl: 'https://dennisvash.com',
+  brandImage:
+    'https://user-images.githubusercontent.com/27515937/71769798-63043a80-2f1d-11ea-9fbe-fe381aa915bf.png',
+});
 
 addParameters({
   options: {
-    panelPosition: 'bottom',
+    showPanel: false,
     storySort: (a, b) => a[1].id.localeCompare(b[1].id),
+    theme,
   },
 });
 

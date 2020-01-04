@@ -9,5 +9,35 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-resolve-src',
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Dennis Vash',
+        short_name: 'Devash',
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#F25192`,
+        display: `standalone`,
+        icon: `static/favicon.ico`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          '@src': 'src',
+          '@components': 'src/components',
+          '@icons': 'src/components/atoms/icons',
+          '@hooks': 'src/hooks',
+          '@config': 'src/config',
+          '@styles': 'src/styles',
+          '@utils': 'src/utils',
+          '@constants': 'src/constants',
+          '@queries': 'src/queries',
+          '@store': 'src/store',
+        },
+        extensions: ['js'],
+      },
+    },
   ],
 };

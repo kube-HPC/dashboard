@@ -21,46 +21,61 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --staged && lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
   },
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop -o",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "yarn develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
-    "storybook": "NODE_ENV=production start-storybook -p 6006",
+    "storybook": "NODE_ENV=production start-storybook -p 6006 -s public",
     "build-storybook": "yarn build; NODE_PATH=src/ NODE_ENV=production build-storybook -s public --quiet"
   },
   "dependencies": {
-    "gatsby": "^2.17.0",
-    "gatsby-plugin-postcss": "^2.1.13",
-    "gatsby-plugin-react-helmet": "^3.1.13",
+    "gatsby": "^2.18.17",
+    "gatsby-plugin-postcss": "^2.1.18",
+    "gatsby-plugin-react-helmet": "^3.1.18",
     "gatsby-plugin-resolve-src": "^2.0.0",
     "postcss-import": "^12.0.1",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
     "styled-components": "^5.0.0-rc.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.2",
-    "@storybook/addon-actions": "^5.2.5",
-    "@storybook/addon-links": "^5.2.5",
-    "@storybook/addons": "^5.2.5",
-    "@storybook/react": "^5.2.5",
+    "@babel/core": "^7.7.7",
+    "@dennisvash/eslint-config": "^2.2.2",
+    "@dennisvash/prettier-config": "^1.0.0",
+    "@storybook/react": "^5.2.8",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.6",
-    "babel-preset-gatsby": "^0.2.20",
-    "gatsby-plugin-styled-components": "^3.1.11",
-    "husky": "^3.0.9",
+    "babel-preset-gatsby": "^0.2.26",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "gatsby-plugin-alias-imports": "^1.0.5",
+    "gatsby-plugin-manifest": "^2.2.34",
+    "gatsby-plugin-styled-components": "^3.1.16",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
     "postcss-preset-env": "^6.7.0",
     "pretty-quick": "^2.0.1",
     "tailwind.macro": "^1.0.0-alpha.10",
-    "tailwindcss": "^1.1.2"
+    "tailwindcss": "^1.1.4"
   }
 }
