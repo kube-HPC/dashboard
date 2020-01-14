@@ -5,7 +5,7 @@ import tw from 'tailwind.macro';
 import LogoParallax from './LogoParallax.react';
 
 export default {
-  title: `${SB_LABELS.ATOMS}Logo Parallax`,
+  title: `${SB_LABELS.MOLECULES}Logo Parallax`,
 };
 
 const Container = styled.div`

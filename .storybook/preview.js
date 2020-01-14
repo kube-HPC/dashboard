@@ -1,23 +1,24 @@
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import { create } from '@storybook/theming';
 import React from 'react';
-import { GlobalStyle } from '../src/styles';
+import tw from 'tailwind.macro';
+import {} from '../src/components/index';
+import { GlobalStyle, mixins, styled } from '../src/styles';
 import '../src/styles/globals.css';
+
+const Container = styled.div`
+  ${mixins.flexCenter}
+  ${tw`h-screen`}
+`;
 
 addDecorator(S => (
   <>
     <GlobalStyle />
-    <S />
+    <Container>
+      <S />
+    </Container>
   </>
 ));
-
-addParameters({
-  options: {
-    showPanel: false,
-    storySort: (a, b) => a[1].id.localeCompare(b[1].id),
-    theme,
-  },
-});
 
 const theme = create({
   base: 'light',
@@ -26,6 +27,15 @@ const theme = create({
   brandUrl: 'https://dennisvash.com',
   brandImage:
     'https://user-images.githubusercontent.com/27515937/71769798-63043a80-2f1d-11ea-9fbe-fe381aa915bf.png',
+});
+
+addParameters({
+  options: {
+    showRoots: true,
+    showPanel: false,
+    storySort: (a, b) => a[1].id.localeCompare(b[1].id),
+    theme,
+  },
 });
 
 // automatically import all files ending in *.stories.jsx
