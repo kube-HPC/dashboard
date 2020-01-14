@@ -1,6 +1,23 @@
-import { addParameters, configure } from '@storybook/react';
+import { addDecorator, addParameters, configure } from '@storybook/react';
 import { create } from '@storybook/theming';
+import React from 'react';
+import { GlobalStyle } from '../src/styles';
 import '../src/styles/globals.css';
+
+addDecorator(S => (
+  <>
+    <GlobalStyle />
+    <S />
+  </>
+));
+
+addParameters({
+  options: {
+    showPanel: false,
+    storySort: (a, b) => a[1].id.localeCompare(b[1].id),
+    theme,
+  },
+});
 
 const theme = create({
   base: 'light',
@@ -9,14 +26,6 @@ const theme = create({
   brandUrl: 'https://dennisvash.com',
   brandImage:
     'https://user-images.githubusercontent.com/27515937/71769798-63043a80-2f1d-11ea-9fbe-fe381aa915bf.png',
-});
-
-addParameters({
-  options: {
-    showPanel: false,
-    storySort: (a, b) => a[1].id.localeCompare(b[1].id),
-    theme,
-  },
 });
 
 // automatically import all files ending in *.stories.jsx

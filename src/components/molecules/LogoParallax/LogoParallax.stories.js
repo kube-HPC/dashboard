@@ -1,6 +1,6 @@
 import { SB_LABELS } from '@constants';
+import { mixins, styled } from '@styles';
 import React from 'react';
-import styled from 'styled-components';
 import tw from 'tailwind.macro';
 import LogoParallax from './LogoParallax.react';
 
@@ -9,7 +9,8 @@ export default {
 };
 
 const Container = styled.div`
-  ${tw`w-1/3`}
+  ${mixins.flexCenter}
+  ${tw`h-screen`}
 `;
 
 export const Default = () => (

@@ -71,3 +71,6 @@ yarn-error.log
 # Deployment
 storybook-static
 public
+
+# Vscode
+.vscode
