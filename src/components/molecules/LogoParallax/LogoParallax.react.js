@@ -1,44 +1,42 @@
 import { LogoAnimated } from '@components';
-import { styled } from '@styles';
+import { mixins, styled } from '@styles';
+import PropTypes from 'prop-types';
 import React from 'react';
-import { animated, useSpring } from 'react-spring';
+import { animated } from 'react-spring';
 import tw from 'tailwind.macro';
 
-const calc = (x, y) => [x - window.innerWidth / 2, y - window.innerHeight / 2];
-const trans = delta => (x, y) => `translate3d(${x / delta}px,${y / delta}px,0)`;
-
 const Container = styled.div`
-  ${tw`w-full h-full flex justify-center items-center`}
+  ${mixins.flexCenter}
+  ${tw`w-full h-full relative`}
 `;
 
 const Front = styled(animated.div)`
-  ${tw`absolute w-1/3`}
+  ${tw`absolute w-full`}
 `;
 
 const Back = styled(Front)`
   path {
-    fill: #000000;
+    fill: black;
   }
 `;
 
-const spring = () => ({
-  xy: [-500, 200],
-  config: { mass: 10, tension: 550, friction: 140 },
-});
+const N = 20;
+const NOOP = () => {};
 
-const LogoParallax = () => {
-  const [{ xy }, set] = useSpring(spring);
+const LogoParallax = ({ transform = NOOP, className }) => (
+  <Container className={className}>
+    <Back style={transform(N)}>
+      <LogoAnimated />
+    </Back>
+    <Front style={transform(N - 10)}>
+      <LogoAnimated />
+    </Front>
+  </Container>
+);
 
-  return (
-    <Container onMouseMove={({ clientX: x, clientY: y }) => set({ xy: calc(x, y) })}>
-      <Back style={{ transform: xy.to(trans(20)) }}>
-        <LogoAnimated />
-      </Back>
-      <Front style={{ transform: xy.to(trans(10)) }}>
-        <LogoAnimated />
-      </Front>
-    </Container>
-  );
+LogoParallax.propTypes = {
+  transform: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 
 export default LogoParallax;

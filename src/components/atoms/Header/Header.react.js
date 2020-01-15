@@ -12,7 +12,7 @@ const Main = styled.div`
   ${is(`small`)`${tw`text-3xl`}`}
 `;
 
-const Header = ({ children, bg = 'white', color = 'color', small = false }) => (
+const Header = ({ children, bg = 'transparent', color = 'color', small = false }) => (
   <Main bg={bg} color={color} small={small}>
     {children}
   </Main>

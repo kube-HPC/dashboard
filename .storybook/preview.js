@@ -8,7 +8,7 @@ import '../src/styles/globals.css';
 
 const Container = styled.div`
   ${mixins.flexCenter}
-  ${tw`h-screen`}
+  ${tw`h-screen border-2 border-black w-screen`}
 `;
 
 addDecorator(S => (

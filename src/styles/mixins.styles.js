@@ -11,13 +11,17 @@ const button = css`
     py-2 px-4 border border-gray-400 rounded shadow`}
 `;
 
+const fillContainer = css`
+  ${tw`w-full h-full`}
+`;
+
 const flexCenter = css`
   ${tw`flex justify-center items-center`}
 `;
 
 const flexStart = css`
   ${flexCenter}
-  ${tw`items-baseline`}
+  ${tw`items-start`}
 `;
 
 const flexBetween = css`
@@ -54,6 +58,7 @@ const mixins = {
   flexCenter,
   flexStart,
   flexBetween,
+  fillContainer,
   reveal,
   fixed,
   box,
