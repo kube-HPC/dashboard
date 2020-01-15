@@ -26,7 +26,7 @@ const theme = create({
   brandTitle: 'DennisVash.com Storybook',
   brandUrl: 'https://dennisvash.com',
   brandImage:
-    'https://user-images.githubusercontent.com/27515937/71769798-63043a80-2f1d-11ea-9fbe-fe381aa915bf.png',
+    'https://user-images.githubusercontent.com/27515937/72454262-72567400-37b8-11ea-99bd-799c13c1638f.png',
 });
 
 addParameters({

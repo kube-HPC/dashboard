@@ -28,7 +28,8 @@ module.exports = ({ config }) => {
   // Prefer Gatsby ES6 entrypoint (module) over commonjs (main) entrypoint
   config.resolve.mainFields = ['browser', 'module', 'main'];
 
-  // config.module.rules = [gatsbyConfig, postCSSConfig];
+  // allow storybook to resolve imports relative to ../src, to conform with gatsby-plugin-resolve-src
+  config.resolve.modules = [path.resolve(__dirname, '../src'), 'node_modules'];
 
   // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
   config.module.rules[0].exclude = [/node_modules\/(?!(gatsby)\/)/];

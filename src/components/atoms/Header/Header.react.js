@@ -5,11 +5,11 @@ import is from 'styled-is';
 import tw from 'tailwind.macro';
 
 const Main = styled.div`
-  ${tw`text-6xl leading-snug`}
+  ${tw`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-6xl leading-snug`}
   width: fit-content;
   background-color: ${`bg`};
   color: ${`color`};
-  ${is(`small`)`${tw`text-3xl`}`}
+  ${is(`small`)`${tw`text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl`}`}
 `;
 
 const Header = ({ children, bg = 'transparent', color = 'color', small = false }) => (
