@@ -9,6 +9,9 @@ import '../src/styles/globals.css';
 const Container = styled.div`
   ${mixins.flexCenter}
   ${tw`h-screen border-2 border-black w-screen`}
+  svg {
+    ${tw`w-1/3 fill-current`}
+  }
 `;
 
 addDecorator(S => (

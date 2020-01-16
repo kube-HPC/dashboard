@@ -29,7 +29,7 @@ module.exports = ({ config }) => {
   config.resolve.mainFields = ['browser', 'module', 'main'];
 
   // allow storybook to resolve imports relative to ../src, to conform with gatsby-plugin-resolve-src
-  config.resolve.modules = [path.resolve(__dirname, '../src'), 'node_modules'];
+  config.resolve.modules = [path.resolve(__dirname, SRC), 'node_modules'];
 
   // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
   config.module.rules[0].exclude = [/node_modules\/(?!(gatsby)\/)/];

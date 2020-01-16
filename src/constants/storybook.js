@@ -2,11 +2,11 @@
 
 const LABELS = {
   ATOMS: 'Atoms/',
-  ICONS: 'Atoms/Icons',
+  ICONS: 'Atoms/Icons/',
   MOLECULES: 'Molecules/',
   ORGANISMS: 'Organisms/',
-  TEMPLATES: 'Templates',
-  PAGES: 'Pages',
+  TEMPLATES: 'Templates/',
+  PAGES: 'Pages/',
   TOOLTIPS: 'Molecules/Tooltip/',
 };
 
