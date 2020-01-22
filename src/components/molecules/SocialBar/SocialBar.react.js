@@ -6,7 +6,7 @@ import tw from 'tailwind.macro';
 const Container = styled.div`
   ${mixins.flexCenter}
   svg {
-    ${tw`w-full p-5`}
+    ${tw`w-full`}
   }
 `;
 
