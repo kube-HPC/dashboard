@@ -1,6 +1,7 @@
 const theme = {
   palette: {
-    PRIMARY: `hsl(272, 63%, 50%)`,
+    primary: `hsl(272, 63%, 50%)`,
+    secondary: `hsl(0, 0%, 0%)`,
   },
 };
 

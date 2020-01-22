@@ -1,11 +1,20 @@
-import IconCodesandbox from './Codesandbox/Codesandbox.svg.react';
-import IconDev from './Dev/Dev.svg';
-import IconGithub from './Github/Github.svg';
-import iconMapper from './iconMapper';
-import IconLinkedin from './Linkedin/Linkedin.svg';
-import IconMedium from './Medium/Medium.svg';
-import IconStackOverflow from './Stackoverflow/Stackoverflow.svg';
-import IconTwitter from './Twitter/Twitter.svg';
+import IconCodesandbox from './Codesandbox.svg.react';
+import IconDev from './Dev.svg.react';
+import IconGithub from './Github.svg.react';
+import IconLinkedin from './Linkedin.svg.react';
+import IconMedium from './Medium.svg.react';
+import IconStackOverflow from './Stackoverflow.svg.react';
+import IconTwitter from './Twitter.svg.react';
+
+const iconMapper = {
+  Github: IconGithub,
+  StackOverflow: IconStackOverflow,
+  CodeSandbox: IconCodesandbox,
+  Dev: IconDev,
+  Linkedin: IconLinkedin,
+  Twitter: IconTwitter,
+  Medium: IconMedium,
+};
 
 export default iconMapper;
 

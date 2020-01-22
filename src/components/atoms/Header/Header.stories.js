@@ -9,7 +9,7 @@ export default {
 
 export const Default = () => <Header>Header</Header>;
 export const Colored = () => (
-  <Header bg={theme.palette.PRIMARY} color="white">
+  <Header bg={theme.palette.primary} color="white">
     Header
   </Header>
 );

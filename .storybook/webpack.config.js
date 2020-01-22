@@ -56,7 +56,7 @@ module.exports = ({ config }) => {
   config.resolve.mainFields = ['browser', 'module', 'main'];
 
   config.resolve.alias = {
-    '@icons': path.resolve(__dirname, `${SRC}/components/atoms/icons`),
+    '@icons': path.resolve(__dirname, `${SRC}/components/atoms/Icons`),
     '@config': path.resolve(__dirname, `${SRC}/config`),
     '@content': path.resolve(__dirname, `${SRC}/content`),
     '@fonts': path.resolve(__dirname, `${SRC}/fonts`),

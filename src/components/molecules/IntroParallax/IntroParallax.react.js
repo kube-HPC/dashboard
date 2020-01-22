@@ -21,7 +21,7 @@ const IntroParallax = ({ transform = NOOP, className }) => (
       <Header small>Hi, my name is</Header>
     </Item>
     <Item style={transform(N - 20)}>
-      <Header bg={theme.palette.PRIMARY} color="white">
+      <Header bg={theme.palette.primary} color="white">
         Dennis Vash
       </Header>
     </Item>

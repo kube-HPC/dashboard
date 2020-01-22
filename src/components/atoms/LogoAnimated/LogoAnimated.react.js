@@ -12,7 +12,7 @@ const spring = {
 const LogoAnimated = () => {
   const { x, opacity } = useSpring(spring);
   return (
-    <animated.svg fill="none" viewBox="0 0 250 217">
+    <animated.svg viewBox="0 0 250 217">
       <animated.path
         strokeDasharray={1000}
         strokeDashoffset={x}
