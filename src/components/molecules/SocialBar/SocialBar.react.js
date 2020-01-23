@@ -4,35 +4,64 @@ import React from 'react';
 import { animated, config, useTrail } from 'react-spring';
 import tw from 'tailwind.macro';
 
+const { primary, secondary } = theme.palette;
+
 const Container = styled.div`
   ${mixins.flexCenter}
+`;
+
+const IconContainer = styled(animated.div)``;
+
+const Text = styled.div``;
+
+const Item = styled(animated.div)`
+  ${mixins.flexCenter}
+  ${tw`flex-col cursor-pointer`}
+
   svg {
     ${tw`w-full fill-current p-5`}
+    transition: all 0.5s ease;
+  }
+  ${Text} {
+    transition: opacity 1s ease;
+    opacity: 0;
+  }
+  :hover {
+    ${Text} {
+      opacity: 1;
+      color: hsl(272, 63%, 50%);
+    }
+    svg {
+      color: hsl(272, 63%, 50%);
+      transform: translateY(-1rem);
+    }
   }
 `;
 
-const { CodeSandbox, Twitter, Github, StackOverflow } = iconMapper;
+const items = Object.entries(iconMapper);
 
-const items = [CodeSandbox, Twitter, StackOverflow, Github];
+const spring = {
+  config: config.molasses,
+  color: secondary,
+  opacity: 1,
+  from: { color: primary, opacity: 0 },
+};
 
 const SocialBar = () => {
-  const trail = useTrail(items.length, {
-    config: config.slow,
-    x: `0em`,
-    width: `20em`,
-    from: { color: theme.palette.primary, x: `10em`, width: `0em` },
-  });
+  const trail = useTrail(items.length, spring);
 
   return (
     <Container>
-      {trail.map(({ width, x }, index) => {
-        const Icon = items[index];
+      {trail.map(({ opacity }, index) => {
+        const [text, Icon] = items[index];
+
         return (
-          <animated.div key={index} style={{ transform: x.to(x => `translate3d(${x},0,0)`) }}>
-            <animated.div style={{ width: width }}>
+          <Item key={index} style={{ opacity }}>
+            <IconContainer>
               <Icon />
-            </animated.div>
-          </animated.div>
+            </IconContainer>
+            <Text>{text}</Text>
+          </Item>
         );
       })}
     </Container>

@@ -1,5 +1,5 @@
 import { SB_LABELS } from '@constants';
-import iconMapper from '@icons';
+import iconMapper, { IconDev, IconLinkedin, IconMedium } from '@icons';
 import { mixins } from '@styles';
 import React from 'react';
 import styled from 'styled-components';
@@ -23,12 +23,12 @@ export default {
   ],
 };
 
-const { CodeSandbox, Dev, Github, Linkedin, Medium, StackOverflow, Twitter } = iconMapper;
+const { CodeSandbox, Github, StackOverflow, Twitter } = iconMapper;
 
 export const github = Github;
-export const dev = Dev;
+export const dev = IconDev;
 export const codeSandbox = CodeSandbox;
-export const linkedin = Linkedin;
-export const medium = Medium;
+export const linkedin = IconLinkedin;
+export const medium = IconMedium;
 export const stackOverflow = StackOverflow;
 export const twitter = Twitter;

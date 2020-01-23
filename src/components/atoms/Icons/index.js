@@ -10,10 +10,7 @@ const iconMapper = {
   Github: IconGithub,
   StackOverflow: IconStackOverflow,
   CodeSandbox: IconCodesandbox,
-  Dev: IconDev,
-  Linkedin: IconLinkedin,
   Twitter: IconTwitter,
-  Medium: IconMedium,
 };
 
 export default iconMapper;
