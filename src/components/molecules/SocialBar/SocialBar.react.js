@@ -8,31 +8,40 @@ const { primary, secondary } = theme.palette;
 
 const Container = styled.div`
   ${mixins.flexCenter}
+  ${tw`w-5/6 sm:w-3/4 md:w-3/5 lg:w-3/6`}
 `;
 
 const IconContainer = styled(animated.div)``;
 
-const Text = styled.div``;
+const Text = styled.div`
+  ${tw`text-lg`}
+`;
 
 const Item = styled(animated.div)`
-  ${mixins.flexCenter}
-  ${tw`flex-col cursor-pointer`}
+  ${mixins.flexBetween}
+  ${tw`flex-col cursor-pointer w-1/12 px-2`}
+  transition: margin 1s ease;
 
-  svg {
-    ${tw`w-full fill-current p-5`}
+  svg,${Text} {
     transition: all 0.5s ease;
   }
-  ${Text} {
-    transition: opacity 1s ease;
-    opacity: 0;
+
+  svg {
+    ${tw`w-full fill-current`}
   }
+
+  ${Text} {
+    ${tw`opacity-0`}
+  }
+
   :hover {
+    ${tw`mx-5`}
     ${Text} {
-      opacity: 1;
-      color: hsl(272, 63%, 50%);
+      ${tw`opacity-100`}
+      color: ${`primary`};
     }
     svg {
-      color: hsl(272, 63%, 50%);
+      color: ${`primary`};
       transform: translateY(-1rem);
     }
   }
@@ -56,7 +65,7 @@ const SocialBar = () => {
         const [text, Icon] = items[index];
 
         return (
-          <Item key={index} style={{ opacity }}>
+          <Item key={index} primary={primary} style={{ opacity }}>
             <IconContainer>
               <Icon />
             </IconContainer>

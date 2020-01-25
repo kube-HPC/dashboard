@@ -23,7 +23,7 @@ export default {
   ],
 };
 
-const { CodeSandbox, Github, StackOverflow, Twitter } = iconMapper;
+const { CodeSandbox, Github, StackOverflow, Twitter, CV, Gmail } = iconMapper;
 
 export const github = Github;
 export const dev = IconDev;
@@ -32,3 +32,5 @@ export const linkedin = IconLinkedin;
 export const medium = IconMedium;
 export const stackOverflow = StackOverflow;
 export const twitter = Twitter;
+export const cv = CV;
+export const gmail = Gmail;

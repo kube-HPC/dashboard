@@ -29,20 +29,8 @@ const flexBetween = css`
   ${tw`justify-between`}
 `;
 
-const reveal = css`
-  animation: show 2s ease-in normal;
-  @keyframes show {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-`;
-
 const fixed = css`
-  ${tw`fixed z-10 m-5`}
+  ${tw`fixed z-10`}
 `;
 
 const box = css`
@@ -59,7 +47,6 @@ const mixins = {
   flexStart,
   flexBetween,
   fillContainer,
-  reveal,
   fixed,
   box,
 };

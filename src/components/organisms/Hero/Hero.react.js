@@ -1,4 +1,4 @@
-import { IntroParallax, LogoParallax } from '@components';
+import { IntroParallax, LogoParallax, SocialBar } from '@components';
 import { mixins, styled } from '@styles';
 import React, { useCallback } from 'react';
 import { config, useSpring } from 'react-spring';
@@ -13,8 +13,14 @@ const Logo = styled(LogoParallax)`
   ${tw`w-1/4 absolute z-0`}
   right: 15%;
 `;
+
 const Intro = styled(IntroParallax)`
   ${tw`z-10`}
+`;
+
+const Position = styled.div`
+  ${mixins.flexCenter}
+  ${tw`fixed bottom-0 my-10`}
 `;
 
 const spring = () => ({
@@ -35,6 +41,9 @@ const Hero = () => {
     <Container onMouseMove={onMouseMove}>
       <Intro transform={transform} />
       <Logo transform={transform} />
+      <Position>
+        <SocialBar />
+      </Position>
     </Container>
   );
 };
