@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Tailwind CSS + Styled-Components + Storybook Starter`,
-    description: `A bare-bones Tailwind CSS + Styled-Components + Storybook starter to kickoff your project. `,
+    title: `Dennis Vash | Web Developer`,
+    description: `Dennis Vash`,
     author: `@dennisvash`,
   },
   plugins: [
@@ -13,7 +13,7 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: 'Dennis Vash',
-        short_name: 'Devash',
+        short_name: 'denvash',
         start_url: `/`,
         background_color: `#f7f0eb`,
         theme_color: `#F25192`,

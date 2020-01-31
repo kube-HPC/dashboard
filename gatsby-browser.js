@@ -1,4 +1,2 @@
-/*
-  Import Tailwind's base styles into the browser.
-*/
+import 'typeface-unica-one';
 import './src/styles/globals.css';

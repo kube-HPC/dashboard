@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-tailwind-styled-components-storybook-starter",
-  "description": "A bare-bones Tailwind CSS + Styled-Components + Storybook starter for Gatsby",
+  "name": "dennis.vash",
+  "description": "Dennis Vash Web Developer",
   "version": "1.0.0",
   "author": "Dennis Vash <dennisvash@gmail.com>",
   "license": "MIT",
@@ -58,7 +58,8 @@
     "react-spring": "^9.0.0-beta.34",
     "styled-components": "^5.0.0",
     "styled-is": "^1.3.0",
-    "styled-theming": "^2.2.0"
+    "styled-theming": "^2.2.0",
+    "typeface-unica-one": "^0.0.72"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
