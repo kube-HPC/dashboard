@@ -39,5 +39,13 @@ module.exports = {
         extensions: ['js'],
       },
     },
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        tailwind: true,
+        printRejected: true,
+        // purgeOnly: [`src/styles/globals.css`],
+      },
+    },
   ],
 };
