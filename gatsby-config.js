@@ -18,7 +18,7 @@ module.exports = {
         background_color: `#f7f0eb`,
         theme_color: `#F25192`,
         display: `standalone`,
-        icon: `static/favicon.ico`,
+        icon: `static/favicon.png`,
       },
     },
     {
@@ -44,7 +44,7 @@ module.exports = {
       options: {
         tailwind: true,
         printRejected: true,
-        // purgeOnly: [`src/styles/globals.css`],
+        purgeOnly: [`src/styles/globals.css`],
       },
     },
   ],
