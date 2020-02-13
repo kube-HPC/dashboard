@@ -9,7 +9,7 @@ export default {
 };
 
 const FixedBottomLeft = styled.div`
-  ${tw`fixed bottom-0 left-0`}
+  ${tw`fixed bottom-0 left-0 m-5`}
 `;
 
 export const Default = SocialBar;

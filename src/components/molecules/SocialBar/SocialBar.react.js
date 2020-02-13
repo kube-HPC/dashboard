@@ -10,41 +10,22 @@ const { primary, secondary } = theme.palette;
 
 const Container = styled.div`
   ${mixins.flexCenter}
-  ${tw`w-5/6 sm:w-3/4 md:w-3/5 lg:w-2/5`}
+  ${tw`w-1/2 sm:w-2/4 md:w-3/5 lg:w-1/3`}
 `;
 
 const IconContainer = styled(animated.div)``;
 
-const Text = styled.div`
-  ${tw`text-lg`}
-`;
-
 const Item = styled(animated.a)`
   ${mixins.flexBetween}
   ${tw`flex-col cursor-pointer w-1/12 px-2`}
-  transition: margin 1s ease;
-
-  svg,${Text} {
-    transition: all 0.5s ease;
-  }
 
   svg {
-    ${tw`w-full fill-current`}
-  }
-
-  ${Text} {
-    ${tw`opacity-0`}
-  }
-
-  :hover,:focus {
-    ${tw`mx-5`}
-    ${Text} {
-      ${tw`opacity-100`}
+    transition: all 0.5s ease;
+    ${tw`w-full fill-current`};
+    :hover,
+    :focus {
       color: ${`primary`};
-    }
-    svg {
-      color: ${`primary`};
-      transform: translateY(-1rem);
+      transform: translateY(-0.4rem);
     }
   }
 `;
@@ -82,7 +63,6 @@ const SocialBar = () => {
             <IconContainer>
               <Icon />
             </IconContainer>
-            <Text>{name}</Text>
           </Item>
         );
       })}

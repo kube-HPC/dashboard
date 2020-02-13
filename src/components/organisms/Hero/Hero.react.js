@@ -20,7 +20,7 @@ const Intro = styled(IntroParallax)`
 
 const Position = styled.div`
   ${mixins.flexCenter}
-  ${tw`fixed bottom-0 my-10`}
+  ${tw`fixed bottom-0 left-0 my-10`}
 `;
 
 const spring = () => ({

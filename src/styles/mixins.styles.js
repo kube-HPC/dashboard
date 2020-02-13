@@ -21,7 +21,7 @@ const flexCenter = css`
 
 const flexStart = css`
   ${flexCenter}
-  ${tw`items-start`}
+  ${tw`items-start justify-start`}
 `;
 
 const flexBetween = css`
