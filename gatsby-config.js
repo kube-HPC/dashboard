@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Dennis Vash | Web Developer`,
+    title: `Dennis Vash | Software Engineer`,
     description: `Dennis Vash`,
     author: `@dennisvash`,
   },
@@ -15,8 +15,6 @@ module.exports = {
         name: 'Dennis Vash',
         short_name: 'denvash',
         start_url: `/`,
-        background_color: `#f7f0eb`,
-        theme_color: `#F25192`,
         display: `standalone`,
         icon: `static/favicon.png`,
       },
