@@ -14,6 +14,7 @@ const metaConfig = {
   twitterHandle: '@DennisVash',
   image: '/banner.png', // Path to your image you placed in the 'static' folder
   baseUrl: '', // used to create absolute URLs for SEO
+  googleAnalyticsID: 'UA-158593354-1',
 };
 
 module.exports = metaConfig;

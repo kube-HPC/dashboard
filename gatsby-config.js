@@ -45,5 +45,11 @@ module.exports = {
         purgeOnly: [`src/styles/globals.css`],
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: meta.googleAnalyticsID,
+      },
+    },
   ],
 };

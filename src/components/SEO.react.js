@@ -29,7 +29,16 @@ const SEO = () => {
     site: { meta },
   } = useStaticQuery(META_DATA_QUERY);
 
-  const { siteUrl, twitterHandle, titleTemplate, title, image, description, language } = meta;
+  const {
+    siteUrl,
+    twitterHandle,
+    titleTemplate,
+    title,
+    image,
+    description,
+    language,
+    baseUrl,
+  } = meta;
 
   const main = [
     {
@@ -84,6 +93,9 @@ const SEO = () => {
     },
   ];
 
+  const canonicalLink =
+    baseUrl === '' && typeof window !== 'undefined' ? window.location.origin : baseUrl;
+
   return (
     <Helmet
       htmlAttributes={{
@@ -92,7 +104,7 @@ const SEO = () => {
       title={title}
       titleTemplate={titleTemplate}
       meta={[...main, ...twitter, ...og]}>
-      <link rel="canonical" href={siteUrl} />
+      <link rel="canonical" href={canonicalLink} />
     </Helmet>
   );
 };
