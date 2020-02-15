@@ -27,7 +27,7 @@ module.exports = {
         icon: website.favicon,
       },
     },
-    `gatsby-plugin-offline`,
+
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
@@ -66,5 +66,8 @@ module.exports = {
         trackingId: website.googleAnalyticsID,
       },
     },
+    // Must be placed at the end
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-netlify`,
   ],
 };
