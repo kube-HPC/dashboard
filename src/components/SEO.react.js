@@ -1,77 +1,99 @@
-// This is taken directly from the official gatsby-starter-default
-// https://github.com/gatsbyjs/gatsby-starter-default
+import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
-import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
 
-const SEO = ({ description = '', lang = 'en', meta = [], title }) => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
+const META_DATA_QUERY = graphql`
+  query getMetaData {
+    site {
+      meta: siteMetadata {
+        url
+        twitterHandle
+        title
+        titleTemplate
+        image
+        description
+        baseUrl
+        siteKeywords
+        name
+        location
+        language
+        github
+        email
       }
-    `,
-  );
+    }
+  }
+`;
 
-  const metaDescription = description || site.siteMetadata.description;
+const SEO = () => {
+  const {
+    site: { meta },
+  } = useStaticQuery(META_DATA_QUERY);
+
+  const { url, twitterHandle, titleTemplate, title, image, description, language } = meta;
+
+  const main = [
+    {
+      name: `description`,
+      content: description,
+    },
+    {
+      name: `image`,
+      content: image,
+    },
+  ];
+
+  const og = [
+    {
+      property: `og:url`,
+      content: url,
+    },
+    {
+      property: `og:title`,
+      content: title,
+    },
+    {
+      property: `og:type`,
+      content: `website`,
+    },
+    {
+      property: `og:description`,
+      content: description,
+    },
+    {
+      property: `og:image`,
+      content: image,
+    },
+  ];
+
+  const twitter = [
+    {
+      name: `twitter:card`,
+      content: `summary_large_image`,
+    },
+    {
+      name: `twitter:creator`,
+      content: twitterHandle,
+    },
+    {
+      name: `twitter:title`,
+      content: title,
+    },
+    {
+      name: `twitter:description`,
+      content: description,
+    },
+  ];
 
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        language,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
+      titleTemplate={titleTemplate}
+      meta={[...main, ...twitter, ...og]}
     />
   );
-};
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
 };
 
 export default SEO;

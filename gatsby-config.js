@@ -1,14 +1,12 @@
+const meta = require(`./src/config/meta`);
+
 module.exports = {
-  siteMetadata: {
-    title: `Dennis Vash | Software Engineer`,
-    description: `Dennis Vash`,
-    author: `@dennisvash`,
-  },
+  siteMetadata: meta,
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
-    'gatsby-plugin-resolve-src',
+    `gatsby-plugin-resolve-src`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -19,6 +17,7 @@ module.exports = {
         icon: `static/favicon.png`,
       },
     },
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
