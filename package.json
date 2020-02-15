@@ -1,6 +1,6 @@
 {
-  "name": "dennis.vash",
-  "description": "Dennis Vash Web Developer",
+  "name": "dennisvash.dev",
+  "description": "Dennis Vash Personal Website",
   "version": "1.0.0",
   "author": "Dennis Vash <dennisvash@gmail.com>",
   "license": "MIT",
@@ -14,10 +14,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/denvash/gatsby-styled-tailwind-storybook-starter"
+    "url": "https://github.com/denvash/dennisvash.dev"
   },
   "bugs": {
-    "url": "https://github.com/denvash/gatsby-styled-tailwind-storybook-starter/issues"
+    "url": "https://github.com/denvash/dennisvash.dev/issues"
   },
   "husky": {
     "hooks": {
@@ -77,8 +77,13 @@
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
+    "gatsby-plugin-google-analytics": "^2.1.35",
     "gatsby-plugin-manifest": "^2.2.38",
+    "gatsby-plugin-netlify": "^2.1.32",
+    "gatsby-plugin-offline": "^3.0.34",
     "gatsby-plugin-purgecss": "^4.0.1",
+    "gatsby-plugin-robots-txt": "^1.5.0",
+    "gatsby-plugin-sitemap": "^2.2.27",
     "gatsby-plugin-styled-components": "^3.1.18",
     "husky": "3.1.0",
     "lint-staged": "^9.5.0",

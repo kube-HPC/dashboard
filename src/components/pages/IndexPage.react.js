@@ -1,18 +1,16 @@
+import { Hero } from '@components';
+import { GlobalStyle } from '@styles';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'tailwind.macro';
-import Hero from '../organisms/Hero/Hero.react';
-import SEO from '../SEO.react';
-
-const Wrapper = styled.div`
-  ${tw`flex items-center justify-center h-screen`}
-`;
+import SEO from '../SEO/SEO.react';
 
 const IndexPage = () => (
-  <Wrapper>
-    <SEO title="Dennis Vash | Web Developer" />
-    <Hero />
-  </Wrapper>
+  <>
+    <SEO />
+    <GlobalStyle />
+    <main>
+      <Hero />
+    </main>
+  </>
 );
 
 export default IndexPage;
