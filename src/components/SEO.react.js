@@ -6,7 +6,7 @@ const META_DATA_QUERY = graphql`
   query getMetaData {
     site {
       meta: siteMetadata {
-        url
+        siteUrl
         twitterHandle
         title
         titleTemplate
@@ -29,7 +29,7 @@ const SEO = () => {
     site: { meta },
   } = useStaticQuery(META_DATA_QUERY);
 
-  const { url, twitterHandle, titleTemplate, title, image, description, language } = meta;
+  const { siteUrl, twitterHandle, titleTemplate, title, image, description, language } = meta;
 
   const main = [
     {
@@ -45,7 +45,7 @@ const SEO = () => {
   const og = [
     {
       property: `og:url`,
-      content: url,
+      content: siteUrl,
     },
     {
       property: `og:title`,
@@ -92,7 +92,7 @@ const SEO = () => {
       title={title}
       titleTemplate={titleTemplate}
       meta={[...main, ...twitter, ...og]}>
-      <link rel="canonical" href={url} />
+      <link rel="canonical" href={siteUrl} />
     </Helmet>
   );
 };

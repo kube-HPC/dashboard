@@ -5,7 +5,7 @@ const metaConfig = {
     'Dennis Vash is a software engineer based in Israel who specializes in developing exceptional, high-quality websites and applications.',
   siteKeywords:
     'Dennis Vash, Dennis, Vash, denvash, software engineer, front-end engineer, web developer, javascript',
-  url: 'https://dennisvash.dev', // No trailing slash allowed!
+  siteUrl: 'https://dennisvash.dev', // No trailing slash allowed!
   language: 'en_US',
   name: 'Dennis Vash',
   location: 'Tel Aviv, Israel',
