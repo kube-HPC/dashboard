@@ -20,4 +20,6 @@ module.exports = {
   twitter: '@DennisVash', // Twitter Username
   facebook: 'DennisVash', // Facebook Site Name
   skipNavId: 'reach-skip-nav', // ID for the "Skip to content" a11y feature
+
+  googleAnalyticsID: 'UA-158593354-1',
 };
