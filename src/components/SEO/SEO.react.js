@@ -54,8 +54,7 @@ const SEO = ({ title, desc, banner, pathname, article }) => {
 
   return (
     <>
-      <Helmet title={title}>
-        <html lang={siteLanguage} />
+      <Helmet title={title} htmlAttributes={{ lang: siteLanguage }}>
         <link rel="canonical" href={canonicalLink} />
         <meta name="description" content={seo.description} />
         <meta name="image" content={seo.image} />
