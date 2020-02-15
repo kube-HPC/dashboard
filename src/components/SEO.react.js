@@ -91,8 +91,9 @@ const SEO = () => {
       }}
       title={title}
       titleTemplate={titleTemplate}
-      meta={[...main, ...twitter, ...og]}
-    />
+      meta={[...main, ...twitter, ...og]}>
+      <link rel="canonical" href={url} />
+    </Helmet>
   );
 };
 
