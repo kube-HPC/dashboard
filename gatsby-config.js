@@ -1,12 +1,19 @@
-const meta = require(`./src/config/meta`);
+const website = require(`./src/config/meta`);
+
+const pathPrefix = website.pathPrefix === '/' ? '' : website.pathPrefix;
 
 module.exports = {
-  siteMetadata: meta,
+  pathPrefix: website.pathPrefix,
+  siteMetadata: {
+    siteUrl: website.url + pathPrefix, // For gatsby-plugin-sitemap
+    ...website,
+  },
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-resolve-src`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -53,7 +60,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: meta.googleAnalyticsID,
+        trackingId: website.googleAnalyticsID,
       },
     },
   ],

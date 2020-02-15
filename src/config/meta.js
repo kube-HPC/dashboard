@@ -1,20 +1,23 @@
-const metaConfig = {
-  title: 'Dennis Vash',
-  titleTemplate: `%s | Front End Software Engineer`,
+module.exports = {
+  pathPrefix: '/', // Prefix for all links. If you deploy your site to example.com/portfolio your pathPrefix should be "portfolio"
+  title: 'Dennis Vash | Front End Software Engineer', // Navigation and Site Title
+  titleAlt: 'Dennis Vash Front-End Developer', // Title for JSONLD
   description:
     'Dennis Vash is a software engineer based in Israel who specializes in developing exceptional, high-quality websites and applications.',
-  siteKeywords:
-    'Dennis Vash, Dennis, Vash, denvash, software engineer, front-end engineer, web developer, javascript',
-  siteUrl: 'https://dennisvash.dev', // No trailing slash allowed!
-  language: 'en_US',
-  name: 'Dennis Vash',
-  location: 'Tel Aviv, Israel',
-  email: 'dennisvash@gmail.com',
-  github: 'https://github.com/denvash',
-  twitterHandle: '@DennisVash',
-  image: '/banner.png', // Path to your image you placed in the 'static' folder
-  baseUrl: '', // used to create absolute URLs for SEO
-  googleAnalyticsID: 'UA-158593354-1',
-};
+  headline: 'I create things for the web', // Headline for schema.org JSONLD
+  url: 'https://dennisvash.dev', // Domain of your site. No trailing slash!
+  siteLanguage: 'en', // Language Tag on <html> element
+  banner: '/banner.png', // Used for SEO
+  ogLanguage: 'en_US', // Facebook Language
 
-module.exports = metaConfig;
+  // JSONLD / Manifest
+  favicon: 'favicon.png', // Used for manifest favicon generation
+  shortName: 'Dennis Vash', // shortname for manifest. MUST be shorter than 12 characters
+  author: 'denvash', // Author for schemaORGJSONLD
+  themeColor: '#842FCF',
+  backgroundColor: '#EBEDF2',
+
+  twitter: '@DennisVash', // Twitter Username
+  facebook: 'DennisVash', // Facebook Site Name
+  skipNavId: 'reach-skip-nav', // ID for the "Skip to content" a11y feature
+};
