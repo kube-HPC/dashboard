@@ -23,24 +23,26 @@ const Front = styled(Back)`
 
 const N = 20;
 const NOOP = () => {};
+const { primary, secondary } = theme.palette;
+const empty = `transparent`;
 
 const fillSpring = {
-  frontFill: theme.palette.primary,
-  backFill: theme.palette.secondary,
-  from: { frontFill: `transparent`, backFill: `transparent` },
+  primary,
+  secondary,
+  from: { primary: empty, secondary: empty },
   delay: 2000,
 };
 
 const LogoParallax = ({ transform = NOOP, className }) => {
-  const { frontFill, backFill } = useSpring(fillSpring);
+  const { primary, secondary } = useSpring(fillSpring);
 
   return (
     <Container className={className}>
       <Back style={transform(N)}>
-        <LogoAnimated fill={backFill} />
+        <LogoAnimated fill={secondary} />
       </Back>
       <Front style={transform(N - 10)}>
-        <LogoAnimated fill={frontFill} />
+        <LogoAnimated fill={primary} />
       </Front>
     </Container>
   );

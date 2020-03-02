@@ -1,3 +1,4 @@
+import { theme } from '@styles';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
@@ -9,7 +10,7 @@ const spring = () => ({
   config: { mass: 2, tension: 500, friction: 200 },
 });
 
-const LogoAnimated = ({ fill = `none` }) => {
+const LogoAnimated = ({ fill = theme.palette.primary }) => {
   const [offset, setOffset] = useState(0);
   const [{ dash }, set] = useSpring(spring);
 

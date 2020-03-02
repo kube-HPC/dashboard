@@ -19,7 +19,6 @@ const Intro = styled(IntroParallax)`
 `;
 
 const Container = styled.div`
-  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
   ${mixins.flexCenter}
   ${mixins.fillContainer}
   ${tw`flex-col`}
