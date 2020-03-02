@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 
@@ -8,7 +9,7 @@ const spring = () => ({
   config: { mass: 2, tension: 500, friction: 200 },
 });
 
-const LogoAnimated = () => {
+const LogoAnimated = ({ fill = `none` }) => {
   const [offset, setOffset] = useState(0);
   const [{ dash }, set] = useSpring(spring);
 
@@ -21,17 +22,22 @@ const LogoAnimated = () => {
   }, [set]);
 
   return (
-    <animated.svg viewBox="0 0 250 217" stroke="black">
+    <animated.svg viewBox="0 0 250 217" stroke="black" strokeWidth="0.5">
       <animated.path
         strokeDasharray={offset}
         strokeDashoffset={dash}
         ref={path}
-        strokeWidth="1"
         d={triangle}
-        fill="none"
+        strokeLinecap="square"
+        strokeLinejoin="bevel"
+        fill={fill}
       />
     </animated.svg>
   );
+};
+
+LogoAnimated.propTypes = {
+  fill: PropTypes.string,
 };
 
 export default LogoAnimated;

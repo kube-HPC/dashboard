@@ -1,16 +1,14 @@
 import { URLS } from '@config';
 import { SOCIALS } from '@constants';
 import iconMapper from '@icons';
-import { mixins, styled, theme } from '@styles';
+import { mixins, styled } from '@styles';
 import React from 'react';
-import { animated, config, useTrail } from 'react-spring';
+import { animated, useTrail } from 'react-spring';
 import tw from 'twin.macro';
-
-const { primary, secondary } = theme.palette;
 
 const Container = styled.div`
   ${mixins.flexCenter}
-  ${tw`w-1/2 sm:w-2/4 md:w-3/5 lg:w-1/3`}
+  ${tw`w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5`}
 `;
 
 const IconContainer = styled(animated.div)``;
@@ -20,13 +18,9 @@ const Item = styled(animated.a)`
   ${tw`flex-col cursor-pointer w-1/12 px-2`}
 
   svg {
-    transition: all 0.5s ease;
-    ${tw`w-full fill-current`};
-    :hover,
-    :focus {
-      color: ${`primary`};
-      transform: translateY(-0.4rem);
-    }
+    ${tw`w-full fill-current text-secondary
+        duration-500 transition-transform ease-in-out transform hocus:text-primary
+        hocus:-translate-y-1`};
   }
 `;
 
@@ -37,10 +31,10 @@ const items = Object.values(SOCIALS).map(name => ({
 }));
 
 const spring = {
-  config: config.molasses,
-  color: secondary,
+  delay: 5000,
   opacity: 1,
-  from: { color: primary, opacity: 0 },
+  x: 0,
+  from: { opacity: 0, x: 20 },
 };
 
 const SocialBar = () => {
@@ -48,14 +42,13 @@ const SocialBar = () => {
 
   return (
     <Container>
-      {trail.map(({ opacity }, index) => {
+      {trail.map((spring, index) => {
         const { name, url, Icon } = items[index];
 
         return (
           <Item
             key={index}
-            primary={primary}
-            style={{ opacity }}
+            style={spring}
             href={url}
             target="_blank"
             rel="nofollow noopener noreferrer"
@@ -69,5 +62,7 @@ const SocialBar = () => {
     </Container>
   );
 };
+
+SocialBar.SC = Container;
 
 export default SocialBar;

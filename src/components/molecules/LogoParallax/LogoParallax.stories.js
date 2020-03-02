@@ -14,7 +14,6 @@ const spring = () => ({
 });
 
 const Container = styled.div`
-  ${mixins.flexCenter}
   ${mixins.fillContainer}
   div {
     width: 60%;

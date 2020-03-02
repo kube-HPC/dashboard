@@ -1,27 +1,29 @@
-import { IntroParallax, LogoParallax } from '@components';
+import { IntroParallax, LogoParallax, SocialBar } from '@components';
 import { mixins, styled } from '@styles';
 import React, { useCallback } from 'react';
 import { config, useSpring } from 'react-spring';
 import tw from 'twin.macro';
 
-const Container = styled.div`
+const Wrapper = styled.div`
   ${mixins.flexCenter}
-  ${tw`w-full h-full relative`}
+  ${tw`w-full`}
+  flex-basis: 50vh;
 `;
 
 const Logo = styled(LogoParallax)`
   ${tw`w-1/4 absolute z-0`}
-  right: 15%;
+  right: 15rem;
 `;
 
 const Intro = styled(IntroParallax)`
   ${tw`z-10`}
 `;
 
-// const Position = styled.div`
-//   ${mixins.flexCenter}
-//   ${tw`fixed bottom-0 left-0 my-10`}
-// `;
+const Container = styled.div`
+  ${mixins.flexCenter}
+  ${mixins.fillContainer}
+  ${tw`flex-col`}
+`;
 
 const spring = () => ({
   xy: [-500, 200],
@@ -39,8 +41,11 @@ const Hero = () => {
 
   return (
     <Container onMouseMove={onMouseMove}>
-      <Intro transform={transform} />
-      <Logo transform={transform} />
+      <Wrapper>
+        <Intro transform={transform} />
+        <Logo transform={transform} />
+      </Wrapper>
+      <SocialBar />
     </Container>
   );
 };

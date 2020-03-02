@@ -7,7 +7,7 @@ import {} from '../src/components/index';
 import { GlobalStyle, styled } from '../src/styles';
 
 const Container = styled.div`
-  ${tw`h-screen border-2 border-black w-screen`}
+  ${tw`h-screen w-screen`}
 `;
 
 addDecorator(S => (
@@ -22,8 +22,8 @@ addDecorator(S => (
 const theme = create({
   base: 'light',
   colorPrimary: 'hotpink',
-  brandTitle: 'DennisVash.com Storybook',
-  brandUrl: 'https://dennisvash.com',
+  brandTitle: 'DennisVash.dev Storybook',
+  brandUrl: 'https://dennisvash.dev',
   brandImage:
     'https://user-images.githubusercontent.com/27515937/72454262-72567400-37b8-11ea-99bd-799c13c1638f.png',
 });
