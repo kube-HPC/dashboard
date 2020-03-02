@@ -1,38 +1,50 @@
 import { LogoAnimated } from '@components';
-import { mixins, styled } from '@styles';
+import { mixins, styled, theme } from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { animated } from 'react-spring';
-import tw from 'tailwind.macro';
+import { animated, useSpring } from 'react-spring';
+import tw from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.flexCenter}
-  ${tw`w-full h-full relative`}
+  ${mixins.fillContainer}
+  ${tw`relative`}
 `;
 
-const Front = styled(animated.div)`
-  ${tw`absolute w-full`}
+const Back = styled(animated.div)`
+  ${tw`absolute w-full`};
 `;
 
-const Back = styled(Front)`
-  path {
-    fill: black;
+const Front = styled(Back)`
+  svg {
+    ${tw`stroke-current text-primary`}
   }
 `;
 
 const N = 20;
 const NOOP = () => {};
 
-const LogoParallax = ({ transform = NOOP, className }) => (
-  <Container className={className}>
-    <Back style={transform(N)}>
-      <LogoAnimated />
-    </Back>
-    <Front style={transform(N - 10)}>
-      <LogoAnimated />
-    </Front>
-  </Container>
-);
+const fillSpring = {
+  frontFill: theme.palette.primary,
+  backFill: theme.palette.secondary,
+  from: { frontFill: `transparent`, backFill: `transparent` },
+  delay: 2000,
+};
+
+const LogoParallax = ({ transform = NOOP, className }) => {
+  const { frontFill, backFill } = useSpring(fillSpring);
+
+  return (
+    <Container className={className}>
+      <Back style={transform(N)}>
+        <LogoAnimated fill={backFill} />
+      </Back>
+      <Front style={transform(N - 10)}>
+        <LogoAnimated fill={frontFill} />
+      </Front>
+    </Container>
+  );
+};
 
 LogoParallax.propTypes = {
   transform: PropTypes.func.isRequired,

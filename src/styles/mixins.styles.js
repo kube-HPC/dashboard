@@ -1,10 +1,9 @@
 import { css } from 'styled-components';
-import tw from 'tailwind.macro';
+import tw from 'twin.macro';
 
 const button = css`
   svg {
-    margin-right: 10px;
-    width: 2em;
+    ${tw`mr-2 w-8`}
   }
   ${tw`flex justify-around items-center bg-white
     hover:bg-gray-100 text-gray-800 font-semibold

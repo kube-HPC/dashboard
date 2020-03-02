@@ -1,15 +1,14 @@
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import { create } from '@storybook/theming';
 import React from 'react';
-import tw from 'tailwind.macro';
+import 'tailwindcss/dist/base.css';
+import tw from 'twin.macro';
 import 'typeface-unica-one';
 import {} from '../src/components/index';
-import { GlobalStyle, mixins, styled } from '../src/styles';
-import '../src/styles/globals.css';
+import { GlobalStyle, styled } from '../src/styles';
 
 const Container = styled.div`
-  ${mixins.flexCenter}
-  ${tw`h-screen border-2 border-black w-screen`}
+  ${tw`h-screen w-screen`}
 `;
 
 addDecorator(S => (
@@ -24,8 +23,8 @@ addDecorator(S => (
 const theme = create({
   base: 'light',
   colorPrimary: 'hotpink',
-  brandTitle: 'DennisVash.com Storybook',
-  brandUrl: 'https://dennisvash.com',
+  brandTitle: 'DennisVash.dev Storybook',
+  brandUrl: 'https://dennisvash.dev',
   brandImage:
     'https://user-images.githubusercontent.com/27515937/72454262-72567400-37b8-11ea-99bd-799c13c1638f.png',
 });
