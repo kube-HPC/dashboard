@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   main {
-    ${tw`w-screen h-screen`};
+    ${tw`w-screen h-screen bg-gray-200`};
   }
 `;
 

@@ -1,5 +1,5 @@
 import { LogoAnimated } from '@components';
-import { mixins, styled } from '@styles';
+import { mixins, styled, theme } from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { animated } from 'react-spring';
@@ -11,14 +11,13 @@ const Container = styled.div`
 `;
 
 const Front = styled(animated.div)`
-  ${tw`absolute w-full`}
-`;
-
-const Back = styled(Front)`
+  ${tw`absolute w-full`};
   path {
-    fill: black;
+    fill: ${theme.palette.primary};
   }
 `;
+
+const Back = styled(Front)``;
 
 const N = 20;
 const NOOP = () => {};

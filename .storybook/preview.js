@@ -4,11 +4,9 @@ import React from 'react';
 import tw from 'twin.macro';
 import 'typeface-unica-one';
 import {} from '../src/components/index';
-import { GlobalStyle, mixins, styled } from '../src/styles';
-import '../src/styles/globals.css';
+import { GlobalStyle, styled } from '../src/styles';
 
 const Container = styled.div`
-  ${mixins.flexCenter}
   ${tw`h-screen border-2 border-black w-screen`}
 `;
 
