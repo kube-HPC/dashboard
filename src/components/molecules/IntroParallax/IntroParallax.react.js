@@ -3,7 +3,7 @@ import { mixins, styled, theme } from '@styles';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 import { animated } from 'react-spring';
-import tw from 'tailwind.macro';
+import tw from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.flexStart}

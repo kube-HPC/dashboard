@@ -2,7 +2,7 @@ import { IntroParallax, LogoParallax, SocialBar } from '@components';
 import { mixins, styled } from '@styles';
 import React, { useCallback } from 'react';
 import { config, useSpring } from 'react-spring';
-import tw from 'tailwind.macro';
+import tw from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.flexCenter}

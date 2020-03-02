@@ -1,2 +1,2 @@
+import 'tailwindcss/dist/base.css';
 import 'typeface-unica-one';
-import './src/styles/globals.css';

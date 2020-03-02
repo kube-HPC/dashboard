@@ -1,7 +1,7 @@
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import { create } from '@storybook/theming';
 import React from 'react';
-import tw from 'tailwind.macro';
+import tw from 'twin.macro';
 import 'typeface-unica-one';
 import {} from '../src/components/index';
 import { GlobalStyle, mixins, styled } from '../src/styles';

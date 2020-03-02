@@ -4,7 +4,7 @@ import iconMapper from '@icons';
 import { mixins, styled, theme } from '@styles';
 import React from 'react';
 import { animated, config, useTrail } from 'react-spring';
-import tw from 'tailwind.macro';
+import tw from 'twin.macro';
 
 const { primary, secondary } = theme.palette;
 

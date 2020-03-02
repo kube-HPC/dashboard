@@ -3,7 +3,7 @@ import iconMapper, { IconDev, IconLinkedin, IconMedium } from '@icons';
 import { mixins } from '@styles';
 import React from 'react';
 import styled from 'styled-components';
-import tw from 'tailwind.macro';
+import tw from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.flexCenter}
