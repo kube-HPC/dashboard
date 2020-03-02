@@ -7,12 +7,11 @@ import tw from 'twin.macro';
 const Wrapper = styled.div`
   ${mixins.flexCenter}
   ${tw`w-full`}
-  flex-basis: 50vh;
 `;
 
 const Logo = styled(LogoParallax)`
   ${tw`w-1/4 absolute z-0`}
-  right: 15rem;
+  right: 20vw;
 `;
 
 const Intro = styled(IntroParallax)`
@@ -20,9 +19,13 @@ const Intro = styled(IntroParallax)`
 `;
 
 const Container = styled.div`
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
   ${mixins.flexCenter}
   ${mixins.fillContainer}
   ${tw`flex-col`}
+  ${SocialBar.SC} {
+    ${tw`mt-16`}
+  }
 `;
 
 const spring = () => ({

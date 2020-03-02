@@ -12,8 +12,6 @@ const Container = styled.div`
 
 const { palette } = theme;
 
-const Item = styled(animated.div)``;
-
 const N = 60;
 const NOOP = () => {};
 
@@ -35,19 +33,19 @@ const IntroParallax = ({ transform = NOOP, className }) => {
 
   return (
     <Container className={className}>
-      <Item style={{ ...transform(N), ...first }}>
+      <animated.div style={{ ...transform(N), ...first }}>
         <Header small>Hi, my name is</Header>
-      </Item>
-      <Item style={{ ...transform(N - 20), ...second }}>
+      </animated.div>
+      <animated.div style={{ ...transform(N - 20), ...second }}>
         <Header bg={palette.primary} color="white">
           Dennis Vash
         </Header>
-      </Item>
-      <Item style={{ ...transform(N - 40), ...third }}>
+      </animated.div>
+      <animated.div style={{ ...transform(N - 40), ...third }}>
         <Header bg={palette.secondary} color="white">
           I create things for the web
         </Header>
-      </Item>
+      </animated.div>
     </Container>
   );
 };

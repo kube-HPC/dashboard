@@ -8,10 +8,8 @@ import tw from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.flexCenter}
-  ${tw`w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5`}
+  ${tw`w-5/6 sm:w-5/6 md:w-4/6 lg:w-2/5 xl:w-1/3`}
 `;
-
-const IconContainer = styled(animated.div)``;
 
 const Item = styled(animated.a)`
   ${mixins.flexBetween}
@@ -19,8 +17,8 @@ const Item = styled(animated.a)`
 
   svg {
     ${tw`w-full fill-current text-secondary
-        duration-500 transition-transform ease-in-out transform hocus:text-primary
-        hocus:-translate-y-1`};
+        duration-500 transition-transform ease-in-out
+        transform hocus:text-primary hocus:-translate-y-1`};
   }
 `;
 
@@ -47,15 +45,13 @@ const SocialBar = () => {
 
         return (
           <Item
-            key={index}
+            key={name}
             style={spring}
             href={url}
             target="_blank"
             rel="nofollow noopener noreferrer"
             aria-label={name}>
-            <IconContainer>
-              <Icon />
-            </IconContainer>
+            <Icon />
           </Item>
         );
       })}
