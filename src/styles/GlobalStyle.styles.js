@@ -4,7 +4,6 @@ import tw from 'twin.macro';
 const GlobalStyle = createGlobalStyle`
   body {
     background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
-    ${tw`overflow-hidden`};
     font-family: 'Unica One', 'cursive';
   }
 
