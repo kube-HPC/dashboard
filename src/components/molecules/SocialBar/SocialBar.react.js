@@ -8,12 +8,13 @@ import tw from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.flexCenter}
-  ${tw`w-2/3 sm:w-1/4 md:w-4/6 lg:w-1/4 xl:w-1/6`}
+  ${tw`w-full sm:w-3/4 md:w-4/6 lg:w-1/4 xl:w-1/6`}
 `;
 
 const Item = styled(animated.a)`
   ${mixins.flexBetween}
-  ${tw`flex-col cursor-pointer w-1/6 sm:w-2/6 md:w-1/12 lg:w-5/12 xl:w-2/12 px-2`}
+  ${tw`flex-col cursor-pointer px-2
+      w-10 sm:w-1/12 md:w-1/12 lg:w-5/12 xl:w-3/12`}
 
   svg {
     ${tw`w-full fill-current text-secondary
@@ -29,7 +30,7 @@ const items = Object.values(SOCIALS).map(name => ({
 }));
 
 const spring = {
-  // delay: 5000,
+  delay: 5000,
   opacity: 1,
   x: 0,
   from: { opacity: 0, x: 20 },

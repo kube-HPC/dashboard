@@ -5,11 +5,10 @@ import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
 const Main = styled.div`
-  ${tw`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-6xl leading-snug`}
-  width: fit-content;
+  ${tw`leading-snug text-xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl`}
+  ${ifProp(`small`, tw`text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl`)}
   background-color: ${`bg`};
   color: ${`color`};
-  ${ifProp(`small`, tw`text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl`)}
 `;
 
 const Header = ({ children, bg = 'transparent', color = 'color', small = false }) => (
