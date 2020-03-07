@@ -1,3 +1,4 @@
+import { REVEAL } from '@config';
 import { theme } from '@styles';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
@@ -7,10 +8,13 @@ const triangle = 'M1 1h248.125l-123.75 215L1 1z';
 
 const spring = () => ({
   dash: 0,
+  delay: REVEAL.logoDash,
   config: { mass: 2, tension: 500, friction: 200 },
 });
 
-const LogoAnimated = ({ fill = theme.palette.primary }) => {
+const DEFAULT_FILL = theme.palette.primary;
+
+const LogoAnimated = ({ fill = DEFAULT_FILL }) => {
   const [offset, setOffset] = useState(0);
   const [{ dash }, set] = useSpring(spring);
 
@@ -23,7 +27,7 @@ const LogoAnimated = ({ fill = theme.palette.primary }) => {
   }, [set]);
 
   return (
-    <animated.svg viewBox="0 0 250 217" stroke="black" strokeWidth="0.5">
+    <animated.svg viewBox="0 0 250 217" stroke="black" strokeWidth="0.5" fill={fill}>
       <animated.path
         strokeDasharray={offset}
         strokeDashoffset={dash}
@@ -31,7 +35,6 @@ const LogoAnimated = ({ fill = theme.palette.primary }) => {
         d={triangle}
         strokeLinecap="square"
         strokeLinejoin="bevel"
-        fill={fill}
       />
     </animated.svg>
   );

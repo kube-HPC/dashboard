@@ -1,4 +1,5 @@
 import { Header } from '@components';
+import { REVEAL } from '@config';
 import { mixins, styled, theme } from '@styles';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
@@ -18,7 +19,7 @@ const NOOP = () => {};
 const generateSpring = delta => ({
   config: config.wobbly,
   opacity: 1,
-  delay: (delta + 1) * 1500,
+  delay: (delta + 1) * REVEAL.intro,
   y: 0,
   from: { opacity: 0, y: 50 },
 });

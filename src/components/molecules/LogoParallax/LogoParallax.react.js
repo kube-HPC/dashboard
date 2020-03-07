@@ -1,7 +1,8 @@
 import { LogoAnimated } from '@components';
+import { REVEAL } from '@config';
 import { mixins, styled, theme } from '@styles';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 import tw from 'twin.macro';
 
@@ -23,28 +24,38 @@ const Front = styled(Back)`
 
 const N = 20;
 const NOOP = () => {};
-const { primary, secondary } = theme.palette;
 const empty = `transparent`;
+const { primary, secondary } = theme.palette;
 
 const fillSpring = {
   primary,
   secondary,
   from: { primary: empty, secondary: empty },
-  delay: 2000,
+  delay: REVEAL.logoFill,
 };
 
 const LogoParallax = ({ transform = NOOP, className }) => {
   const { primary, secondary } = useSpring(fillSpring);
 
+  const [reveal, setReveal] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setReveal(true);
+    }, 500);
+  }, []);
+
   return (
-    <Container className={className}>
-      <Back style={transform(N)}>
-        <LogoAnimated fill={secondary} />
-      </Back>
-      <Front style={transform(N - 10)}>
-        <LogoAnimated fill={primary} />
-      </Front>
-    </Container>
+    reveal && (
+      <Container className={className}>
+        <Back style={transform(N)}>
+          <LogoAnimated fill={secondary} />
+        </Back>
+        <Front style={transform(N - 10)}>
+          <LogoAnimated fill={primary} />
+        </Front>
+      </Container>
+    )
   );
 };
 

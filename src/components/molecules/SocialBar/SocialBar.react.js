@@ -1,4 +1,4 @@
-import { URLS } from '@config';
+import { REVEAL, URLS } from '@config';
 import { SOCIALS } from '@constants';
 import iconMapper from '@icons';
 import { mixins, styled } from '@styles';
@@ -30,7 +30,7 @@ const items = Object.values(SOCIALS).map(name => ({
 }));
 
 const spring = {
-  delay: 5000,
+  delay: REVEAL.socials,
   opacity: 1,
   x: 0,
   from: { opacity: 0, x: 20 },
