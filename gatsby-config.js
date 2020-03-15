@@ -1,5 +1,5 @@
 const website = require(`./src/config/meta`);
-const alias = require(`./src/config/aliases`);
+const alias = require(`./src/constants/aliases`);
 
 const pathPrefix = website.pathPrefix === '/' ? '' : website.pathPrefix;
 

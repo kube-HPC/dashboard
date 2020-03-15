@@ -1,6 +1,19 @@
 import { toBoolean } from '@utils';
 
-const schema = process.env.isSecure ? 'https://' : 'http://';
+const {
+  BOARD_HOST,
+  BOARD_PATH,
+  BOARD_PORT,
+  BOARD_USE_LOCATION,
+  MONITOR_BACKEND_HOST,
+  MONITOR_BACKEND_PATH_SOCKET,
+  MONITOR_BACKEND_PATH,
+  MONITOR_BACKEND_PORT,
+  MONITOR_BACKEND_USE_LOCATION,
+  IS_SECURE,
+} = process.env;
+
+const schema = `http${IS_SECURE ? 's' : ''}://`;
 
 const defaultConnection = {
   host: 'localhost',
@@ -9,29 +22,34 @@ const defaultConnection = {
   socketIoPath: '',
 };
 
-const monitorServer = {
-  host: process.env.MONITOR_BACKEND_HOST || defaultConnection.host,
-  port: process.env.MONITOR_BACKEND_PORT || defaultConnection.port,
-  path: process.env.MONITOR_BACKEND_PATH || defaultConnection.path,
-  socketIoPath: process.env.MONITOR_BACKEND_PATH_SOCKET || defaultConnection.socketIoPath,
+// monitor server
+const monitor = {
+  host: MONITOR_BACKEND_HOST || defaultConnection.host,
+  port: MONITOR_BACKEND_PORT || defaultConnection.port,
+  path: MONITOR_BACKEND_PATH || defaultConnection.path,
+  socketIoPath: MONITOR_BACKEND_PATH_SOCKET || defaultConnection.socketIoPath,
 };
 
 const board = {
-  host: process.env.BOARD_HOST || defaultConnection.host,
-  port: process.env.BOARD_PORT || defaultConnection.port,
-  path: process.env.BOARD_PATH || defaultConnection.path,
+  host: BOARD_HOST || defaultConnection.host,
+  port: BOARD_PORT || defaultConnection.port,
+  path: BOARD_PATH || defaultConnection.path,
 };
 
-const monitorUseLocation = toBoolean(process.env.MONITOR_BACKEND_USE_LOCATION);
-const boardUseLocation = toBoolean(process.env.BOARD_USE_LOCATION);
+const monitorUseLocation = toBoolean(MONITOR_BACKEND_USE_LOCATION);
+const boardUseLocation = toBoolean(BOARD_USE_LOCATION);
+const origin = location.origin;
 
-const connectionUrls = {
-  monitor: monitorUseLocation
-    ? `${location.origin}${monitorServer.path}`
-    : `${schema}${monitorServer.host}:${monitorServer.port}${monitorServer.path}`,
+const connectionConfig = {
+  monitor: {
+    url: monitorUseLocation
+      ? `${origin}${monitor.path}`
+      : `${schema}${monitor.host}:${monitor.port}${monitor.path}`,
+    socketPath: monitor.socketIoPath,
+  },
   board: boardUseLocation
-    ? `${location.origin}${board.path}`
+    ? `${origin}${board.path}`
     : `${schema}${board.host}:${board.port}${board.path}`,
 };
 
-export default connectionUrls;
+export default connectionConfig;
