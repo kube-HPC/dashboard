@@ -1,2 +1,2 @@
 export { counterSlice } from './counter.slice';
-export { listenToEvents, socketSlice } from './socket.slice';
+export { default as socketSlice } from './socket';

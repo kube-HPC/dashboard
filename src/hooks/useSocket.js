@@ -1,17 +1,17 @@
-import { listenToEvents, socketSlice } from '@slices';
+import { socketSlice } from '@slices';
 import { useEffect } from 'react';
 import useAction from './useAction';
 
-const { init } = socketSlice.actions;
+const {
+  thunks: { init },
+} = socketSlice;
 
 const useSocket = () => {
   const initSocket = useAction(init);
-  const listen = useAction(listenToEvents);
 
   useEffect(() => {
     initSocket();
-    listen();
-  }, [initSocket, listen]);
+  }, [initSocket]);
 
   return {};
 };

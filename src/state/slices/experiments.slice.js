@@ -1,4 +1,5 @@
-import { LOCAL_STORAGE, SOCKET } from '@constants';
+import { SOCKET } from '@config';
+import { LOCAL_STORAGE } from '@constants';
 import { createSlice } from '@reduxjs/toolkit';
 import { getLsItem } from '@utils';
 
@@ -16,6 +17,6 @@ const experiments = createSlice({
   extraReducers: {},
 });
 
-const { actions, reducer } = experiments;
+const { reducer } = experiments;
 
 export default reducer;
