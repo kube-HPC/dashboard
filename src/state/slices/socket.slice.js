@@ -1,17 +1,22 @@
+import { connectionConfig } from '@config';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-const name = `socket`;
-const socket = null;
-const currentTopicRegistered = {};
+const socketConnect = createAsyncThunk(`${name}/connect`, (_, { dispatch }) => {});
+const { monitorBackend: {schema,host,port} } = connectionConfig;
 
-const socketConnect = createAsyncThunk(`${name}/connect`, (_, thunkAPI) => {});
+const url =
 
-const init = () => {};
+const init = ({ client }) => {
+  if (client) {
+    client.close();
+  }
+  client = io()
+};
 
 const socketSlice = createSlice({
-  name,
+  name: `socket`,
   initialState: { isConnected: false, socket: null },
-  reducers: {},
+  reducers: { init },
   extraReducers: {},
 });
 
