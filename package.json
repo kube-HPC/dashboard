@@ -1,6 +1,6 @@
 {
-  "name": "dennisvash.dev",
-  "description": "Dennis Vash Personal Website",
+  "name": "dashboard",
+  "description": "Hkube dashboard",
   "version": "1.0.0",
   "author": "Dennis Vash <dennisvash@gmail.com>",
   "license": "MIT",
@@ -14,10 +14,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/denvash/dennisvash.dev"
+    "url": "https://github.com/kube-HPC/dashboard"
   },
   "bugs": {
-    "url": "https://github.com/denvash/dennisvash.dev/issues"
+    "url": "https://github.com/kube-HPC/hkube/issues"
   },
   "husky": {
     "hooks": {
@@ -46,11 +46,6 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.3.0-beta.0",
     "gatsby": "^2.19.17",
-    "gatsby-plugin-postcss": "^2.1.20",
-    "gatsby-plugin-react-helmet": "^3.1.22",
-    "gatsby-plugin-resolve-src": "^2.0.0",
-    "polished": "^3.4.2",
-    "postcss-import": "^12.0.1",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -66,6 +61,10 @@
     "typeface-unica-one": "^0.0.72"
   },
   "devDependencies": {
+    "gatsby-plugin-postcss": "^2.1.20",
+    "gatsby-plugin-react-helmet": "^3.1.22",
+    "gatsby-plugin-resolve-src": "^2.0.0",
+    "postcss-import": "^12.0.1",
     "@babel/core": "^7.8.3",
     "@dennisvash/eslint-config": "^2.2.2",
     "@dennisvash/prettier-config": "^1.0.0",
