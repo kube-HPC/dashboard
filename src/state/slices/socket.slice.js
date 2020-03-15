@@ -5,6 +5,8 @@ import { SOCKET } from '@constants';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import io from 'socket.io-client';
 
+let socket = null;
+
 const {
   monitor: { url, socketPath },
 } = URLS;
@@ -26,6 +28,8 @@ const connectOperation = ({ socket, name, lastRoom }) => {
   console.info(`SOCKET Connected, id=${socket.id}`);
 };
 
+const name = `socket`;
+
 const toSocketRoom = value => (value ? `experiment:${value}` : null);
 
 const getSocketRoom = ({ value, lastValue }) => ({
@@ -33,55 +37,64 @@ const getSocketRoom = ({ value, lastValue }) => ({
   lastRoom: toSocketRoom(lastValue),
 });
 
-const listenToSocketEvents = createAsyncThunk(`${name}/connect`, (_, { dispatch, getState }) => {
-  const {
-    socket: { client },
-    experiments,
-  } = getState();
+export const listenToEvents = createAsyncThunk(
+  `${name}/listenToEvents`,
+  (_, { dispatch, getState }) => {
+    const { experiments } = getState();
 
-  const emitOptions = getSocketRoom(experiments);
+    Object.values(CONNECTION).forEach(event => {
+      socket.on(event, args => {
+        const isConnected = event === (connect || experimentRegister);
 
-  Object.values(CONNECTION).forEach(event => {
-    client.on(event, args => {
-      event === (connect || experimentRegister)
-        ? connectOperation({ client, ...emitOptions })
-        : console.info(`${event}, ${args}`);
+        if (isConnected) {
+          const emitOptions = getSocketRoom(experiments);
+          connectOperation({ socket, ...emitOptions });
+          dispatch({ type: `socket/connected` });
+        } else {
+          console.info(`${event}, ${args}`);
+        }
+      });
     });
-  });
 
-  NO_CONNECTIONS.forEach(e =>
-    client.on(e, args => {
-      console.info(`${e}, ${args}`);
-    }),
-  );
-});
+    NO_CONNECTIONS.forEach(event =>
+      socket.on(event, args => {
+        console.info(`${event}, ${args}`);
+        dispatch({ type: `socket/disconnected` });
+      }),
+    );
+  },
+);
 
-const init = state => {
-  state.client = io(url, socketConfig);
+export const init = () => {
+  socket = io(url, socketConfig);
 };
 
-const register = createAsyncThunk(`${name}/register`, (_, { dispatch, getState }) => {
-  const {
-    socket: { client },
-  } = getState();
-
-  client.on(PROGRESS, data => dispatch({ type: `SOCKET_GET_DATA`, data }));
+const register = createAsyncThunk(`socket/register`, (_, { dispatch }) => {
+  socket.on(PROGRESS, data => dispatch({ type: `SOCKET_GET_DATA`, data }));
 });
 
-const initialState = { isConnected: false, client: null, topics: {} };
+const initialState = { isConnected: false };
 
-const socketSlice = createSlice({
-  name: `socket`,
+const connected = createAsyncThunk(`socket/connected`, (_, { dispatch }) => {
+  dispatch({ type: `socket/register` });
+});
+
+const disconnected = createAsyncThunk(`socket/disconnected`, (_, { dispatch, getState }) => {});
+
+export const socketSlice = createSlice({
+  name,
   initialState,
-  reducers: { init },
+  reducers: { init, disconnected },
   extraReducers: {
-    [listenToSocketEvents.fulfilled]: (state, action) => {
-      state.isConnected = action.payload;
+    [connected.fulfilled]: (state, { payload }) => {
+      state.isConnected = payload;
     },
-    register,
+    [register.fulfilled]: (state, { payload }) => {
+      console.log(state, payload);
+    },
   },
 });
 
-const { actions, reducer } = socketSlice;
+const { reducer } = socketSlice;
 
 export default reducer;

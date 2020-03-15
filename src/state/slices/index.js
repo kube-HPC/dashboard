@@ -1,1 +1,2 @@
-export { counterSlice, decrement, increment } from './counter.slice';
+export { counterSlice } from './counter.slice';
+export { listenToEvents, socketSlice } from './socket.slice';

@@ -2809,6 +2809,13 @@ babel-plugin-remove-graphql-queries@^2.7.23:
   resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-2.7.23.tgz#7cecb19b6057eb4de92d147dfd4d51c885cc356a"
   integrity sha512-SvWLivXtbeExS0eUPrRpg8EYiDPcOlzaO/vePcdmW2X8GBC1miezXS+RYPYyt4r9Z0Cg0ZQe58ggssF/8ym3rg==
 
+babel-plugin-reusable@1.0.0-alpha.8:
+  version "1.0.0-alpha.8"
+  resolved "https://registry.yarnpkg.com/babel-plugin-reusable/-/babel-plugin-reusable-1.0.0-alpha.8.tgz#8606fb39dc3f1a26194a1646ab20445d0a5577b5"
+  integrity sha512-ZA6nE84eX+VT/T3Qym79jBTgRuPfYB3yREs+5jnIyY4RX56+ubQ5Mk0jFdd2rjFV6Zut7EjS13a3t+CXAeCzlg==
+  dependencies:
+    "@babel/helper-module-imports" "^7.0.0"
+
 "babel-plugin-styled-components@>= 1":
   version "1.10.6"
   resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-1.10.6.tgz#f8782953751115faf09a9f92431436912c34006b"
@@ -12353,6 +12360,14 @@ retry@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/retry/-/retry-0.12.0.tgz#1b42a6266a21f07421d1b0b54b7dc167b01c013b"
   integrity sha1-G0KmJmoh8HQh0bC1S33BZ7AcATs=
+
+reusable@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/reusable/-/reusable-1.0.0.tgz#c5640d3dadf4934561821d74c5366e3760e1fd7c"
+  integrity sha512-I13xP1/+tCGxTF7IDyNjrz7/ZIIMwUMMAcBT8OLTFhnrrs8TYE/jn3mNz84gm73QaRPJOsHZSeMZWGJI4Ddebg==
+  dependencies:
+    "@babel/helper-module-imports" "^7.0.0"
+    babel-plugin-reusable "1.0.0-alpha.8"
 
 reusify@^1.0.0:
   version "1.0.4"
