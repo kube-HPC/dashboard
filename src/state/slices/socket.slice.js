@@ -2,7 +2,7 @@ import { connectionConfig } from '@config';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const socketConnect = createAsyncThunk(`${name}/connect`, (_, { dispatch }) => {});
-const { monitorBackend: {schema,host,port} } = connectionConfig;
+const { monitorBackend: {schema,host,port, useLocation} } = connectionConfig;
 
 const url =
 
