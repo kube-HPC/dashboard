@@ -1,11 +1,10 @@
 module.exports = {
   pathPrefix: '/', // Prefix for all links. If you deploy your site to example.com/portfolio your pathPrefix should be "portfolio"
-  title: 'Dennis Vash | Front End Software Engineer', // Navigation and Site Title
-  titleAlt: 'Dennis Vash Front-End Developer', // Title for JSONLD
-  description:
-    'Dennis Vash is a software engineer based in Israel who specializes in developing exceptional, high-quality websites and applications.',
-  headline: 'I create things for the web', // Headline for schema.org JSONLD
-  url: 'https://dennisvash.dev', // Domain of your site. No trailing slash!
+  title: 'HKube | HPC Over Kubernetes', // Navigation and Site Title
+  titleAlt: 'HKube | HPC Over Kubernetes', // Title for JSONLD
+  description: 'HKube - HPC Over Kubernetes',
+  headline: 'HKube - HPC Over Kubernetes', // Headline for schema.org JSONLD
+  url: 'https://hkube.io', // Domain of your site. No trailing slash!
   siteLanguage: 'en', // Language Tag on <html> element
   banner: '/banner.png', // Used for SEO
   ogLanguage: 'en_US', // Facebook Language
