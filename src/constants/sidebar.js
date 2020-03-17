@@ -1,5 +1,4 @@
 const sidebar = {
-  title: `HKube`,
   jobs: `Jobs`,
   pipelines: `Pipelines`,
   algorithms: `Algorithms`,
