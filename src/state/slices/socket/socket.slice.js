@@ -1,12 +1,13 @@
 import { SOCKET } from '@config';
 import { createSlice } from '@reduxjs/toolkit';
-import { connected, disconnected, register } from './reducers';
-
-const initialState = { isConnected: false };
+import { disconnected } from './socket.reducers';
+import { connected, register } from './socket.thunks';
 
 const {
   STATE: { name },
 } = SOCKET;
+
+const initialState = { isConnected: false };
 
 const socketSlice = createSlice({
   name,

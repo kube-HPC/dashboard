@@ -1,4 +1,5 @@
 // atoms
+export { default as Menu } from './atoms/Menu/Menu.react';
 // molecules
 // organisms
 // templates

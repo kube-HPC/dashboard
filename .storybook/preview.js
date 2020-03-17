@@ -1,11 +1,10 @@
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import { create } from '@storybook/theming';
 import React from 'react';
+import styled from 'styled-components';
 import 'tailwindcss/dist/base.css';
 import tw from 'twin.macro';
-import 'typeface-unica-one';
-import {} from '../src/components/index';
-import { GlobalStyle, styled } from '../src/styles';
+import { GlobalStyle } from '../src/styles';
 
 const Container = styled.div`
   ${tw`h-screen w-screen`}
@@ -23,10 +22,9 @@ addDecorator(S => (
 const theme = create({
   base: 'light',
   colorPrimary: 'hotpink',
-  brandTitle: 'DennisVash.dev Storybook',
+  brandTitle: 'HKube Dashboard Storybook',
   brandUrl: 'https://dennisvash.dev',
-  brandImage:
-    'https://user-images.githubusercontent.com/27515937/72454262-72567400-37b8-11ea-99bd-799c13c1638f.png',
+  brandImage: `https://user-images.githubusercontent.com/27515937/76857209-e4951480-684c-11ea-8d65-434de9c4aaa8.png`,
 });
 
 addParameters({

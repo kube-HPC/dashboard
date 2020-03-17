@@ -1,9 +1,9 @@
 import { SB_LABELS } from '@constants';
-import iconMapper, { IconDev, IconLinkedin, IconMedium } from '@icons';
 import { mixins } from '@styles';
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { IconLogo } from './index';
 
 const Container = styled.div`
   ${mixins.flexCenter}
@@ -23,14 +23,4 @@ export default {
   ],
 };
 
-const { CodeSandbox, Github, StackOverflow, Twitter, CV, Gmail } = iconMapper;
-
-export const github = Github;
-export const dev = IconDev;
-export const codeSandbox = CodeSandbox;
-export const linkedin = IconLinkedin;
-export const medium = IconMedium;
-export const stackOverflow = StackOverflow;
-export const twitter = Twitter;
-export const cv = CV;
-export const gmail = Gmail;
+export const logo = IconLogo;

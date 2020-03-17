@@ -11,7 +11,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-postcss`,
+    // `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-sitemap`,
@@ -38,18 +38,18 @@ module.exports = {
     {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
-        alias,
+        alias: alias(`src`),
         extensions: ['js'],
       },
     },
-    {
-      resolve: `gatsby-plugin-purgecss`,
-      options: {
-        tailwind: true,
-        printRejected: true,
-        purgeOnly: [`src/styles/globals.css`],
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-purgecss`,
+    //   options: {
+    //     tailwind: true,
+    //     printRejected: true,
+    //     purgeOnly: [`src/styles/globals.css`],
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

@@ -1,4 +1,5 @@
 const path = require('path');
+const alias = require(`../src/constants/aliases`);
 
 const postCSSConfig = {
   test: /\.css$/,
@@ -21,6 +22,11 @@ const postCSSConfig = {
 };
 
 const SRC = '../src';
+
+const aliases = alias(SRC);
+const resolvedAliases = Object.fromEntries(
+  Object.entries(aliases).map(([key, value]) => [key, path.resolve(__dirname, value)]),
+);
 
 module.exports = ({ config }) => {
   // https://www.gatsbyjs.org/docs/visual-testing-with-storybook/
@@ -50,27 +56,11 @@ module.exports = ({ config }) => {
   ];
 
   // PostCSS Support
-  config.module.rules.push(postCSSConfig);
+  // config.module.rules.push(postCSSConfig);
 
   // Prefer Gatsby ES6 entrypoint (module) over commonjs (main) entrypoint
   config.resolve.mainFields = ['browser', 'module', 'main'];
-
-  config.resolve.alias = {
-    '@icons': path.resolve(__dirname, `${SRC}/components/atoms/Icons`),
-    '@config': path.resolve(__dirname, `${SRC}/config`),
-    '@content': path.resolve(__dirname, `${SRC}/content`),
-    '@fonts': path.resolve(__dirname, `${SRC}/fonts`),
-    '@images': path.resolve(__dirname, `${SRC}/images`),
-    '@pages': path.resolve(__dirname, `${SRC}/pages`),
-    '@styles': path.resolve(__dirname, `${SRC}/styles`),
-    '@utils': path.resolve(__dirname, `${SRC}/utils`),
-    '@hooks': path.resolve(__dirname, `${SRC}/hooks`),
-    '@constants': path.resolve(__dirname, `${SRC}/constants`),
-    '@queries': path.resolve(__dirname, `${SRC}/queries`),
-    '@store': path.resolve(__dirname, `${SRC}/store`),
-    '@components': path.resolve(__dirname, `${SRC}/components`),
-  };
-
+  config.resolve.alias = resolvedAliases;
   config.resolve.extensions = ['.js'];
 
   return config;

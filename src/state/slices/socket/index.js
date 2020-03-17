@@ -1,5 +1,5 @@
-import { init } from './reducers';
-import slice from './slice';
+import slice from './socket.slice';
+import { init } from './socket.thunks';
 
 const socketSlice = { ...slice, thunks: { init } };
 
