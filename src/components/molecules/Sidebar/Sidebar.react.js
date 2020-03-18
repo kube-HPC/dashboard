@@ -16,10 +16,11 @@ const Container = styled(motion.div)`
 `;
 
 const Header = styled(motion.div)`
-  ${tw`text-4xl pt-10`};
+  ${tw`text-5xl pt-10`};
   background: linear-gradient(0deg, #868f96 0%, #596164 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: 'Rajdhani', sans-serif;
 `;
 
 const Version = styled(motion.div)`

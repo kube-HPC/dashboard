@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import 'tailwindcss/dist/base.css';
 import tw from 'twin.macro';
+import 'typeface-rajdhani';
 import { GlobalStyle } from '../src/styles';
 
 const Container = styled.div`

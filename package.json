@@ -54,7 +54,8 @@
     "reusable": "^1.0.0",
     "socket.io-client": "^2.3.0",
     "styled-components": "^5.0.0",
-    "styled-tools": "^1.7.1"
+    "styled-tools": "^1.7.1",
+    "typeface-rajdhani": "^0.0.72"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
