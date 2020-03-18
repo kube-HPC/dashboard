@@ -2,7 +2,7 @@ import { NOOP } from '@utils';
 import PropTypes from 'prop-types';
 import React, { Children, useEffect, useState } from 'react';
 import { animated, config, useTrail } from 'react-spring';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
@@ -13,12 +13,16 @@ const spring = {
   from: { opacity: 0, x: -30 },
 };
 
-const itemStyle = tw`transition-colors ease-in-out duration-500 cursor-pointer
+const itemStyle = tw`transition-colors ease-in-out duration-300 cursor-pointer
   text-secondary hocus:text-black text-center`;
+
+const selected = css`
+  ${tw`text-black font-bold`}
+`;
 
 const Item = styled(animated.div)`
   ${itemStyle};
-  color: ${ifProp('selected', 'black')};
+  ${ifProp('selected', selected)};
 `;
 
 const Items = styled.div`

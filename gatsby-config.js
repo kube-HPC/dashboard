@@ -11,7 +11,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-styled-components`,
-    // `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-sitemap`,
@@ -28,32 +27,11 @@ module.exports = {
         icon: website.favicon,
       },
     },
-
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        policy: [{ userAgent: '*', allow: '/' }],
-      },
-    },
     {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
         alias: alias(`src`),
         extensions: ['js'],
-      },
-    },
-    // {
-    //   resolve: `gatsby-plugin-purgecss`,
-    //   options: {
-    //     tailwind: true,
-    //     printRejected: true,
-    //     purgeOnly: [`src/styles/globals.css`],
-    //   },
-    // },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: website.googleAnalyticsID,
       },
     },
     // Must be placed at the end
