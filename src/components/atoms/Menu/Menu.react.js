@@ -1,38 +1,51 @@
+import { spring } from '@styles';
 import { NOOP } from '@utils';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { Children, useEffect, useState } from 'react';
-import { animated, config, useTrail } from 'react-spring';
 import styled, { css } from 'styled-components';
 import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
-const spring = {
-  config: config.slow,
-  opacity: 1,
-  x: 0,
-  from: { opacity: 0, x: -30 },
-};
-
-const itemStyle = tw`transition-colors ease-in-out duration-300 cursor-pointer
-  text-secondary hocus:text-black text-center`;
-
 const selected = css`
-  ${tw`text-black font-bold`}
+  ${tw`text-black font-semibold`}
 `;
 
-const Item = styled(animated.div)`
-  ${itemStyle};
+const Item = styled(motion.div)`
+  ${tw`cursor-pointer text-secondary hocus:text-black text-center duration-300`};
+  transition-property: color, font-weight;
   ${ifProp('selected', selected)};
 `;
 
-const Items = styled.div`
+const Items = styled(motion.div)`
   ${Item}:not(:first-child):not(:last-child) {
     ${tw`my-3`}
   }
 `;
 
-const Menu = ({ children, onChange = NOOP, className }) => {
-  const trails = useTrail(Children.count(children), spring);
+const container = {
+  visible: delayChildren => ({
+    transition: {
+      ...spring.slow,
+      staggerChildren: 0.3,
+      delayChildren,
+    },
+  }),
+};
+
+const item = {
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: spring.slow,
+  },
+  hidden: {
+    opacity: 0,
+    x: -20,
+  },
+};
+
+const Menu = ({ children, onChange = NOOP, className, delayAnimation = 0 }) => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
@@ -40,12 +53,17 @@ const Menu = ({ children, onChange = NOOP, className }) => {
   }, [onChange, selected]);
 
   return (
-    <Items className={className}>
-      {Children.map(children, (child, index) => {
+    <Items
+      className={className}
+      custom={delayAnimation}
+      initial="hidden"
+      animate="visible"
+      variants={container}>
+      {Children.map(children, child => {
         const key = child.key;
         const onClick = () => setSelected(key);
         return (
-          <Item key={key} selected={selected === key} style={trails[index]} onClick={onClick}>
+          <Item key={key} selected={selected === key} onClick={onClick} variants={item}>
             {child}
           </Item>
         );
@@ -59,6 +77,7 @@ Menu.propTypes = {
   children: PropTypes.node.isRequired,
   onChange: PropTypes.func,
   className: PropTypes.string,
+  delayAnimation: PropTypes.number,
 };
 
 export default Menu;
