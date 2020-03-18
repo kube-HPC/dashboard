@@ -1,19 +1,15 @@
-import { useCounter, useSocket } from '@hooks';
+import { Sidebar } from '@components';
+import { useSocket } from '@hooks';
+import { GlobalStyle } from '@styles';
 import React from 'react';
 
 const Dashboard = () => {
-  const { counter, decrease, increase } = useCounter();
-  const {} = useSocket();
+  useSocket();
 
   return (
     <>
-      {counter}
-      <div>
-        <button onClick={increase}>Increase</button>
-      </div>
-      <div>
-        <button onClick={decrease}>Decrease</button>
-      </div>
+      <GlobalStyle />
+      <Sidebar />
     </>
   );
 };
