@@ -1,4 +1,4 @@
-import { spring } from '@styles';
+import { mixins, spring } from '@styles';
 import { NOOP } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
@@ -17,10 +17,26 @@ const Item = styled(motion.div)`
   ${ifProp('selected', selected)};
 `;
 
-const Items = styled(motion.div)`
+const horizontal = css`
+  ${tw`flex-row`}
+  ${Item} {
+    ${tw`mr-10`};
+    :last-child {
+      ${tw`mr-0`}
+    }
+  }
+`;
+
+const vertical = css`
+  ${tw`flex-col`}
   ${Item}:not(:first-child):not(:last-child) {
     ${tw`my-3`}
   }
+`;
+
+const Items = styled(motion.div)`
+  ${mixins.flexCenter}
+  ${ifProp('horizontal', horizontal, vertical)}
 `;
 
 const container = {
@@ -45,7 +61,14 @@ const item = {
   },
 };
 
-const Menu = ({ children, onChange = NOOP, className, delayAnimation = 0, visible = true }) => {
+const Menu = ({
+  children,
+  onChange = NOOP,
+  className,
+  delayAnimation = 0,
+  visible = true,
+  horizontal = false,
+}) => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
@@ -55,6 +78,7 @@ const Menu = ({ children, onChange = NOOP, className, delayAnimation = 0, visibl
   return (
     <Items
       className={className}
+      horizontal={horizontal}
       custom={delayAnimation}
       initial="hidden"
       animate={visible ? 'visible' : 'hidden'}
@@ -79,6 +103,7 @@ Menu.propTypes = {
   className: PropTypes.string,
   delayAnimation: PropTypes.number,
   visible: PropTypes.bool,
+  horizontal: PropTypes.bool,
 };
 
 export default Menu;
