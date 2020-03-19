@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import tw from 'twin.macro';
+import mixins from './mixins.styles';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -9,6 +10,11 @@ const GlobalStyle = createGlobalStyle`
 
   main {
     ${tw`w-screen h-screen`};
+  }
+
+  svg {
+    ${mixins.colorOnFocus}
+    ${tw`w-6`}
   }
 `;
 
