@@ -1,5 +1,6 @@
 import { Menu } from '@components';
 import { sidebarValues } from '@constants';
+import { useSidebar } from '@hooks';
 import { mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
 import React from 'react';
@@ -40,16 +41,19 @@ const delay = {
   },
 };
 
-const Sidebar = () => (
-  <Container initial="closed" animate="open" variants={delay}>
-    <Header variants={delay}>Hkube</Header>
-    <Menu delayAnimation={1}>
-      {sidebarValues.map(value => (
-        <div key={value}>{value}</div>
-      ))}
-    </Menu>
-    <Version variants={delay}>v2.0.0</Version>
-  </Container>
-);
+const Sidebar = () => {
+  const { value, toggle } = useSidebar();
+  return (
+    <Container initial="closed" animate="open" variants={delay}>
+      <Header variants={delay}>Hkube</Header>
+      <Menu delayAnimation={1}>
+        {sidebarValues.map(value => (
+          <div key={value}>{value}</div>
+        ))}
+      </Menu>
+      <Version variants={delay}>v2.0.0</Version>
+    </Container>
+  );
+};
 
 export default Sidebar;

@@ -7,8 +7,8 @@ const aliases = (prefix = 'src') => ({
   '@utils': `${prefix}/utils`,
   '@constants': `${prefix}/constants`,
   '@queries': `${prefix}/queries`,
-  '@store': `${prefix}/store`,
-  '@reducers': `${prefix}/state/slices/reducers`,
+  '@reducers': `${prefix}/state/store/reducers`,
+  '@actions': `${prefix}/state/store/actions`,
   '@slices': `${prefix}/state/slices`,
 });
 

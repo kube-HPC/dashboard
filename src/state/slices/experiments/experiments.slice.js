@@ -10,13 +10,11 @@ const initialState = {
   loading: true,
 };
 
-const experiments = createSlice({
-  name: `experiments`,
+const experimentSlice = createSlice({
+  name: `experiment`,
   initialState,
   reducers: {},
   extraReducers: {},
 });
 
-const { reducer } = experiments;
-
-export default reducer;
+export default experimentSlice;

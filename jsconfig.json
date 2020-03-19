@@ -14,8 +14,8 @@
       "@hooks": ["src/hooks/index"],
       "@constants": ["src/constants/index"],
       "@queries": ["src/queries/index"],
-      "@store": ["src/store/index"],
-      "@reducers": ["src/state/slices/reducers"],
+      "@reducers": ["src/state/store/reducers"],
+      "@actions": ["src/state/store/actions"],
       "@slices": ["src/state/slices/"]
     }
   }

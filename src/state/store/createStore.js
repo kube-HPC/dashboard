@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import middleware from './middleware';
-import reducer from './reducer';
+import reducer from './reducers';
 
 const createStore = () =>
   configureStore({
