@@ -20,16 +20,13 @@ const Item = styled(motion.div)`
 const horizontal = css`
   ${tw`flex-row`}
   ${Item} {
-    ${tw`mr-10`};
-    :last-child {
-      ${tw`mr-0`}
-    }
+    ${tw`mr-10`}
   }
 `;
 
 const vertical = css`
   ${tw`flex-col`}
-  ${Item}:not(:first-child):not(:last-child) {
+  ${Item} {
     ${tw`my-3`}
   }
 `;

@@ -1,12 +1,7 @@
 import actionsMapper from '@actions';
-import fromEntries from 'object.fromentries';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { createStore } from 'reusable';
-
-if (!Object.fromEntries) {
-  fromEntries.shim();
-}
 
 const useActions = () => {
   const dispatch = useDispatch();

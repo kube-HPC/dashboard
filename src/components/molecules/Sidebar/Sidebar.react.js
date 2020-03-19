@@ -9,15 +9,15 @@ import tw from 'twin.macro';
 
 const Container = styled(motion.div)`
   ${mixins.flexBetween};
-  ${tw`flex-col bg-white px-4 h-screen uppercase py-2`};
+  ${tw`flex-col bg-white px-3 h-screen uppercase py-2`};
   width: fit-content;
-  ${Menu.Item}:not(:first-child):not(:last-child) {
-    ${tw`my-6`}
+  ${Menu.Item} {
+    ${tw`mb-6`}
   }
 `;
 
 const Header = styled(motion.div)`
-  ${tw`text-5xl pt-10`};
+  ${tw`text-4xl pt-10`};
   background: linear-gradient(0deg, #868f96 0%, #596164 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

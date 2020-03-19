@@ -1,7 +1,8 @@
 import { useUtilities } from '@hooks';
-import { IconMoon, IconSettings, IconSignal, IconWarning } from '@icons';
+import iconsMap from '@icons';
 import { mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -33,21 +34,15 @@ const item = {
   },
 };
 
-const icons = {
-  signal: IconSignal,
-  moon: IconMoon,
-  settings: IconSettings,
-  warning: IconWarning,
-};
-
-const UtilitiesBar = () => {
+const IconsBar = ({ icons = [] }) => {
   const { setValue } = useUtilities();
   return (
     <Container initial="hidden" animate="visible" variants={container}>
-      {Object.entries(icons).map(([value, Icon]) => {
-        const onClick = () => setValue(value);
+      {icons.map(name => {
+        const Icon = iconsMap[name];
+        const onClick = () => setValue(name);
         return (
-          <Item key={Icon.name} onClick={onClick} variants={item}>
+          <Item key={name} onClick={onClick} variants={item}>
             <Icon />
           </Item>
         );
@@ -55,5 +50,8 @@ const UtilitiesBar = () => {
     </Container>
   );
 };
+IconsBar.propTypes = {
+  icons: PropTypes.array.isRequired,
+};
 
-export default UtilitiesBar;
+export default IconsBar;
