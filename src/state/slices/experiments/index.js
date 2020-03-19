@@ -1,3 +1,3 @@
-import experimentSlice from './experiments.slice';
+import experimentsSlice from './experiments.slice';
 
-export default experimentSlice;
+export default experimentsSlice;

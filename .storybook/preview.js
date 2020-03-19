@@ -1,24 +1,29 @@
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import { create } from '@storybook/theming';
 import React from 'react';
+import { Provider } from 'react-redux';
+import { ReusableProvider } from 'reusable';
 import styled from 'styled-components';
 import 'tailwindcss/dist/base.css';
-import tw from 'twin.macro';
 import 'typeface-rajdhani';
+import createStore from '../src/state/store/createStore';
 import { GlobalStyle } from '../src/styles';
 
-const Container = styled.div`
-  ${tw`h-screen w-screen`}
-`;
+const Container = styled.div``;
 
-addDecorator(S => (
-  <>
-    <GlobalStyle />
-    <Container>
-      <S />
-    </Container>
-  </>
-));
+addDecorator(S => {
+  const store = createStore();
+  return (
+    <Provider store={store}>
+      <ReusableProvider>
+        <GlobalStyle />
+        <Container>
+          <S />
+        </Container>
+      </ReusableProvider>
+    </Provider>
+  );
+});
 
 const theme = create({
   base: 'light',

@@ -45,7 +45,7 @@ const item = {
   },
 };
 
-const Menu = ({ children, onChange = NOOP, className, delayAnimation = 0 }) => {
+const Menu = ({ children, onChange = NOOP, className, delayAnimation = 0, visible = true }) => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Menu = ({ children, onChange = NOOP, className, delayAnimation = 0 }) => {
       className={className}
       custom={delayAnimation}
       initial="hidden"
-      animate="visible"
+      animate={visible ? 'visible' : 'hidden'}
       variants={container}>
       {Children.map(children, child => {
         const key = child.key;
@@ -78,6 +78,7 @@ Menu.propTypes = {
   onChange: PropTypes.func,
   className: PropTypes.string,
   delayAnimation: PropTypes.number,
+  visible: PropTypes.bool,
 };
 
 export default Menu;

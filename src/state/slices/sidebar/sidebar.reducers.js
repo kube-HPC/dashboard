@@ -1,5 +1,5 @@
 export const toggle = state => {
-  state.isOpen = !state.isOpen;
+  state.visible = !state.visible;
 };
 
 export const setValue = (state, { payload }) => {

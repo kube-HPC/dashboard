@@ -1,10 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { experimentSlice, sidebarSlice, socketSlice } from '@slices';
+import { experimentsSlice, sidebarSlice, socketSlice } from '@slices';
 
 const { reducer: socket } = socketSlice;
 const { reducer: sidebar } = sidebarSlice;
-const { reducer: experiment } = experimentSlice;
+const { reducer: experiments } = experimentsSlice;
 
-const reducer = combineReducers({ sidebar, socket, experiment });
+const reducer = combineReducers({ sidebar, socket, experiments });
 
 export default reducer;

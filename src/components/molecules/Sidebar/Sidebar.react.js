@@ -38,15 +38,16 @@ const delay = {
   },
   closed: {
     x: -200,
+    transition: spring.slow,
   },
 };
 
 const Sidebar = () => {
-  const { value, toggle } = useSidebar();
+  const { setValue, visible } = useSidebar();
   return (
-    <Container initial="closed" animate="open" variants={delay}>
+    <Container initial="closed" animate={visible ? 'open' : 'closed'} variants={delay}>
       <Header variants={delay}>Hkube</Header>
-      <Menu delayAnimation={1}>
+      <Menu delayAnimation={1} visible={visible} onChange={setValue}>
         {sidebarValues.map(value => (
           <div key={value}>{value}</div>
         ))}
