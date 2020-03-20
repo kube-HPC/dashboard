@@ -5,10 +5,12 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import tw from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.flexBetween}
   ${mixins.upperCase}
+  ${tw`text-lg w-full`}
 `;
 
 const items = [

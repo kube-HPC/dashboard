@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
   svg {
     ${mixins.textSecondary}
-    ${tw`fill-current w-6`}
+    ${tw`fill-current w-8`}
     ${mixins.colorOnFocus}
   }
 `;

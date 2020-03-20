@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 const Container = styled(motion.div)`
-  ${tw`h-screen`}
+  ${tw`h-full`}
 `;
 
 const CardFlex = styled(Card)`
@@ -25,13 +25,13 @@ const container = {
   expanded: {
     width: `100%`,
     transition: {
-      ...spring.slow,
+      ...spring.gentle,
     },
   },
-  shrunk: {
+  compressed: {
     width: `25%`,
     transition: {
-      ...spring.slow,
+      ...spring.gentle,
     },
   },
 };
@@ -41,8 +41,8 @@ const AdminPanel = ({ className, children }) => {
   return (
     <Container
       className={className}
-      initial="shrink"
-      animate={expanded ? `expanded` : `shrunk`}
+      initial="compressed"
+      animate={expanded ? `expanded` : `compressed`}
       variants={container}>
       <CardFlex>
         <TopRight>

@@ -1,51 +1,18 @@
-import { IconCompress, IconExpand } from '@icons';
 import { NOOP } from '@utils';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
+import AnimatedPath from './AnimatedPath.react';
 
-const hover = {
-  hover: { scale: 1.02 },
-};
+const scale = { scale: 1.03 };
 
-const pathVariants = {
-  visible: {
-    opacity: 1,
-  },
-  hidden: {
-    opacity: 0,
-  },
-};
-
-const AnimatedPath = ({ d, key }) => (
-  <motion.path
-    key={key}
-    d={d}
-    variants={pathVariants}
-    initial="hidden"
-    animate="visible"
-    exit="hidden"
-  />
-);
-
-AnimatedPath.propTypes = {
-  d: PropTypes.string.isRequired,
-  key: PropTypes.string.isRequired,
-};
+const topArrow = `M22.6646 1.88907C22.5606 1.63853 22.3615 1.43943 22.1109 1.33538C21.9877 1.28284 21.8553 1.25498 21.7213 1.25336H17.62C17.348 1.25336 17.0872 1.36138 16.8949 1.55367C16.7026 1.74596 16.5946 2.00676 16.5946 2.27869C16.5946 2.55063 16.7026 2.81143 16.8949 3.00372C17.0872 3.196 17.348 3.30403 17.62 3.30403H19.2502L13.3033 9.24073C13.2072 9.33604 13.1309 9.44945 13.0789 9.57439C13.0268 9.69934 13 9.83336 13 9.96871C13 10.1041 13.0268 10.2381 13.0789 10.363C13.1309 10.488 13.2072 10.6014 13.3033 10.6967C13.3986 10.7928 13.512 10.8691 13.637 10.9211C13.7619 10.9732 13.8959 11 14.0313 11C14.1666 11 14.3007 10.9732 14.4256 10.9211C14.5505 10.8691 14.664 10.7928 14.7593 10.6967L20.696 4.74975V6.38004C20.696 6.65197 20.804 6.91277 20.9963 7.10506C21.1886 7.29735 21.4494 7.40537 21.7213 7.40537C21.9932 7.40537 22.254 7.29735 22.4463 7.10506C22.6386 6.91277 22.7466 6.65197 22.7466 6.38004V2.27869C22.745 2.1447 22.7172 2.01233 22.6646 1.88907Z`;
+const bottomArrow = `M2.08203 21.3643C2.18607 21.6148 2.38517 21.8139 2.63571 21.918C2.75898 21.9705 2.89135 21.9984 3.02534 22H7.12668C7.39862 22 7.65942 21.892 7.8517 21.6997C8.04399 21.5074 8.15202 21.2466 8.15202 20.9747C8.15202 20.7027 8.04399 20.4419 7.8517 20.2496C7.65942 20.0574 7.39862 19.9493 7.12668 19.9493H5.4964L11.4433 14.0126C11.5394 13.9173 11.6157 13.8039 11.6678 13.679C11.7198 13.554 11.7466 13.42 11.7466 13.2846C11.7466 13.1493 11.7198 13.0153 11.6678 12.8903C11.6157 12.7654 11.5394 12.652 11.4433 12.5567C11.348 12.4606 11.2346 12.3843 11.1097 12.3322C10.9847 12.2802 10.8507 12.2534 10.7154 12.2534C10.58 12.2534 10.446 12.2802 10.321 12.3322C10.1961 12.3843 10.0827 12.4606 9.98737 12.5567L4.05067 18.5036V16.8733C4.05067 16.6014 3.94265 16.3406 3.75036 16.1483C3.55807 15.956 3.29727 15.848 3.02534 15.848C2.7534 15.848 2.4926 15.956 2.30031 16.1483C2.10803 16.3406 2 16.6014 2 16.8733V20.9747C2.00162 21.1087 2.02949 21.241 2.08203 21.3643Z`;
 
 const Expand = ({ className, onClick = NOOP, expanded = false }) => (
-  <motion.svg
-    className={className}
-    viewBox="0 0 24 24"
-    whileHover="hover"
-    onClick={onClick}
-    variants={hover}>
-    <AnimatePresence>
-      <AnimatedPath
-        key={expanded ? `expanded` : `compressed`}
-        d={expanded ? IconCompress.d : IconExpand.d}
-      />
-    </AnimatePresence>
+  <motion.svg className={className} viewBox="0 0 24 24" whileHover={scale} onClick={onClick}>
+    <AnimatedPath d={bottomArrow} expanded={expanded} />
+    <AnimatedPath d={topArrow} expanded={expanded} />
   </motion.svg>
 );
 

@@ -94,7 +94,10 @@ const Menu = ({
   );
 };
 
-Menu.Item = Item;
+Menu.SC = {
+  Item,
+  Items,
+};
 Menu.propTypes = {
   children: PropTypes.node.isRequired,
   onChange: PropTypes.func,

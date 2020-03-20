@@ -12,8 +12,11 @@ const Container = styled(motion.div)`
   ${mixins.upperCase}
   ${mixins.textSecondary}
   ${tw`flex-col bg-white px-3 h-screen py-2 w-32`};
-  ${Menu.Item}:not(:last-child) {
+  ${Menu.SC.Item}:not(:last-child) {
     ${tw`mb-8`}
+  }
+  ${Menu.SC.Items} {
+    ${tw`pb-24`}
   }
 `;
 
