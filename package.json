@@ -33,7 +33,7 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop -o",
+    "develop": "gatsby develop -o -p 8080",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "yarn develop",
     "serve": "gatsby serve",

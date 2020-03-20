@@ -1,3 +1,3 @@
-import { IndexPage } from '../components';
+import Index from './IndexPage.react';
 
-export default IndexPage;
+export default Index;
