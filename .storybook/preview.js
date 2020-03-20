@@ -6,6 +6,7 @@ import { ReusableProvider } from 'reusable';
 import styled from 'styled-components';
 import 'tailwindcss/dist/base.css';
 import 'typeface-rajdhani';
+import {} from '../src/components';
 import createStore from '../src/state/store/createStore';
 import { GlobalStyle } from '../src/styles';
 

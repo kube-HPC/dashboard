@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 export default {
-  title: `${SB_LABELS.ATOMS}Menu`,
+  title: `${SB_LABELS.MOLECULES}Menu`,
   decorators: [
     S => (
       <Container>

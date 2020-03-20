@@ -1,17 +1,22 @@
-import { Sidebar } from '@components';
-import { useSocket } from '@hooks';
-import { GlobalStyle } from '@styles';
+import { Sidebar, TopActions } from '@components';
+import { mixins } from '@styles';
 import React from 'react';
+import styled from 'styled-components';
+import tw from 'twin.macro';
 
-const Dashboard = () => {
-  useSocket();
+const Container = styled.div`
+  ${mixins.flexStart}
+`;
 
-  return (
-    <>
-      <GlobalStyle />
-      <Sidebar />
-    </>
-  );
-};
+const TopBar = styled(TopActions)`
+  ${tw`flex-grow px-4 py-2`}
+`;
+
+const Dashboard = () => (
+  <Container>
+    <Sidebar />
+    <TopBar />
+  </Container>
+);
 
 export default Dashboard;

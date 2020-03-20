@@ -4,7 +4,7 @@ import React from 'react';
 import IconsBar from './IconsBar.react';
 
 export default {
-  title: `${SB_LABELS.ATOMS}Icons Bar`,
+  title: `${SB_LABELS.MOLECULES}Icons Bar`,
 };
 
 const iconNames = Object.keys(icons);

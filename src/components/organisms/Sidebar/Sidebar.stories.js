@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Sidebar from './Sidebar.react';
 
 export default {
-  title: `${SB_LABELS.MOLECULES}Sidebar`,
+  title: `${SB_LABELS.ORGANISMS}Sidebar`,
 };
 
 const Container = styled.div`

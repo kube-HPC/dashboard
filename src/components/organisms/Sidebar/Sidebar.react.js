@@ -11,10 +11,9 @@ const Container = styled(motion.div)`
   ${mixins.flexBetween};
   ${mixins.upperCase}
   ${mixins.textSecondary}
-  ${tw`flex-col bg-white px-3 h-screen py-2`};
-  width: fit-content;
-  ${Menu.Item} {
-    ${tw`mb-6`}
+  ${tw`flex-col bg-white px-3 h-screen py-2 w-32`};
+  ${Menu.Item}:not(:last-child) {
+    ${tw`mb-8`}
   }
 `;
 
