@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { setValue } from './adminPanel.reducers';
+import { setValue, toggle } from './adminPanel.reducers';
 
-const initialState = { value: null };
+const initialState = { value: null, expanded: false };
 
 const adminPanel = createSlice({
   name: `adminPanel`,
   initialState,
-  reducers: { setValue },
+  reducers: { setValue, toggle },
 });
 
 export default adminPanel;

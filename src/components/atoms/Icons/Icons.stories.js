@@ -3,7 +3,16 @@ import { mixins } from '@styles';
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { IconFilter, IconMoon, IconSearch, IconSettings, IconSignal, IconWarning } from './index';
+import {
+  IconCompress,
+  IconExpand,
+  IconFilter,
+  IconMoon,
+  IconSearch,
+  IconSettings,
+  IconSignal,
+  IconWarning,
+} from './index';
 
 const Container = styled.div`
   ${mixins.flexCenter}
@@ -29,3 +38,5 @@ export const filter = IconFilter;
 export const moon = IconMoon;
 export const search = IconSearch;
 export const signal = IconSignal;
+export const expand = IconExpand;
+export const compress = IconCompress;

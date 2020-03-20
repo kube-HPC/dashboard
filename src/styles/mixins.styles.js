@@ -14,6 +14,11 @@ const flexStart = css`
   ${tw`items-start justify-start`}
 `;
 
+const flexEnd = css`
+  ${flexCenter}
+  ${tw`items-end justify-end`}
+`;
+
 const flexBetween = css`
   ${flexCenter}
   ${tw`justify-between`}
@@ -37,6 +42,7 @@ const textSecondary = css`
 
 const mixins = {
   colorOnFocus,
+  flexEnd,
   fillContainer,
   fixed,
   flexBetween,

@@ -6,7 +6,7 @@
       "@styles": ["src/styles/index"],
       "@fonts": ["src/fonts/index"],
       "@components": ["src/components/index"],
-      "@icons": ["src/components/atoms/Icon/index"],
+      "@icons": ["src/components/atoms/Icons/index"],
       "@config": ["src/config/index"],
       "@images": ["src/images"],
       "@pages": ["src/pages"],
