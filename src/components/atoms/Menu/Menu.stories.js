@@ -1,4 +1,5 @@
-import { SB_LABELS, sidebarValues, topBarActionValues } from '@constants';
+import { SIDEBAR, TOP_BAR } from '@config';
+import { SB_LABELS } from '@constants';
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -21,5 +22,5 @@ export default {
 
 const mapToDivList = value => <div key={value}>{value}</div>;
 
-export const Default = () => <Menu>{sidebarValues.map(mapToDivList)}</Menu>;
-export const horizontal = () => <Menu horizontal>{topBarActionValues.map(mapToDivList)}</Menu>;
+export const Default = () => <Menu>{SIDEBAR.values.map(mapToDivList)}</Menu>;
+export const horizontal = () => <Menu horizontal>{TOP_BAR.values.map(mapToDivList)}</Menu>;

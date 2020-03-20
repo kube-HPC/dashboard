@@ -12,22 +12,23 @@ const selected = css`
 `;
 
 const Item = styled(motion.div)`
-  ${tw`cursor-pointer text-secondary hocus:text-black text-center duration-300`};
+  ${mixins.colorOnFocus}
+  ${tw`text-secondary text-center`};
   transition-property: color, font-weight;
   ${ifProp('selected', selected)};
 `;
 
 const horizontal = css`
   ${tw`flex-row`}
-  ${Item} {
+  ${Item}:not(:last-child) {
     ${tw`mr-10`}
   }
 `;
 
 const vertical = css`
   ${tw`flex-col`}
-  ${Item} {
-    ${tw`my-3`}
+  ${Item}:not(:last-child) {
+    ${tw`mb-3`}
   }
 `;
 

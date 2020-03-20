@@ -1,4 +1,4 @@
-const sidebar = {
+const mapper = {
   jobs: `Jobs`,
   pipelines: `Pipelines`,
   algorithms: `Algorithms`,
@@ -8,6 +8,11 @@ const sidebar = {
   analytics: `Analytics`,
 };
 
-export const sidebarValues = Object.values(sidebar);
+const values = Object.values(mapper);
+
+const sidebar = {
+  mapper,
+  values,
+};
 
 export default sidebar;

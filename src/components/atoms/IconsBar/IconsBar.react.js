@@ -10,9 +10,11 @@ import tw from 'twin.macro';
 const Item = styled(motion.div)``;
 
 const Container = styled(motion.div)`
+  ${tw`fill-current`}
+  ${mixins.textSecondary}
   ${mixins.flexCenter};
-  ${Item} {
-    ${tw`mx-1`}
+  ${Item}:not(:last-child) {
+    ${tw`mr-2`}
   }
 `;
 

@@ -1,5 +1,5 @@
 import { Menu } from '@components';
-import { sidebarValues } from '@constants';
+import { SIDEBAR } from '@config';
 import { useSidebar } from '@hooks';
 import { mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
@@ -9,7 +9,9 @@ import tw from 'twin.macro';
 
 const Container = styled(motion.div)`
   ${mixins.flexBetween};
-  ${tw`flex-col bg-white px-3 h-screen uppercase py-2`};
+  ${mixins.upperCase}
+  ${mixins.textSecondary}
+  ${tw`flex-col bg-white px-3 h-screen py-2`};
   width: fit-content;
   ${Menu.Item} {
     ${tw`mb-6`}
@@ -25,7 +27,7 @@ const Header = styled(motion.div)`
 `;
 
 const Version = styled(motion.div)`
-  ${tw`lowercase text-secondary`};
+  ${tw`lowercase`};
 `;
 
 const delay = {
@@ -48,7 +50,7 @@ const Sidebar = () => {
     <Container initial="closed" animate={visible ? 'open' : 'closed'} variants={delay}>
       <Header variants={delay}>Hkube</Header>
       <Menu delayAnimation={1} visible={visible} onChange={setValue}>
-        {sidebarValues.map(value => (
+        {SIDEBAR.values.map(value => (
           <div key={value}>{value}</div>
         ))}
       </Menu>

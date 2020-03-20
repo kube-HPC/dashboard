@@ -24,16 +24,26 @@ const fixed = css`
 `;
 
 const colorOnFocus = css`
-  ${tw`transition-colors duration-300 text-secondary fill-current hocus:text-black cursor-pointer`}
+  ${tw`transition-colors duration-300 hocus:text-black cursor-pointer`}
+`;
+
+const upperCase = css`
+  ${tw`uppercase`}
+`;
+
+const textSecondary = css`
+  ${tw`text-secondary`}
 `;
 
 const mixins = {
-  flexCenter,
-  flexStart,
-  flexBetween,
+  colorOnFocus,
   fillContainer,
   fixed,
-  colorOnFocus,
+  flexBetween,
+  flexCenter,
+  flexStart,
+  textSecondary,
+  upperCase,
 };
 
 export default mixins;

@@ -1,4 +1,5 @@
 // atoms
+export { default as IconsBar } from './atoms/IconsBar/IconsBar.react';
 export { default as Menu } from './atoms/Menu/Menu.react';
 // molecules
 export { default as Sidebar } from './molecules/Sidebar/Sidebar.react';
