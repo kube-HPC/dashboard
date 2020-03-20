@@ -1,6 +1,9 @@
-export const setLsItem = (str, object) => window.localStorage.setItem(str, object);
+import { IS_WINDOW_DEFINED } from './common';
 
-export const getLsItem = str => window.localStorage.getItem(str);
+export const setLsItem = (str, object) =>
+  IS_WINDOW_DEFINED ? window.localStorage.setItem(str, object) : undefined;
+
+export const getLsItem = str => (IS_WINDOW_DEFINED ? window.localStorage.getItem(str) : undefined);
 
 export const getBooleanLSItem = str => {
   const storageItem = getLsItem(str);

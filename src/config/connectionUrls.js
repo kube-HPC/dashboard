@@ -1,4 +1,4 @@
-import { toBoolean } from '@utils';
+import { IS_WINDOW_DEFINED, toBoolean } from '@utils';
 
 const schema = `http${process.env.IS_SECURE ? 's' : ''}://`;
 
@@ -25,7 +25,7 @@ const board = {
 
 const monitorUseLocation = toBoolean(process.env.MONITOR_BACKEND_USE_LOCATION);
 const boardUseLocation = toBoolean(process.env.BOARD_USE_LOCATION);
-const origin = window ? window.location.origin : undefined;
+const origin = IS_WINDOW_DEFINED ? window.location.origin : undefined;
 
 const connectionConfig = {
   monitor: {
