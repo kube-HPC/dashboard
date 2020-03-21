@@ -1,26 +1,6 @@
 const path = require('path');
 const alias = require(`../src/constants/aliases`);
 
-const postCSSConfig = {
-  test: /\.css$/,
-  loaders: [
-    // Loader for webpack to process CSS with PostCSS
-    {
-      loader: 'postcss-loader',
-      options: {
-        // Enable Source Maps
-        sourceMap: true,
-        // Set postcss.config.js config path && ctx
-        config: {
-          path: './.storybook/',
-        },
-      },
-    },
-  ],
-
-  include: path.resolve(__dirname, '../'),
-};
-
 const SRC = '../src';
 
 const aliases = alias(SRC);
@@ -54,9 +34,6 @@ module.exports = ({ config }) => {
     // queries from components when rendering in storybook
     require.resolve('babel-plugin-remove-graphql-queries'),
   ];
-
-  // PostCSS Support
-  // config.module.rules.push(postCSSConfig);
 
   // Prefer Gatsby ES6 entrypoint (module) over commonjs (main) entrypoint
   config.resolve.mainFields = ['browser', 'module', 'main'];
