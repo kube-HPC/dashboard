@@ -34,6 +34,15 @@ const container = {
       ...spring.gentle,
     },
   },
+  visible: {
+    scale: 1,
+    transition: {
+      ...spring.slow,
+    },
+  },
+  hidden: {
+    scale: 0,
+  },
 };
 
 const AdminPanel = ({ className, children }) => {
@@ -41,8 +50,8 @@ const AdminPanel = ({ className, children }) => {
   return (
     <Container
       className={className}
-      initial="compressed"
-      animate={expanded ? `expanded` : `compressed`}
+      initial={['hidden', 'compressed']}
+      animate={['visible', expanded ? `expanded` : `compressed`]}
       variants={container}>
       <CardFlex>
         <TopRight>

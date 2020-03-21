@@ -10,7 +10,7 @@ const Container = styled.div`
 
 const Main = styled.div`
   ${mixins.flexStart}
-  ${tw`flex-col w-full h-screen px-4 py-2`}
+  ${tw`flex-col h-screen px-4 py-2 flex-grow`}
 `;
 
 const Content = styled.div`

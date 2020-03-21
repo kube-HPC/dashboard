@@ -1,5 +1,6 @@
 import { useActions } from '@hooks';
 import { useSelector } from 'react-redux';
+import { createStore } from 'reusable';
 
 const useAdminPanel = () => {
   const { adminPanel } = useActions();
@@ -8,4 +9,4 @@ const useAdminPanel = () => {
   return { setValue, toggle, expanded };
 };
 
-export default useAdminPanel;
+export default createStore(useAdminPanel);
