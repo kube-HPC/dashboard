@@ -18,6 +18,8 @@ const Tag = ({ className, children, color = defaultColor }) => (
   </Container>
 );
 
+Tag.SC = Container;
+
 Tag.propTypes = {
   className: PropTypes.string,
   color: PropTypes.object,

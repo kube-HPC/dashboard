@@ -40,14 +40,19 @@ const textSecondary = css`
   ${tw`text-secondary`}
 `;
 
+const rounded = css`
+  ${tw`rounded-lg`}
+`;
+
 const mixins = {
   colorOnFocus,
-  flexEnd,
   fillContainer,
   fixed,
   flexBetween,
   flexCenter,
+  flexEnd,
   flexStart,
+  rounded,
   textSecondary,
   upperCase,
 };
