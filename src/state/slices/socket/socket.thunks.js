@@ -1,7 +1,6 @@
 import { SOCKET } from '@config';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import io from 'socket.io-client';
-import { disconnected } from './socket.reducers';
 
 export let socket = null;
 
@@ -49,7 +48,7 @@ export const init = createAsyncThunk(STATE.init, (_, { dispatch, getState }) => 
 
   noConnectionEvents.forEach(event =>
     socket.on(event, () => {
-      dispatch(disconnected());
+      dispatch({ type: STATE.disconnected });
     }),
   );
 });

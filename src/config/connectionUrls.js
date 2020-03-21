@@ -1,5 +1,4 @@
 import { IS_WINDOW_DEFINED, toBoolean } from '@utils';
-
 const schema = `http${process.env.IS_SECURE ? 's' : ''}://`;
 
 const defaultConnection = {

@@ -3,14 +3,17 @@ import { create } from '@storybook/theming';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ReusableProvider } from 'reusable';
-import styled from 'styled-components';
 import 'tailwindcss/dist/base.css';
 import 'typeface-rajdhani';
 import {} from '../src/components';
+import { useSocket } from '../src/hooks';
 import createStore from '../src/state/store/createStore';
 import { GlobalStyle } from '../src/styles';
 
-const Container = styled.div``;
+const Container = ({ children }) => {
+  useSocket();
+  return children;
+};
 
 addDecorator(S => {
   const store = createStore();
