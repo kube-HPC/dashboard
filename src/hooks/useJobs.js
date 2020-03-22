@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 const useJobs = () => {
-  const jobs = useSelector(state => state.jobs);
+  const { dataSource: jobs } = useSelector(state => state.jobs);
 
   return { jobs };
 };

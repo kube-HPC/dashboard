@@ -859,17 +859,15 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@dennisvash/eslint-config@^2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@dennisvash/eslint-config/-/eslint-config-2.2.2.tgz#0b0bfd727b3fde4f37d373bcb309c2228ffb79e2"
-  integrity sha512-1mnJ9wlr8wyJKjmh3134mRtglwdhxj3shHi7jY/9Z1WX+tZXVMR5vQb7HAzkCzKp+jkVWGRkYnplK3e4WUs05g==
+"@dennisvash/eslint-config@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@dennisvash/eslint-config/-/eslint-config-3.0.0.tgz#9a120218cc548fc9d145fe0693acd69cf62913bf"
+  integrity sha512-pJtQjOFa9azZGWeQvKDdP293Qq4y1tPNkt2w66QMUI66HzDZrWBW+wu/LxGXllSeNjmma/bMrL4l3u43WLSFXg==
 
-"@dennisvash/prettier-config@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@dennisvash/prettier-config/-/prettier-config-1.0.0.tgz#ef7f0fbab0f225933b584523203f5fb2d6e944df"
-  integrity sha512-gzfmMP8GDFXfDEKwYY46FgXwVyeBAd2ue38OFVQzR4VetYEK9DCM4wYoa9Xe69x0Hue2EUgfkzk2ivlMZjeU0Q==
-  dependencies:
-    prettier "^1.x.x"
+"@dennisvash/prettier-config@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@dennisvash/prettier-config/-/prettier-config-2.0.1.tgz#50311ef47a48dfff16a943cc1dab018bb913ee80"
+  integrity sha512-HASwyyw9Ox890lh/PHAmnwyVKpTFAkRrnOkVGaroF7jOAv63FHfrocUhx+hyVsIHVeOzIssuHz7A6v4IrWwX4w==
 
 "@emotion/cache@^10.0.27":
   version "10.0.29"
@@ -1097,9 +1095,9 @@
     react-lifecycles-compat "^3.0.4"
 
 "@reduxjs/toolkit@^1.3.0-beta.0":
-  version "1.3.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.3.0-beta.0.tgz#c100eb9e1bc48a8dec6824c2453e9f0cf1f31e5d"
-  integrity sha512-LkIu8siGwuFf04WZxBF+i48DqUVYSVVjDApF1X0vBpHlyi9DXdAVXbGT52OnVsplzRE1CsErvv2I6eo8GQ7eGg==
+  version "1.3.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.3.0-beta.1.tgz#be2e191f8867980cb11ad9a9f2969bfeb1a2904b"
+  integrity sha512-CO1AKSIM66qd6AyCvHPX4oPdq725Zjp8Effi9E61VGxd2IxCyzGUEuyF5bhjuJAAUGSV+gEngfHAFXElDN5oUw==
   dependencies:
     immer "^6.0.1"
     redux "^4.0.0"
@@ -5104,10 +5102,10 @@ escape-string-regexp@1.0.5, escape-string-regexp@^1.0.2, escape-string-regexp@^1
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-eslint-config-prettier@^6.9.0:
-  version "6.10.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.10.0.tgz#7b15e303bf9c956875c948f6b21500e48ded6a7f"
-  integrity sha512-AtndijGte1rPILInUdHjvKEGbIV06NuvPrqlIEaEaWtbtvJh464mDeyGMdZEQMsGvC0ZVkiex1fSNcC4HAbRGg==
+eslint-config-prettier@^6.10.1:
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.10.1.tgz#129ef9ec575d5ddc0e269667bf09defcd898642a"
+  integrity sha512-svTy6zh1ecQojvpbJSgH3aei/Rt7C6i090l5f2WQ4aB05lYHeZIR1qL4wZyyILTbtmnbHP5Yn8MrsOJMGa8RkQ==
   dependencies:
     get-stdin "^6.0.0"
 
@@ -10668,10 +10666,10 @@ prepend-http@^2.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=
 
-prettier@^1.19.1, prettier@^1.x.x:
-  version "1.19.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
-  integrity sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
+prettier@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.0.1.tgz#3f00ac71263be34684b2b2c8d7e7f63737592dac"
+  integrity sha512-piXGBcY1zoFOG0MvHpNE5reAGseLmaCRifQ/fmfF49BcYkInEs/naD/unxGNAeOKFA5+JxVrPyMvMlpzcd20UA==
 
 pretty-bytes@^5.1.0:
   version "5.3.0"
@@ -12894,7 +12892,7 @@ stylelint-processor-styled-components@^1.10.0:
     micromatch "^4.0.2"
     postcss "^7.0.26"
 
-stylelint@^13.0.0:
+stylelint@^13.2.1:
   version "13.2.1"
   resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-13.2.1.tgz#9101fcd70791856530049816ff53d980ecd561df"
   integrity sha512-461ZV4KpUe7pEHHgMOsH4kkjF7qsjkCIMJYOf7QQC4cvgPUJ0z4Nj+ah5fvKl1rzqBqc5EZa6P0nna4CGoJX+A==

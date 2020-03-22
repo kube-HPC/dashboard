@@ -9,7 +9,7 @@ const defaultColor = tw`bg-gray-500`.backgroundColor;
 const Container = styled.span`
   ${tw`transition-colors transition-opacity duration-500 hocus:opacity-75
     py-1 px-2 rounded-lg text-white inline-block`}
-  background-color: ${prop('color', defaultColor)};
+  background-color: ${prop(`color`, defaultColor)};
 `;
 
 const Tag = ({ className, children, color = defaultColor }) => (

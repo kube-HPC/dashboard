@@ -37,13 +37,15 @@ const JobEntry = ({ className, job }) => {
     <Container>
       <Types>
         {types.map(type => (
-          <Tag key={type}>{type}</Tag>
+          <Tag key={type} color={COLORS.pipeline.type[type]}>
+            {type}
+          </Tag>
         ))}
       </Types>
       <Entry className={className}>
         <Item>{jobId}</Item>
         <Item>{name}</Item>
-        <Tag color={COLORS.pipeline[status]}>{status}</Tag>
+        <Tag color={COLORS.pipeline.status[status]}>{status}</Tag>
         <JobTime startTime={startTime} timeTook={results?.timeTook} />
       </Entry>
     </Container>

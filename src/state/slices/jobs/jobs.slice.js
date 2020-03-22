@@ -1,13 +1,15 @@
 import { SOCKET } from '@config';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = null;
+const initialState = { dataSource: null };
 
 const jobsSlice = createSlice({
-  name: 'jobs',
+  name: `jobs`,
   initialState,
   extraReducers: {
-    [SOCKET.STATE.pull]: (_, { payload: { jobs } }) => jobs,
+    [SOCKET.STATE.pull]: (state, { payload: { jobs } }) => {
+      state.dataSource = jobs;
+    },
   },
 });
 

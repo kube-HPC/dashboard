@@ -9,5 +9,7 @@ export default {
 };
 
 export const Default = () => <Tag>Simple Tag</Tag>;
-export const Running = () => <Tag color={COLORS.pipeline[PIPELINE.RUNNING]}>Running</Tag>;
-export const Completed = () => <Tag color={COLORS.pipeline[PIPELINE.COMPLETED]}>Running</Tag>;
+export const Running = () => <Tag color={COLORS.pipeline.status[PIPELINE.RUNNING]}>Running</Tag>;
+export const Completed = () => (
+  <Tag color={COLORS.pipeline.status[PIPELINE.COMPLETED]}>Running</Tag>
+);
