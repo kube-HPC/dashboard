@@ -10,10 +10,21 @@ const Entry = styled(Card)`
   ${mixins.flexBetween}
 `;
 
+const Item = styled.div`
+  ${tw`truncate`}
+`;
+
 const Container = styled.div`
   ${tw`relative pt-5`}
   ${Tag.SC} {
     ${tw`capitalize`}
+  }
+  ${Item} {
+    ${tw`w-1/4`};
+    :first-child,
+    :last-child {
+      ${tw`text-left`}
+    }
   }
 `;
 
@@ -23,8 +34,6 @@ const Types = styled.div`
     ${tw`ml-2`}
   }
 `;
-
-const Item = styled.div``;
 
 const JobEntry = ({ className, job }) => {
   const {
@@ -45,8 +54,12 @@ const JobEntry = ({ className, job }) => {
       <Entry className={className}>
         <Item>{jobId}</Item>
         <Item>{name}</Item>
-        <Tag color={COLORS.pipeline.status[status]}>{status}</Tag>
-        <JobTime startTime={startTime} timeTook={results?.timeTook} />
+        <Item>
+          <Tag color={COLORS.pipeline.status[status]}>{status}</Tag>
+        </Item>
+        <Item>
+          <JobTime startTime={startTime} timeTook={results?.timeTook} />
+        </Item>
       </Entry>
     </Container>
   );
