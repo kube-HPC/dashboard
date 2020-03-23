@@ -1,7 +1,7 @@
 import { Card, Tag } from '@components';
 import { COLORS, mixins } from '@styles';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import JobTime from './JobTime.react';
@@ -35,39 +35,39 @@ const Types = styled.div`
   }
 `;
 
-const JobEntry = ({ className, job }) => {
-  const {
-    pipeline: { name, jobId, types, startTime },
-    status: { status },
-    results,
-  } = job;
-
-  return (
-    <Container>
-      <Types>
-        {types.map(type => (
-          <Tag key={type} color={COLORS.pipeline.type[type]}>
-            {type}
-          </Tag>
-        ))}
-      </Types>
-      <Entry className={className}>
-        <Item>{jobId}</Item>
-        <Item>{name}</Item>
-        <Item>
-          <Tag color={COLORS.pipeline.status[status]}>{status}</Tag>
-        </Item>
-        <Item>
-          <JobTime startTime={startTime} timeTook={results?.timeTook} />
-        </Item>
-      </Entry>
-    </Container>
-  );
-};
+const JobEntry = ({ className, jobId, pipelineName, status, startTime, timeTook, types }) => (
+  <Container className={className}>
+    <Types>
+      {types.map(type => (
+        <Tag key={type} color={COLORS.pipeline.type[type]}>
+          {type}
+        </Tag>
+      ))}
+    </Types>
+    <Entry>
+      <Item>{jobId}</Item>
+      <Item>{pipelineName}</Item>
+      <Item>
+        <Tag color={COLORS.pipeline.status[status]}>{status}</Tag>
+      </Item>
+      <Item>
+        <JobTime startTime={startTime} timeTook={timeTook} />
+      </Item>
+    </Entry>
+  </Container>
+);
 
 JobEntry.propTypes = {
   className: PropTypes.string,
-  job: PropTypes.object.isRequired,
+  jobId: PropTypes.string.isRequired,
+  pipelineName: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  startTime: PropTypes.number.isRequired,
+  timeTook: PropTypes.number,
+  types: PropTypes.array.isRequired,
 };
 
-export default JobEntry;
+const MemoEntry = memo(JobEntry);
+MemoEntry.displayName = `JobEntry`;
+
+export default MemoEntry;

@@ -1,9 +1,19 @@
-import { useSelector } from 'react-redux';
+import jobs from './raw';
 
 const useJobs = () => {
-  const { dataSource: jobs } = useSelector(state => state.jobs);
+  const jobsEntries =
+    jobs?.dataSource.map(
+      ({ key: jobId, pipeline: { name, types, startTime }, status: { status }, results }) => ({
+        jobId,
+        pipelineName: name,
+        types,
+        startTime,
+        status,
+        timeTook: results?.timeTook,
+      }),
+    ) ?? [];
 
-  return { jobs };
+  return { jobs: jobs.dataSource, list: jobsEntries };
 };
 
 export default useJobs;

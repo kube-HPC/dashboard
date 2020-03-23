@@ -1,7 +1,7 @@
 import { Divider } from '@components';
 import HumanizeDuration from 'humanize-duration';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import Moment from 'react-moment';
 
 const SEC = 1000;
@@ -44,4 +44,7 @@ JobTime.propTypes = {
   results: PropTypes.object,
 };
 
-export default JobTime;
+const JobTimeMemo = memo(JobTime);
+JobTimeMemo.displayName = `JobTime`;
+
+export default JobTimeMemo;
