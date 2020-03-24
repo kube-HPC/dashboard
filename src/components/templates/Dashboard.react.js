@@ -14,10 +14,10 @@ const Main = styled.div`
 `;
 
 const Content = styled.div`
-  ${mixins.flexEnd}
+  ${mixins.flexStart}
   ${tw`w-full flex-grow`}
   ${Jobs.SC} {
-    ${tw`flex-grow pr-3 h-full overflow-y-visible z-20`}
+    ${tw`flex-grow pr-3 h-full`}
   }
 `;
 

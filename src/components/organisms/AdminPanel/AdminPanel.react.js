@@ -50,8 +50,8 @@ const AdminPanel = ({ className, children }) => {
   return (
     <Container
       className={className}
-      initial={['hidden', 'compressed']}
-      animate={['visible', expanded ? `expanded` : `compressed`]}
+      initial={[`hidden`, `compressed`]}
+      animate={[`visible`, expanded ? `expanded` : `compressed`]}
       variants={container}>
       <CardFlex>
         <TopRight>
