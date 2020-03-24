@@ -7,7 +7,7 @@ export { default as IconsBar } from './molecules/IconsBar/IconsBar.react';
 export { default as JobEntry } from './molecules/JobEntry/JobEntry.react';
 export { default as Menu } from './molecules/Menu/Menu.react';
 export { default as AdminPanel } from './organisms/AdminPanel/AdminPanel.react';
-export { default as Jobs } from './organisms/Jobs/Jobs.react';
+export { default as Jobs } from './organisms/Lists/Jobs/Jobs.react';
 export { default as Sidebar } from './organisms/Sidebar/Sidebar.react';
 export { default as TopActions } from './organisms/TopActions/TopActions.react';
 export { default as SEO } from './SEO/SEO.react';

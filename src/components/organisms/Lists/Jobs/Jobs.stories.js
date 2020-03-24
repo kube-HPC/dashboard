@@ -9,7 +9,7 @@ const Container = styled.div`
 `;
 
 export default {
-  title: `${SB_LABELS.ORGANISMS}Jobs`,
+  title: `${SB_LABELS.ORGANISMS}Lists/Jobs`,
   decorators: [
     S => (
       <Container>

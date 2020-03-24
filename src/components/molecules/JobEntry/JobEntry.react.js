@@ -14,6 +14,10 @@ const Item = styled.div`
   ${tw`truncate`}
 `;
 
+const TagSized = styled(Tag)`
+  ${tw`w-24`}
+`;
+
 const Container = styled.div`
   ${tw`relative pt-5`}
   ${Tag.SC} {
@@ -48,7 +52,7 @@ const JobEntry = ({ className, jobId, pipelineName, status, startTime, timeTook,
       <Item>{jobId}</Item>
       <Item>{pipelineName}</Item>
       <Item>
-        <Tag color={COLORS.pipeline.status[status]}>{status}</Tag>
+        <TagSized color={COLORS.pipeline.status[status]}>{status}</TagSized>
       </Item>
       <Item>
         <JobTime startTime={startTime} timeTook={timeTook} />
