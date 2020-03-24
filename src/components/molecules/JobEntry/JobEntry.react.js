@@ -24,10 +24,13 @@ const Container = styled.div`
     ${tw`capitalize`}
   }
   ${Item} {
-    ${tw`w-1/4`};
     :first-child,
     :last-child {
       ${tw`text-left`}
+    }
+
+    :first-child {
+      ${tw`w-1/4`}
     }
   }
 `;

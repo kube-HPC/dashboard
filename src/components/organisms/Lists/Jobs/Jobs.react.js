@@ -32,4 +32,6 @@ Jobs.propTypes = {
   className: PropTypes.string,
 };
 
+Jobs.SC = Container;
+
 export default Jobs;
