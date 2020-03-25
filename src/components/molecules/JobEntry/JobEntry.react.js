@@ -75,6 +75,7 @@ JobEntry.propTypes = {
 };
 
 const MemoEntry = memo(JobEntry);
+MemoEntry.SC = Container;
 MemoEntry.displayName = `JobEntry`;
 
 export default MemoEntry;

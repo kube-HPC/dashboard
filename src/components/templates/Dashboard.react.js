@@ -1,6 +1,7 @@
 import { AdminPanel, Jobs, Sidebar, TopActions } from '@components';
 import { mixins } from '@styles';
 import React from 'react';
+import { Scrollbars } from 'react-custom-scrollbars';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -10,14 +11,14 @@ const Container = styled.div`
 
 const Main = styled.div`
   ${mixins.flexStart}
-  ${tw`flex-col h-screen px-4 py-2 flex-grow overflow-hidden`}
+  ${tw`flex-col h-screen p-2 flex-grow overflow-hidden`}
 `;
 
 const Content = styled.div`
   ${mixins.flexStart}
   ${tw`w-full flex-grow`}
   ${Jobs.SC} {
-    ${tw`flex-grow pr-3 h-full`}
+    ${tw`flex-grow pr-3 mr-1 h-full`}
   }
 `;
 
@@ -31,7 +32,9 @@ const Dashboard = () => (
     <Main>
       <TopBar />
       <Content>
-        <Jobs />
+        <Scrollbars autoHide>
+          <Jobs />
+        </Scrollbars>
         <AdminPanel />
       </Content>
     </Main>

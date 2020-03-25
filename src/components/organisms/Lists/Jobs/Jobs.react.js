@@ -1,5 +1,7 @@
 import { JobEntry } from '@components';
 import { useJobs } from '@hooks';
+import { iconNames } from '@icons';
+import { mixins } from '@styles';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -11,8 +13,23 @@ const Container = styled.div`
 `;
 
 const Item = styled(motion.div)`
-  /* ${tw`transform transition ease-in-out hover:scale-105 cursor-pointer duration-500`}; */
+  ${mixins.flexCenter}
+  ${JobEntry.SC} {
+    ${tw`flex-grow w-full`}
+  }
+  ${tw`flex-row cursor-pointer mb-2 z-20`}
 `;
+
+const Reveal = styled(motion.div)``;
+
+const reveal = {
+  hidden: {
+    width: `0%`,
+  },
+  visible: {
+    width: `100%`,
+  },
+};
 
 const Jobs = ({ className }) => {
   const { list } = useJobs();
@@ -20,8 +37,9 @@ const Jobs = ({ className }) => {
   return (
     <Container className={className}>
       {list.map(job => (
-        <Item key={job.jobId} whileHover={{ scale: 1.05 }}>
+        <Item key={job.jobId} whileHover={{ scale: 1.01 }}>
           <JobEntry {...job} />
+          <Reveal variants={reveal} initial="hidden" icons={Object.values(iconNames)} />
         </Item>
       ))}
     </Container>

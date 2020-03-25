@@ -22,8 +22,19 @@ const IconCompress = props => <Icon d={compress} {...props} />;
 IconExpand.d = expand;
 IconCompress.d = compress;
 
+const iconNames = {
+  filter: `filter`,
+  moon: `moon`,
+  search: `search`,
+  settings: `settings`,
+  signal: `signal`,
+  warning: `warning`,
+  expand: `expand`,
+  compress: `compress`,
+};
+
 const icons = {
-  filter: IconFilter,
+  [iconNames.filter]: IconFilter,
   moon: IconMoon,
   search: IconSearch,
   settings: IconSettings,
@@ -43,4 +54,5 @@ export {
   IconSearch,
   IconExpand,
   IconCompress,
+  iconNames,
 };
