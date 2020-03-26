@@ -65,7 +65,7 @@ const AdminPanel = ({ className, children }) => {
 
 AdminPanel.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default AdminPanel;

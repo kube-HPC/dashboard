@@ -1,4 +1,11 @@
-import { adminPanelSlice, experimentsSlice, jobsSlice, sidebarSlice, socketSlice } from '@slices';
+import {
+  adminPanelSlice,
+  experimentsSlice,
+  jobsSlice,
+  scrollSlice,
+  sidebarSlice,
+  socketSlice,
+} from '@slices';
 
 const actions = {
   sidebar: sidebarSlice.actions,
@@ -6,6 +13,7 @@ const actions = {
   experiment: experimentsSlice.actions,
   adminPanel: adminPanelSlice.actions,
   jobs: jobsSlice.actions,
+  scroll: scrollSlice.actions,
 };
 
 export default actions;
