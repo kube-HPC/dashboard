@@ -44,6 +44,15 @@ const rounded = css`
   ${tw`rounded-lg`}
 `;
 
+const card = css`
+  ${rounded}
+  ${tw`bg-white p-4 text-center`}
+`;
+
+const timingSlow = css`
+  ${tw`ease-in-out duration-700`}
+`;
+
 const mixins = {
   colorOnFocus,
   fillContainer,
@@ -55,6 +64,8 @@ const mixins = {
   rounded,
   textSecondary,
   upperCase,
+  card,
+  timingSlow,
 };
 
 export default mixins;

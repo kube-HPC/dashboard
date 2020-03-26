@@ -1,13 +1,50 @@
-import { Card, Tag } from '@components';
+import { Divider, Tag } from '@components';
 import { COLORS, mixins } from '@styles';
+import { NOOP } from '@utils';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React, { memo } from 'react';
-import styled from 'styled-components';
+import React, { memo, useCallback, useState } from 'react';
+import styled, { css } from 'styled-components';
+import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 import JobTime from './JobTime.react';
 
-const Entry = styled(Card)`
+const boxShadow = tw`shadow-outline`.boxShadow;
+
+const outline = css`
+  ${tw`shadow-outline`}
+`;
+
+const outlineReset = css`
+  ${tw`shadow-none`}
+`;
+
+const HoverDiv = styled(motion.div)`
+  ${mixins.rounded}
+  ${tw`w-full`}
+`;
+
+const Entry = styled(motion.div)`
+  ${mixins.card}
   ${mixins.flexBetween}
+  ${mixins.timingSlow}
+  ${ifProp(`isSelected`, outline, outlineReset)}
+  ${tw`transition-shadow`}
+`;
+
+const RevealBox = styled(motion.div)`
+  ${tw`w-10`}
+  ${Divider.SC} {
+    ${mixins.timingSlow}
+    ${mixins.rounded}
+    ${tw`transition-colors w-1`}
+  }
+  :hover,
+  :focus {
+    ${Divider.SC} {
+      ${tw`bg-gray-500`}
+    }
+  }
 `;
 
 const Item = styled.div`
@@ -18,7 +55,7 @@ const TagSized = styled(Tag)`
   ${tw`w-24`}
 `;
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   ${tw`relative pt-5`}
   ${Tag.SC} {
     ${tw`capitalize`}
@@ -30,6 +67,7 @@ const Container = styled.div`
     }
 
     :first-child {
+      ${mixins.flexStart}
       ${tw`w-1/4`}
     }
   }
@@ -42,27 +80,49 @@ const Types = styled.div`
   }
 `;
 
-const JobEntry = ({ className, jobId, pipelineName, status, startTime, timeTook, types }) => (
-  <Container className={className}>
-    <Types>
-      {types.map(type => (
-        <Tag key={type} color={COLORS.pipeline.type[type]}>
-          {type}
-        </Tag>
-      ))}
-    </Types>
-    <Entry>
-      <Item>{jobId}</Item>
-      <Item>{pipelineName}</Item>
-      <Item>
-        <TagSized color={COLORS.pipeline.status[status]}>{status}</TagSized>
-      </Item>
-      <Item>
-        <JobTime startTime={startTime} timeTook={timeTook} />
-      </Item>
-    </Entry>
-  </Container>
-);
+const JobEntry = ({
+  className,
+  jobId,
+  pipelineName,
+  status,
+  startTime,
+  timeTook,
+  types,
+  onSelect = NOOP,
+  isSelected = false,
+}) => {
+  const [revealed, setRevealed] = useState(false);
+
+  const onClick = useCallback(() => onSelect(jobId), [onSelect, jobId]);
+  return (
+    <Container className={className}>
+      <Types>
+        {types.map(type => (
+          <Tag key={type} color={COLORS.pipeline.type[type]}>
+            {type}
+          </Tag>
+        ))}
+      </Types>
+      <HoverDiv whileHover={{ boxShadow }}>
+        <Entry isSelected={isSelected} onClick={onClick}>
+          <Item>
+            <RevealBox onHoverStart={() => setRevealed(true)} onHoverEnd={() => setRevealed(false)}>
+              <Divider vertical />
+            </RevealBox>
+            {jobId}
+          </Item>
+          <Item>{pipelineName}</Item>
+          <Item>
+            <TagSized color={COLORS.pipeline.status[status]}>{status}</TagSized>
+          </Item>
+          <Item>
+            <JobTime startTime={startTime} timeTook={timeTook} />
+          </Item>
+        </Entry>
+      </HoverDiv>
+    </Container>
+  );
+};
 
 JobEntry.propTypes = {
   className: PropTypes.string,
@@ -72,6 +132,8 @@ JobEntry.propTypes = {
   startTime: PropTypes.number.isRequired,
   timeTook: PropTypes.number,
   types: PropTypes.array.isRequired,
+  onSelect: PropTypes.func,
+  isSelected: PropTypes.bool,
 };
 
 const MemoEntry = memo(JobEntry);

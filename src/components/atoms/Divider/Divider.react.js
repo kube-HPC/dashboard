@@ -22,6 +22,8 @@ const Divider = ({ className, vertical }) => (
   <Container className={className} vertical={vertical} role="separator" />
 );
 
+Divider.SC = Container;
+
 Divider.propTypes = {
   className: PropTypes.string,
   vertical: PropTypes.bool,

@@ -1,4 +1,6 @@
+import { useSelector } from 'react-redux';
 import jobs from './raw';
+import useActions from './useActions';
 
 const useJobs = () => {
   const jobsEntries =
@@ -13,7 +15,12 @@ const useJobs = () => {
       }),
     ) ?? [];
 
-  return { jobs: jobs.dataSource, list: jobsEntries };
+  const {
+    jobs: { select },
+  } = useActions();
+  const { selected } = useSelector(state => state.jobs);
+
+  return { jobs: jobs.dataSource, list: jobsEntries, select, selected };
 };
 
 export default useJobs;

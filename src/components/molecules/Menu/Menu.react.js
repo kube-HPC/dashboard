@@ -15,7 +15,7 @@ const Item = styled(motion.div)`
   ${mixins.colorOnFocus}
   ${tw`text-secondary text-center`};
   transition-property: color, font-weight;
-  ${ifProp('selected', selected)};
+  ${ifProp(`selected`, selected)};
 `;
 
 const horizontal = css`
@@ -34,7 +34,7 @@ const vertical = css`
 
 const Items = styled(motion.div)`
   ${mixins.flexCenter}
-  ${ifProp('horizontal', horizontal, vertical)}
+  ${ifProp(`horizontal`, horizontal, vertical)}
 `;
 
 const container = {
@@ -79,7 +79,7 @@ const Menu = ({
       horizontal={horizontal}
       custom={delayAnimation}
       initial="hidden"
-      animate={visible ? 'visible' : 'hidden'}
+      animate={visible ? `visible` : `hidden`}
       variants={container}>
       {Children.map(children, child => {
         const key = child.key;

@@ -39,12 +39,13 @@ const item = {
 const IconsBar = ({ icons = [] }) => {
   const { setValue } = useUtilities();
   return (
-    <Container initial="hidden" animate="visible" variants={container}>
+    // <Container initial="hidden" animate="visible" variants={container}>
+    <Container>
       {icons.map(name => {
         const Icon = iconsMap[name];
         const onClick = () => setValue(name);
         return (
-          <Item key={name} onClick={onClick} variants={item}>
+          <Item key={name} onClick={onClick}>
             <Icon />
           </Item>
         );

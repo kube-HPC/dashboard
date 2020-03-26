@@ -1,46 +1,21 @@
-import { JobEntry } from '@components';
 import { useJobs } from '@hooks';
-import { iconNames } from '@icons';
-import { mixins } from '@styles';
-import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import JobItem from './JobItem.react';
 
 const Container = styled.div`
   ${tw``}
 `;
 
-const Item = styled(motion.div)`
-  ${mixins.flexCenter}
-  ${JobEntry.SC} {
-    ${tw`flex-grow w-full`}
-  }
-  ${tw`flex-row cursor-pointer mb-2 z-20`}
-`;
-
-const Reveal = styled(motion.div)``;
-
-const reveal = {
-  hidden: {
-    width: `0%`,
-  },
-  visible: {
-    width: `100%`,
-  },
-};
-
 const Jobs = ({ className }) => {
-  const { list } = useJobs();
+  const { list, select, selected } = useJobs();
 
   return (
     <Container className={className}>
       {list.map(job => (
-        <Item key={job.jobId} whileHover={{ scale: 1.01 }}>
-          <JobEntry {...job} />
-          <Reveal variants={reveal} initial="hidden" icons={Object.values(iconNames)} />
-        </Item>
+        <JobItem key={job.key} isSelected={selected === job.jobId} onSelect={select} job={job} />
       ))}
     </Container>
   );

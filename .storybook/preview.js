@@ -6,12 +6,11 @@ import { ReusableProvider } from 'reusable';
 import 'tailwindcss/dist/base.css';
 import 'typeface-rajdhani';
 import {} from '../src/components';
-import { useSocket } from '../src/hooks';
 import createStore from '../src/state/store/createStore';
 import { GlobalStyle } from '../src/styles';
 
 const Container = ({ children }) => {
-  useSocket();
+  // useSocket();
   return children;
 };
 
