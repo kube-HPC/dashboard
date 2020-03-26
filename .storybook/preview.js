@@ -41,6 +41,7 @@ addParameters({
     showRoots: true,
     showPanel: false,
     storySort: (a, b) => a[1].id.localeCompare(b[1].id),
+    selectedPanel: `templates-dashboard`,
     theme,
   },
 });

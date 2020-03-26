@@ -1,6 +1,7 @@
 import { JobEntry } from '@components';
 import { iconNames } from '@icons';
 import { mixins, spring } from '@styles';
+import { NOOP } from '@utils';
 import IconsBar from 'components/molecules/IconsBar/IconsBar.react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
@@ -47,7 +48,7 @@ const { redo, play, pause, stop } = iconNames;
 
 const icons = [redo, play, pause, stop];
 
-const JobItem = ({ job: { jobId, ...job }, onSelect, isSelected }) => {
+const JobItem = ({ job: { jobId, ...job }, onSelect = NOOP, isSelected = false }) => {
   const [isRevealed, setRevealed] = useState(false);
 
   const onHoverStart = useCallback(() => setRevealed(true), []);
