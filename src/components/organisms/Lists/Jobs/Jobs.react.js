@@ -1,18 +1,17 @@
+import { SCROLL } from '@config';
 import { useJobs } from '@hooks';
-import { AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import tw from 'twin.macro';
 import JobReveal from './JobReveal.react';
 
-const Container = styled.div`
-  ${tw`h-full`}
-`;
+const Container = styled.div``;
 
 const Jobs = ({ className }) => {
   const { list } = useJobs();
   const [reveal, setReveal] = useState(false);
+
+  const heightStyle = useMemo(() => ({ height: list.length * SCROLL.itemSize }), [list.length]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -21,10 +20,8 @@ const Jobs = ({ className }) => {
   }, []);
 
   return (
-    <Container className={className}>
-      <AnimatePresence>
-        {reveal && list.map((job, index) => <JobReveal key={index} index={index} job={job} />)}
-      </AnimatePresence>
+    <Container className={className} style={heightStyle}>
+      {reveal && list.map((job, index) => <JobReveal key={index} index={index} job={job} />)}
     </Container>
   );
 };

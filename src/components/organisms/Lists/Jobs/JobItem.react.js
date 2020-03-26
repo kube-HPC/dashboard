@@ -85,4 +85,7 @@ JobItem.propTypes = {
 
 JobItem.SC = Item;
 
-export default JobItem;
+const JobMemo = React.memo(JobItem);
+JobMemo.displayName = JobItem.name;
+
+export default JobMemo;

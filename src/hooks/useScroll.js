@@ -1,17 +1,17 @@
+import { SCROLL } from '@config';
 import throttle from 'lodash.throttle';
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { createStore } from 'reusable';
 import useActions from './useActions';
 
-const ITEM_SIZE_PX = 100;
-const DELAY_MS = 500;
+const { deltaBottom, deltaTop, itemSize, throttleDelay } = SCROLL;
 
-const onScroll = setIndexes => e => {
-  const totalItems = Math.ceil(e.clientHeight / ITEM_SIZE_PX);
-  const lowerIndex = Math.ceil(e.scrollTop / ITEM_SIZE_PX);
+const onScroll = setIndexes => ({ clientHeight, scrollTop }) => {
+  const totalItems = Math.ceil(clientHeight / itemSize);
+  const lowerIndex = Math.ceil(scrollTop / itemSize);
   const topIndex = lowerIndex + totalItems;
-  setIndexes([lowerIndex, topIndex + 2]);
+  setIndexes([lowerIndex - deltaBottom, topIndex + deltaTop]);
 };
 
 const useScroll = () => {
@@ -19,7 +19,7 @@ const useScroll = () => {
     scroll: { setIndexes },
   } = useActions();
 
-  const onScrollFrame = useCallback(throttle(onScroll(setIndexes), DELAY_MS), []);
+  const onScrollFrame = useCallback(throttle(onScroll(setIndexes), throttleDelay), []);
   const { indexes } = useSelector(state => state.scroll);
 
   return { setIndexes, indexes, onScrollFrame };
