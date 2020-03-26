@@ -4,11 +4,11 @@ import { mixins, spring } from '@styles';
 import IconsBar from 'components/molecules/IconsBar/IconsBar.react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-const Reveal = styled(motion.div)``;
+const IconsReveal = styled(motion.div)``;
 const JobReveal = styled(motion.div)``;
 
 const Item = styled(motion.div)`
@@ -17,7 +17,7 @@ const Item = styled(motion.div)`
   ${JobReveal} {
     ${tw`flex-grow`}
   }
-  ${Reveal} {
+  ${IconsReveal} {
     ${tw`pt-6`}
   }
 `;
@@ -47,20 +47,29 @@ const { redo, play, pause, stop } = iconNames;
 
 const icons = [redo, play, pause, stop];
 
-const JobItem = ({ job, onSelect, isSelected }) => {
-  const [revealed, setRevealed] = useState(false);
-  const jobId = job.jobId;
+const JobItem = ({ job: { jobId, ...job }, onSelect, isSelected }) => {
+  const [isRevealed, setRevealed] = useState(false);
+
+  const onHoverStart = useCallback(() => setRevealed(true), []);
+  const onHoverEnd = useCallback(() => setRevealed(false), []);
 
   return (
-    <Item key={jobId} onHoverStart={() => setRevealed(true)} onHoverEnd={() => setRevealed(false)}>
-      <Reveal
+    <Item key={jobId} onHoverEnd={onHoverEnd}>
+      <IconsReveal
         initial="hidden"
         variants={reveal}
-        animate={revealed ? [`visible`, `reveal`] : `hidden`}>
+        animate={isRevealed ? [`visible`, `reveal`] : `hidden`}>
         <IconsBar icons={icons} />
-      </Reveal>
-      <JobReveal initial="visible" variants={reveal} animate={revealed ? `moveRight` : `visible`}>
-        <JobEntry {...job} onSelect={onSelect} isSelected={isSelected} />
+      </IconsReveal>
+      <JobReveal initial="visible" variants={reveal} animate={isRevealed ? `moveRight` : `visible`}>
+        <JobEntry
+          {...job}
+          jobId={jobId}
+          onSelect={onSelect}
+          isSelected={isSelected}
+          onHoverStart={onHoverStart}
+          isRevealed={isRevealed}
+        />
       </JobReveal>
     </Item>
   );
@@ -68,6 +77,9 @@ const JobItem = ({ job, onSelect, isSelected }) => {
 
 JobItem.propTypes = {
   className: PropTypes.string,
+  job: PropTypes.object.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  isSelected: PropTypes.bool.isRequired,
 };
 
 JobItem.SC = Item;

@@ -3,8 +3,15 @@ import HumanizeDuration from 'humanize-duration';
 import PropTypes from 'prop-types';
 import React, { memo, useEffect, useRef, useState } from 'react';
 import Moment from 'react-moment';
+import styled from 'styled-components';
+import tw from 'twin.macro';
 
 const SEC = 1000;
+const Container = styled.div`
+  span {
+    ${tw`truncate`}
+  }
+`;
 
 const JobTime = ({ timeTook, startTime, length = 15 }) => {
   const [time, setTime] = useState(Date.now());
@@ -25,15 +32,17 @@ const JobTime = ({ timeTook, startTime, length = 15 }) => {
   }, [timeTook]);
 
   return (
-    <div>
+    <Container>
       <Moment format="DD/MM/YY">{startTime}</Moment>
       <Divider vertical />
       <Moment format="HH:mm:ss">{startTime}</Moment>
       <Divider vertical />
-      {HumanizeDuration(timeTook ? timeTook * 1000 : time - startTime, {
-        maxDecimalPoints: 2,
-      }).slice(0, length)}
-    </div>
+      <span>
+        {HumanizeDuration(timeTook ? timeTook * 1000 : time - startTime, {
+          maxDecimalPoints: 2,
+        }).slice(0, length)}
+      </span>
+    </Container>
   );
 };
 

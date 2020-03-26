@@ -1,9 +1,8 @@
 import { Divider, Tag } from '@components';
 import { COLORS, mixins } from '@styles';
-import { NOOP } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
@@ -29,30 +28,28 @@ const Entry = styled(motion.div)`
   ${mixins.flexBetween}
   ${mixins.timingSlow}
   ${ifProp(`isSelected`, outline, outlineReset)}
-  ${tw`transition-shadow`}
+  ${tw`transition-shadow pl-1`}
 `;
 
 const RevealBox = styled(motion.div)`
-  ${tw`w-10`}
+  ${mixins.flexCenter}
+  ${tw`w-6 h-8 mx-2`}
   ${Divider.SC} {
     ${mixins.timingSlow}
     ${mixins.rounded}
-    ${tw`transition-colors w-1`}
-  }
-  :hover,
-  :focus {
-    ${Divider.SC} {
-      ${tw`bg-gray-500`}
-    }
+    ${tw`transition-colors w-1 h-6 min-h-0 top-0`}
+    ${ifProp(`isRevealed`, tw`bg-gray-700`)}
   }
 `;
 
 const Item = styled.div`
-  ${tw`truncate`}
+  span {
+    ${tw`truncate`}
+  }
 `;
 
 const TagSized = styled(Tag)`
-  ${tw`w-24`}
+  ${tw`w-32`}
 `;
 
 const Container = styled(motion.div)`
@@ -66,9 +63,13 @@ const Container = styled(motion.div)`
       ${tw`text-left`}
     }
 
+    :last-child {
+      ${tw`w-1/3 text-center`}
+    }
+
     :first-child {
       ${mixins.flexStart}
-      ${tw`w-1/4`}
+      ${tw`w-1/4 items-center`}
     }
   }
 `;
@@ -82,17 +83,17 @@ const Types = styled.div`
 
 const JobEntry = ({
   className,
+  isRevealed,
+  isSelected,
   jobId,
+  onHoverStart,
+  onSelect,
   pipelineName,
-  status,
   startTime,
+  status,
   timeTook,
   types,
-  onSelect = NOOP,
-  isSelected = false,
 }) => {
-  const [revealed, setRevealed] = useState(false);
-
   const onClick = useCallback(() => onSelect(jobId), [onSelect, jobId]);
   return (
     <Container className={className}>
@@ -106,12 +107,14 @@ const JobEntry = ({
       <HoverDiv whileHover={{ boxShadow }}>
         <Entry isSelected={isSelected} onClick={onClick}>
           <Item>
-            <RevealBox onHoverStart={() => setRevealed(true)} onHoverEnd={() => setRevealed(false)}>
+            <RevealBox onHoverStart={onHoverStart} isRevealed={isRevealed}>
               <Divider vertical />
             </RevealBox>
-            {jobId}
+            <span>{jobId}</span>
           </Item>
-          <Item>{pipelineName}</Item>
+          <Item>
+            <span>{pipelineName}</span>
+          </Item>
           <Item>
             <TagSized color={COLORS.pipeline.status[status]}>{status}</TagSized>
           </Item>
@@ -126,14 +129,16 @@ const JobEntry = ({
 
 JobEntry.propTypes = {
   className: PropTypes.string,
+  isRevealed: PropTypes.bool.isRequired,
+  isSelected: PropTypes.bool.isRequired,
   jobId: PropTypes.string.isRequired,
+  onHoverStart: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
   pipelineName: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
   startTime: PropTypes.number.isRequired,
+  status: PropTypes.string.isRequired,
   timeTook: PropTypes.number,
   types: PropTypes.array.isRequired,
-  onSelect: PropTypes.func,
-  isSelected: PropTypes.bool,
 };
 
 const MemoEntry = memo(JobEntry);
