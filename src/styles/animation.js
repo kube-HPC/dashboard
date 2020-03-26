@@ -1,12 +1,12 @@
 export const spring = {
   slow: {
-    type: 'spring',
+    type: `spring`,
     mass: 1,
     damping: 1000,
     stiffness: 10,
   },
   gentle: {
-    type: 'spring',
+    type: `spring`,
     mass: 1,
     damping: 50,
     stiffness: 100,

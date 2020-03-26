@@ -1,10 +1,16 @@
+import isEqual from 'lodash.isequal';
 import { useSelector } from 'react-redux';
-import jobs from './raw';
 import useActions from './useActions';
 
 const useJobs = () => {
+  const {
+    jobs: { select },
+  } = useActions();
+
+  const { selected, dataSource } = useSelector(state => state.jobs, isEqual);
+
   const jobsEntries =
-    jobs?.dataSource.map(
+    dataSource?.map(
       ({ key: jobId, pipeline: { name, types, startTime }, status: { status }, results }) => ({
         jobId,
         pipelineName: name,
@@ -15,12 +21,7 @@ const useJobs = () => {
       }),
     ) ?? [];
 
-  const {
-    jobs: { select },
-  } = useActions();
-  const { selected } = useSelector(state => state.jobs);
-
-  return { jobs: jobs.dataSource, list: jobsEntries, select, selected };
+  return { list: jobsEntries, select, selected };
 };
 
 export default useJobs;

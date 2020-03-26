@@ -49,7 +49,7 @@ const delay = {
 const Sidebar = () => {
   const { setValue, visible } = useSidebar();
   return (
-    <Container initial="closed" animate={visible ? 'open' : 'closed'} variants={delay}>
+    <Container initial="closed" animate={visible ? `open` : `closed`} variants={delay}>
       <Header variants={delay}>Hkube</Header>
       <Menu delayAnimation={1} visible={visible} onChange={setValue}>
         {SIDEBAR.values.map(value => (

@@ -22,16 +22,6 @@ const getSocketRoom = ({ value, lastValue }) => ({
   lastRoom: toSocketRoom(lastValue),
 });
 
-export const register = createAsyncThunk(STATE.register, (_, { dispatch }) => {
-  socket.on(PROGRESS, data => {
-    dispatch({ type: STATE.pull, payload: data });
-  });
-});
-
-export const connected = createAsyncThunk(STATE.connected, (_, { dispatch }) => {
-  dispatch(register());
-});
-
 // TODO: Handle events in UI
 export const init = createAsyncThunk(STATE.init, (_, { dispatch, getState }) => {
   socket = io(URL, CLIENT_CONFIG);
@@ -42,8 +32,12 @@ export const init = createAsyncThunk(STATE.init, (_, { dispatch, getState }) => 
     socket.on(event, () => {
       const emitOptions = getSocketRoom(experiments);
       socket.emit(CONNECTION.register, emitOptions);
-      dispatch(connected());
+      dispatch({ type: STATE.connected });
     });
+  });
+
+  socket.on(PROGRESS, data => {
+    dispatch({ type: STATE.pull, payload: data });
   });
 
   noConnectionEvents.forEach(event =>

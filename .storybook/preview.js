@@ -6,11 +6,12 @@ import { ReusableProvider } from 'reusable';
 import 'tailwindcss/dist/base.css';
 import 'typeface-rajdhani';
 import {} from '../src/components';
+import { useSocket } from '../src/hooks';
 import createStore from '../src/state/store/createStore';
 import { GlobalStyle } from '../src/styles';
 
 const Container = ({ children }) => {
-  // useSocket();
+  useSocket();
   return children;
 };
 
@@ -41,7 +42,7 @@ addParameters({
     showRoots: true,
     showPanel: false,
     storySort: (a, b) => a[1].id.localeCompare(b[1].id),
-    selectedPanel: `templates-dashboard`,
+    selectedPanel: `templates-dashboard--default`,
     theme,
   },
 });

@@ -26,7 +26,7 @@ const items = [
 const TopActions = ({ className }) => (
   <Container className={className}>
     {items.map(value => (
-      <motion.div key={value.name}>{value}</motion.div>
+      <motion.div key={value.key}>{value}</motion.div>
     ))}
   </Container>
 );

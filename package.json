@@ -48,6 +48,7 @@
     "framer-motion": "^1.10.2",
     "gatsby": "^2.20.6",
     "humanize-duration": "^3.22.0",
+    "lodash.isequal": "^4.5.0",
     "object.fromentries": "^2.0.2",
     "react": "^16.13.1",
     "react-custom-scrollbars": "^4.2.1",
