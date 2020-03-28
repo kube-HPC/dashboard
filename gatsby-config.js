@@ -1,7 +1,7 @@
 const website = require(`./src/config/meta`);
 const alias = require(`./src/constants/aliases`);
 
-const pathPrefix = website.pathPrefix === '/' ? '' : website.pathPrefix;
+const pathPrefix = website.pathPrefix === `/` ? `` : website.pathPrefix;
 
 module.exports = {
   pathPrefix: website.pathPrefix,
@@ -13,7 +13,6 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-resolve-src`,
-    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -23,7 +22,7 @@ module.exports = {
         start_url: pathPrefix,
         background_color: website.backgroundColor,
         theme_color: website.themeColor,
-        display: 'standalone',
+        display: `standalone`,
         icon: website.favicon,
       },
     },
@@ -31,7 +30,7 @@ module.exports = {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
         alias: alias(`src`),
-        extensions: ['js'],
+        extensions: [`js`],
       },
     },
     // Must be placed at the end
