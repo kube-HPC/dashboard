@@ -33,7 +33,7 @@ const theme = create({
   base: 'light',
   colorPrimary: 'hotpink',
   brandTitle: 'HKube Dashboard Storybook',
-  brandUrl: 'https://dennisvash.dev',
+  brandUrl: 'http://hkube.io/',
   brandImage: `https://user-images.githubusercontent.com/27515937/76857209-e4951480-684c-11ea-8d65-434de9c4aaa8.png`,
 });
 
