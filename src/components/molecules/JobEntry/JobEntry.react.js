@@ -44,8 +44,9 @@ const RevealBox = styled(motion.div)`
 `;
 
 const Item = styled.div`
+  ${tw`truncate inline-block`};
   span {
-    ${tw`truncate`}
+    ${tw`truncate`};
   }
 `;
 
@@ -58,19 +59,19 @@ const Container = styled(motion.div)`
   ${Tag.SC} {
     ${tw`capitalize`}
   }
+
   ${Item} {
-    :first-child,
-    :last-child {
-      ${tw`text-left`}
-    }
-
-    :last-child {
-      ${tw`w-1/3 text-center`}
-    }
-
     :first-child {
       ${mixins.flexStart}
-      ${tw`w-1/4 items-center`}
+      ${tw`w-1/5 items-center text-left max-w-xs`}
+    }
+
+    :nth-child(2) {
+      ${tw`w-1/6 text-left max-w-xs`}
+    }
+
+    :last-child {
+      ${tw`w-1/3 text-center text-left`}
     }
   }
 `;

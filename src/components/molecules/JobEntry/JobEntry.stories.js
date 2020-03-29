@@ -1,4 +1,5 @@
 import { SB_LABELS } from '@constants';
+import pipelineTypes from '@hkube/consts/lib/pipeline-types';
 import { useJobs, useSocket } from '@hooks';
 import React from 'react';
 import JobEntry from './JobEntry.react';
@@ -15,7 +16,20 @@ const jobExample = {
   types: [`type1`, `type2`],
 };
 
-export const Default = () => <JobEntry {...jobExample} />;
+const N = 100;
+
+export const Default = () => (
+  <>
+    <JobEntry {...jobExample} />
+    <JobEntry
+      {...jobExample}
+      jobId={`Id`.repeat(N)}
+      pipelineName={`Pipeline`.repeat(N)}
+      types={Object.values(pipelineTypes)}
+      status={`Completed`}
+    />
+  </>
+);
 
 export const SocketList = () => {
   const { list } = useJobs();

@@ -13,7 +13,12 @@ const Container = styled(motion.div)`
 
 const CardFlex = styled(Card)`
   ${mixins.flexBetween}
-  ${tw`h-full`}
+  ${tw`h-full flex-col`}
+`;
+
+const Content = styled.div`
+  ${mixins.flexCenter}
+  ${tw`flex-grow flex-col`}
 `;
 
 const TopRight = styled(motion.div)`
@@ -59,7 +64,7 @@ const AdminPanel = ({ className, children }) => {
         <TopRight>
           <Expand onClick={toggle} expanded={expanded} />
         </TopRight>
-        {children}
+        <Content>{children}</Content>
       </CardFlex>
     </Container>
   );

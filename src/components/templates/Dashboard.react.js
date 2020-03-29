@@ -1,4 +1,4 @@
-import { AdminPanel, Jobs, Sidebar, TopActions } from '@components';
+import { AdminPanel, Divider, Jobs, Sidebar, TopActions } from '@components';
 import { mixins } from '@styles';
 import React from 'react';
 import styled from 'styled-components';
@@ -32,7 +32,17 @@ const Dashboard = () => (
       <TopBar />
       <Content>
         <Jobs />
-        <AdminPanel></AdminPanel>
+        <AdminPanel>
+          <div>HKube - HPC over Kuberenetes</div>
+          <Divider />
+          <p>
+            HKube is a cloud-native open source framework to run distributed pipeline of algorithms
+            built on Kubernetes. HKube optimally utilizing pipeline's resources, based on user
+            priorities and heuristics.
+          </p>
+          <a href={`http://hkube.io/`}>Docs</a>
+          <a href={`https://github.com/kube-HPC/hkube`}>Github</a>
+        </AdminPanel>
       </Content>
     </Main>
   </Container>

@@ -14,7 +14,7 @@ const Container = styled.span`
 
 const Tag = ({ className, children, color = defaultColor }) => (
   <Container className={className} color={color}>
-    {children}
+    <span>{children}</span>
   </Container>
 );
 
@@ -24,6 +24,7 @@ Tag.propTypes = {
   className: PropTypes.string,
   color: PropTypes.string,
   children: PropTypes.node.isRequired,
+  bordered: PropTypes.bool,
 };
 
 export default Tag;
