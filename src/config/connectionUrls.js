@@ -39,6 +39,8 @@ const connectionConfig = {
 };
 
 /* eslint-disable no-console */
+console.info(`Use Location`, process.env.MONITOR_BACKEND_USE_LOCATION);
+console.info(`monitor Host`, monitor);
 console.info(`Use Location`, monitorUseLocation);
 console.info(`Connect Config`, connectionConfig);
 
