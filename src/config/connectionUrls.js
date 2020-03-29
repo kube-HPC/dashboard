@@ -26,7 +26,7 @@ const monitorUseLocation = toBoolean(process.env.MONITOR_BACKEND_USE_LOCATION);
 const boardUseLocation = toBoolean(process.env.BOARD_USE_LOCATION);
 const origin = IS_WINDOW_DEFINED ? window.location.origin : undefined;
 
-const connectionConfig = {
+const fromEnvConfig = {
   monitor: {
     url: monitorUseLocation
       ? `${origin}${monitor.path}`
@@ -37,11 +37,16 @@ const connectionConfig = {
     ? `${origin}${board.path}`
     : `${schema}${board.host}:${board.port}${board.path}`,
 };
+const connectionConfig = {
+  monitor: {
+    url: `https://40.69.222.75:443`,
+    socketPath: `/hkube/monitor-server/socket.io`,
+  },
+  board: `https://40.69.222.75:443/hkube/board`,
+};
 
 /* eslint-disable no-console */
-console.info(`Use Location`, process.env.MONITOR_BACKEND_USE_LOCATION);
-console.info(`monitor Host`, monitor);
 console.info(`Use Location`, monitorUseLocation);
-console.info(`Connect Config`, connectionConfig);
+console.info(`Connect Config`, fromEnvConfig);
 
 export default connectionConfig;
