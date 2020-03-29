@@ -1,5 +1,4 @@
-import { SCROLL } from '@config';
-import { useActions, useScroll } from '@hooks';
+import { useActions } from '@hooks';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -23,11 +22,7 @@ const item = {
   },
 };
 
-const JobReveal = ({ className, job, index }) => {
-  const {
-    indexes: [left, right],
-  } = useScroll();
-
+const JobReveal = ({ className, job }) => {
   const {
     jobs: { select },
   } = useActions();
@@ -35,8 +30,6 @@ const JobReveal = ({ className, job, index }) => {
   const selected = useSelector(state => state.jobs.selected);
   const { jobId } = job;
   const isSelected = selected === jobId;
-  const offsetY = left <= 0 ? 0 : left * SCROLL.itemSize;
-  const isItemInRange = left <= index && index <= right;
 
   return (
     <Container
@@ -45,8 +38,7 @@ const JobReveal = ({ className, job, index }) => {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      variants={item}
-      offsetY={offsetY}>
+      variants={item}>
       <JobItem isSelected={isSelected} onSelect={select} job={job} />
     </Container>
   );
@@ -55,7 +47,6 @@ const JobReveal = ({ className, job, index }) => {
 JobReveal.propTypes = {
   className: PropTypes.string,
   job: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
 };
 
 JobReveal.SC = Container;

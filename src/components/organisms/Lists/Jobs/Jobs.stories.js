@@ -1,10 +1,10 @@
-import { VirtualList } from '@components';
-import { SB_LABELS } from '@constants';
-import { useJobs } from '@hooks';
+import { RAW, SB_LABELS } from '@constants';
+import { NOOP } from '@utils';
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import JobItem from './JobItem.react';
+import JobReveal from './JobReveal.react';
 import Jobs from './Jobs.react';
 
 const Container = styled.div`
@@ -24,24 +24,15 @@ export default {
 
 export const Default = Jobs;
 
-export const Item = () => {
-  const { list, select, selected } = useJobs();
-  const job = list[0];
-  return <JobItem job={job} isSelected={selected === job.jobId} onSelect={select} />;
-};
-
-const Row = ({ index, style, data }) => (
-  <div style={style}>
-    <JobItem job={data[index]} />
-  </div>
+export const jobItem = () => (
+  <>
+    <JobItem job={RAW.job} isSelected={false} onSelect={NOOP} />
+    <JobItem job={RAW.job} isSelected onSelect={NOOP} />
+  </>
 );
 
-export const Windowing = () => {
-  const { list, select, selected } = useJobs();
-
-  return (
-    <VirtualList list={list} itemSize={90}>
-      {Row}
-    </VirtualList>
-  );
-};
+export const jobReveals = () => (
+  <>
+    <JobReveal job={RAW.job} />
+  </>
+);

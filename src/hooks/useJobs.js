@@ -1,15 +1,16 @@
 import isEqual from 'lodash.isequal';
 import { useSelector } from 'react-redux';
+import { createStore } from 'reusable';
 import useActions from './useActions';
 
 const EMPTY = [];
 
 const useJobs = () => {
+  const { dataSource, selected } = useSelector(state => state.jobs, isEqual);
+
   const {
     jobs: { select },
   } = useActions();
-
-  const { selected, dataSource } = useSelector(state => state.jobs, isEqual);
 
   const jobsEntries =
     dataSource?.map(
@@ -23,7 +24,7 @@ const useJobs = () => {
       }),
     ) ?? EMPTY;
 
-  return { list: jobsEntries, select, selected };
+  return { list: jobsEntries, selected, select };
 };
 
-export default useJobs;
+export default createStore(useJobs);
