@@ -16,8 +16,8 @@ const Main = styled.div`
 const Content = styled.div`
   ${mixins.flexStart}
   ${tw`w-full flex-grow`}
-  ${Jobs.SC} {
-    ${tw`flex-grow pr-3 pl-1 mr-1 h-full`}
+  ${Jobs.SC.Container} {
+    ${tw`flex-grow mr-1 h-full`}
   }
 `;
 
@@ -31,9 +31,7 @@ const Dashboard = () => (
     <Main>
       <TopBar />
       <Content>
-        {/* <VirtualList>
-          <Jobs />
-        </VirtualList> */}
+        <Jobs />
         <AdminPanel></AdminPanel>
       </Content>
     </Main>

@@ -4,13 +4,22 @@ import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 import { areEqual } from 'react-window';
 import styled from 'styled-components';
+import tw from 'twin.macro';
 import JobReveal from './JobReveal.react';
+
+const Container = styled.div`
+  ${tw`h-full`}
+`;
+
+const RowItem = styled.div`
+  ${tw`pr-3`}
+`;
 
 const MemoRow = memo(
   ({ data, index, style }) => (
-    <div style={style}>
+    <RowItem style={style}>
       <JobReveal job={data[index]} />
-    </div>
+    </RowItem>
   ),
   areEqual,
 );
@@ -23,15 +32,15 @@ MemoRow.propTypes = {
 
 MemoRow.displayName = `List Row`;
 
-const List = styled(VirtualList)``;
-
 const Jobs = ({ className }) => {
   const { list } = useJobs();
 
   return (
-    <List className={className} list={list} itemSize={90}>
-      {MemoRow}
-    </List>
+    <Container className={className}>
+      <VirtualList list={list} itemSize={90}>
+        {MemoRow}
+      </VirtualList>
+    </Container>
   );
 };
 
@@ -39,7 +48,7 @@ Jobs.propTypes = {
   className: PropTypes.string,
 };
 
-Jobs.SC = List;
+Jobs.SC = { Container, RowItem };
 Jobs.displayName = `Jobs`;
 
 export default Jobs;
