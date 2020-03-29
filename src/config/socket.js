@@ -19,7 +19,7 @@ const socket = {
   },
   CLIENT_CONFIG: {
     path: socketPath,
-    transports: ['websocket'],
+    transports: [`websocket`],
   },
   ROOM: {
     default: `main`,
@@ -30,19 +30,19 @@ const socket = {
   },
   EVENTS: {
     NO_CONNECTIONS: {
-      disconnect: 'disconnect',
-      connectError: 'connect_error',
-      connectTimeout: 'connect_timeout',
-      error: 'error',
-      reconnectAttempt: 'reconnect_attempt',
-      reconnecting: 'reconnecting',
-      reconnectError: 'reconnect_error',
-      reconnectFailed: 'reconnect_failed',
+      disconnect: `disconnect`,
+      connectError: `connect_error`,
+      connectTimeout: `connect_timeout`,
+      error: `error`,
+      reconnectAttempt: `reconnect_attempt`,
+      reconnecting: `reconnecting`,
+      reconnectError: `reconnect_error`,
+      reconnectFailed: `reconnect_failed`,
     },
     CONNECTION: {
-      connect: 'connect',
-      reconnect: 'reconnect',
-      register: 'experiment-register',
+      connect: `connect`,
+      reconnect: `reconnect`,
+      register: `experiment-register`,
     },
   },
 };

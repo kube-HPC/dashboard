@@ -1,11 +1,11 @@
 import { IS_WINDOW_DEFINED, toBoolean } from '@utils';
-const schema = `http${process.env.IS_SECURE ? 's' : ''}://`;
+const schema = `http${process.env.IS_SECURE ? `s` : ``}://`;
 
 const defaultConnection = {
-  host: 'localhost',
-  port: '30010',
-  path: '',
-  socketIoPath: '',
+  host: `localhost`,
+  port: `30010`,
+  path: ``,
+  socketIoPath: ``,
 };
 
 // monitor server
@@ -37,5 +37,8 @@ const connectionConfig = {
     ? `${origin}${board.path}`
     : `${schema}${board.host}:${board.port}${board.path}`,
 };
+
+/* eslint-disable no-console */
+console.info(connectionConfig);
 
 export default connectionConfig;
