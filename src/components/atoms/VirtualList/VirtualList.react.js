@@ -31,7 +31,7 @@ const VirtualList = ({ className, children = null, itemSize = DEFAULT_DIV_HEIGHT
 
 VirtualList.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.object.isRequired,
   itemSize: PropTypes.number,
   list: PropTypes.array.isRequired,
 };
