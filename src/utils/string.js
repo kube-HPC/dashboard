@@ -5,8 +5,7 @@ export const toUpperCaseFirstLetter = str =>
 
 export const sorter = (a, b) => (isNaN(a) && isNaN(b) ? (a || ``).localeCompare(b || ``) : a - b);
 
-const falseString = value =>
-  typeof value === `string` && (value.toLowerCase() === `false` || value.toLowerCase() === ``);
+const falseString = value => (typeof value === `string` ? value.toLowerCase() === `false` : value);
 const booleanType = value => typeof value === `boolean`;
 
 export const toBoolean = value => (booleanType(value) ? value : falseString(value) ? false : true);
