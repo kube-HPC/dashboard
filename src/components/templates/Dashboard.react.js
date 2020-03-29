@@ -22,7 +22,7 @@ const Content = styled.div`
 `;
 
 const TopBar = styled(TopActions)`
-  ${tw`mb-5`}
+  ${tw`mb-3`}
 `;
 
 const Dashboard = () => (

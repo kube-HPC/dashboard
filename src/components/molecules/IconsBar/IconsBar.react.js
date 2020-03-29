@@ -31,21 +31,20 @@ const item = {
     y: 0,
     transition: spring.slow,
   },
-  hidden: {
+  top: {
     y: -50,
   },
 };
 
-const IconsBar = ({ icons = [] }) => {
+const IconsBar = ({ icons = [], reveal = `` }) => {
   const { setValue } = useUtilities();
   return (
-    // <Container initial="hidden" animate="visible" variants={container}>
-    <Container>
+    <Container initial={reveal} animate="visible" variants={container}>
       {icons.map(name => {
         const Icon = iconsMap[name];
         const onClick = () => setValue(name);
         return (
-          <Item key={name} onClick={onClick}>
+          <Item key={name} onClick={onClick} variants={item}>
             <Icon />
           </Item>
         );
@@ -55,6 +54,7 @@ const IconsBar = ({ icons = [] }) => {
 };
 IconsBar.propTypes = {
   icons: PropTypes.array.isRequired,
+  reveal: PropTypes.string,
 };
 
 export default IconsBar;

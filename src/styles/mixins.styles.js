@@ -29,7 +29,7 @@ const fixed = css`
 `;
 
 const colorOnFocus = css`
-  ${tw`transition-colors duration-300 hocus:text-black cursor-pointer`}
+  ${tw`hocus:text-black cursor-pointer`}
 `;
 
 const upperCase = css`
@@ -53,8 +53,14 @@ const timingSlow = css`
   ${tw`ease-in-out duration-700`}
 `;
 
+const timingNormal = css`
+  ${timingSlow}
+  ${tw`duration-500`}
+`;
+
 const mixins = {
   colorOnFocus,
+  timingNormal,
   fillContainer,
   fixed,
   flexBetween,

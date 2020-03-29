@@ -8,14 +8,28 @@ import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
 const selected = css`
-  ${tw`text-black font-semibold`}
+  ${tw`text-black`}
+`;
+
+const underline = css`
+  ${tw`bg-black`}
 `;
 
 const Item = styled(motion.div)`
   ${mixins.colorOnFocus}
-  ${tw`text-secondary text-center`};
-  transition-property: color, font-weight;
+  ${mixins.timingNormal}
+  ${tw`transition-colors text-secondary text-center`};
   ${ifProp(`selected`, selected)};
+
+  span {
+    ${tw`inline-block`}
+    &:after {
+      content: '';
+      ${mixins.timingNormal}
+      ${tw`w-full h-px block transition-colors bg-transparent`}
+      ${ifProp(`selected`, underline)};
+    }
+  }
 `;
 
 const horizontal = css`
@@ -51,12 +65,13 @@ const item = {
   visible: {
     opacity: 1,
     x: 0,
+    y: 0,
     transition: spring.slow,
   },
-  hidden: {
+  hidden: horizontal => ({
     opacity: 0,
-    x: -20,
-  },
+    [horizontal ? `y` : `x`]: -20,
+  }),
 };
 
 const Menu = ({
@@ -85,8 +100,13 @@ const Menu = ({
         const key = child.key;
         const onClick = () => setSelected(key);
         return (
-          <Item key={key} selected={selected === key} onClick={onClick} variants={item}>
-            {child}
+          <Item
+            custom={horizontal}
+            key={key}
+            selected={selected === key}
+            onClick={onClick}
+            variants={item}>
+            <span className="un">{child}</span>
           </Item>
         );
       })}

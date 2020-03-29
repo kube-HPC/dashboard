@@ -35,13 +35,15 @@ const container = {
     },
   },
   visible: {
+    x: 0,
     scale: 1,
     transition: {
       ...spring.slow,
     },
   },
   hidden: {
-    scale: 0,
+    x: 300,
+    scale: 0.5,
   },
 };
 

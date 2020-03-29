@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     ${mixins.textSecondary}
     ${tw`fill-current w-8`}
     ${mixins.colorOnFocus}
+    ${mixins.timingNormal}
   }
 `;
 

@@ -60,7 +60,7 @@ const JobItem = ({ job: { jobId, ...job }, onSelect = NOOP, isSelected = false }
         initial="hidden"
         variants={reveal}
         animate={isRevealed ? [`visible`, `reveal`] : `hidden`}>
-        <IconsBar icons={icons} />
+        <IconsBar icons={icons} reveal={false} />
       </IconsReveal>
       <JobReveal initial="visible" variants={reveal} animate={isRevealed ? `moveRight` : `visible`}>
         <JobEntry

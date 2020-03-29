@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 const RowItem = styled.div`
-  ${tw`pr-3`}
+  ${tw`pr-3 pl-1`}
 `;
 
 const MemoRow = memo(

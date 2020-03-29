@@ -14,13 +14,13 @@ const Container = styled.div`
 `;
 
 const items = [
-  <IconsBar key="left" icons={TOP_BAR.leftIcons} />,
+  <IconsBar key="left" icons={TOP_BAR.leftIcons} reveal="top" />,
   <Menu key="center" horizontal>
     {TOP_BAR.values.map(value => (
       <div key={value}>{value}</div>
     ))}
   </Menu>,
-  <IconsBar key="right" icons={TOP_BAR.rightIcons} />,
+  <IconsBar key="right" icons={TOP_BAR.rightIcons} reveal="top" />,
 ];
 
 const TopActions = ({ className }) => (
