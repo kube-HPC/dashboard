@@ -39,6 +39,7 @@ const connectionConfig = {
 };
 
 /* eslint-disable no-console */
-console.info(connectionConfig);
+console.info(`Use Location`, monitorUseLocation);
+console.info(`Connect Config`, connectionConfig);
 
 export default connectionConfig;
