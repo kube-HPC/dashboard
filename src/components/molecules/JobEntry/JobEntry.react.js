@@ -1,5 +1,6 @@
 import { Divider, Tag } from '@components';
 import { COLORS, mixins } from '@styles';
+import { NOOP } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { memo, useCallback } from 'react';
@@ -87,7 +88,7 @@ const JobEntry = ({
   isSelected,
   jobId,
   onHoverStart,
-  onSelect,
+  onSelect = NOOP,
   pipelineName,
   startTime,
   status,

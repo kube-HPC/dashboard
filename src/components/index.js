@@ -2,6 +2,7 @@ export { default as Card } from './atoms/Card/Card.react';
 export { default as Divider } from './atoms/Divider/Divider.react';
 export { default as Icon } from './atoms/Icons/Icon.react';
 export { default as Tag } from './atoms/Tag/Tag.react';
+export { default as VirtualList } from './atoms/VirtualList/VirtualList.react';
 export { default as Expand } from './molecules/Expand/Expand.react';
 export { default as IconsBar } from './molecules/IconsBar/IconsBar.react';
 export { default as JobEntry } from './molecules/JobEntry/JobEntry.react';

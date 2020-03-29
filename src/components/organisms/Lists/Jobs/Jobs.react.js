@@ -1,28 +1,25 @@
-import { SCROLL } from '@config';
+import { VirtualList } from '@components';
 import { useJobs } from '@hooks';
 import PropTypes from 'prop-types';
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import JobReveal from './JobReveal.react';
 
-const Container = styled.div``;
+const List = styled(VirtualList)``;
+
+const JobRow = ({ index, style, data }) => (
+  <div style={style}>
+    <JobReveal job={data[index]} />
+  </div>
+);
 
 const Jobs = ({ className }) => {
   const { list } = useJobs();
-  const [reveal, setReveal] = useState(false);
-
-  const heightStyle = useMemo(() => ({ height: list.length * SCROLL.itemSize }), [list.length]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setReveal(true);
-    }, 500);
-  }, []);
 
   return (
-    <Container className={className} style={heightStyle}>
-      {reveal && list.map((job, index) => <JobReveal key={index} index={index} job={job} />)}
-    </Container>
+    <List className={className} list={list} itemSize={90}>
+      {JobRow}
+    </List>
   );
 };
 
@@ -30,7 +27,7 @@ Jobs.propTypes = {
   className: PropTypes.string,
 };
 
-Jobs.SC = Container;
+Jobs.SC = List;
 Jobs.displayName = `Jobs`;
 
 export default Jobs;

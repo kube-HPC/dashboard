@@ -1,7 +1,6 @@
 import isEqual from 'lodash.isequal';
 import { useSelector } from 'react-redux';
 import useActions from './useActions';
-import useScroll from './useScroll';
 
 const EMPTY = [];
 
@@ -11,7 +10,6 @@ const useJobs = () => {
   } = useActions();
 
   const { selected, dataSource } = useSelector(state => state.jobs, isEqual);
-  const { indexes } = useScroll();
 
   const jobsEntries =
     dataSource?.map(
@@ -25,7 +23,7 @@ const useJobs = () => {
       }),
     ) ?? EMPTY;
 
-  return { list: jobsEntries, select, selected, indexes };
+  return { list: jobsEntries, select, selected };
 };
 
 export default useJobs;

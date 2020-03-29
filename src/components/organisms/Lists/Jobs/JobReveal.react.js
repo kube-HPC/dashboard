@@ -15,9 +15,11 @@ const Container = styled(motion.div)`
 const item = {
   visible: {
     opacity: 1,
+    y: 0,
   },
   hidden: {
     opacity: 0,
+    y: -40,
   },
 };
 
@@ -37,18 +39,16 @@ const JobReveal = ({ className, job, index }) => {
   const isItemInRange = left <= index && index <= right;
 
   return (
-    isItemInRange && (
-      <Container
-        className={className}
-        key={jobId}
-        initial="hidden"
-        animate="visible"
-        exit="hidden"
-        variants={item}
-        offsetY={offsetY}>
-        <JobItem isSelected={isSelected} onSelect={select} job={job} />
-      </Container>
-    )
+    <Container
+      className={className}
+      key={jobId}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      variants={item}
+      offsetY={offsetY}>
+      <JobItem isSelected={isSelected} onSelect={select} job={job} />
+    </Container>
   );
 };
 

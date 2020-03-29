@@ -1,8 +1,6 @@
 import { AdminPanel, Jobs, Sidebar, TopActions } from '@components';
-import { useScroll } from '@hooks';
 import { mixins } from '@styles';
-import React, { useEffect, useRef } from 'react';
-import { Scrollbars } from 'react-custom-scrollbars';
+import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -27,29 +25,19 @@ const TopBar = styled(TopActions)`
   ${tw`mb-5`}
 `;
 
-const Dashboard = () => {
-  const { onScrollFrame, setIndexes } = useScroll();
-  const scrollRef = useRef();
-
-  useEffect(() => {
-    const totalItems = Math.ceil(scrollRef.current.getClientHeight() / 100);
-    setIndexes([0, totalItems]);
-  }, [setIndexes]);
-
-  return (
-    <Container>
-      <Sidebar />
-      <Main>
-        <TopBar />
-        <Content>
-          <Scrollbars ref={scrollRef} autoHide onScrollFrame={onScrollFrame}>
-            <Jobs />
-          </Scrollbars>
-          <AdminPanel></AdminPanel>
-        </Content>
-      </Main>
-    </Container>
-  );
-};
+const Dashboard = () => (
+  <Container>
+    <Sidebar />
+    <Main>
+      <TopBar />
+      <Content>
+        {/* <VirtualList>
+          <Jobs />
+        </VirtualList> */}
+        <AdminPanel></AdminPanel>
+      </Content>
+    </Main>
+  </Container>
+);
 
 export default Dashboard;
