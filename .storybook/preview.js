@@ -1,14 +1,14 @@
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import { create } from '@storybook/theming';
+import { useSocket } from 'hooks';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ReusableProvider } from 'reusable';
+import createStore from 'state/store/createStore';
+import { GlobalStyle } from 'styles';
 import 'tailwindcss/dist/base.css';
 import 'typeface-rajdhani';
 import {} from '../src/components';
-import { useSocket } from '../src/hooks';
-import createStore from '../src/state/store/createStore';
-import { GlobalStyle } from '../src/styles';
 
 const Container = ({ children }) => {
   useSocket();
