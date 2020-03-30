@@ -9,7 +9,7 @@ import JobGraph from './JobGraph.react';
 
 const Flex = styled.div`
   ${mixins.flexStart}
-  ${tw`flex-col h-full`}
+  ${tw`flex-col h-screen`}
   ${JobGraph.SC} {
     ${tw`flex-grow`}
   }
@@ -39,7 +39,7 @@ export const GraphFromSocket = () => {
         </select>
         <div>Selected: {selected || `None`}</div>
       </div>
-      {graph ? <JobGraph jobGraph={graph}>Example</JobGraph> : `No Graph`}
+      {graph ? <JobGraph jobGraph={graph} /> : <div>No Graph</div>}
     </Flex>
   );
 };

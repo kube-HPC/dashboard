@@ -3,13 +3,12 @@ import { GRAPH } from '@constants';
 const { direction: DIRECTION, defaultOptions } = GRAPH;
 
 const options = ({
-  height = `${window.innerHeight}px`,
-  hierarchical = true,
-  visible = true,
-  physics = false,
+  hierarchical = defaultOptions.hierarchical,
+  visible = defaultOptions.visible,
+  physics = defaultOptions.physics,
   direction = DIRECTION.LR,
 } = defaultOptions) => ({
-  height,
+  autoResize: true,
   layout: {
     hierarchical: {
       enabled: hierarchical,
@@ -38,7 +37,6 @@ const options = ({
       enabled: false,
     },
   },
-  autoResize: false,
   configure: {
     enabled: false,
   },

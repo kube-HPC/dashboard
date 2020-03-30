@@ -4,7 +4,6 @@ const graph = {
     UD: `UD`,
   },
   defaultOptions: {
-    height: `${window.innerHeight}px`,
     hierarchical: true,
     visible: true,
     physics: false,

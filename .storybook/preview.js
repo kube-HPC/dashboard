@@ -18,14 +18,16 @@ const Container = ({ children }) => {
 addDecorator(S => {
   const store = createStore();
   return (
-    <Provider store={store}>
-      <ReusableProvider>
-        <GlobalStyle />
-        <Container>
-          <S />
-        </Container>
-      </ReusableProvider>
-    </Provider>
+    <React.StrictMode>
+      <Provider store={store}>
+        <ReusableProvider>
+          <GlobalStyle />
+          <Container>
+            <S />
+          </Container>
+        </ReusableProvider>
+      </Provider>
+    </React.StrictMode>
   );
 });
 

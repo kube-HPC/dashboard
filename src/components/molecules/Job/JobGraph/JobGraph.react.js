@@ -1,7 +1,7 @@
 import { Graph } from '@components';
 import { formatEdge, formatNode } from '@utils';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -9,21 +9,20 @@ const Container = styled.div`
   ${tw`h-full w-full`}
 `;
 
+const DEFAULT = { nodes: [], edges: [] };
+
 const JobGraph = ({ className, jobGraph }) => {
-  const graph = {
-    edges: [],
-    nodes: [],
-  };
+  const [graph, setGraph] = useState(DEFAULT);
 
-  const { nodes = [], edges = [] } = jobGraph;
-  nodes.forEach(n => graph.nodes.push(formatNode(n)));
-  edges.forEach(e => graph.edges.push(formatEdge(e)));
-
-  const isValidGraph = graph.nodes.length !== 0;
+  useEffect(() => {
+    const nodes = jobGraph.nodes.map(formatNode);
+    const edges = jobGraph.edges.map(formatEdge);
+    setGraph({ nodes, edges });
+  }, [jobGraph]);
 
   return (
     <Container className={className}>
-      {isValidGraph ? <Graph graph={graph} /> : `No Nodes`}
+      <Graph graph={graph} />
     </Container>
   );
 };
@@ -34,5 +33,8 @@ JobGraph.propTypes = {
   className: PropTypes.string,
   jobGraph: PropTypes.object.isRequired,
 };
+
+const MemoJobGraph = React.memo(JobGraph);
+MemoJobGraph.displayName = `Job Graph`;
 
 export default JobGraph;

@@ -1,6 +1,6 @@
 import { GRAPH } from '@constants';
 
-const { STATUS, BATCH } = GRAPH.types;
+const { STATUS, BATCH, EDGE } = GRAPH.types;
 
 const sameStatus = [STATUS.SKIPPED, STATUS.FAILED];
 const completedStatus = [STATUS.SUCCEED];
@@ -36,6 +36,7 @@ export const nodeFinder = ({ graph, pipeline }) => nodeName => {
   return payload;
 };
 
+/* eslint-disable indent */
 const toStatus = status =>
   completedStatus.includes(status)
     ? STATUS.COMPLETED
@@ -86,12 +87,20 @@ export const formatNode = n => {
   return { ...fn, ...node };
 };
 
+const { ALGORITHM_EXECUTION, WAIT_ANY } = EDGE;
+const dashedGroups = [ALGORITHM_EXECUTION, WAIT_ANY];
+
 export const formatEdge = e => {
   const { edges, ...rest } = e;
   const [group] = edges;
+
+  const { type } = group;
+
   const edge = {
     id: `${e.from}->${e.to}`,
-    dashes: group === `waitAny` || group === `AlgorithmExecution`,
+    dashes: dashedGroups.includes(type),
   };
   return { ...rest, ...edge, group };
 };
+
+export const areEqualGraphs = (a, b) => a?.jobId === b?.jobId && a?.timestamp === b?.timestamp;
