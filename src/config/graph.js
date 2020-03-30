@@ -27,14 +27,15 @@ const options = ({
     margin: 10,
     mass: 1,
     title: `title`,
+    shadow: true,
   },
   edges: {
-    color: `black`,
     length: 500,
     width: 2,
     hidden: !visible,
     smooth: {
       enabled: false,
+      type: `cubicBezier`,
     },
   },
   configure: {
@@ -46,7 +47,7 @@ const options = ({
     navigationButtons: false,
     multiselect: true,
     hover: true,
-    tooltipDelay: 2,
+    tooltipDelay: 1,
   },
   clickToUse: true,
   physics: {

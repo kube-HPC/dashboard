@@ -1,6 +1,7 @@
 import { GRAPH } from '@constants';
+import { graphEdgeTypes } from '@hkube/consts';
 
-const { STATUS, BATCH, EDGE } = GRAPH.types;
+const { STATUS, BATCH } = GRAPH.types;
 
 const sameStatus = [STATUS.SKIPPED, STATUS.FAILED];
 const completedStatus = [STATUS.SUCCEED];
@@ -79,28 +80,32 @@ const handleBatch = ({ nodeName, algorithmName, batchInfo, level = 0 }) => {
 const handleNode = n => (!n.batchInfo ? handleSingle(n) : handleBatch(n));
 
 export const formatNode = n => {
-  const fn = handleNode(n);
+  const { nodeName, ...rest } = handleNode(n);
+
+  const batch = rest?.extra?.batch;
+
   const node = {
-    id: fn.nodeName,
-    label: fn.extra && fn.extra.batch ? `${fn.nodeName}-${fn.extra.batch}` : fn.nodeName,
+    id: nodeName,
+    label: batch ? `${nodeName} [${batch}]` : nodeName,
+    title: nodeName,
   };
-  return { ...fn, ...node };
+
+  return { ...rest, ...node, nodeName };
 };
 
-const { ALGORITHM_EXECUTION, WAIT_ANY } = EDGE;
+const { ALGORITHM_EXECUTION, WAIT_ANY } = graphEdgeTypes;
 const dashedGroups = [ALGORITHM_EXECUTION, WAIT_ANY];
 
-export const formatEdge = e => {
-  const { edges, ...rest } = e;
+export const formatEdge = ({ from, to, edges }) => {
   const [group] = edges;
-
   const { type } = group;
 
   const edge = {
-    id: `${e.from}->${e.to}`,
+    id: `${from}->${to}`,
     dashes: dashedGroups.includes(type),
+    title: type,
   };
-  return { ...rest, ...edge, group };
+  return { ...edge, from, to, group };
 };
 
 export const areEqualGraphs = (a, b) => a?.jobId === b?.jobId && a?.timestamp === b?.timestamp;

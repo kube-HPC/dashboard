@@ -1003,10 +1003,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@hkube/consts@^1.0.20":
-  version "1.0.20"
-  resolved "https://registry.yarnpkg.com/@hkube/consts/-/consts-1.0.20.tgz#549f43c8e10d2a122564e7a7d0d8579f676ff194"
-  integrity sha512-4u5Z1xPnapY0zs49iEgrYj1vu/DI8QVwDEdyMBq2dPqEzgO4WI9qBNFzer8OGOtU6cuBpKbu/ZVFRc5viZWdEQ==
+"@hkube/consts@^1.0.21":
+  version "1.0.21"
+  resolved "https://registry.yarnpkg.com/@hkube/consts/-/consts-1.0.21.tgz#281f09261cc90dada3b1e0d82531cbdaf0b3126e"
+  integrity sha512-3tPa1KfSp/CcFesZWwS2ov7jNkW++zWSP+OpUMDPoupK2b81ZVJa0ecl9FbgkJvgzf5ON6P0RUAXKh0Z5sbtFA==
 
 "@mikaelkristiansson/domready@^1.0.10":
   version "1.0.10"
@@ -6030,10 +6030,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@^1.10.2:
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-1.10.2.tgz#9315e1a2fd412cf2b4d2ed6ef986211877391efe"
-  integrity sha512-aGaF+lqNGthEpvjOwwbibTOFCfH7AVe3TFXabN2XpUKVcxYTaVtUkOtPldO0Pl1B2u9I83ZtIf27icHmdNvRYg==
+framer-motion@^1.10.3:
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-1.10.3.tgz#d58a57ccb0ccc3317d0fc3abc4da2b3e4227bd43"
+  integrity sha512-VooCzGWg7brSO4Gc0YwpY5AadJe4OPS74ZyOlOHWll5rMXCoOc6Ia3uDQ6RfOJlwCP/D9TQuRGtboyJiVXjVcw==
   dependencies:
     "@popmotion/easing" "^1.0.2"
     "@popmotion/popcorn" "^0.4.2"
@@ -8396,10 +8396,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-lint-staged@^10.0.10:
-  version "10.0.10"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-10.0.10.tgz#d14d33ee02a31a31ad36cf9aa7973fc156c461b5"
-  integrity sha512-91vNy3eYStExElLWw1Idva5lghKpFaXh9AJqjcyrJXf7AYZrThi4EhQ+GpmiHdPmJJauKhZMMSzQR1bMB90MtA==
+lint-staged@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-10.1.0.tgz#18785bb005d5ed404f1c1db6563e082f7a7baac2"
+  integrity sha512-WzZ/T+O/aEaaT679sMgI4JqK5mnG69V5KQSouzVsShzZ8wGWte39HT3z61LsxjVNeCf8m/ChhvWJa2wTiQLy5A==
   dependencies:
     chalk "^3.0.0"
     commander "^4.0.1"
@@ -13973,22 +13973,22 @@ vfile@^3.0.0:
     unist-util-stringify-position "^1.0.0"
     vfile-message "^1.0.0"
 
-vis-data@^6.5.0:
+vis-data@^6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/vis-data/-/vis-data-6.5.1.tgz#cd11f8bbf4a17064559b7c75532c3d6f419ff290"
   integrity sha512-bOIG0REskXot0JbuAYLFRR61xf4ls+nIYNnZ7X04iq2y/Vrg896A/bfquQjhsERZipOmCgllAR0d58OGyo9s0g==
 
-vis-network-react@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/vis-network-react/-/vis-network-react-1.2.0.tgz#ff2abed44f139925145d409c5a07c80236771236"
-  integrity sha512-HVNMXxnBXNek+FWwFqGpbursqxwSph75jLMeXsRxcpi9RaKT+keicu/ZHvPrS+M1W9F269qzsUY6z+pz/2sgrQ==
+vis-network-react@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/vis-network-react/-/vis-network-react-1.2.1.tgz#940d52b13a46298593eeee37ab852f030ee471ad"
+  integrity sha512-Gi+MxB8rUbrpLUJUKDtDwNkR1zMAr4jv8PGANS0aS9mLnAsTSrNWLQ6YCyh/hOyWeYxLWYSb148m5te+P3Nm0Q==
   dependencies:
     lodash "^4.17.15"
-    vis-data "^6.5.0"
-    vis-network "^7.4.0"
+    vis-data "^6.5.1"
+    vis-network "^7.4.2"
     vis-util "^4.0.0"
 
-vis-network@^7.4.0:
+vis-network@^7.4.2:
   version "7.4.2"
   resolved "https://registry.yarnpkg.com/vis-network/-/vis-network-7.4.2.tgz#1f656762a76581947766bcf3729e7d5d5ca079a1"
   integrity sha512-h5GRMOAF9xnrfPip3lYDIiO0ldaEVW9P/X7WEwmtqbzIZJz5FA+m9Ygcjqwyq/chORwtTxd/rjG8YBqtr/kaqQ==

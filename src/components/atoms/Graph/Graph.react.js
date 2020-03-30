@@ -17,8 +17,6 @@ const Graph = ({ graph, options = defaultOptions }) => {
   const graphRef = useRef();
 
   useEffect(() => {
-    console.log(graph);
-
     graphRef.current.Network.setData(graph);
   }, [graph]);
 

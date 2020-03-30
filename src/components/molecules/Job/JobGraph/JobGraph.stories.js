@@ -1,8 +1,8 @@
-import { SB_LABELS } from '@constants';
+import { GRAPH, SB_LABELS } from '@constants';
 import { useGraph, useJobs } from '@hooks';
 import { mixins } from '@styles';
 import { NOOP } from '@utils';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo, useReducer } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import JobGraph from './JobGraph.react';
@@ -15,17 +15,27 @@ const Flex = styled.div`
   }
 `;
 
+const Button = styled.button`
+  ${tw`border-black border`}
+`;
+
 export default {
   title: `${SB_LABELS.MOLECULES}Job Graph`,
 };
 
 export const Default = JobGraph;
 
+const { LR, UD } = GRAPH.direction;
+
 export const GraphFromSocket = () => {
   const { graph } = useGraph();
   const { list, select, selected } = useJobs();
 
   const onChange = useCallback(({ target: { value } }) => select(value), [select]);
+
+  const [direction, toggle] = useReducer(p => !p, true);
+
+  const options = useMemo(() => ({ direction: direction ? LR : UD }), [direction]);
 
   return (
     <Flex>
@@ -38,8 +48,9 @@ export const GraphFromSocket = () => {
           ))}
         </select>
         <div>Selected: {selected || `None`}</div>
+        <Button onClick={toggle}>Toggle Direction</Button>
       </div>
-      {graph ? <JobGraph jobGraph={graph} /> : <div>No Graph</div>}
+      {graph ? <JobGraph jobGraph={graph} options={options} /> : <div>No Graph</div>}
     </Flex>
   );
 };

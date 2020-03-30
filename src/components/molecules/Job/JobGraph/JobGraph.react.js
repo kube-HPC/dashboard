@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const DEFAULT = { nodes: [], edges: [] };
 
-const JobGraph = ({ className, jobGraph }) => {
+const JobGraph = ({ className, jobGraph, options }) => {
   const [graph, setGraph] = useState(DEFAULT);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const JobGraph = ({ className, jobGraph }) => {
 
   return (
     <Container className={className}>
-      <Graph graph={graph} />
+      <Graph graph={graph} options={options} />
     </Container>
   );
 };
@@ -32,6 +32,7 @@ JobGraph.SC = Container;
 JobGraph.propTypes = {
   className: PropTypes.string,
   jobGraph: PropTypes.object.isRequired,
+  options: PropTypes.object,
 };
 
 const MemoJobGraph = React.memo(JobGraph);

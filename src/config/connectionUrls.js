@@ -26,7 +26,8 @@ const monitorUseLocation = toBoolean(process.env.MONITOR_BACKEND_USE_LOCATION);
 const boardUseLocation = toBoolean(process.env.BOARD_USE_LOCATION);
 const origin = IS_WINDOW_DEFINED ? window.location.origin : undefined;
 
-const fromEnvConfig = {
+/* eslint-disable no-unused-vars */
+const connectionConfig = {
   monitor: {
     url: monitorUseLocation
       ? `${origin}${monitor.path}`
@@ -37,7 +38,8 @@ const fromEnvConfig = {
     ? `${origin}${board.path}`
     : `${schema}${board.host}:${board.port}${board.path}`,
 };
-const connectionConfig = {
+
+const tempHardCodedConfig = {
   monitor: {
     url: `https://40.69.222.75:443`,
     socketPath: `/hkube/monitor-server/socket.io`,
@@ -45,9 +47,10 @@ const connectionConfig = {
   board: `https://40.69.222.75:443/hkube/board`,
 };
 
+// TODO: figure out how to handle env in build
 /* eslint-disable no-console */
-console.info(`Gatsby env`, process.env.GATSBY_MONITOR_BACKEND_USE_LOCATION);
-console.info(`Use Location`, monitorUseLocation);
-console.info(`Connect Config`, fromEnvConfig);
+// console.info(`Gatsby env`, process.env.GATSBY_MONITOR_BACKEND_USE_LOCATION);
+// console.info(`Use Location`, monitorUseLocation);
+// console.info(`Connect Config`, fromEnvConfig);
 
-export default connectionConfig;
+export default tempHardCodedConfig;
