@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Helmet from 'react-helmet';
 
-const Facebook = ({ url, name = null, type = 'website', title, desc, image, locale }) => (
+const Facebook = ({ url, name = null, type = `website`, title, desc, image, locale }) => (
   <Helmet>
     {name && <meta property="og:site_name" content={name} />}
     <meta property="og:locale" content={locale} />

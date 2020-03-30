@@ -31,17 +31,15 @@ addDecorator(S => {
 
 const theme = create({
   base: 'light',
-  colorPrimary: 'hotpink',
-  brandTitle: 'HKube Dashboard Storybook',
+  brandTitle: 'HKube Dashboard',
   brandUrl: 'http://hkube.io/',
-  brandImage: `https://user-images.githubusercontent.com/27515937/76857209-e4951480-684c-11ea-8d65-434de9c4aaa8.png`,
 });
 
 addParameters({
   options: {
     showRoots: true,
     showPanel: false,
-    storySort: (a, b) => a[1].id.localeCompare(b[1].id),
+    storySort: (a, b) => b[1].id.localeCompare(a[1].id),
     selectedPanel: `templates-dashboard--default`,
     theme,
   },

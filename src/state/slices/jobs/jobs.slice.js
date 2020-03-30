@@ -1,6 +1,7 @@
 import { SOCKET } from '@config';
 import { createSlice } from '@reduxjs/toolkit';
 import { select } from './jobs.reducers';
+
 const initialState = { dataSource: null, selected: null };
 
 const jobsSlice = createSlice({
