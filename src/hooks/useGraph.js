@@ -6,9 +6,7 @@ const graphSelector = createSelector(
   state => state.jobs.selected,
   state => state.jobs.dataSource,
   (selected, dataSource) => {
-    const graph = selected
-      ? dataSource.find(({ graph: { jobId } }) => jobId === selected).graph
-      : null;
+    const graph = selected ? dataSource.find(job => job?.graph?.jobId === selected)?.graph : null;
 
     if (graph) {
       const { nodes, edges, timestamp, jobId } = graph;

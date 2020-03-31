@@ -1,4 +1,3 @@
-import { useAdminPanel } from '@hooks';
 import { AdminPanel } from '@molecules';
 import { Jobs, Sidebar, TopActions } from '@organisms';
 import { mixins } from '@styles';
@@ -27,22 +26,17 @@ const TopBar = styled(TopActions)`
   ${tw`mb-3`}
 `;
 
-const Dashboard = () => {
-  const { Panel } = useAdminPanel();
-  return (
-    <Container>
-      <Sidebar />
-      <Main>
-        <TopBar />
-        <Content>
-          <Jobs />
-          <AdminPanel>
-            <Panel />
-          </AdminPanel>
-        </Content>
-      </Main>
-    </Container>
-  );
-};
+const Dashboard = () => (
+  <Container>
+    <Sidebar />
+    <Main>
+      <TopBar />
+      <Content>
+        <Jobs />
+        <AdminPanel />
+      </Content>
+    </Main>
+  </Container>
+);
 
 export default Dashboard;

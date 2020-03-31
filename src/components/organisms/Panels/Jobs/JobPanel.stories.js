@@ -2,7 +2,7 @@ import { SB_LABELS } from '@constants';
 import { useJobs } from '@hooks';
 import { AdminPanel } from '@molecules';
 import { NOOP } from '@utils';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import JobPanel from './JobPanel.react';
@@ -19,6 +19,13 @@ const SelectHelper = () => {
   const { select, list, selected } = useJobs();
 
   const onChange = useCallback(({ target: { value } }) => select(value), [select]);
+
+  useEffect(() => {
+    if (selected === null && list.length !== 0) {
+      select(list[0]?.jobId);
+    }
+  }, [list, select, selected]);
+
   return (
     <Container>
       <select onChange={onChange} onBlur={NOOP}>

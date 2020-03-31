@@ -43,9 +43,7 @@ const container = {
   visible: {
     x: 0,
     scale: 1,
-    transition: {
-      ...spring.slow,
-    },
+    transition: spring.slow,
   },
   hidden: {
     x: 300,
@@ -53,8 +51,9 @@ const container = {
   },
 };
 
-const AdminPanel = ({ className, children }) => {
-  const { expanded, toggle } = useAdminPanel();
+const AdminPanel = ({ className }) => {
+  const { expanded, toggle, Panel } = useAdminPanel();
+
   return (
     <Container
       className={className}
@@ -65,7 +64,9 @@ const AdminPanel = ({ className, children }) => {
         <TopRight>
           <IconExpand onClick={toggle} expanded={expanded} />
         </TopRight>
-        <Content>{children}</Content>
+        <Content>
+          <Panel />
+        </Content>
       </CardFlex>
     </Container>
   );
@@ -73,7 +74,6 @@ const AdminPanel = ({ className, children }) => {
 
 AdminPanel.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
 };
 
 export default AdminPanel;

@@ -22,7 +22,7 @@ const useAdminPanel = () => {
 
   const mode = selected ? jobs : welcome;
 
-  return { setValue, toggle, expanded, Panel: PANELS[mode] };
+  return { setValue, toggle, expanded, Panel: PANELS[mode], mode };
 };
 
 export default createStore(useAdminPanel);

@@ -6351,10 +6351,10 @@ gatsby-telemetry@^1.2.2:
     stack-utils "1.0.2"
     uuid "3.4.0"
 
-gatsby@^2.20.8:
-  version "2.20.8"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.20.8.tgz#d55dfe8a2efc8308858d6b4ebe70781eabbf176d"
-  integrity sha512-n3wtQ1zFIb9JpnO0059W/8CR81rH67doPQrhqlYjkPUSz1o4YjDdluF0PICyb0YX+f71AZr9pkWSwDqgJNcC3g==
+gatsby@^2.20.9:
+  version "2.20.9"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.20.9.tgz#a32a0e74fb518b792b8fb348bb9a8ea32c4658d7"
+  integrity sha512-qvLBT3SvMpFMaEIFMm9q8YGKyBD6/T/xbQN0Ong0I9ecnqCUY3y9riPnhTsqHCcs1jVCRcUxgavf5BjRhTLfvg==
   dependencies:
     "@babel/code-frame" "^7.8.3"
     "@babel/core" "^7.8.7"
@@ -13978,10 +13978,10 @@ vis-data@^6.5.1:
   resolved "https://registry.yarnpkg.com/vis-data/-/vis-data-6.5.1.tgz#cd11f8bbf4a17064559b7c75532c3d6f419ff290"
   integrity sha512-bOIG0REskXot0JbuAYLFRR61xf4ls+nIYNnZ7X04iq2y/Vrg896A/bfquQjhsERZipOmCgllAR0d58OGyo9s0g==
 
-vis-network-react@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/vis-network-react/-/vis-network-react-1.2.1.tgz#940d52b13a46298593eeee37ab852f030ee471ad"
-  integrity sha512-Gi+MxB8rUbrpLUJUKDtDwNkR1zMAr4jv8PGANS0aS9mLnAsTSrNWLQ6YCyh/hOyWeYxLWYSb148m5te+P3Nm0Q==
+vis-network-react@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/vis-network-react/-/vis-network-react-1.2.2.tgz#84031ea068abf4b8518ab79409adb18eaa4cb839"
+  integrity sha512-XfFOn9i3jDLX0loMm83D05RKH5w5oJWk7+8hkCGZcufjP7fOTkfc9JfSwts9+xkicFFQQ6KCVfm74BJNr1d4aw==
   dependencies:
     lodash "^4.17.15"
     vis-data "^6.5.1"
