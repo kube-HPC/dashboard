@@ -2,10 +2,11 @@ import { GRAPH } from '@constants';
 
 const { direction: DIRECTION, defaultOptions } = GRAPH;
 
+// https://visjs.github.io/vis-network/docs/network/
+
 const options = ({
   hierarchical = defaultOptions.hierarchical,
   visible = defaultOptions.visible,
-  physics = defaultOptions.physics,
   direction = DIRECTION.LR,
 } = defaultOptions) => ({
   autoResize: true,
@@ -15,22 +16,26 @@ const options = ({
       direction,
       nodeSpacing: 200,
       sortMethod: `directed`,
+      levelSeparation: 200,
     },
   },
   nodes: {
-    // color: PALETTE.PRIMARY,
     shape: `box`,
     size: 50,
     font: {
       size: 20,
     },
     margin: 10,
-    mass: 1,
-    title: `title`,
     shadow: true,
   },
   edges: {
-    length: 500,
+    scaling: {
+      min: 1,
+      max: 15,
+      label: {
+        enabled: true,
+      },
+    },
     width: 2,
     hidden: !visible,
     smooth: {
@@ -38,24 +43,20 @@ const options = ({
       type: `cubicBezier`,
     },
   },
-  configure: {
-    enabled: false,
-  },
   interaction: {
     dragNodes: true,
     dragView: true,
     navigationButtons: false,
     multiselect: true,
     hover: true,
-    tooltipDelay: 1,
+    tooltipDelay: 100,
+    selectable: true,
   },
-  clickToUse: true,
   physics: {
-    enabled: physics,
-    barnesHut: {
-      avoidOverlap: physics ? 0 : 0.5,
-    },
-    solver: hierarchical ? `hierarchicalRepulsion` : `barnesHut`,
+    enabled: false,
+  },
+  groups: {
+    useDefaultGroups: true,
   },
 });
 

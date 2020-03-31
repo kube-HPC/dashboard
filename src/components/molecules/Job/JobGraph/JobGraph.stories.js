@@ -20,7 +20,7 @@ const Button = styled.button`
 `;
 
 export default {
-  title: `${SB_LABELS.MOLECULES}Job Graph`,
+  title: `${SB_LABELS.MOLECULES}Jobs/Job Graph`,
 };
 
 export const Default = JobGraph;

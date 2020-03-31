@@ -1,11 +1,7 @@
 import { GRAPH } from '@constants';
 import { graphEdgeTypes } from '@hkube/consts';
 
-const { STATUS, BATCH } = GRAPH.types;
-
-const sameStatus = [STATUS.SKIPPED, STATUS.FAILED];
-const completedStatus = [STATUS.SUCCEED];
-const notStartedStatus = [STATUS.CREATING, STATUS.PENDING];
+const { BATCH } = GRAPH.types;
 
 export const findNodeName = nodeName => node => node.nodeName === nodeName;
 
@@ -37,60 +33,51 @@ export const nodeFinder = ({ graph, pipeline }) => nodeName => {
   return payload;
 };
 
-/* eslint-disable indent */
-const toStatus = status =>
-  completedStatus.includes(status)
-    ? STATUS.COMPLETED
-    : notStartedStatus.includes(status)
-    ? STATUS.NOT_STARTED
-    : sameStatus.includes(status)
-    ? status
-    : STATUS.RUNNING;
+const handleTask = ({ status, ...node }) => ({ ...node, status, group: status });
 
-const handleSingle = node => ({ ...node, group: toStatus(node.status) });
-
-const handleBatch = ({ nodeName, algorithmName, batchInfo, level = 0 }) => {
+const handleBatch = ({ batchInfo, ...rest }) => {
   const { completed, total, idle, running, errors } = batchInfo;
-  let _completed = 0;
-  let group = null;
+  let _completed = running + completed;
+  let group = BATCH.RUNNING;
+
   if (completed === total) {
     _completed = total;
     group = BATCH.COMPLETED;
   } else if (idle === total) {
     _completed = 0;
     group = BATCH.NOT_STARTED;
-  } else {
-    _completed = running + completed;
-    group = BATCH.RUNNING;
   }
+
   if (errors > 0) {
     group = BATCH.ERRORS;
   }
+
   return {
-    nodeName,
-    algorithmName,
     extra: {
       batch: `${_completed}/${total}`,
     },
     group,
-    level,
+    status: `${idle}/${running}/${total}${errors > 0 ? `Errors:${errors}` : ``}`,
+    ...rest,
   };
 };
 
-const handleNode = n => (!n.batchInfo ? handleSingle(n) : handleBatch(n));
+export const formatNode = task => {
+  const isBatch = task.batchInfo;
+  const { nodeName, algorithmName, status, extra, ...rest } = isBatch
+    ? handleBatch(task)
+    : handleTask(task);
 
-export const formatNode = n => {
-  const { nodeName, ...rest } = handleNode(n);
-
-  const batch = rest?.extra?.batch;
+  const borderDashes = isBatch ? { shapeProperties: { borderDashes: true } } : null;
 
   const node = {
     id: nodeName,
-    label: batch ? `${nodeName} [${batch}]` : nodeName,
-    title: nodeName,
+    label: isBatch ? `${nodeName} [${extra.batch}]` : nodeName,
+    title: `${nodeName} [${status}] (${algorithmName})`,
+    ...borderDashes,
   };
 
-  return { ...rest, ...node, nodeName };
+  return { ...rest, ...node, nodeName, status };
 };
 
 const { ALGORITHM_EXECUTION, WAIT_ANY } = graphEdgeTypes;
