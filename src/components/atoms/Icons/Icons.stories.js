@@ -1,10 +1,9 @@
 import { SB_LABELS } from '@constants';
 import { mixins } from '@styles';
-import React from 'react';
+import React, { useReducer } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import {
-  IconCompress,
   IconExpand,
   IconFilter,
   IconMoon,
@@ -38,5 +37,12 @@ export const filter = IconFilter;
 export const moon = IconMoon;
 export const search = IconSearch;
 export const signal = IconSignal;
-export const expand = IconExpand;
-export const compress = IconCompress;
+
+export const Expand = () => {
+  const [expanded, toggle] = useReducer(p => !p, false);
+  return (
+    <>
+      <IconExpand expanded={expanded} onClick={toggle} />
+    </>
+  );
+};

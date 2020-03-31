@@ -1,4 +1,4 @@
-import { Divider, Tag } from '@components';
+import { Divider, Tag } from '@atoms';
 import { COLORS, mixins } from '@styles';
 import { NOOP } from '@utils';
 import { motion } from 'framer-motion';

@@ -43,11 +43,19 @@
     "build-storybook": "yarn build; NODE_PATH=src/ build-storybook --quiet"
   },
   "dependencies": {
-    "@hkube/consts": "^1.0.20",
-    "@reduxjs/toolkit": "^1.3.0",
-    "framer-motion": "^1.10.2",
-    "gatsby": "^2.20.6",
+    "@hkube/consts": "^1.0.21",
+    "@reduxjs/toolkit": "^1.3.2",
+    "@vx/gradient": "^0.0.195",
+    "@vx/group": "^0.0.195",
+    "@vx/hierarchy": "^0.0.195",
+    "@vx/network": "^0.0.195",
+    "@vx/shape": "^0.0.195",
+    "d3-hierarchy": "^1.1.9",
+    "d3-shape": "^1.3.7",
+    "framer-motion": "^1.10.3",
+    "gatsby": "^2.20.9",
     "humanize-duration": "^3.22.0",
+    "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "lodash.throttle": "^4.1.1",
     "object.fromentries": "^2.0.2",
@@ -64,7 +72,8 @@
     "socket.io-client": "^2.3.0",
     "styled-components": "^5.0.0",
     "styled-tools": "^1.7.1",
-    "typeface-rajdhani": "^0.0.72"
+    "typeface-rajdhani": "^0.0.72",
+    "vis-network-react": "^1.2.2"
   },
   "devDependencies": {
     "@dennisvash/eslint-config": "^3.0.0",
@@ -79,15 +88,15 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.18.0",
-    "eslint-plugin-react-hooks": "^2.5.1",
+    "eslint-plugin-react-hooks": "^3.0.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
-    "gatsby-plugin-manifest": "^2.3.2",
-    "gatsby-plugin-offline": "^3.1.1",
+    "gatsby-plugin-manifest": "^2.3.3",
+    "gatsby-plugin-offline": "^3.1.2",
     "gatsby-plugin-react-helmet": "^3.2.1",
     "gatsby-plugin-resolve-src": "^2.0.0",
     "gatsby-plugin-styled-components": "^3.2.1",
     "husky": "4.2.3",
-    "lint-staged": "^10.0.9",
+    "lint-staged": "^10.1.0",
     "prettier": "^2.0.2",
     "pretty-quick": "^2.0.1",
     "prop-types": "^15.7.2",
@@ -95,6 +104,6 @@
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.10.0",
-    "twin.macro": "^1.0.0-alpha.7"
+    "twin.macro": "^1.0.0-alpha.8"
   }
 }

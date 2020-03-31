@@ -106,7 +106,7 @@ const Menu = ({
             selected={selected === key}
             onClick={onClick}
             variants={item}>
-            <span className="un">{child}</span>
+            <span>{child}</span>
           </Item>
         );
       })}

@@ -1,6 +1,6 @@
-import { Menu } from '@components';
 import { SIDEBAR } from '@config';
 import { useSidebar } from '@hooks';
+import { Menu } from '@molecules';
 import { mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
 import React from 'react';

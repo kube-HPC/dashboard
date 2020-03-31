@@ -46,11 +46,11 @@ const SEO = ({ title, desc, banner, pathname, article }) => {
     title: title || defaultTitle,
     description: desc || defaultDescription,
     image: `${siteUrl}${banner || defaultBanner}`,
-    url: `${siteUrl}${pathname || ''}`,
+    url: `${siteUrl}${pathname || ``}`,
   };
 
   const canonicalLink =
-    pathPrefix === '' && typeof window !== 'undefined' ? window.location.origin : pathPrefix;
+    pathPrefix === `` && typeof window !== `undefined` ? window.location.origin : pathPrefix;
 
   return (
     <>
@@ -64,7 +64,7 @@ const SEO = ({ title, desc, banner, pathname, article }) => {
         desc={seo.description}
         image={seo.image}
         title={seo.title}
-        type={article ? 'article' : 'website'}
+        type={article ? `article` : `website`}
         url={seo.url}
         locale={ogLanguage}
         name={facebook}

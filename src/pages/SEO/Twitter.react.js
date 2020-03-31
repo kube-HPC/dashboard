@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Helmet from 'react-helmet';
 
-const Twitter = ({ type = 'summary_large_image', username = null, title, desc, image }) => (
+const Twitter = ({ type = `summary_large_image`, username = null, title, desc, image }) => (
   <Helmet>
     {username && <meta name="twitter:creator" content={username} />}
     <meta name="twitter:card" content={type} />

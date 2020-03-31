@@ -1,4 +1,4 @@
-import { VirtualList } from '@components';
+import { VirtualList } from '@atoms';
 import { useJobs } from '@hooks';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';

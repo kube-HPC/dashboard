@@ -1,5 +1,5 @@
-import { JobEntry } from '@components';
 import { iconNames } from '@icons';
+import { JobEntry } from '@molecules';
 import { mixins, spring } from '@styles';
 import { NOOP } from '@utils';
 import IconsBar from 'components/molecules/IconsBar/IconsBar.react';

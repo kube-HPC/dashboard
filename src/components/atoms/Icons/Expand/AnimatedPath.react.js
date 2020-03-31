@@ -15,7 +15,7 @@ const AnimatedPath = ({ d, expanded }) => (
   <motion.path
     initial="compressed"
     d={d}
-    animate={expanded ? 'expanded' : 'compressed'}
+    animate={expanded ? `expanded` : `compressed`}
     variants={pathRotate}
   />
 );

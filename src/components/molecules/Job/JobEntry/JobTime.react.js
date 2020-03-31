@@ -1,4 +1,4 @@
-import { Divider } from '@components';
+import { Divider } from '@atoms';
 import HumanizeDuration from 'humanize-duration';
 import PropTypes from 'prop-types';
 import React, { memo, useEffect, useRef, useState } from 'react';
