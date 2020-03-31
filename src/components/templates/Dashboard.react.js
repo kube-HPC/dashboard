@@ -1,4 +1,6 @@
-import { AdminPanel, Divider, Jobs, Sidebar, TopActions } from '@components';
+import { useAdminPanel } from '@hooks';
+import { AdminPanel } from '@molecules';
+import { Jobs, Sidebar, TopActions } from '@organisms';
 import { mixins } from '@styles';
 import React from 'react';
 import styled from 'styled-components';
@@ -25,27 +27,22 @@ const TopBar = styled(TopActions)`
   ${tw`mb-3`}
 `;
 
-const Dashboard = () => (
-  <Container>
-    <Sidebar />
-    <Main>
-      <TopBar />
-      <Content>
-        <Jobs />
-        <AdminPanel>
-          <div>HKube - HPC over Kuberenetes</div>
-          <Divider />
-          <p>
-            HKube is a cloud-native open source framework to run distributed pipeline of algorithms
-            built on Kubernetes. HKube optimally utilizing pipeline's resources, based on user
-            priorities and heuristics.
-          </p>
-          <a href={`http://hkube.io/`}>Docs</a>
-          <a href={`https://github.com/kube-HPC/hkube`}>Github</a>
-        </AdminPanel>
-      </Content>
-    </Main>
-  </Container>
-);
+const Dashboard = () => {
+  const { Panel } = useAdminPanel();
+  return (
+    <Container>
+      <Sidebar />
+      <Main>
+        <TopBar />
+        <Content>
+          <Jobs />
+          <AdminPanel>
+            <Panel />
+          </AdminPanel>
+        </Content>
+      </Main>
+    </Container>
+  );
+};
 
 export default Dashboard;

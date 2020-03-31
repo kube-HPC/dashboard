@@ -1,5 +1,5 @@
-import { IconsBar, Menu } from '@components';
 import { TOP_BAR } from '@config';
+import { IconsBar, Menu } from '@molecules';
 import { mixins } from '@styles';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';

@@ -1,4 +1,4 @@
-import { Graph } from '@components';
+import { Graph } from '@atoms';
 import { formatEdge, formatNode } from '@utils';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';

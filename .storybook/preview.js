@@ -8,7 +8,6 @@ import createStore from 'state/store/createStore';
 import { GlobalStyle } from 'styles';
 import 'tailwindcss/dist/base.css';
 import 'typeface-rajdhani';
-import {} from '../src/components';
 
 const Container = ({ children }) => {
   useSocket();

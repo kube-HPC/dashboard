@@ -1,6 +1,6 @@
-import { Dashboard } from '@components';
 import { useSocket } from '@hooks';
 import { GlobalStyle } from '@styles';
+import { Dashboard } from '@templates';
 import React from 'react';
 import SEO from './SEO/SEO.react';
 

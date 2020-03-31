@@ -20,9 +20,9 @@ const graphSelector = createSelector(
 );
 
 const useGraph = () => {
-  const graph = useSelector(graphSelector, areEqualGraphs);
+  const selected = useSelector(graphSelector, areEqualGraphs);
 
-  return { graph };
+  return { selected };
 };
 
 export default useGraph;

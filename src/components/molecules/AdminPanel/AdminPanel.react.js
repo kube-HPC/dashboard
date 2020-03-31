@@ -1,4 +1,4 @@
-import { Card } from '@components';
+import { Card } from '@atoms';
 import { useAdminPanel } from '@hooks';
 import { IconExpand } from '@icons';
 import { mixins, spring } from '@styles';

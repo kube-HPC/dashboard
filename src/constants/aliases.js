@@ -1,15 +1,21 @@
-const aliases = (prefix = 'src') => ({
+// Remember to update `jsconfig.json`
+
+const aliases = (prefix = `src`) => ({
+  '@actions': `${prefix}/state/store/actions`,
+  '@atoms': `${prefix}/components/atoms`,
+  '@molecules': `${prefix}/components/molecules`,
+  '@organisms': `${prefix}/components/organisms`,
+  '@templates': `${prefix}/components/templates`,
   '@components': `${prefix}/components`,
-  '@icons': `${prefix}/components/atoms/Icons`,
-  '@hooks': `${prefix}/hooks`,
   '@config': `${prefix}/config`,
-  '@styles': `${prefix}/styles`,
-  '@utils': `${prefix}/utils`,
   '@constants': `${prefix}/constants`,
+  '@hooks': `${prefix}/hooks`,
+  '@icons': `${prefix}/components/atoms/Icons`,
   '@queries': `${prefix}/queries`,
   '@reducers': `${prefix}/state/store/reducers`,
-  '@actions': `${prefix}/state/store/actions`,
   '@slices': `${prefix}/state/slices`,
+  '@styles': `${prefix}/styles`,
+  '@utils': `${prefix}/utils`,
 });
 
 module.exports = aliases;

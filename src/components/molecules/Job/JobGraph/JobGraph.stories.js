@@ -28,7 +28,7 @@ export const Default = JobGraph;
 const { LR, UD } = GRAPH.direction;
 
 export const GraphFromSocket = () => {
-  const { graph } = useGraph();
+  const { selected: graph } = useGraph();
   const { list, select, selected } = useJobs();
 
   const onChange = useCallback(({ target: { value } }) => select(value), [select]);
