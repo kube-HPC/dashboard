@@ -1,6 +1,9 @@
 import { GRAPH } from '@constants';
+import tw from 'twin.macro';
 
-const { direction: DIRECTION, defaultOptions } = GRAPH;
+const { direction: DIRECTION, defaultOptions, types } = GRAPH;
+
+const { BATCH } = types;
 
 // https://visjs.github.io/vis-network/docs/network/
 
@@ -24,9 +27,20 @@ const options = ({
     size: 50,
     font: {
       size: 20,
+      color: `white`,
     },
     margin: 10,
-    shadow: true,
+    color: {
+      border: `transparent`,
+      hover: {
+        background: tw`bg-gray-500`.backgroundColor,
+        border: `transparent`,
+      },
+      highlight: {
+        border: tw`bg-gray-800`.backgroundColor,
+        background: tw`bg-gray-500`.backgroundColor,
+      },
+    },
   },
   edges: {
     scaling: {
@@ -56,7 +70,26 @@ const options = ({
     enabled: false,
   },
   groups: {
-    useDefaultGroups: true,
+    [BATCH.COMPLETED]: {
+      color: {
+        background: tw`bg-green-800`.backgroundColor,
+      },
+    },
+    [BATCH.RUNNING]: {
+      color: {
+        background: tw`bg-blue-800`.backgroundColor,
+      },
+    },
+    [BATCH.ERRORS]: {
+      color: {
+        background: tw`bg-blue-800`.backgroundColor,
+      },
+    },
+    [BATCH.NOT_STARTED]: {
+      color: {
+        background: tw`bg-blue-800`.backgroundColor,
+      },
+    },
   },
 });
 

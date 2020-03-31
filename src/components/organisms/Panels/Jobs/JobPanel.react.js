@@ -1,6 +1,7 @@
 import { Tag } from '@atoms';
 import { useGraph } from '@hooks';
-import { JobGraph } from '@molecules';
+import { iconNames } from '@icons';
+import { IconsBar, JobGraph } from '@molecules';
 import { createSelector } from '@reduxjs/toolkit';
 import { COLORS, mixins } from '@styles';
 import isEqual from 'lodash.isequal';
@@ -13,6 +14,10 @@ import tw from 'twin.macro';
 const Container = styled.div`
   ${mixins.flexBetween}
   ${tw`h-full flex-col`}
+
+  >:last-child {
+    ${tw`mt-2`}
+  }
 `;
 
 const NodeStats = styled.div`
@@ -23,7 +28,7 @@ const NodeStats = styled.div`
 const Tags = styled.div`
   ${mixins.flexCenter}
   ${Tag.SC} {
-    ${tw`mx-2 capitalize`}
+    ${tw`mx-1 capitalize`};
   }
 `;
 
@@ -31,6 +36,8 @@ const statsSelector = createSelector(
   state => state.jobs,
   ({ dataSource, selected }) => dataSource?.find(({ key }) => key === selected)?.status.data.states,
 );
+const { play, stop, pause, redo } = iconNames;
+const icons = [redo, play, stop, pause];
 
 const JobPanel = ({ className }) => {
   const { selected } = useGraph();
@@ -51,6 +58,7 @@ const JobPanel = ({ className }) => {
           </Tags>
         </NodeStats>
       )}
+      <IconsBar icons={icons} />
     </Container>
   );
 };

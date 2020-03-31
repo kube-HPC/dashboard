@@ -52,6 +52,9 @@ const IconsBar = ({ icons = [], reveal = `` }) => {
     </Container>
   );
 };
+
+IconsBar.SC = Container;
+
 IconsBar.propTypes = {
   icons: PropTypes.array.isRequired,
   reveal: PropTypes.string,

@@ -1,5 +1,6 @@
 import { GRAPH } from '@constants';
 import { graphEdgeTypes } from '@hkube/consts';
+import { COLORS } from '@styles';
 
 const { BATCH } = GRAPH.types;
 
@@ -55,9 +56,10 @@ const handleBatch = ({ batchInfo, ...rest }) => {
   return {
     extra: {
       batch: `${_completed}/${total}`,
+      groupName: group,
     },
+    status: `Idle:${idle}/Running:${running}/Total:${total}${errors > 0 ? `Errors:${errors}` : ``}`,
     group,
-    status: `${idle}/${running}/${total}${errors > 0 ? `Errors:${errors}` : ``}`,
     ...rest,
   };
 };
@@ -68,16 +70,17 @@ export const formatNode = task => {
     ? handleBatch(task)
     : handleTask(task);
 
-  const borderDashes = isBatch ? { shapeProperties: { borderDashes: true } } : null;
-
   const node = {
     id: nodeName,
     label: isBatch ? `${nodeName} [${extra.batch}]` : nodeName,
-    title: `${nodeName} [${status}] (${algorithmName})`,
-    ...borderDashes,
+    title: `${isBatch ? `${extra.groupName} - ` : ``}${nodeName} (${algorithmName}) [${status}]`,
   };
 
-  return { ...rest, ...node, nodeName, status };
+  const color = {
+    background: COLORS.task.status[status],
+  };
+
+  return { nodeName, status, color: isBatch ? undefined : color, ...node, ...rest };
 };
 
 const { ALGORITHM_EXECUTION, WAIT_ANY } = graphEdgeTypes;
