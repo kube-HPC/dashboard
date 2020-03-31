@@ -1,5 +1,6 @@
-import { Card, Expand } from '@components';
+import { Card } from '@components';
 import { useAdminPanel } from '@hooks';
+import { IconExpand } from '@icons';
 import { mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
@@ -62,7 +63,7 @@ const AdminPanel = ({ className, children }) => {
       variants={container}>
       <CardFlex>
         <TopRight>
-          <Expand onClick={toggle} expanded={expanded} />
+          <IconExpand onClick={toggle} expanded={expanded} />
         </TopRight>
         <Content>{children}</Content>
       </CardFlex>
