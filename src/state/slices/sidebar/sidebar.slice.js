@@ -4,7 +4,7 @@ import { setValue, toggle } from './sidebar.reducers';
 const initialState = { visible: true, value: null };
 
 const sidebarSlice = createSlice({
-  name: 'sidebar',
+  name: `sidebar`,
   initialState,
   reducers: {
     toggle,
