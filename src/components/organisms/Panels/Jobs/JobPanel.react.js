@@ -11,15 +11,6 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-const Container = styled.div`
-  ${mixins.flexBetween}
-  ${tw`h-full flex-col`}
-
-  >:last-child {
-    ${tw`mt-2`}
-  }
-`;
-
 const NodeStats = styled.div`
   ${mixins.flexBetween}
   ${tw`w-full`}
@@ -40,28 +31,26 @@ const statsSelector = createSelector(
 const { play, stop, pause, redo, fileDownload } = iconNames;
 const icons = [redo, play, stop, pause, fileDownload];
 
-const JobPanel = ({ className }) => {
+const JobPanel = () => {
   const { selected } = useGraph();
   const nodeStats = useSelector(statsSelector, isEqual);
 
   return (
     <>
-      <Container className={className}>
-        {selected && <JobGraph jobGraph={selected} />}
-        {nodeStats && (
-          <NodeStats>
-            <div>Node Stats</div>
-            <Tags>
-              {Object.entries(nodeStats).map(([status, count]) => (
-                <Tag key={status} color={COLORS.task.status[status]}>
-                  {status}: {count}
-                </Tag>
-              ))}
-            </Tags>
-          </NodeStats>
-        )}
-        <IconsBar icons={icons} />
-      </Container>
+      {selected && <JobGraph jobGraph={selected} />}
+      {nodeStats && (
+        <NodeStats>
+          <div>Node Stats</div>
+          <Tags>
+            {Object.entries(nodeStats).map(([status, count]) => (
+              <Tag key={status} color={COLORS.task.status[status]}>
+                {status}: {count}
+              </Tag>
+            ))}
+          </Tags>
+        </NodeStats>
+      )}
+      <IconsBar icons={icons} />
     </>
   );
 };

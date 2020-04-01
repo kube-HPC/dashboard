@@ -71,6 +71,7 @@ export const formatNode = task => {
   const node = {
     id: nodeName,
     label: isBatch ? `${nodeName} [${extra.batch}]` : nodeName,
+    title: nodeName,
   };
 
   const color = {

@@ -1,5 +1,5 @@
 import { SB_LABELS } from '@constants';
-import { AdminPanel } from '@molecules';
+import { Panel } from '@molecules';
 import { JobSelectHelper } from '@utils';
 import React from 'react';
 import styled from 'styled-components';
@@ -25,7 +25,7 @@ export default {
 export const Content = JobPanel;
 
 export const InPanel = () => (
-  <AdminPanel>
+  <Panel>
     <JobPanel />
-  </AdminPanel>
+  </Panel>
 );

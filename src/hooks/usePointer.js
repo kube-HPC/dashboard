@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const usePointer = () => {
-  const containerRef = useRef();
   const [xy, setXY] = useState();
 
   useEffect(() => {
@@ -9,14 +8,13 @@ const usePointer = () => {
       setXY({ x, y });
     };
 
-    containerRef.current.addEventListener(`mousemove`, mouseMove);
-    const ref = containerRef.current;
+    window.addEventListener(`mousemove`, mouseMove);
     return () => {
-      ref.removeEventListener(`mousemove`, mouseMove);
+      window.removeEventListener(`mousemove`, mouseMove);
     };
-  }, [containerRef]);
+  }, []);
 
-  return { xy, containerRef };
+  return { xy };
 };
 
 export default usePointer;

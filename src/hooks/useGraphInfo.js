@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 const DEFAULT = { nodes: [], edges: [] };
 
-const useGraphInfo = jobGraph => {
+const useGraphInfo = (jobGraph, tooltipRef) => {
   const [graph, setGraph] = useState(DEFAULT);
 
   const nodesMap = useRef();
@@ -31,13 +31,18 @@ const useGraphInfo = jobGraph => {
   useEffect(() => {
     const nodes = jobGraph.nodes.map(formatNode);
     const edges = jobGraph.edges.map(formatEdge);
-    setGraph({ nodes, edges });
+
+    console.log(tooltipRef);
+
+    const nodesTool = nodes.map(node => ({ ...node, title: tooltipRef }));
+
+    setGraph({ nodes: nodesTool, edges });
 
     nodesMap.current = nodes.reduce(
       (acc, { nodeName, ...rest }) => ({ ...acc, [nodeName]: { ...rest } }),
       {},
     );
-  }, [jobGraph]);
+  }, [jobGraph, tooltipRef]);
 
   return { graph, edgeInfo, nodeInfo, events };
 };
