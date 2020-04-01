@@ -66,14 +66,11 @@ const handleBatch = ({ batchInfo, ...rest }) => {
 
 export const formatNode = task => {
   const isBatch = task.batchInfo;
-  const { nodeName, algorithmName, status, extra, ...rest } = isBatch
-    ? handleBatch(task)
-    : handleTask(task);
+  const { nodeName, status, extra, ...rest } = isBatch ? handleBatch(task) : handleTask(task);
 
   const node = {
     id: nodeName,
     label: isBatch ? `${nodeName} [${extra.batch}]` : nodeName,
-    title: `${isBatch ? `${extra.groupName} - ` : ``}${nodeName} (${algorithmName}) [${status}]`,
   };
 
   const color = {
@@ -91,9 +88,8 @@ export const formatEdge = ({ from, to, edges }) => {
   const { type } = group;
 
   const edge = {
-    id: `${from}->${to}`,
+    id: `${from}${GRAPH.idSeparator}${to}`,
     dashes: dashedGroups.includes(type),
-    title: type,
   };
   return { ...edge, from, to, group };
 };

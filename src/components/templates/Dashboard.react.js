@@ -1,4 +1,4 @@
-import { AdminPanel } from '@molecules';
+import { Panel } from '@molecules';
 import { Jobs, Sidebar, TopActions } from '@organisms';
 import { mixins } from '@styles';
 import React from 'react';
@@ -33,7 +33,7 @@ const Dashboard = () => (
       <TopBar />
       <Content>
         <Jobs />
-        <AdminPanel />
+        <Panel />
       </Content>
     </Main>
   </Container>

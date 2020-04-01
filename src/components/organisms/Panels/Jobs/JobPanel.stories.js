@@ -1,6 +1,6 @@
 import { SB_LABELS } from '@constants';
 import { useJobs } from '@hooks';
-import { AdminPanel } from '@molecules';
+import { Panel } from '@molecules';
 import { NOOP } from '@utils';
 import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
@@ -15,7 +15,7 @@ const Container = styled.div`
   ${tw`border-black p-2 border-2 m-2`}
 `;
 
-const SelectHelper = () => {
+const JobSelectHelper = () => {
   const { select, list, selected } = useJobs();
 
   const onChange = useCallback(({ target: { value } }) => select(value), [select]);
@@ -45,7 +45,7 @@ export default {
   decorators: [
     S => (
       <Decorator>
-        <SelectHelper />
+        <JobSelectHelper />
         <S />
       </Decorator>
     ),
@@ -55,7 +55,7 @@ export default {
 export const Content = JobPanel;
 
 export const InPanel = () => (
-  <AdminPanel>
+  <Panel>
     <JobPanel />
-  </AdminPanel>
+  </Panel>
 );

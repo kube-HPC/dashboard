@@ -63,7 +63,7 @@ const options = ({
     navigationButtons: false,
     multiselect: true,
     hover: true,
-    tooltipDelay: 100,
+    tooltipDelay: 0,
     selectable: true,
   },
   physics: {

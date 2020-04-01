@@ -1,4 +1,5 @@
 const graph = {
+  idSeparator: `->`,
   direction: {
     LR: `LR`,
     UD: `UD`,

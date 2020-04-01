@@ -1,6 +1,6 @@
 import { SB_LABELS } from '@constants';
 import React from 'react';
-import { AdminPanel } from '..';
+import { Panel } from '..';
 import Welcome from './Welcome.react';
 
 export default {
@@ -9,7 +9,7 @@ export default {
 
 export const Default = Welcome;
 export const InPanel = () => (
-  <AdminPanel>
+  <Panel>
     <Welcome />
-  </AdminPanel>
+  </Panel>
 );

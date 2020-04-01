@@ -8,7 +8,7 @@ import useJobs from './useJobs';
 
 const { jobs, welcome } = ADMIN_PANEL;
 
-const PANELS = {
+const PANEL_CONTENT = {
   welcome: Welcome,
   jobs: JobPanel,
 };
@@ -22,7 +22,7 @@ const useAdminPanel = () => {
 
   const mode = selected ? jobs : welcome;
 
-  return { setValue, toggle, expanded, Panel: PANELS[mode], mode };
+  return { setValue, toggle, expanded, Content: PANEL_CONTENT[mode], mode };
 };
 
 export default createStore(useAdminPanel);

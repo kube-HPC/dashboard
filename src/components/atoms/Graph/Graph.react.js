@@ -7,12 +7,13 @@ import tw from 'twin.macro';
 import VisGraph from 'vis-network-react';
 
 const { defaultOptions } = GRAPH;
+const NO_EVENTS = {};
 
 const Container = styled.div`
   ${tw`h-full w-full`}
 `;
 
-const Graph = ({ graph, options = defaultOptions }) => {
+const Graph = ({ graph, options = defaultOptions, events = NO_EVENTS }) => {
   const $options = useMemo(() => getGraphOptions({ ...defaultOptions, ...options }), [options]);
   const graphRef = useRef();
 
@@ -22,7 +23,7 @@ const Graph = ({ graph, options = defaultOptions }) => {
 
   return (
     <Container>
-      <VisGraph ref={graphRef} options={$options} />
+      <VisGraph ref={graphRef} options={$options} events={events} />
     </Container>
   );
 };
@@ -30,6 +31,7 @@ const Graph = ({ graph, options = defaultOptions }) => {
 Graph.propTypes = {
   graph: PropTypes.object.isRequired,
   options: PropTypes.object,
+  events: PropTypes.object,
 };
 
 const MemoGraph = memo(Graph);

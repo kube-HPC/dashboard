@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import {
   IconExpand,
+  IconFileDownload,
   IconFilter,
   IconMoon,
   IconSearch,
@@ -37,6 +38,7 @@ export const filter = IconFilter;
 export const moon = IconMoon;
 export const search = IconSearch;
 export const signal = IconSignal;
+export const fileDownload = IconFileDownload;
 
 export const Expand = () => {
   const [expanded, toggle] = useReducer(p => !p, false);

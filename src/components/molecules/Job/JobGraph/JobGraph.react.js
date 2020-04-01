@@ -1,28 +1,55 @@
 import { Graph } from '@atoms';
-import { formatEdge, formatNode } from '@utils';
+import { useGraphInfo } from '@hooks';
+import { mixins } from '@styles';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
+import JobNodeInfo from './JobNodeInfo.react';
 
 const Container = styled.div`
-  ${tw`h-full w-full`}
+  ${mixins.fillContainer}
+  ${ifProp(
+    `isHovered`,
+    tw`cursor-pointer`,
+    tw`cursor-default`,
+  )}
+
+  /* Built-in tooltip reset */
+  div.vis-tooltip {
+    background-color: transparent;
+    border: unset;
+    border-radius: unset;
+    font-family: unset;
+    padding: unset;
+    font-size: unset;
+    color: unset;
+    box-shadow: unset;
+  }
 `;
 
-const DEFAULT = { nodes: [], edges: [] };
+const PORTAL_DELAY = 100;
 
 const JobGraph = ({ className, jobGraph, options }) => {
-  const [graph, setGraph] = useState(DEFAULT);
+  const [tooltipRef, setTooltipRef] = useState();
+  const [isFirstReveal, setIsFirstReveal] = useState(false);
+
+  const { graph, nodeInfo, events } = useGraphInfo(jobGraph, tooltipRef);
 
   useEffect(() => {
-    const nodes = jobGraph.nodes.map(formatNode);
-    const edges = jobGraph.edges.map(formatEdge);
-    setGraph({ nodes, edges });
-  }, [jobGraph]);
+    // Need some delay for portal the tooltip to canvas
+    if (!isFirstReveal && nodeInfo) {
+      setTimeout(() => {
+        setIsFirstReveal(true);
+      }, PORTAL_DELAY);
+    }
+  }, [nodeInfo, isFirstReveal]);
 
   return (
-    <Container className={className}>
-      <Graph graph={graph} options={options} />
+    <Container className={className} isHovered={nodeInfo !== null}>
+      <Graph graph={graph} options={options} events={events} />
+      <JobNodeInfo innerRef={setTooltipRef} isVisible={isFirstReveal} {...nodeInfo} />
     </Container>
   );
 };

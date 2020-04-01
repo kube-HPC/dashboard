@@ -1,4 +1,3 @@
-import { Card } from '@atoms';
 import { useAdminPanel } from '@hooks';
 import { IconExpand } from '@icons';
 import { mixins, spring } from '@styles';
@@ -12,47 +11,45 @@ const Container = styled(motion.div)`
   ${tw`h-full`}
 `;
 
-const CardFlex = styled(Card)`
+const Card = styled.div`
+  ${mixins.card}
   ${mixins.flexBetween}
   ${tw`h-full flex-col`}
 `;
 
-const Content = styled.div`
+const PanelContent = styled.div`
+${mixins.fillContainer}
   ${mixins.flexCenter}
   ${tw`flex-grow flex-col`}
 `;
 
-const TopRight = styled(motion.div)`
+const TopRight = styled.div`
   ${mixins.flexEnd}
-  ${tw`w-full self-start`}
+  ${tw`w-full`}
 `;
 
 const container = {
   expanded: {
     width: `100%`,
-    transition: {
-      ...spring.gentle,
-    },
+    transition: spring.gentle,
   },
   compressed: {
     width: `25%`,
-    transition: {
-      ...spring.gentle,
-    },
+    transition: spring.gentle,
   },
   visible: {
     x: 0,
-    scale: 1,
+    opacity: 1,
     transition: spring.slow,
   },
   hidden: {
-    x: 300,
-    scale: 0.5,
+    x: 600,
+    opacity: 0,
   },
 };
 
-const AdminPanel = ({ className }) => {
-  const { expanded, toggle, Panel } = useAdminPanel();
+const Panel = ({ className }) => {
+  const { expanded, toggle, Content } = useAdminPanel();
 
   return (
     <Container
@@ -60,20 +57,20 @@ const AdminPanel = ({ className }) => {
       initial={[`hidden`, `compressed`]}
       animate={[`visible`, expanded ? `expanded` : `compressed`]}
       variants={container}>
-      <CardFlex>
+      <Card>
         <TopRight>
           <IconExpand onClick={toggle} expanded={expanded} />
         </TopRight>
-        <Content>
-          <Panel />
-        </Content>
-      </CardFlex>
+        <PanelContent>
+          <Content />
+        </PanelContent>
+      </Card>
     </Container>
   );
 };
 
-AdminPanel.propTypes = {
+Panel.propTypes = {
   className: PropTypes.string,
 };
 
-export default AdminPanel;
+export default Panel;

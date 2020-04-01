@@ -12,11 +12,11 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 const Container = styled.div`
+  ${mixins.fillContainer}
   ${mixins.flexBetween}
-  ${tw`h-full flex-col`}
-
-  >:last-child {
-    ${tw`mt-2`}
+  ${tw`flex-col`}
+  ${JobGraph.SC} {
+    ${tw`flex-grow`}
   }
 `;
 
@@ -36,15 +36,16 @@ const statsSelector = createSelector(
   state => state.jobs,
   ({ dataSource, selected }) => dataSource?.find(({ key }) => key === selected)?.status.data.states,
 );
-const { play, stop, pause, redo } = iconNames;
-const icons = [redo, play, stop, pause];
 
-const JobPanel = ({ className }) => {
+const { play, stop, pause, redo, fileDownload } = iconNames;
+const icons = [redo, play, stop, pause, fileDownload];
+
+const JobPanel = () => {
   const { selected } = useGraph();
   const nodeStats = useSelector(statsSelector, isEqual);
 
   return (
-    <Container className={className}>
+    <Container>
       {selected && <JobGraph jobGraph={selected} />}
       {nodeStats && (
         <NodeStats>
