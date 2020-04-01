@@ -36,30 +36,33 @@ const statsSelector = createSelector(
   state => state.jobs,
   ({ dataSource, selected }) => dataSource?.find(({ key }) => key === selected)?.status.data.states,
 );
-const { play, stop, pause, redo } = iconNames;
-const icons = [redo, play, stop, pause];
+
+const { play, stop, pause, redo, fileDownload } = iconNames;
+const icons = [redo, play, stop, pause, fileDownload];
 
 const JobPanel = ({ className }) => {
   const { selected } = useGraph();
   const nodeStats = useSelector(statsSelector, isEqual);
 
   return (
-    <Container className={className}>
-      {selected && <JobGraph jobGraph={selected} />}
-      {nodeStats && (
-        <NodeStats>
-          <div>Node Stats</div>
-          <Tags>
-            {Object.entries(nodeStats).map(([status, count]) => (
-              <Tag key={status} color={COLORS.task.status[status]}>
-                {status}: {count}
-              </Tag>
-            ))}
-          </Tags>
-        </NodeStats>
-      )}
-      <IconsBar icons={icons} />
-    </Container>
+    <>
+      <Container className={className}>
+        {selected && <JobGraph jobGraph={selected} />}
+        {nodeStats && (
+          <NodeStats>
+            <div>Node Stats</div>
+            <Tags>
+              {Object.entries(nodeStats).map(([status, count]) => (
+                <Tag key={status} color={COLORS.task.status[status]}>
+                  {status}: {count}
+                </Tag>
+              ))}
+            </Tags>
+          </NodeStats>
+        )}
+        <IconsBar icons={icons} />
+      </Container>
+    </>
   );
 };
 

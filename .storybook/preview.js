@@ -18,9 +18,9 @@ addDecorator(S => {
   const store = createStore();
   return (
     <React.StrictMode>
+      <GlobalStyle />
       <Provider store={store}>
         <ReusableProvider>
-          <GlobalStyle />
           <Container>
             <S />
           </Container>
