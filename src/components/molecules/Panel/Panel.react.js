@@ -18,7 +18,8 @@ const Card = styled.div`
 `;
 
 const PanelContent = styled.div`
-  ${mixins.flexBetween}
+${mixins.fillContainer}
+  ${mixins.flexCenter}
   ${tw`flex-grow flex-col`}
 `;
 

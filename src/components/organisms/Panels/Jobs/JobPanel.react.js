@@ -11,6 +11,15 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
+const Container = styled.div`
+  ${mixins.fillContainer}
+  ${mixins.flexBetween}
+  ${tw`flex-col`}
+  ${JobGraph.SC} {
+    ${tw`flex-grow`}
+  }
+`;
+
 const NodeStats = styled.div`
   ${mixins.flexBetween}
   ${tw`w-full`}
@@ -36,7 +45,7 @@ const JobPanel = () => {
   const nodeStats = useSelector(statsSelector, isEqual);
 
   return (
-    <>
+    <Container>
       {selected && <JobGraph jobGraph={selected} />}
       {nodeStats && (
         <NodeStats>
@@ -51,7 +60,7 @@ const JobPanel = () => {
         </NodeStats>
       )}
       <IconsBar icons={icons} />
-    </>
+    </Container>
   );
 };
 

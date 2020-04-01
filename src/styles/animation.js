@@ -13,3 +13,14 @@ export const spring = {
     velocity: 2,
   },
 };
+
+export const variants = {
+  revealOpacity: {
+    visible: {
+      opacity: 1,
+    },
+    hidden: {
+      opacity: 0,
+    },
+  },
+};

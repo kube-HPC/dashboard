@@ -1,15 +1,22 @@
 import { Graph } from '@atoms';
-import { useGraphInfo, usePointer } from '@hooks';
+import { useGraphInfo } from '@hooks';
+import { mixins } from '@styles';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
-import MemoJobNodeInfo from './JobNodeInfo.react';
+import JobNodeInfo from './JobNodeInfo.react';
 
 const Container = styled.div`
-  ${ifProp(`isHovered`, tw`cursor-pointer`, tw`cursor-default`)}
+  ${mixins.fillContainer}
+  ${ifProp(
+    `isHovered`,
+    tw`cursor-pointer`,
+    tw`cursor-default`,
+  )}
 
+  /* Built-in tooltip reset */
   div.vis-tooltip {
     background-color: transparent;
     border: unset;
@@ -22,30 +29,27 @@ const Container = styled.div`
   }
 `;
 
-const JobGraph = ({ className, jobGraph, options }) => {
-  const tooltipRef = useRef();
+const PORTAL_DELAY = 100;
 
-  const [tooltipRefState, setTooltipRefState] = useState();
+const JobGraph = ({ className, jobGraph, options }) => {
+  const [tooltipRef, setTooltipRef] = useState();
+  const [isFirstReveal, setIsFirstReveal] = useState(false);
+
+  const { graph, nodeInfo, events } = useGraphInfo(jobGraph, tooltipRef);
 
   useEffect(() => {
-    if (tooltipRef.current) {
-      setTooltipRefState(tooltipRef.current);
+    // Need some delay for portal the tooltip to canvas
+    if (!isFirstReveal && nodeInfo) {
+      setTimeout(() => {
+        setIsFirstReveal(true);
+      }, PORTAL_DELAY);
     }
-  }, []);
-
-  const { graph, nodeInfo, edgeInfo, events } = useGraphInfo(jobGraph, tooltipRefState);
-  const { xy } = usePointer();
+  }, [nodeInfo, isFirstReveal]);
 
   return (
     <Container className={className} isHovered={nodeInfo !== null}>
       <Graph graph={graph} options={options} events={events} />
-      {/* {(nodeInfo || edgeInfo) && (
-        <Tooltip {...xy}>
-          {edgeInfo && <JobEdgeInfo {...edgeInfo} />}
-          {nodeInfo && <JobNodeInfo {...nodeInfo} />}
-        </Tooltip>
-      )} */}
-      <MemoJobNodeInfo innerRef={tooltipRef} {...nodeInfo} />
+      <JobNodeInfo innerRef={setTooltipRef} isVisible={isFirstReveal} {...nodeInfo} />
     </Container>
   );
 };

@@ -1,4 +1,4 @@
-export { spring } from './animation';
+export { spring, variants } from './animation';
 export { COLORS } from './colors';
 export { default as GlobalStyle } from './GlobalStyle.styles';
 export { default as mixins } from './mixins.styles';

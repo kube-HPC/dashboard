@@ -31,9 +31,6 @@ const useGraphInfo = (jobGraph, tooltipRef) => {
   useEffect(() => {
     const nodes = jobGraph.nodes.map(formatNode);
     const edges = jobGraph.edges.map(formatEdge);
-
-    console.log(tooltipRef);
-
     const nodesTool = nodes.map(node => ({ ...node, title: tooltipRef }));
 
     setGraph({ nodes: nodesTool, edges });

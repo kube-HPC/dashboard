@@ -9,7 +9,6 @@ const SelfCenter = styled.div`
 
 const Welcome = () => (
   <>
-    <div />
     <SelfCenter>
       <div>HKube - HPC over Kuberenetes</div>
       <Divider />
