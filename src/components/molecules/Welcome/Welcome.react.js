@@ -1,4 +1,6 @@
 import { Divider, Link } from '@atoms';
+import { META } from '@config';
+import { mixins } from '@styles';
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -7,23 +9,43 @@ const SelfCenter = styled.div`
   ${tw`self-center`}
 `;
 
+const Header = styled.div`
+  ${tw`text-xl`}
+`;
+
+const Container = styled.div`
+  ${mixins.flexCenter}
+  ${tw`flex-col h-full`}
+`;
+
+const Links = styled.div`
+  ${mixins.flexCenter}
+  ${tw`w-full`}
+  > * {
+    ${tw`mx-2`}
+  }
+`;
+
+const Version = styled.span`
+  ${tw`text-secondary`}
+`;
+
 const Welcome = () => (
-  <>
+  <Container>
+    <Header>
+      Dashboard <Version>v2.0.0</Version>
+    </Header>
     <SelfCenter>
-      <div>HKube - HPC over Kuberenetes</div>
+      <div>{META.titleAlt}</div>
       <Divider />
-      <p>
-        HKube is a cloud-native open source framework to run distributed pipeline of algorithms
-        built on Kubernetes. HKube optimally utilizing pipeline's resources, based on user
-        priorities and heuristics.
-      </p>
+      <p>{META.description}</p>
+      <Links>
+        <Link href={META.url}>Docs</Link>
+        <Link href={META.github}>Github</Link>
+        <Link href={META.issues}>Report a bug</Link>
+      </Links>
     </SelfCenter>
-    <div>
-      <Link href={`http://hkube.io/`}>Docs</Link>
-      <Divider horizontal />
-      <Link href={`https://github.com/kube-HPC/hkube`}>Github</Link>
-    </div>
-  </>
+  </Container>
 );
 
 Welcome.propTypes = {};
