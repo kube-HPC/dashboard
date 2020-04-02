@@ -63,7 +63,7 @@ const icons = [redo, play, stop, pause, fileDownload];
 const JobPanel = () => {
   const { selected } = useGraph();
   const { nodesStats, priority } = useSelector(statsSelector, isEqual);
-  const { expanded } = useSelector(state => state.adminPanel);
+  const { expanded } = useSelector(state => state.panel);
 
   return (
     <Container isExpanded={expanded}>

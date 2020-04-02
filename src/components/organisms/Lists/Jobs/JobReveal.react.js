@@ -4,12 +4,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { prop } from 'styled-tools';
 import JobItem from './JobItem.react';
 
-const Container = styled(motion.div)`
-  transform: translateY(${prop(`offsetY`, 0)}px);
-`;
+const Container = styled(motion.div)``;
 
 const item = {
   visible: {
@@ -18,7 +15,7 @@ const item = {
   },
   hidden: {
     opacity: 0,
-    y: -40,
+    y: -20,
   },
 };
 

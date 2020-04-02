@@ -2,7 +2,7 @@ import useActions from './useActions';
 
 const useUtilities = () => {
   const {
-    adminPanel: { setValue },
+    panel: { setValue },
   } = useActions();
 
   return { setValue };

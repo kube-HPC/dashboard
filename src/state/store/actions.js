@@ -1,7 +1,7 @@
 import {
-  adminPanelSlice,
   experimentsSlice,
   jobsSlice,
+  panelSlice,
   scrollSlice,
   sidebarSlice,
   socketSlice,
@@ -11,7 +11,7 @@ const actions = {
   sidebar: sidebarSlice.actions,
   socket: { ...socketSlice.actions, ...socketSlice.thunks },
   experiment: experimentsSlice.actions,
-  adminPanel: adminPanelSlice.actions,
+  panel: panelSlice.actions,
   jobs: jobsSlice.actions,
   scroll: scrollSlice.actions,
 };
