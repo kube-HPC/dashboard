@@ -2,6 +2,7 @@ import { Divider, Tag } from '@atoms';
 import { COLORS, mixins } from '@styles';
 import { NOOP } from '@utils';
 import { motion } from 'framer-motion';
+import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React, { memo, useCallback, useMemo } from 'react';
 import styled, { css } from 'styled-components';
@@ -144,7 +145,7 @@ JobEntry.propTypes = {
   types: PropTypes.array.isRequired,
 };
 
-const MemoEntry = memo(JobEntry);
+const MemoEntry = memo(JobEntry, isEqual);
 MemoEntry.SC = Container;
 MemoEntry.displayName = `JobEntry`;
 

@@ -39,23 +39,25 @@ const JobNodeInfo = ({
     animate={status ? `visible` : `hidden`}
     isVisible={isVisible && status}
     variants={variants.revealOpacity}>
-    <Item>Algorithm Name: {algorithmName}</Item>
-    <div>
-      <span>Status: </span>
-      <Tag color={COLORS.task.status[status]}>{status}</Tag>
-    </div>
+    {algorithmName && <Item>Algorithm Name: {algorithmName}</Item>}
+    {status && (
+      <div>
+        <span>Status: </span>
+        <Tag color={COLORS.task.status[status]}>{status}</Tag>
+      </div>
+    )}
     {warnings && <Item>Warnings: {warnings.length}</Item>}
     {retries && <Item>Retries: {retries}</Item>}
   </Container>
 );
 
 JobNodeInfo.propTypes = {
-  algorithmName: PropTypes.string.isRequired,
+  algorithmName: PropTypes.string,
   className: PropTypes.string,
-  innerRef: PropTypes.object.isRequired,
+  innerRef: PropTypes.func.isRequired,
   isVisible: PropTypes.bool.isRequired,
   retries: PropTypes.number,
-  status: PropTypes.string.isRequired,
+  status: PropTypes.string,
   warnings: PropTypes.number,
 };
 

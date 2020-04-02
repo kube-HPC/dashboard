@@ -2,7 +2,7 @@ import { addDecorator, addParameters, configure } from '@storybook/react';
 import { create } from '@storybook/theming';
 import { useSocket } from 'hooks';
 import React from 'react';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { ReusableProvider } from 'reusable';
 import createStore from 'state/store/createStore';
 import { GlobalStyle } from 'styles';
@@ -13,6 +13,15 @@ const Container = ({ children }) => {
   useSocket();
   return children;
 };
+
+if (process.env.NODE_ENV === 'development') {
+  const whyDidYouRender = require('@welldone-software/why-did-you-render');
+  whyDidYouRender(React, {
+    trackAllPureComponents: true,
+    trackExtraHooks: [[useSelector, 'useSelector']],
+    exclude: [/List/],
+  });
+}
 
 addDecorator(S => {
   const store = createStore();

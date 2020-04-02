@@ -23,7 +23,7 @@ Tag.SC = Container;
 Tag.propTypes = {
   className: PropTypes.string,
   color: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   bordered: PropTypes.bool,
 };
 
