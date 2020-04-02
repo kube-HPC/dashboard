@@ -1,4 +1,5 @@
-import { Tag } from '@atoms';
+import { Graph, Tag } from '@atoms';
+import { PRIORITY } from '@constants';
 import { useGraph } from '@hooks';
 import { iconNames } from '@icons';
 import { IconsBar, JobGraph } from '@molecules';
@@ -9,7 +10,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
+
+const Item = styled.div`
+  ${mixins.flexBetween}
+`;
 
 const Container = styled.div`
   ${mixins.fillContainer}
@@ -17,24 +23,38 @@ const Container = styled.div`
   ${tw`flex-col`}
   ${JobGraph.SC} {
     ${tw`flex-grow`}
+    ${Graph.SC} {
+      ${ifProp(`isExpanded`, tw`h-64`)}
+    }
   }
-`;
-
-const NodeStats = styled.div`
-  ${mixins.flexBetween}
-  ${tw`w-full`}
+  > * {
+    ${tw`w-full`}
+  }
+  ${Item} {
+    ${tw`mt-2`}
+  }
+  ${Tag.SC} {
+    ${tw`mr-1 capitalize`};
+    :last-child {
+      ${tw`mr-0`};
+    }
+  }
 `;
 
 const Tags = styled.div`
   ${mixins.flexCenter}
-  ${Tag.SC} {
-    ${tw`mx-1 capitalize`};
-  }
 `;
 
 const statsSelector = createSelector(
   state => state.jobs,
-  ({ dataSource, selected }) => dataSource?.find(({ key }) => key === selected)?.status.data.states,
+  ({ dataSource, selected }) => {
+    const job = dataSource?.find(({ key }) => key === selected);
+    const nodesStats = job?.status.data.states;
+    const priority = job?.pipeline.priority;
+    // const downloadPath = job?.results?.data?.storageInfo.path;
+
+    return { nodesStats, priority };
+  },
 );
 
 const { play, stop, pause, redo, fileDownload } = iconNames;
@@ -42,23 +62,28 @@ const icons = [redo, play, stop, pause, fileDownload];
 
 const JobPanel = () => {
   const { selected } = useGraph();
-  const nodeStats = useSelector(statsSelector, isEqual);
+  const { nodesStats, priority } = useSelector(statsSelector, isEqual);
+  const { expanded } = useSelector(state => state.adminPanel);
 
   return (
-    <Container>
+    <Container isExpanded={expanded}>
       {selected && <JobGraph jobGraph={selected} />}
-      {nodeStats && (
-        <NodeStats>
+      {nodesStats && (
+        <Item>
           <div>Node Stats</div>
           <Tags>
-            {Object.entries(nodeStats).map(([status, count]) => (
+            {Object.entries(nodesStats).map(([status, count]) => (
               <Tag key={status} color={COLORS.task.status[status]}>
                 {status}: {count}
               </Tag>
             ))}
           </Tags>
-        </NodeStats>
+        </Item>
       )}
+      <Item>
+        <div>Priority</div>
+        <Tag color={COLORS.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
+      </Item>
       <IconsBar icons={icons} />
     </Container>
   );

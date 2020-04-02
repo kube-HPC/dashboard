@@ -28,10 +28,6 @@ const Header = styled(motion.div)`
   font-family: 'Rajdhani', sans-serif;
 `;
 
-const Version = styled(motion.div)`
-  ${tw`lowercase`};
-`;
-
 const delay = {
   open: {
     x: 0,
@@ -56,7 +52,7 @@ const Sidebar = () => {
           <div key={value}>{value}</div>
         ))}
       </Menu>
-      <Version variants={delay}>v2.0.0</Version>
+      <div />
     </Container>
   );
 };

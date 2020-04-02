@@ -58,7 +58,9 @@ const handleBatch = ({ batchInfo, ...rest }) => {
       batch: `${_completed}/${total}`,
       groupName: group,
     },
-    status: `Idle:${idle}/Running:${running}/Total:${total}${errors > 0 ? `Errors:${errors}` : ``}`,
+    status: `${idle ? `Idle:${idle}/` : ``}${running ? `Running:${running}/` : ``}Total:${total}${
+      errors ? `/Errors:${errors}` : ``
+    }`,
     group,
     ...rest,
   };

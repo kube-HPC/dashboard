@@ -9,13 +9,14 @@ import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 import JobTime from './JobTime.react';
 
-const boxShadow = tw`shadow-outline`.boxShadow;
+const shadow = tw`shadow-lg`;
+const shadowValue = shadow.boxShadow;
 
-const outline = css`
-  ${tw`shadow-outline`}
+const selected = css`
+  ${tw`shadow-xl`}
 `;
 
-const outlineReset = css`
+const notSelected = css`
   ${tw`shadow-none`}
 `;
 
@@ -25,11 +26,11 @@ const HoverDiv = styled(motion.div)`
 `;
 
 const Entry = styled(motion.div)`
-  ${mixins.card}
+  ${mixins.rounded}
   ${mixins.flexBetween}
-  ${mixins.timingSlow}
-  ${ifProp(`isSelected`, outline, outlineReset)}
-  ${tw`transition-shadow pl-1`}
+  ${ifProp(`isSelected`, selected, notSelected)}
+  ${tw`transition-shadow pl-1 ease-in-out duration-300`}
+  ${tw`bg-white p-2 text-center`}
 `;
 
 const RevealBox = styled(motion.div)`
@@ -55,7 +56,7 @@ const TagSized = styled(Tag)`
 `;
 
 const Container = styled(motion.div)`
-  ${tw`relative pt-5`}
+  ${tw`relative pt-4`}
   ${Tag.SC} {
     ${tw`capitalize`}
   }
@@ -106,7 +107,7 @@ const JobEntry = ({
           </Tag>
         ))}
       </Types>
-      <HoverDiv whileHover={{ boxShadow }}>
+      <HoverDiv whileHover={{ boxShadow: shadowValue }}>
         <Entry isSelected={isSelected} onClick={onClick}>
           <Item>
             <RevealBox onHoverStart={onHoverStart} isRevealed={isRevealed}>

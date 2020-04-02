@@ -34,6 +34,8 @@ Graph.propTypes = {
   events: PropTypes.object,
 };
 
+Graph.SC = Container;
+
 const MemoGraph = memo(Graph);
 MemoGraph.displayName = `Graph`;
 
