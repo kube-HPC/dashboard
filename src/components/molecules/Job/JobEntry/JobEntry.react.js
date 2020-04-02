@@ -3,14 +3,13 @@ import { COLORS, mixins } from '@styles';
 import { NOOP } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 import JobTime from './JobTime.react';
 
-const shadow = tw`shadow-lg`;
-const shadowValue = shadow.boxShadow;
+const onHoverShadow = tw`shadow-md`.boxShadow;
 
 const selected = css`
   ${tw`shadow-xl`}
@@ -30,7 +29,7 @@ const Entry = styled(motion.div)`
   ${mixins.flexBetween}
   ${ifProp(`isSelected`, selected, notSelected)}
   ${tw`transition-shadow pl-1 ease-in-out duration-300`}
-  ${tw`bg-white p-2 text-center`}
+  ${tw`bg-white p-2 text-center w-full`}
 `;
 
 const RevealBox = styled(motion.div)`
@@ -98,6 +97,7 @@ const JobEntry = ({
   types,
 }) => {
   const onClick = useCallback(() => onSelect(jobId), [onSelect, jobId]);
+  const whileHover = useMemo(() => ({ boxShadow: onHoverShadow }), []);
   return (
     <Container className={className}>
       <Types>
@@ -107,7 +107,7 @@ const JobEntry = ({
           </Tag>
         ))}
       </Types>
-      <HoverDiv whileHover={{ boxShadow: shadowValue }}>
+      <HoverDiv whileHover={whileHover}>
         <Entry isSelected={isSelected} onClick={onClick}>
           <Item>
             <RevealBox onHoverStart={onHoverStart} isRevealed={isRevealed}>
