@@ -1,4 +1,4 @@
-import { useAdminPanel } from '@hooks';
+import { usePanel } from '@hooks';
 import { IconExpand } from '@icons';
 import { mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
@@ -14,7 +14,7 @@ const Container = styled(motion.div)`
 const Card = styled.div`
   ${mixins.card}
   ${mixins.flexBetween}
-  ${tw`h-full flex-col`}
+  ${tw`h-full flex-col shadow-md`}
 `;
 
 const PanelContent = styled.div`
@@ -49,7 +49,7 @@ const container = {
 };
 
 const Panel = ({ className }) => {
-  const { expanded, toggle, Content } = useAdminPanel();
+  const { expanded, toggle, Content } = usePanel();
 
   return (
     <Container

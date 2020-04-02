@@ -46,7 +46,7 @@ const rounded = css`
 
 const card = css`
   ${rounded}
-  ${tw`bg-white p-4 text-center`}
+  ${tw`bg-white p-3 text-center`}
 `;
 
 const timingSlow = css`

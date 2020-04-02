@@ -1,6 +1,7 @@
 import { SB_LABELS } from '@constants';
 import { useJobs } from '@hooks';
 import { Panel } from '@molecules';
+import { mixins } from '@styles';
 import { NOOP } from '@utils';
 import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
@@ -8,7 +9,8 @@ import tw from 'twin.macro';
 import JobPanel from './JobPanel.react';
 
 const Decorator = styled.div`
-  ${tw`h-full`}
+  ${mixins.flexStart}
+  ${tw`h-screen items-center p-2`}
 `;
 
 const Container = styled.div`
@@ -45,8 +47,8 @@ export default {
   decorators: [
     S => (
       <Decorator>
-        <JobSelectHelper />
         <S />
+        <JobSelectHelper />
       </Decorator>
     ),
   ],

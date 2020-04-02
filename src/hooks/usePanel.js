@@ -14,9 +14,10 @@ const PANEL_CONTENT = {
 };
 
 const useAdminPanel = () => {
-  const { adminPanel } = useActions();
+  const {
+    adminPanel: { setValue, toggle },
+  } = useActions();
   const { expanded } = useSelector(state => state.adminPanel);
-  const { setValue, toggle } = adminPanel;
 
   const { selected } = useJobs();
 

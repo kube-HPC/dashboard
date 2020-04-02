@@ -32,12 +32,15 @@ MemoRow.propTypes = {
 
 MemoRow.displayName = `List Row`;
 
+// Row size in px
+const ROW_SIZE = 75;
+
 const Jobs = ({ className }) => {
   const { list } = useJobs();
 
   return (
     <Container className={className}>
-      <VirtualList list={list} itemSize={90}>
+      <VirtualList list={list} itemSize={ROW_SIZE}>
         {MemoRow}
       </VirtualList>
     </Container>
