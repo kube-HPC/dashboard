@@ -1,5 +1,6 @@
-export { IS_WINDOW_DEFINED, NOOP } from './common';
+export { EMPTY_ARRAY, IS_WINDOW_DEFINED, NOOP } from './common';
 export { areEqualGraphs, formatEdge, formatNode } from './graph';
+export { iconsToActions } from './icons';
 export { getBooleanLSItem, getLsItem, getLsObjectItem, setLsItem } from './localStorage';
 export { calc, trans } from './parallax';
 export { sorter, stringify, toBoolean, toUpperCaseFirstLetter } from './string';

@@ -1,8 +1,8 @@
-import urls from './urls';
+import { CONNECTION } from '@config';
 
 const {
   monitor: { socketPath, url },
-} = urls;
+} = CONNECTION;
 
 const name = `socket`;
 

@@ -3,6 +3,8 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { createStore } from 'reusable';
 
+// src/state/store/actions.js
+
 const useActions = () => {
   const dispatch = useDispatch();
 

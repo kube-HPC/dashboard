@@ -1,5 +1,5 @@
 export const setValue = (state, { payload }) => {
-  state.panel.value = payload;
+  state.value = payload;
 };
 
 export const toggle = state => {

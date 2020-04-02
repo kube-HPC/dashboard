@@ -2,7 +2,7 @@ import {
   experimentsSlice,
   jobsSlice,
   panelSlice,
-  scrollSlice,
+  pipelinesSlice,
   sidebarSlice,
   socketSlice,
 } from '@slices';
@@ -13,7 +13,7 @@ const actions = {
   experiment: experimentsSlice.actions,
   panel: panelSlice.actions,
   jobs: jobsSlice.actions,
-  scroll: scrollSlice.actions,
+  pipelines: { ...pipelinesSlice.actions, ...pipelinesSlice.thunks },
 };
 
 export default actions;

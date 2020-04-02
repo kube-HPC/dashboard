@@ -1,15 +1,13 @@
-import { iconNames } from '@icons';
 import { JobEntry } from '@molecules';
 import { mixins, spring } from '@styles';
 import { NOOP } from '@utils';
-import IconsBar from 'components/molecules/IconsBar/IconsBar.react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import JobActions from './JobActions.react';
 
-const IconsReveal = styled(motion.div)``;
 const JobReveal = styled(motion.div)``;
 
 const Item = styled(motion.div)`
@@ -18,7 +16,7 @@ const Item = styled(motion.div)`
   ${JobReveal} {
     ${tw`flex-grow`}
   }
-  ${IconsReveal} {
+  ${JobActions.SC} {
     ${tw`pt-6`}
   }
 `;
@@ -44,28 +42,20 @@ const reveal = {
   },
 };
 
-const { redo, play, pause, stop } = iconNames;
+const revealVariants = [`visible`, `reveal`];
 
-const icons = [redo, play, pause, stop];
-
-const JobItem = ({ job: { jobId, ...job }, onSelect = NOOP, isSelected = false }) => {
+const JobItem = ({ job, onSelect = NOOP, isSelected = false }) => {
   const [isRevealed, setRevealed] = useState(false);
 
   const onHoverStart = useCallback(() => setRevealed(true), []);
   const onHoverEnd = useCallback(() => setRevealed(false), []);
 
   return (
-    <Item key={jobId} onHoverEnd={onHoverEnd}>
-      <IconsReveal
-        initial="hidden"
-        variants={reveal}
-        animate={isRevealed ? [`visible`, `reveal`] : `hidden`}>
-        <IconsBar icons={icons} />
-      </IconsReveal>
+    <Item key={job.jobId} onHoverEnd={onHoverEnd}>
+      <JobActions {...job} animate={isRevealed ? revealVariants : `hidden`} variants={reveal} />
       <JobReveal initial="visible" variants={reveal} animate={isRevealed ? `moveRight` : `visible`}>
         <JobEntry
           {...job}
-          jobId={jobId}
           onSelect={onSelect}
           isSelected={isSelected}
           onHoverStart={onHoverStart}
