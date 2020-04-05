@@ -5,9 +5,9 @@ import { post } from './rest.thunks';
 const rest = createSlice({
   name: REST.STATE.name,
   extraReducers: {
-    [post.fulfilled]: () => {
+    [post.fulfilled]: (state, action) => {
       /* eslint-disable no-console*/
-      console.info(`post success`);
+      console.info(`post success`, action.payload);
     },
   },
 });

@@ -2,6 +2,7 @@ import { JobEntry } from '@molecules';
 import { mixins, spring } from '@styles';
 import { NOOP } from '@utils';
 import { motion } from 'framer-motion';
+import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
@@ -52,7 +53,11 @@ const JobItem = ({ job, onSelect = NOOP, isSelected = false }) => {
 
   return (
     <Item key={job.jobId} onHoverEnd={onHoverEnd}>
-      <JobActions {...job} animate={isRevealed ? revealVariants : `hidden`} variants={reveal} />
+      <JobActions
+        jobId={job.jobId}
+        animate={isRevealed ? revealVariants : `hidden`}
+        variants={reveal}
+      />
       <JobReveal initial="visible" variants={reveal} animate={isRevealed ? `moveRight` : `visible`}>
         <JobEntry
           {...job}
@@ -75,7 +80,7 @@ JobItem.propTypes = {
 
 JobItem.SC = Item;
 
-const JobMemo = React.memo(JobItem);
+const JobMemo = React.memo(JobItem, isEqual);
 JobMemo.displayName = JobItem.name;
 
 export default JobMemo;

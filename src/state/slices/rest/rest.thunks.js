@@ -5,10 +5,10 @@ import axios from 'axios';
 const { STATE } = REST;
 
 const {
-  monitor: { url: monitorUrl },
+  monitor: { url: monitorUrl, path },
 } = CONNECTION;
 
-const toUrl = url => `${monitorUrl}/${url}`;
+const toUrl = url => `${monitorUrl}/${path}/${url}`;
 
 // export const downloadFile = createAsyncThunk(STATE.fileDownload, async url => {
 //   const res = await axios.get(url, {

@@ -1,5 +1,6 @@
 import { useActions } from '@hooks';
 import { motion } from 'framer-motion';
+import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -47,7 +48,7 @@ JobReveal.propTypes = {
 };
 
 JobReveal.SC = Container;
-const MemoJobReveal = React.memo(JobReveal);
-MemoJobReveal.displayName = `Jobs`;
+const MemoJobReveal = React.memo(JobReveal, isEqual);
+MemoJobReveal.displayName = `Job Entry Reveal`;
 
 export default MemoJobReveal;

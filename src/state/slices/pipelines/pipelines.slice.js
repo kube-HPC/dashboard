@@ -4,7 +4,7 @@ import { select } from './pipelines.reducers';
 
 const initialState = { dataSource: null, selected: null };
 
-const jobsSlice = createSlice({
+const pipelineSlice = createSlice({
   name: PIPELINE.STATE.name,
   initialState,
   reducers: {
@@ -17,4 +17,4 @@ const jobsSlice = createSlice({
   },
 });
 
-export default jobsSlice;
+export default pipelineSlice;

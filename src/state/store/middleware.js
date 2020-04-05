@@ -2,8 +2,8 @@ import { getDefaultMiddleware } from '@reduxjs/toolkit';
 
 const middleware = [
   ...getDefaultMiddleware({
-    serializableCheck: true,
-    immutableCheck: true,
+    serializableCheck: false,
+    immutableCheck: false,
   }),
 ];
 

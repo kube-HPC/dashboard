@@ -14,6 +14,9 @@ const jobsSlice = createSlice({
     [SOCKET.STATE.pull]: (state, { payload: { jobs } }) => {
       state.dataSource = jobs;
     },
+    [rerunRaw.fulfilled]: (_, { payload }) => {
+      console.log(`rerun success`, payload.jobId);
+    },
   },
 });
 

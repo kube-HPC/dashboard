@@ -1,10 +1,14 @@
-import { PIPELINE, REST } from '@config';
+import { PIPELINE } from '@config';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import restSlice from '../rest';
 
 const { STATE, URL } = PIPELINE;
-const { STATE: REST_STATE } = REST;
 
-export const rerunRaw = createAsyncThunk(STATE.rerunRaw, (pipeline, { dispatch }) => {
+const {
+  thunks: { post },
+} = restSlice;
+
+export const rerunRaw = createAsyncThunk(STATE.rerunRaw, async (pipeline, { dispatch }) => {
   /* eslint-disable no-unused-vars */
   // Destruct all unused values
   const { jobId, flowInputOrig, flowInput, startTime, lastRunResult, types, ...rest } = pipeline;
@@ -14,11 +18,6 @@ export const rerunRaw = createAsyncThunk(STATE.rerunRaw, (pipeline, { dispatch }
     ...rest,
   };
 
-  dispatch({
-    type: REST_STATE.post,
-    payload: {
-      url: URL.execRaw,
-      body,
-    },
-  });
+  const { payload } = await dispatch(post({ url: URL.execRaw, body }));
+  return payload;
 });
