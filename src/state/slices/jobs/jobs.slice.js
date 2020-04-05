@@ -1,6 +1,11 @@
 import { SOCKET } from '@config';
 import { createSlice } from '@reduxjs/toolkit';
+import pipelineSlice from '../pipelines';
 import { select } from './jobs.reducers';
+
+const {
+  thunks: { rerunRaw },
+} = pipelineSlice;
 
 const initialState = { dataSource: null, selected: null };
 

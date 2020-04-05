@@ -5,7 +5,7 @@ import React, { memo } from 'react';
 import { areEqual } from 'react-window';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import JobReveal from './JobReveal.react';
+import JobItem from './JobItem.react';
 
 const Container = styled.div`
   ${tw`h-full`}
@@ -18,7 +18,7 @@ const RowItem = styled.div`
 const MemoRow = memo(
   ({ data, index, style }) => (
     <RowItem style={style}>
-      <JobReveal job={data[index]} />
+      <JobItem jobId={data[index]} />
     </RowItem>
   ),
   areEqual,
@@ -36,11 +36,11 @@ MemoRow.displayName = `List Row`;
 const ROW_SIZE = 75;
 
 const Jobs = ({ className }) => {
-  const { list } = useJobs();
+  const { jobIdList } = useJobs();
 
   return (
     <Container className={className}>
-      <VirtualList list={list} itemSize={ROW_SIZE}>
+      <VirtualList list={jobIdList} itemSize={ROW_SIZE}>
         {MemoRow}
       </VirtualList>
     </Container>

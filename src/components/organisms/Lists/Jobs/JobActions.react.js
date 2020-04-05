@@ -12,7 +12,7 @@ import styled from 'styled-components';
 const pipelineSelector = currJobId =>
   createSelector(
     state => state.jobs,
-    ({ dataSource }) => dataSource.find(({ key }) => key === currJobId)?.pipeline,
+    ({ dataSource }) => dataSource?.find(({ key }) => key === currJobId)?.pipeline,
   );
 
 const { redo, play, pause, stop } = iconNames;

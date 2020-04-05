@@ -102,7 +102,7 @@ const JobEntry = ({
   return (
     <Container className={className}>
       <Types>
-        {types.map(type => (
+        {types?.map(type => (
           <Tag key={type} color={COLORS.pipeline.type[type]}>
             {type}
           </Tag>

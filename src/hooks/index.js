@@ -1,6 +1,7 @@
 export { default as useActions } from './useActions';
 export { default as useGraph } from './useGraph';
 export { default as useGraphInfo } from './useGraphInfo';
+export { default as useJob } from './useJob';
 export { default as useJobs } from './useJobs';
 export { default as usePanel } from './usePanel';
 export { default as useScroll } from './useScroll';

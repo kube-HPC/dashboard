@@ -1,14 +1,18 @@
-import { RAW, SB_LABELS } from '@constants';
-import { NOOP } from '@utils';
-import React from 'react';
+import { SB_LABELS } from '@constants';
+import { useJobs } from '@hooks';
+import { JobSelectHelper } from '@storybookHelpers';
+import React, { useReducer } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import JobItem from './JobItem.react';
-import JobReveal from './JobReveal.react';
 import Jobs from './Jobs.react';
 
 const Container = styled.div`
   ${tw`h-screen`}
+`;
+
+const Button = styled.button`
+  ${tw`border border-black px-2`}
 `;
 
 export default {
@@ -24,15 +28,14 @@ export default {
 
 export const Default = Jobs;
 
-export const jobItem = () => (
-  <>
-    <JobItem job={RAW.job} isSelected={false} onSelect={NOOP} />
-    <JobItem job={RAW.job} isSelected onSelect={NOOP} />
-  </>
-);
-
-export const jobReveals = () => (
-  <>
-    <JobReveal job={RAW.job} />
-  </>
-);
+export const Job_Item = () => {
+  const { selected } = useJobs();
+  const [isMounted, toggle] = useReducer(p => !p, true);
+  return (
+    <>
+      <JobSelectHelper />
+      <Button onClick={() => toggle()}>Toggle Mounted</Button>
+      {isMounted && selected && <JobItem jobId={selected} />}
+    </>
+  );
+};
