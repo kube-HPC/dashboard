@@ -1,6 +1,7 @@
 import {
   experimentsSlice,
   jobsSlice,
+  notificationsSlice,
   panelSlice,
   pipelinesSlice,
   sidebarSlice,
@@ -14,6 +15,7 @@ const actions = {
   panel: panelSlice.actions,
   jobs: jobsSlice.actions,
   pipelines: { ...pipelinesSlice.actions, ...pipelinesSlice.thunks },
+  notifications: notificationsSlice.actions,
 };
 
 export default actions;

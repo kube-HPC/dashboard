@@ -1,5 +1,6 @@
 export { default as experimentsSlice } from './experiments';
 export { default as jobsSlice } from './jobs';
+export { default as notificationsSlice } from './notifications';
 export { default as panelSlice } from './panel';
 export { default as pipelinesSlice } from './pipelines';
 export { default as restSlice } from './rest';
