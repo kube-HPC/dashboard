@@ -1,6 +1,8 @@
 import { useJobs } from '@hooks';
-import { NOOP } from '@utils';
+import { createSelector } from '@reduxjs/toolkit';
+import { mapToJobEntry, NOOP } from '@utils';
 import React, { useCallback, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -8,8 +10,15 @@ const Container = styled.div`
   ${tw`border-black p-2 border-2 m-2`}
 `;
 
+const listSelector = createSelector(
+  state => state.jobs.dataSource,
+  dataSource => dataSource?.map(mapToJobEntry) ?? [],
+);
+
 export const JobSelectHelper = () => {
-  const { select, list, selected } = useJobs();
+  const { select, selected } = useJobs();
+
+  const list = useSelector(listSelector);
 
   const onChange = useCallback(({ target: { value } }) => select(value), [select]);
 
