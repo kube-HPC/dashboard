@@ -3,7 +3,7 @@ import { IconExpand } from '@icons';
 import { mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -51,6 +51,9 @@ const container = {
 const Panel = ({ className }) => {
   const { expanded, toggle, Content } = usePanel();
 
+  // Don't pass the event onClick;
+  const onClick = useCallback(() => toggle(), [toggle]);
+
   return (
     <Container
       className={className}
@@ -59,7 +62,7 @@ const Panel = ({ className }) => {
       variants={container}>
       <Card>
         <TopRight>
-          <IconExpand onClick={toggle} expanded={expanded} />
+          <IconExpand onClick={onClick} expanded={expanded} />
         </TopRight>
         <PanelContent>
           <Content />

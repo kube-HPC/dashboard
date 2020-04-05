@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'development') {
   whyDidYouRender(React, {
     trackAllPureComponents: true,
     trackExtraHooks: [[useSelector, 'useSelector']],
-    exclude: [/List/],
+    exclude: [/List/, /AutoSizer/],
   });
 }
 
