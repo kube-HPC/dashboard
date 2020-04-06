@@ -1,11 +1,17 @@
-import { NOTIFICATIONS } from '@config';
+import { Text } from '@atoms';
 import { createSlice } from '@reduxjs/toolkit';
+import React from 'react';
+import jobsSlice from '../jobs';
 import pipelineSlice from '../pipelines';
 import { add, remove } from './notifications.reducers';
 
 const {
   thunks: { rerunRaw },
 } = pipelineSlice;
+
+const {
+  thunks: { downloadResults },
+} = jobsSlice;
 
 const initialState = { notifications: [], id: 0 };
 
@@ -19,8 +25,29 @@ const notifications = createSlice({
   initialState,
   reducers: { add, remove },
   extraReducers: {
+    [rerunRaw.pending]: (state, { meta }) => {
+      addNotification(
+        state,
+        <>
+          Scheduling pipeline rerun: <Text bold>{meta.arg.name}</Text>
+        </>,
+      );
+    },
     [rerunRaw.fulfilled]: (state, { payload }) => {
-      addNotification(state, NOTIFICATIONS.components(payload).jobRerun);
+      addNotification(
+        state,
+        <>
+          Pipeline rerun started with job ID: <Text bold>{payload.jobId}</Text>
+        </>,
+      );
+    },
+    [downloadResults.pending]: (state, { meta }) => {
+      addNotification(
+        state,
+        <>
+          Downloading job results: <Text bold>{meta.arg.jobId}</Text>
+        </>,
+      );
     },
   },
 });

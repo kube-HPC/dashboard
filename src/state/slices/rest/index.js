@@ -1,6 +1,6 @@
 import rest from './rest.slice';
-import { post } from './rest.thunks';
+import { fileDownload, post } from './rest.thunks';
 
-const restSlice = { ...rest, thunks: { post } };
+const restSlice = { ...rest, thunks: { post, fileDownload } };
 
 export default restSlice;

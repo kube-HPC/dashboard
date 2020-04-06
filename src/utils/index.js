@@ -1,7 +1,7 @@
 export { EMPTY_ARRAY, IS_WINDOW_DEFINED, NOOP } from './common';
 export { areEqualGraphs, formatEdge, formatNode } from './graph';
 export { iconsToActions } from './icons';
-export { mapToJobEntry } from './jobs';
+export { downloadPathSelector, mapToJobEntry } from './jobs';
 export { getBooleanLSItem, getLsItem, getLsObjectItem, setLsItem } from './localStorage';
 export { calc, trans } from './parallax';
 export { pipelineSelector } from './pipeline';

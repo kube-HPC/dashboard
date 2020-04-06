@@ -13,7 +13,7 @@ const actions = {
   socket: { ...socketSlice.actions, ...socketSlice.thunks },
   experiment: experimentsSlice.actions,
   panel: panelSlice.actions,
-  jobs: jobsSlice.actions,
+  jobs: { ...jobsSlice.actions, ...jobsSlice.thunks },
   pipelines: { ...pipelinesSlice.actions, ...pipelinesSlice.thunks },
   notifications: notificationsSlice.actions,
 };

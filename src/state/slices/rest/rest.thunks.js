@@ -1,7 +1,6 @@
 import { CONNECTION, REST } from '@config';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { saveAs } from 'file-saver';
 
 const { STATE } = REST;
 
@@ -10,13 +9,14 @@ const {
 } = CONNECTION;
 
 const toUrl = url => `${monitorUrl}/${path}/${url}`;
+const resultsPath = `${monitorUrl}/${path}/download/results?path=`;
 
-export const downloadFile = createAsyncThunk(STATE.fileDownload, async url => {
-  const res = await axios.get(url, {
+export const fileDownload = createAsyncThunk(STATE.fileDownload, async url => {
+  const res = await axios.get(`${resultsPath}${url}`, {
     responseType: `blob`,
     timeout: 30000,
   });
-  saveAs(res.data, `results.json`);
+  return res.data;
 });
 
 export const post = createAsyncThunk(STATE.post, async ({ url, body }) => {

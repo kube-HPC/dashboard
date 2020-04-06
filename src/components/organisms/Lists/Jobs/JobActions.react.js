@@ -1,14 +1,10 @@
-import { useActions } from '@hooks';
+import { useJobActions } from '@hooks';
 import { iconNames } from '@icons';
 import { IconsBar } from '@molecules';
-import { pipelineSelector } from '@utils';
 import { motion } from 'framer-motion';
-import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import styled from 'styled-components';
-import RerunNotification from './Notifications/RerunNotification.react';
 
 const { redo, fileDownload } = iconNames;
 const icons = [redo, fileDownload];
@@ -16,20 +12,7 @@ const icons = [redo, fileDownload];
 const Container = styled(motion.div)``;
 
 const JobActions = ({ className, animate, variants, jobId }) => {
-  const {
-    pipelines: { rerunRaw },
-    notifications: { add },
-  } = useActions();
-
-  const pipeline = useSelector(pipelineSelector(jobId), isEqual);
-
-  const actions = useMemo(() => {
-    const rerunAction = () => {
-      add(<RerunNotification name={pipeline.name} />);
-      rerunRaw(pipeline);
-    };
-    return [rerunAction];
-  }, [rerunRaw, pipeline, add]);
+  const actions = useJobActions(jobId);
 
   return (
     <Container className={className} initial="hidden" variants={variants} animate={animate}>
