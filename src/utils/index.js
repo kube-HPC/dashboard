@@ -4,4 +4,5 @@ export { iconsToActions } from './icons';
 export { mapToJobEntry } from './jobs';
 export { getBooleanLSItem, getLsItem, getLsObjectItem, setLsItem } from './localStorage';
 export { calc, trans } from './parallax';
+export { pipelineSelector } from './pipeline';
 export { sorter, stringify, toBoolean, toUpperCaseFirstLetter } from './string';
