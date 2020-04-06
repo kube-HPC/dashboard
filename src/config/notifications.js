@@ -6,11 +6,8 @@ const SEC_IN_MS = 1000;
 
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
-const ShowNameId = ({ name, jobId }) => (
+const ShowNameId = ({ jobId }) => (
   <>
-    <div>
-      Name: <Text bold>{name}</Text>
-    </div>
     <div>
       ID: <Text bold>{jobId}</Text>
     </div>
@@ -22,31 +19,31 @@ const config = {
   removeDuration: (duration + 1) * SEC_IN_MS,
   components: {
     jobs: {
-      downloadResults: ({ jobId }) => (
+      downloadResults: jobId => (
         <Notification title="Download Results">
-          Results for job ID: <Text bold>{jobId}</Text>
+          Job ID: <Text bold>{jobId}</Text>
         </Notification>
       ),
     },
     pipeline: {
-      stopPipeline: args => (
+      stopPipeline: jobId => (
         <Notification title="Pipeline Stop">
-          <ShowNameId {...args} />
+          <ShowNameId jobId={jobId} />
         </Notification>
       ),
-      resume: args => (
+      resume: jobId => (
         <Notification title="Pipeline Resumed">
-          <ShowNameId {...args} />
+          <ShowNameId jobId={jobId} />
         </Notification>
       ),
-      rerun: args => (
+      rerun: jobId => (
         <Notification title="Pipeline Rerun">
-          <ShowNameId {...args} />
+          <ShowNameId jobId={jobId} />
         </Notification>
       ),
-      pause: args => (
+      pause: jobId => (
         <Notification title="Pipeline Paused">
-          <ShowNameId {...args} />
+          <ShowNameId jobId={jobId} />
         </Notification>
       ),
     },

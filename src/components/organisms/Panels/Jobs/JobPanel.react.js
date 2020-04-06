@@ -58,7 +58,7 @@ const statsSelector = createSelector(
 );
 
 const { play, stop, pause, redo, fileDownload } = iconNames;
-const icons = [redo, play, stop, pause, fileDownload];
+const icons = [redo, play, stop, pause, fileDownload].map(name => ({ name }));
 
 const JobPanel = () => {
   const { selected } = useGraph();

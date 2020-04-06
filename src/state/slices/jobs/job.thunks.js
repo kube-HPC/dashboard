@@ -11,8 +11,14 @@ const {
 
 export const downloadResults = createAsyncThunk(
   STATE.downloadResults,
-  async ({ downloadPath, jobId }, { dispatch }) => {
+  async (jobId, { dispatch, getState }) => {
+    const { jobs } = getState();
+
+    const downloadPath =
+      jobs.dataSource?.find(({ key }) => key === jobId)?.results?.data?.storageInfo?.path ?? null;
+
     const { payload } = await dispatch(fileDownload(downloadPath));
+
     saveAs(payload, `${jobId}.results.json`);
   },
 );

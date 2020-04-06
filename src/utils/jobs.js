@@ -33,7 +33,12 @@ export const statusSelector = jobId =>
   createSelector(
     state => state.jobs.dataSource,
     dataSource => {
-      const status = findJob({ dataSource, jobId })?.status?.status;
-      return { canBeStopped: canPauseOrStop(status), canBePaused: canPause(status) };
+      const job = findJob({ dataSource, jobId });
+      const status = job?.status?.status;
+      const downloadPath = job?.results?.data?.storageInfo?.path ?? null;
+      const canBeStopped = canPauseOrStop(status);
+      const canBePaused = canPause(status);
+      const canBeDownload = downloadPath !== null;
+      return { canBeStopped, canBePaused, canBeDownload };
     },
   );

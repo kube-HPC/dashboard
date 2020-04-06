@@ -1,5 +1,5 @@
 import { iconNames } from '@icons';
-import { downloadPathSelector, pipelineSelector, statusSelector } from '@utils';
+import { statusSelector } from '@utils';
 import isEqual from 'lodash.isequal';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
@@ -7,7 +7,9 @@ import useActions from './useActions';
 
 const { redo, fileDownload, stop, pause, play } = iconNames;
 
-const icons = [redo, play, pause, stop, fileDownload];
+const pickedIcons = [redo, play, pause, stop, fileDownload];
+
+const createAction = (payload, action) => () => action(payload);
 
 const useJobActions = jobId => {
   const {
@@ -15,31 +17,42 @@ const useJobActions = jobId => {
     pipelines: { rerunRaw, stopPipeline, resumePipeline, pausePipeline },
   } = useActions();
 
-  const pipeline = useSelector(pipelineSelector(jobId), isEqual);
-  const downloadPath = useSelector(downloadPathSelector(jobId));
-  const { canBeStopped, canBePaused } = useSelector(statusSelector(jobId));
+  const { canBeStopped, canBePaused, canBeDownload } = useSelector(statusSelector(jobId), isEqual);
+
+  const isAvailable = useMemo(
+    () => [
+      true,
+      !canBePaused && canBeStopped,
+      canBePaused && canBeStopped,
+      canBeStopped,
+      canBeDownload,
+    ],
+    [canBeDownload, canBePaused, canBeStopped],
+  );
 
   const actions = useMemo(() => {
-    const { jobId, name } = pipeline;
-    const payload = { jobId, name };
-    const rerunAction = () => rerunRaw(pipeline);
-    const downloadAction = () => downloadPath && downloadResults({ jobId, downloadPath });
-    const stopAction = () => stopPipeline(payload);
-    const resumeAction = () => resumePipeline(payload);
-    const pauseAction = () => pausePipeline(payload);
+    const rerunAction = createAction(jobId, rerunRaw);
+    const resumeAction = createAction(jobId, resumePipeline);
+    const pauseAction = createAction(jobId, pausePipeline);
+    const stopAction = createAction(jobId, stopPipeline);
+    const downloadAction = createAction(jobId, downloadResults);
 
-    return [rerunAction, resumeAction, pauseAction, stopAction, downloadAction];
-  }, [
-    pipeline,
-    rerunRaw,
-    downloadPath,
-    downloadResults,
-    stopPipeline,
-    resumePipeline,
-    pausePipeline,
-  ]);
+    const actions = [rerunAction, resumeAction, pauseAction, stopAction, downloadAction];
 
-  return { icons, actions };
+    return actions;
+  }, [downloadResults, jobId, pausePipeline, rerunRaw, resumePipeline, stopPipeline]);
+
+  const icons = useMemo(
+    () =>
+      pickedIcons.map((name, index) => ({
+        name,
+        action: actions[index],
+        isAvailable: isAvailable[index],
+      })),
+    [actions, isAvailable],
+  );
+
+  return { icons };
 };
 
 export default useJobActions;

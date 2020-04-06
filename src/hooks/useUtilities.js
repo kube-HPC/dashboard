@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import useActions from './useActions';
 
 const useUtilities = () => {
@@ -5,7 +6,15 @@ const useUtilities = () => {
     panel: { setValue },
   } = useActions();
 
-  return { setValue };
+  const onAction = useCallback(
+    ({ name, action }) => {
+      setValue(name);
+      action?.();
+    },
+    [setValue],
+  );
+
+  return { setValue, onAction };
 };
 
 export default useUtilities;

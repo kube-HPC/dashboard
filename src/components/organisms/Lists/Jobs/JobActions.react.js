@@ -1,6 +1,7 @@
 import { useJobActions } from '@hooks';
 import { IconsBar } from '@molecules';
 import { motion } from 'framer-motion';
+import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
@@ -8,11 +9,11 @@ import styled from 'styled-components';
 const Container = styled(motion.div)``;
 
 const JobActions = ({ className, animate, variants, jobId }) => {
-  const { icons, actions } = useJobActions(jobId);
+  const { icons } = useJobActions(jobId);
 
   return (
     <Container className={className} initial="hidden" variants={variants} animate={animate}>
-      <IconsBar icons={icons} actions={actions} />
+      <IconsBar icons={icons} />
     </Container>
   );
 };
@@ -26,4 +27,6 @@ JobActions.propTypes = {
   jobId: PropTypes.string.isRequired,
 };
 
-export default JobActions;
+const MemoActions = React.memo(JobActions, isEqual);
+
+export default MemoActions;
