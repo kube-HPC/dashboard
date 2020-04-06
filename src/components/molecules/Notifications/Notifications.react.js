@@ -36,7 +36,9 @@ const variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: spring.gentle,
+    transition: {
+      duration: NOTIFICATIONS.duration,
+    },
   },
   hidden: {
     opacity: 0,
@@ -50,10 +52,12 @@ const variants = {
 const progress = {
   done: {
     x: 0,
-    transition: spring.gentle,
+    transition: {
+      duration: NOTIFICATIONS.duration,
+    },
   },
   progress: {
-    x: -300,
+    x: -400,
   },
 };
 

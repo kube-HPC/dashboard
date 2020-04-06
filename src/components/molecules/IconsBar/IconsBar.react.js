@@ -25,12 +25,13 @@ const item = {
     opacity: 1,
     transition: {
       staggerChildren: 0.2,
-      transition: spring.slow,
+      ...spring.slow,
     },
   },
   top: {
     opacity: 0,
     y: -100,
+    transition: spring.slow,
   },
 };
 
