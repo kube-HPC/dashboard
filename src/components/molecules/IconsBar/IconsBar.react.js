@@ -1,6 +1,7 @@
 import { useUtilities } from '@hooks';
 import iconsMap from '@icons';
 import { mixins, spring } from '@styles';
+import { EMPTY_ARRAY } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -18,35 +19,35 @@ const Container = styled(motion.div)`
   }
 `;
 
-const container = {
-  visible: {
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
 const item = {
   visible: {
     y: 0,
-    transition: spring.slow,
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      ...spring.slow,
+    },
   },
   top: {
-    y: -50,
+    opacity: 0,
+    y: -100,
+    transition: spring.slow,
   },
 };
 
-const IconsBar = ({ icons = [], reveal = `` }) => {
-  const { setValue } = useUtilities();
+const IconsBar = ({ icons = EMPTY_ARRAY, reveal = `` }) => {
+  const { onAction } = useUtilities();
   return (
-    <Container initial={reveal} animate="visible" variants={container}>
-      {icons.map(name => {
+    <Container initial={reveal} animate="visible" variants={item}>
+      {icons.map(({ name, action, isAvailable = true }) => {
         const Icon = iconsMap[name];
-        const onClick = () => setValue(name);
+        const onClick = () => onAction({ name, action });
         return (
-          <Item key={name} onClick={onClick} variants={item}>
-            <Icon />
-          </Item>
+          isAvailable && (
+            <Item key={name} onClick={onClick} variants={item}>
+              <Icon />
+            </Item>
+          )
         );
       })}
     </Container>
@@ -57,6 +58,8 @@ IconsBar.SC = Container;
 
 IconsBar.propTypes = {
   icons: PropTypes.array.isRequired,
+  actions: PropTypes.array,
+  isActionAvailable: PropTypes.array,
   reveal: PropTypes.string,
 };
 

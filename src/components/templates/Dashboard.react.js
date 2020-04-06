@@ -1,4 +1,4 @@
-import { Panel } from '@molecules';
+import { Notifications, Panel } from '@molecules';
 import { Jobs, Sidebar, TopActions } from '@organisms';
 import { mixins } from '@styles';
 import React from 'react';
@@ -27,16 +27,19 @@ const TopBar = styled(TopActions)`
 `;
 
 const Dashboard = () => (
-  <Container>
-    <Sidebar />
-    <Main>
-      <TopBar />
-      <Content>
-        <Jobs />
-        <Panel />
-      </Content>
-    </Main>
-  </Container>
+  <>
+    <Container>
+      <Sidebar />
+      <Main>
+        <TopBar />
+        <Content>
+          <Jobs />
+          <Panel />
+        </Content>
+      </Main>
+    </Container>
+    <Notifications />
+  </>
 );
 
 export default Dashboard;

@@ -1,7 +1,10 @@
 import { SB_LABELS } from '@constants';
 import pipelineTypes from '@hkube/consts/lib/pipeline-types';
-import { useJobs, useSocket } from '@hooks';
+import { useSocket } from '@hooks';
+import { createSelector } from '@reduxjs/toolkit';
+import { mapToJobEntry } from '@utils';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import JobEntry from './JobEntry.react';
 import JobTime from './JobTime.react';
 
@@ -31,8 +34,14 @@ export const Default = () => (
   </>
 );
 
+const listSelector = createSelector(
+  state => state.jobs.dataSource,
+  dataSource => dataSource?.map(mapToJobEntry) ?? [],
+);
+
 export const SocketList = () => {
-  const { list } = useJobs();
+  const list = useSelector(listSelector);
+
   const { isConnected } = useSocket();
   return isConnected
     ? list.map(job => <JobEntry key={job.jobId} {...job} />)

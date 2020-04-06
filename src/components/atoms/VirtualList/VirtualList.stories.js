@@ -1,5 +1,6 @@
 import { SB_LABELS } from '@constants';
-import { useJobs } from '@hooks';
+import { createSelector } from '@reduxjs/toolkit';
+import { mapToJobEntry } from '@utils';
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -29,8 +30,13 @@ export const Example = () => (
   </VirtualList>
 );
 
+const listSelector = createSelector(
+  state => state.jobs.dataSource,
+  dataSource => dataSource?.map(mapToJobEntry) ?? [],
+);
+
 export const SocketData = () => {
-  const { list } = useJobs();
+  const list = useSelector(listSelector);
   return (
     <VirtualList list={list}>
       {({ index, style, data }) => (

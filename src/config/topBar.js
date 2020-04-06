@@ -7,9 +7,11 @@ const mapper = {
 
 const values = Object.values(mapper);
 
+const toActionIcons = name => ({ name });
+
 const topBarConfig = {
-  leftIcons: [`filter`, `search`],
-  rightIcons: [`signal`, `moon`, `settings`, `warning`],
+  leftIcons: [`filter`, `search`].map(toActionIcons),
+  rightIcons: [`signal`, `moon`, `settings`, `warning`].map(toActionIcons),
   mapper,
   values,
 };

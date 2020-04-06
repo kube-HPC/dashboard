@@ -4,30 +4,20 @@ import { useSelector } from 'react-redux';
 import { createStore } from 'reusable';
 import useActions from './useActions';
 
-const listSelector = createSelector(
+const jobIdSelector = createSelector(
   state => state.jobs.dataSource,
-  dataSource =>
-    dataSource?.map(
-      ({ key: jobId, pipeline: { name, types, startTime }, status: { status }, results }) => ({
-        jobId,
-        pipelineName: name,
-        types,
-        startTime,
-        status,
-        timeTook: results?.timeTook,
-      }),
-    ) ?? [],
+  dataSource => dataSource?.map(({ key }) => key) ?? [],
 );
 
 const useJobs = () => {
   const selected = useSelector(state => state.jobs.selected);
-  const list = useSelector(listSelector, isEqual);
+  const jobIdList = useSelector(jobIdSelector, isEqual);
 
   const {
     jobs: { select },
   } = useActions();
 
-  return { list, selected, select };
+  return { selected, select, jobIdList };
 };
 
 export default createStore(useJobs);

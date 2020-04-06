@@ -102,7 +102,7 @@ const JobEntry = ({
   return (
     <Container className={className}>
       <Types>
-        {types.map(type => (
+        {types?.map(type => (
           <Tag key={type} color={COLORS.pipeline.type[type]}>
             {type}
           </Tag>
@@ -133,13 +133,13 @@ const JobEntry = ({
 
 JobEntry.propTypes = {
   className: PropTypes.string,
-  isRevealed: PropTypes.bool.isRequired,
-  isSelected: PropTypes.bool.isRequired,
+  isRevealed: PropTypes.bool,
+  isSelected: PropTypes.bool,
   jobId: PropTypes.string.isRequired,
-  onHoverStart: PropTypes.func.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onHoverStart: PropTypes.func,
+  onSelect: PropTypes.func,
   pipelineName: PropTypes.string.isRequired,
-  startTime: PropTypes.number.isRequired,
+  startTime: PropTypes.number,
   status: PropTypes.string.isRequired,
   timeTook: PropTypes.number,
   types: PropTypes.array.isRequired,

@@ -16,6 +16,7 @@ const aliases = (prefix = `src`) => ({
   '@slices': `${prefix}/state/slices`,
   '@styles': `${prefix}/styles`,
   '@utils': `${prefix}/utils`,
+  '@storybookHelpers': `../.storybook/helpers`,
 });
 
 module.exports = aliases;

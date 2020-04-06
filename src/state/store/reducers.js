@@ -1,9 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import {
-  adminPanelSlice,
   experimentsSlice,
   jobsSlice,
-  scrollSlice,
+  notificationsSlice,
+  panelSlice,
+  pipelinesSlice,
   sidebarSlice,
   socketSlice,
 } from '@slices';
@@ -11,10 +12,19 @@ import {
 const { reducer: socket } = socketSlice;
 const { reducer: sidebar } = sidebarSlice;
 const { reducer: experiments } = experimentsSlice;
-const { reducer: adminPanel } = adminPanelSlice;
+const { reducer: panel } = panelSlice;
 const { reducer: jobs } = jobsSlice;
-const { reducer: scroll } = scrollSlice;
+const { reducer: pipelines } = pipelinesSlice;
+const { reducer: notifications } = notificationsSlice;
 
-const reducer = combineReducers({ sidebar, socket, experiments, adminPanel, jobs, scroll });
+const reducer = combineReducers({
+  sidebar,
+  socket,
+  experiments,
+  panel,
+  jobs,
+  pipelines,
+  notifications,
+});
 
 export default reducer;

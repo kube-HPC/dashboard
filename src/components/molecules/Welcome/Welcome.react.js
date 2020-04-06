@@ -15,7 +15,7 @@ const Header = styled.div`
 
 const Container = styled.div`
   ${mixins.flexCenter}
-  ${tw`flex-col h-full`}
+  ${tw`flex-col h-full break-words`}
 `;
 
 const Links = styled.div`

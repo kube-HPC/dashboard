@@ -1,16 +1,15 @@
-import { iconNames } from '@icons';
+import { useJob } from '@hooks';
 import { JobEntry } from '@molecules';
 import { mixins, spring } from '@styles';
-import { NOOP } from '@utils';
-import IconsBar from 'components/molecules/IconsBar/IconsBar.react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import JobActions from './JobActions.react';
 
-const IconsReveal = styled(motion.div)``;
 const JobReveal = styled(motion.div)``;
+const Container = styled(motion.div)``;
 
 const Item = styled(motion.div)`
   ${mixins.flexStart}
@@ -18,8 +17,8 @@ const Item = styled(motion.div)`
   ${JobReveal} {
     ${tw`flex-grow`}
   }
-  ${IconsReveal} {
-    ${tw`pt-6`}
+  ${JobActions.SC} {
+    ${tw`pt-4`}
   }
 `;
 
@@ -44,43 +43,61 @@ const reveal = {
   },
 };
 
-const { redo, play, pause, stop } = iconNames;
+const item = {
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+  hidden: {
+    opacity: 0,
+    y: -20,
+  },
+};
 
-const icons = [redo, play, pause, stop];
+const revealVariants = [`visible`, `reveal`];
 
-const JobItem = ({ job: { jobId, ...job }, onSelect = NOOP, isSelected = false }) => {
+const JobItem = ({ className, jobId }) => {
   const [isRevealed, setRevealed] = useState(false);
+
+  const { job, isSelected, onSelect } = useJob(jobId);
 
   const onHoverStart = useCallback(() => setRevealed(true), []);
   const onHoverEnd = useCallback(() => setRevealed(false), []);
 
   return (
-    <Item key={jobId} onHoverEnd={onHoverEnd}>
-      <IconsReveal
-        initial="hidden"
-        variants={reveal}
-        animate={isRevealed ? [`visible`, `reveal`] : `hidden`}>
-        <IconsBar icons={icons} />
-      </IconsReveal>
-      <JobReveal initial="visible" variants={reveal} animate={isRevealed ? `moveRight` : `visible`}>
-        <JobEntry
-          {...job}
+    <Container
+      className={className}
+      key={jobId}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      variants={item}>
+      <Item key={jobId} onHoverEnd={onHoverEnd}>
+        <JobActions
           jobId={jobId}
-          onSelect={onSelect}
-          isSelected={isSelected}
-          onHoverStart={onHoverStart}
-          isRevealed={isRevealed}
+          animate={isRevealed ? revealVariants : `hidden`}
+          variants={reveal}
         />
-      </JobReveal>
-    </Item>
+        <JobReveal
+          initial="visible"
+          variants={reveal}
+          animate={isRevealed ? `moveRight` : `visible`}>
+          <JobEntry
+            {...job}
+            onSelect={onSelect}
+            isSelected={isSelected}
+            onHoverStart={onHoverStart}
+            isRevealed={isRevealed}
+          />
+        </JobReveal>
+      </Item>
+    </Container>
   );
 };
 
 JobItem.propTypes = {
   className: PropTypes.string,
-  job: PropTypes.object.isRequired,
-  onSelect: PropTypes.func.isRequired,
-  isSelected: PropTypes.bool.isRequired,
+  jobId: PropTypes.string.isRequired,
 };
 
 JobItem.SC = Item;
