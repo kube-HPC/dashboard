@@ -1,17 +1,18 @@
-import { Text } from '@atoms';
+import { NOTIFICATIONS } from '@config';
 import { createSlice } from '@reduxjs/toolkit';
-import React from 'react';
 import jobsSlice from '../jobs';
 import pipelineSlice from '../pipelines';
 import { add, remove } from './notifications.reducers';
 
 const {
-  thunks: { rerunRaw },
+  thunks: { rerunRaw, stopPipeline, pausePipeline, resumePipeline },
 } = pipelineSlice;
 
 const {
   thunks: { downloadResults },
 } = jobsSlice;
+
+const { components } = NOTIFICATIONS;
 
 const initialState = { notifications: [], id: 0 };
 
@@ -25,29 +26,20 @@ const notifications = createSlice({
   initialState,
   reducers: { add, remove },
   extraReducers: {
-    [rerunRaw.pending]: (state, { meta }) => {
-      addNotification(
-        state,
-        <>
-          Scheduling pipeline rerun: <Text bold>{meta.arg.name}</Text>
-        </>,
-      );
+    [rerunRaw.fulfilled]: (state, { meta: { arg } }) => {
+      addNotification(state, components.pipeline.rerun(arg));
     },
-    [rerunRaw.fulfilled]: (state, { payload }) => {
-      addNotification(
-        state,
-        <>
-          Pipeline rerun started with job ID: <Text bold>{payload.jobId}</Text>
-        </>,
-      );
+    [downloadResults.pending]: (state, { meta: { arg } }) => {
+      addNotification(state, components.jobs.downloadResults(arg));
     },
-    [downloadResults.pending]: (state, { meta }) => {
-      addNotification(
-        state,
-        <>
-          Downloading job results: <Text bold>{meta.arg.jobId}</Text>
-        </>,
-      );
+    [stopPipeline.fulfilled]: (state, { meta: { arg } }) => {
+      addNotification(state, components.pipeline.stopPipeline(arg));
+    },
+    [pausePipeline.fulfilled]: (state, { meta: { arg } }) => {
+      addNotification(state, components.pipeline.pause(arg));
+    },
+    [resumePipeline.fulfilled]: (state, { meta: { arg } }) => {
+      addNotification(state, components.pipeline.resume(arg));
     },
   },
 });

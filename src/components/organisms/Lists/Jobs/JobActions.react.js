@@ -1,18 +1,14 @@
 import { useJobActions } from '@hooks';
-import { iconNames } from '@icons';
 import { IconsBar } from '@molecules';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-const { redo, fileDownload } = iconNames;
-const icons = [redo, fileDownload];
-
 const Container = styled(motion.div)``;
 
 const JobActions = ({ className, animate, variants, jobId }) => {
-  const actions = useJobActions(jobId);
+  const { icons, actions } = useJobActions(jobId);
 
   return (
     <Container className={className} initial="hidden" variants={variants} animate={animate}>

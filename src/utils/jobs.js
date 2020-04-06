@@ -1,4 +1,7 @@
+import { pipelineStatuses as PIPELINE_STATUS } from '@hkube/consts';
 import { createSelector } from '@reduxjs/toolkit';
+
+const findJob = ({ dataSource, jobId }) => dataSource?.find(({ key }) => key === jobId);
 
 export const mapToJobEntry = ({
   key: jobId,
@@ -14,9 +17,23 @@ export const mapToJobEntry = ({
   timeTook: results?.timeTook,
 });
 
-export const downloadPathSelector = currJobId =>
+export const downloadPathSelector = jobId =>
   createSelector(
     state => state.jobs.dataSource,
-    dataSource =>
-      dataSource?.find(({ key }) => key === currJobId)?.results?.data?.storageInfo?.path ?? null,
+    dataSource => findJob({ dataSource, jobId })?.results?.data?.storageInfo?.path ?? null,
+  );
+
+const activeStates = [PIPELINE_STATUS.PENDING, PIPELINE_STATUS.ACTIVE, PIPELINE_STATUS.RESUMED];
+
+const isActive = state => activeStates.includes(state);
+const canPause = state => isActive(state);
+const canPauseOrStop = state => isActive(state) || state === PIPELINE_STATUS.PAUSED;
+
+export const statusSelector = jobId =>
+  createSelector(
+    state => state.jobs.dataSource,
+    dataSource => {
+      const status = findJob({ dataSource, jobId })?.status?.status;
+      return { canBeStopped: canPauseOrStop(status), canBePaused: canPause(status) };
+    },
   );

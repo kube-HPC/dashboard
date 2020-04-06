@@ -1,6 +1,7 @@
+import { Notification } from '@atoms';
 import { SB_LABELS } from '@constants';
 import { useNotification } from '@hooks';
-import React, { useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Notifications from './Notifications.react';
@@ -26,20 +27,23 @@ export default {
 
 export const Example = () => {
   const { add } = useNotification();
+  const [counter, toggle] = useReducer(p => p + 1, 0);
 
   useEffect(() => {
-    add(`Timed Notification`);
-    add(
-      <div>
-        <h1>Some Custom Component</h1>
-        <p>Some Long Text can be rendered too</p>
-      </div>,
-    );
-  }, [add]);
+    if (counter === 0) {
+      add(<Notification title={`Notification-${counter}`}>Some Custom Component</Notification>);
+    }
+  }, [add, counter]);
 
   return (
     <>
-      <Button onClick={() => add(`New Notification`)}>Add Notification</Button>
+      <Button
+        onClick={() => {
+          add(<Notification title={`Notification-${counter}`}>Content</Notification>);
+          toggle();
+        }}>
+        Add Notification
+      </Button>
       <Notifications />
     </>
   );

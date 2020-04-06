@@ -3,6 +3,7 @@ export { default as Divider } from './Divider/Divider.react';
 export { default as Graph } from './Graph/Graph.react';
 export { default as Icon } from './Icons/Icon.react';
 export { default as Link } from './Link/Link.react';
+export { default as Notification } from './Notification/Notification.react';
 export { default as Tag } from './Tag/Tag.react';
 export { default as Text } from './Text/Text.react';
 export { default as Tooltip } from './Tooltip/Tooltip.react';

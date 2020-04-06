@@ -13,11 +13,29 @@ export const rerunRaw = createAsyncThunk(STATE.rerunRaw, async (pipeline, { disp
   // Destruct all unused values
   const { jobId, flowInputOrig, flowInput, startTime, lastRunResult, types, ...rest } = pipeline;
 
-  const body = {
-    flowInput: flowInputOrig,
-    ...rest,
-  };
+  const body = { flowInput: flowInputOrig, ...rest };
 
   const { payload } = await dispatch(post({ url: URL.execRaw, body }));
+  return payload;
+});
+
+export const stopPipeline = createAsyncThunk(
+  STATE.stopPipeline,
+  async ({ jobId }, { dispatch }) => {
+    const body = { jobId, reason: `Request from Dashboard-v2` };
+    const { payload } = await dispatch(post({ url: URL.execStop, body }));
+    return payload;
+  },
+);
+
+export const resumePipeline = createAsyncThunk(STATE.resume, async ({ jobId }, { dispatch }) => {
+  const body = { jobId };
+  const { payload } = await dispatch(post({ url: URL.execResume, body }));
+  return payload;
+});
+
+export const pausePipeline = createAsyncThunk(STATE.pause, async ({ jobId }, { dispatch }) => {
+  const body = { jobId };
+  const { payload } = await dispatch(post({ url: URL.execPause, body }));
   return payload;
 });

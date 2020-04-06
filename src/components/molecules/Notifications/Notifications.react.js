@@ -28,7 +28,7 @@ const Progress = styled(motion.div)`
   ${gradients.shadyWater}
 `;
 
-const Message = styled.div`
+const Content = styled.div`
   ${tw`p-2`}
 `;
 
@@ -63,7 +63,7 @@ const Notifications = ({ className }) => {
   return (
     <Container className={className}>
       <AnimatePresence initial={false}>
-        {notifications.map(([id, message]) => {
+        {notifications.map(([id, component]) => {
           const onClick = () => remove(id);
 
           const removeTimeOut = () => {
@@ -82,7 +82,7 @@ const Notifications = ({ className }) => {
               variants={variants}
               onClick={onClick}
               onAnimationComplete={removeTimeOut}>
-              <Message>{message}</Message>
+              <Content>{component}</Content>
               <Progress animate="done" initial="progress" variants={progress} />
             </Notification>
           );
