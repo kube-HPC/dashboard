@@ -18,7 +18,7 @@ const Item = styled(motion.div)`
     ${tw`flex-grow`}
   }
   ${JobActions.SC} {
-    ${tw`pt-6`}
+    ${tw`pt-4`}
   }
 `;
 

@@ -18,8 +18,6 @@ const JobActions = ({ className, animate, variants, jobId }) => {
   );
 };
 
-JobActions.SC = Container;
-
 JobActions.propTypes = {
   className: PropTypes.string,
   animate: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
@@ -28,5 +26,7 @@ JobActions.propTypes = {
 };
 
 const MemoActions = React.memo(JobActions, isEqual);
+MemoActions.displayName = `Job Actions`;
+MemoActions.SC = Container;
 
 export default MemoActions;

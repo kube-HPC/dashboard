@@ -32,10 +32,6 @@ const item = {
     opacity: 0,
     y: -100,
   },
-  hidden: {
-    opacity: 0,
-    transition: spring.slow,
-  },
 };
 
 const IconsBar = ({ icons = EMPTY_ARRAY, reveal = `` }) => {
@@ -47,12 +43,7 @@ const IconsBar = ({ icons = EMPTY_ARRAY, reveal = `` }) => {
         const onClick = () => onAction({ name, action });
         return (
           isAvailable && (
-            <Item
-              key={name}
-              layoutTransition={spring.gentle}
-              onClick={onClick}
-              exit="hidden"
-              variants={item}>
+            <Item key={name} onClick={onClick} variants={item}>
               <Icon />
             </Item>
           )

@@ -6,10 +6,8 @@ import { useSelector } from 'react-redux';
 import useActions from './useActions';
 
 const { redo, fileDownload, stop, pause, play } = iconNames;
-
 const pickedIcons = [redo, play, pause, stop, fileDownload];
-
-const createAction = (payload, action) => () => action(payload);
+const createAction = jobId => action => () => action(jobId);
 
 const useJobActions = jobId => {
   const {
@@ -30,17 +28,13 @@ const useJobActions = jobId => {
     [canBeDownload, canBePaused, canBeStopped],
   );
 
-  const actions = useMemo(() => {
-    const rerunAction = createAction(jobId, rerunRaw);
-    const resumeAction = createAction(jobId, resumePipeline);
-    const pauseAction = createAction(jobId, pausePipeline);
-    const stopAction = createAction(jobId, stopPipeline);
-    const downloadAction = createAction(jobId, downloadResults);
-
-    const actions = [rerunAction, resumeAction, pauseAction, stopAction, downloadAction];
-
-    return actions;
-  }, [downloadResults, jobId, pausePipeline, rerunRaw, resumePipeline, stopPipeline]);
+  const actions = useMemo(
+    () =>
+      [rerunRaw, resumePipeline, pausePipeline, stopPipeline, downloadResults].map(
+        createAction(jobId),
+      ),
+    [downloadResults, jobId, pausePipeline, rerunRaw, resumePipeline, stopPipeline],
+  );
 
   const icons = useMemo(
     () =>
