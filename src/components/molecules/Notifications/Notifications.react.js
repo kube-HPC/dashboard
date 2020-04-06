@@ -1,3 +1,4 @@
+import { NOTIFICATIONS } from '@config';
 import { useNotification } from '@hooks';
 import { mixins } from '@styles';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -13,7 +14,7 @@ const Notification = styled(motion.li)`
 
 const Container = styled.ul`
   ${mixins.flexEnd}
-  ${tw`fixed inset-y-0 right-0 flex-col list-none overflow-hidden`}
+  ${tw`fixed inset-y-0 right-0 flex-col list-none overflow-hidden z-40`}
   ${Notification} {
     ${tw`mt-2 hocus:cursor-pointer`};
     :first-child {
@@ -51,13 +52,11 @@ const variants = {
   },
 };
 
-const PROGRESS_DURATION_SEC = 2;
-
 const progress = {
   done: {
     x: 0,
     transition: {
-      duration: PROGRESS_DURATION_SEC,
+      duration: NOTIFICATIONS.duration,
     },
   },
   progress: {
@@ -74,10 +73,11 @@ const Notifications = ({ className }) => {
         {notifications.map(([id, message]) => {
           const onClick = () => remove(id);
 
-          const removeTimeOut = () =>
+          const removeTimeOut = () => {
             setTimeout(() => {
               onClick();
-            }, (PROGRESS_DURATION_SEC + 0.5) * 1000);
+            }, NOTIFICATIONS.removeDuration);
+          };
 
           return (
             <Notification
@@ -88,7 +88,7 @@ const Notifications = ({ className }) => {
               exit="remove"
               variants={variants}
               onClick={onClick}
-              onAnimationStart={removeTimeOut}>
+              onAnimationComplete={removeTimeOut}>
               <Message>{message}</Message>
               <Progress animate="done" initial="progress" variants={progress} />
             </Notification>

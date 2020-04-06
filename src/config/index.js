@@ -1,6 +1,7 @@
 export { default as CONNECTION } from './connectionUrls';
 export { default as getGraphOptions } from './graph';
 export { default as META } from './meta';
+export { default as NOTIFICATIONS } from './notifications';
 export { default as PIPELINE } from './pipeline';
 export { default as REST } from './rest';
 export { default as SCROLL } from './scroll';

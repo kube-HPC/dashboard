@@ -3,7 +3,7 @@ import { createStore } from 'reusable';
 import useActions from './useActions';
 
 const useNotification = () => {
-  const notifications = useSelector(state => state.notifications);
+  const { notifications } = useSelector(state => state.notifications);
 
   const {
     notifications: { add, remove },

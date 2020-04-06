@@ -10,8 +10,8 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import RerunNotification from './Notifications/RerunNotification.react';
 
-const { redo, play, pause, stop } = iconNames;
-const icons = [redo, play, pause, stop];
+const { redo, fileDownload } = iconNames;
+const icons = [redo, fileDownload];
 
 const Container = styled(motion.div)``;
 
@@ -29,7 +29,7 @@ const JobActions = ({ className, animate, variants, jobId }) => {
       rerunRaw(pipeline);
     };
     return [rerunAction];
-  }, [add, pipeline, rerunRaw]);
+  }, [rerunRaw, pipeline, add]);
 
   return (
     <Container className={className} initial="hidden" variants={variants} animate={animate}>

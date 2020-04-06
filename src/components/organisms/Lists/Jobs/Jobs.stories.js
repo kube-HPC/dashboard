@@ -1,5 +1,6 @@
 import { SB_LABELS } from '@constants';
 import { useJobs } from '@hooks';
+import { Notifications } from '@molecules';
 import { JobSelectHelper } from '@storybookHelpers';
 import React, { useReducer } from 'react';
 import styled from 'styled-components';
@@ -19,9 +20,12 @@ export default {
   title: `${SB_LABELS.ORGANISMS}Lists/Jobs`,
   decorators: [
     S => (
-      <Container>
-        <S />
-      </Container>
+      <>
+        <Notifications />
+        <Container>
+          <S />
+        </Container>
+      </>
     ),
   ],
 };

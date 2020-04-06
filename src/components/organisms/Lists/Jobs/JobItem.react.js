@@ -98,8 +98,6 @@ const JobItem = ({ className, jobId }) => {
 JobItem.propTypes = {
   className: PropTypes.string,
   jobId: PropTypes.string.isRequired,
-  onSelect: PropTypes.func.isRequired,
-  isSelected: PropTypes.bool.isRequired,
 };
 
 JobItem.SC = Item;

@@ -1,11 +1,6 @@
 import { SOCKET } from '@config';
 import { createSlice } from '@reduxjs/toolkit';
-import pipelineSlice from '../pipelines';
 import { select } from './jobs.reducers';
-
-const {
-  thunks: { rerunRaw },
-} = pipelineSlice;
 
 const initialState = { dataSource: null, selected: null };
 
@@ -18,9 +13,6 @@ const jobsSlice = createSlice({
   extraReducers: {
     [SOCKET.STATE.pull]: (state, { payload: { jobs } }) => {
       state.dataSource = jobs;
-    },
-    [rerunRaw.fulfilled]: (_, { payload }) => {
-      console.log(`rerun success`, payload.jobId);
     },
   },
 });
