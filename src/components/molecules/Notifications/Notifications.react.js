@@ -1,6 +1,6 @@
 import { NOTIFICATIONS } from '@config';
 import { useNotification } from '@hooks';
-import { mixins } from '@styles';
+import { gradients, mixins, spring } from '@styles';
 import { AnimatePresence, motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -8,13 +8,13 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 const Notification = styled(motion.li)`
-  ${mixins.rounded}
-  ${tw`overflow-hidden bg-white`}
+  ${tw`overflow-hidden shadow-lg rounded`}
+  ${gradients.background}
 `;
 
 const Container = styled.ul`
   ${mixins.flexEnd}
-  ${tw`fixed inset-y-0 right-0 flex-col list-none overflow-hidden z-40`}
+  ${tw`fixed inset-y-0 right-0 flex-col list-none overflow-hidden z-40 mb-2 mr-2`}
   ${Notification} {
     ${tw`mt-2 hocus:cursor-pointer`};
     :first-child {
@@ -25,7 +25,7 @@ const Container = styled.ul`
 
 const Progress = styled(motion.div)`
   ${tw`h-1 p-0`}
-  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  ${gradients.shadyWater}
 `;
 
 const Message = styled.div`
@@ -36,28 +36,21 @@ const variants = {
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
+    transition: spring.gentle,
   },
   hidden: {
     opacity: 0,
-    y: 20,
-    scale: 0.3,
+    y: -20,
   },
   remove: {
     opacity: 0,
-    x: 100,
-    transition: {
-      duration: 0.2,
-    },
   },
 };
 
 const progress = {
   done: {
     x: 0,
-    transition: {
-      duration: NOTIFICATIONS.duration,
-    },
+    transition: spring.gentle,
   },
   progress: {
     x: -300,
@@ -82,7 +75,7 @@ const Notifications = ({ className }) => {
           return (
             <Notification
               key={id}
-              positionTransition
+              layoutTransition={spring.gentle}
               initial="hidden"
               animate="visible"
               exit="remove"

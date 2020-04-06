@@ -1,7 +1,7 @@
 import { Text } from '@atoms';
 import React from 'react';
 
-const duration = 3;
+const duration = 2;
 const SEC_IN_MS = 1000;
 
 const config = {
