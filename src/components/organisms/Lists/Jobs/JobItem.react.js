@@ -59,7 +59,7 @@ const revealVariants = [`visible`, `reveal`];
 const JobItem = ({ className, jobId }) => {
   const [isRevealed, setRevealed] = useState(false);
 
-  const { job, isSelected, onSelect } = useJob(jobId);
+  const { job, isSelected, onSelect, jobDetails } = useJob(jobId);
 
   const onHoverStart = useCallback(() => setRevealed(true), []);
   const onHoverEnd = useCallback(() => setRevealed(false), []);

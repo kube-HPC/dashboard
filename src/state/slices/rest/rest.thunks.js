@@ -23,3 +23,8 @@ export const post = createAsyncThunk(STATE.post, async ({ url, body }) => {
   const res = await axios.post(toUrl(url), body);
   return res.data;
 });
+
+export const get = createAsyncThunk(STATE.get, async ({ url }) => {
+  const res = await axios.get(toUrl(url));
+  return res.data;
+});

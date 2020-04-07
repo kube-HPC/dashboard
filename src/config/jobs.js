@@ -4,6 +4,7 @@ const jobs = {
   STATE: {
     name,
     downloadResults: `${name}/downloadResults`,
+    getLogs: `${name}/getLogs`,
   },
 };
 

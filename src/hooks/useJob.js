@@ -1,24 +1,29 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { mapToJobEntry } from '@utils';
+import { areEqualGraphs, entrySelector, graphSelector, progressSelector } from '@utils';
 import isEqual from 'lodash.isequal';
 import { useSelector } from 'react-redux';
 import useActions from './useActions';
 
-const jobSelector = jobIdToFind =>
-  createSelector(
-    state => state.jobs.dataSource,
-    dataSource => dataSource?.map(mapToJobEntry)?.find(({ jobId }) => jobIdToFind === jobId),
-  );
-
 const useJob = jobId => {
-  const job = useSelector(jobSelector(jobId), isEqual);
   const isSelected = useSelector(state => state.jobs.selected === jobId);
+  const job = useSelector(entrySelector(jobId), isEqual);
+  const graph = useSelector(graphSelector(jobId), areEqualGraphs);
+  const { nodesStats, priority, progress } = useSelector(progressSelector(jobId), isEqual);
 
   const {
     jobs: { select: onSelect },
   } = useActions();
 
-  return { job, isSelected, onSelect };
+  return {
+    job,
+    isSelected,
+    onSelect,
+    jobDetails: {
+      nodesStats,
+      priority,
+      progress,
+      graph,
+    },
+  };
 };
 
 export default useJob;

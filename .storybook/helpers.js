@@ -1,6 +1,6 @@
 import { useJobs } from '@hooks';
 import { createSelector } from '@reduxjs/toolkit';
-import { mapToJobEntry, NOOP } from '@utils';
+import { NOOP } from '@utils';
 import React, { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -12,7 +12,7 @@ const Container = styled.div`
 
 const listSelector = createSelector(
   state => state.jobs.dataSource,
-  dataSource => dataSource?.map(mapToJobEntry) ?? [],
+  dataSource => dataSource?.map(({ key }) => ({ jobId: key })) ?? [],
 );
 
 export const JobSelectHelper = () => {

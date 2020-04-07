@@ -6,7 +6,7 @@ import restSlice from '../rest';
 const { STATE } = JOBS;
 
 const {
-  thunks: { fileDownload },
+  thunks: { get, fileDownload },
 } = restSlice;
 
 export const downloadResults = createAsyncThunk(
@@ -22,3 +22,16 @@ export const downloadResults = createAsyncThunk(
     saveAs(payload, `${jobId}.results.json`);
   },
 );
+
+// TODO: finish
+export const getLogs = createAsyncThunk(STATE.getLogs, async (jobId, { dispatch, getState }) => {
+  const { jobs } = getState();
+
+  const { podName, taskId, source = `k8s` } =
+    jobs.dataSource?.find(({ key }) => key === jobId)?.results?.data?.storageInfo?.path ?? null;
+
+  const { payload } = await dispatch(
+    get(`logs?podName=${podName}&taskId=${taskId}&source=${source}`),
+  );
+  return payload;
+});
