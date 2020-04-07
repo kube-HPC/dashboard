@@ -14,6 +14,8 @@ const Text = ({ className, children, bold = false }) => (
   </Container>
 );
 
+Text.SC = Container;
+
 Text.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,

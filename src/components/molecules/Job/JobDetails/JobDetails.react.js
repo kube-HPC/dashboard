@@ -15,6 +15,10 @@ const Details = styled.div`
 `;
 
 const Tasks = styled.ul`
+  ${tw`mr-2`}
+  ${Tag.SC} {
+    ${tw`font-bold ml-2`}
+  }
   h1 {
     ${tw`text-lg text-secondary`}
   }
@@ -29,14 +33,6 @@ const Tasks = styled.ul`
 
 const Container = styled.div`
   ${mixins.flexBetween}
-  ${Details} {
-    ${Tasks} {
-      ${tw`mr-2`}
-      ${Tag.SC} {
-        ${tw`font-bold`}
-      }
-    }
-  }
 `;
 
 const Actions = styled.div`
@@ -53,17 +49,19 @@ const JobDetails = ({ className, jobGraph, progress, nodesStats }) => {
     <Container className={className}>
       <JobGraph jobGraph={jobGraph} />
       <Details>
-        <Tasks>
-          <h1>Tasks Stats</h1>
-          {Object.entries(nodesStats).map(([status, count]) => (
-            <li key={status}>
-              <span>{status}</span>
-              <Tag color={COLORS.task.status[status]}>{count}</Tag>
-            </li>
-          ))}
-        </Tasks>
+        {nodesStats && (
+          <Tasks>
+            <h1>Tasks Stats</h1>
+            {Object.entries(nodesStats).map(([status, count]) => (
+              <li key={status}>
+                <span>{status}</span>
+                <Tag color={COLORS.task.status[status]}>{count}</Tag>
+              </li>
+            ))}
+          </Tasks>
+        )}
         <Actions>
-          <Circle animate={true} lineWidth="40" progress={progress} />
+          <Circle animate={true} lineWidth="40" progress={progress} animationDuration="1s" />
           <IconsBar icons={icons} />
         </Actions>
       </Details>

@@ -1,5 +1,5 @@
 import { useJob } from '@hooks';
-import { JobEntry } from '@molecules';
+import { JobDetails, JobEntry } from '@molecules';
 import { mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
@@ -59,7 +59,7 @@ const revealVariants = [`visible`, `reveal`];
 const JobItem = ({ className, jobId }) => {
   const [isRevealed, setRevealed] = useState(false);
 
-  const { job, isSelected, onSelect, jobDetails } = useJob(jobId);
+  const { job, doShowDetails, isSelected, onSelect, jobDetails } = useJob(jobId);
 
   const onHoverStart = useCallback(() => setRevealed(true), []);
   const onHoverEnd = useCallback(() => setRevealed(false), []);
@@ -73,15 +73,17 @@ const JobItem = ({ className, jobId }) => {
       exit="hidden"
       variants={item}>
       <Item key={jobId} onHoverEnd={onHoverEnd}>
-        <JobActions
-          jobId={jobId}
-          animate={isRevealed ? revealVariants : `hidden`}
-          variants={reveal}
-        />
+        {!doShowDetails && (
+          <JobActions
+            jobId={jobId}
+            animate={isRevealed ? revealVariants : `hidden`}
+            variants={reveal}
+          />
+        )}
         <JobReveal
           initial="visible"
           variants={reveal}
-          animate={isRevealed ? `moveRight` : `visible`}>
+          animate={!doShowDetails ? (isRevealed ? `moveRight` : `visible`) : null}>
           <JobEntry
             {...job}
             onSelect={onSelect}
@@ -89,6 +91,7 @@ const JobItem = ({ className, jobId }) => {
             onHoverStart={onHoverStart}
             isRevealed={isRevealed}
           />
+          {doShowDetails && <JobDetails {...jobDetails} />}
         </JobReveal>
       </Item>
     </Container>
