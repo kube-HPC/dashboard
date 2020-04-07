@@ -28,7 +28,7 @@ const DividerWrapper = styled.div`
 ${mixins.flexCenter}
 ${tw`w-full`}
  > ${Divider.SC} {
-    ${tw`w-1/4`}
+    ${tw`w-1/2`}
   }
 `;
 
@@ -65,8 +65,9 @@ const RevealBox = styled(motion.div)`
   ${Divider.SC} {
     ${mixins.timingSlow}
     ${mixins.rounded}
-    ${tw`transition-colors w-1 h-6 min-h-0 top-0`}
+    ${tw`transition-colors w-1 min-h-0 top-0`}
     ${ifProp(`isRevealed`, tw`bg-gray-700`)}
+    ${ifProp(`isFullHeight`, tw`h-12`, tw`h-6`)}
   }
 `;
 
@@ -76,7 +77,7 @@ const JobItem = ({ className, jobId }) => {
   const {
     job,
     types,
-    doShowDetails,
+    isCompleted,
     isSelected,
     onSelect,
     jobDetails,
@@ -95,7 +96,7 @@ const JobItem = ({ className, jobId }) => {
       exit="hidden"
       variants={JOBS.ANIMATION.item}>
       <Item key={jobId} onHoverEnd={onHoverEnd}>
-        {!doShowDetails && (
+        {isCompleted && (
           <JobActions
             jobId={jobId}
             animate={isRevealed ? revealVariants : `hidden`}
@@ -105,18 +106,19 @@ const JobItem = ({ className, jobId }) => {
         <Reveal
           initial="visible"
           variants={JOBS.ANIMATION.reveal}
-          animate={!doShowDetails && (isRevealed ? `moveRight` : `visible`)}>
+          animate={isCompleted && (isRevealed ? `moveRight` : `visible`)}>
           <JobTypes types={types} />
           <HoverDiv whileHover={whileHover} onClick={onSelect}>
             <Entry isSelected={isSelected}>
-              {!doShowDetails && (
-                <RevealBox onHoverStart={onHoverStart} isRevealed={isRevealed}>
-                  <Divider vertical />
-                </RevealBox>
-              )}
+              <RevealBox
+                onHoverStart={onHoverStart}
+                isRevealed={isRevealed}
+                isFullHeight={!isCompleted}>
+                <Divider vertical />
+              </RevealBox>
               <Content>
                 <JobEntry {...job} />
-                {doShowDetails && (
+                {!isCompleted && (
                   <>
                     <DividerWrapper>
                       <Divider />
