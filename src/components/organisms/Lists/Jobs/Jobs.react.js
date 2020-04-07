@@ -39,7 +39,7 @@ const statusSelector = createSelector(
   state => state.jobs.dataSource,
   dataSource => {
     const statuses = dataSource?.map(job => job?.status?.status);
-    return index => (statuses[index] === pipelineStatuses.COMPLETED ? 75 : 230);
+    return index => (statuses[index] === pipelineStatuses.COMPLETED ? 70 : 240);
   },
 );
 

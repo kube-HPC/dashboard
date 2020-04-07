@@ -11,13 +11,13 @@ import JobGraph from '../JobGraph/JobGraph.react';
 
 const Details = styled.div`
   ${mixins.flexCenter}
-  ${mixins.fillContainer}
+  ${tw`w-full`}
 `;
 
 const Tasks = styled.ul`
-  ${tw`mr-2`}
+  ${tw`mr-10`}
   ${Tag.SC} {
-    ${tw`font-bold ml-2`}
+    ${tw`font-bold ml-10`}
   }
   h1 {
     ${tw`text-lg text-secondary`}
@@ -33,6 +33,9 @@ const Tasks = styled.ul`
 
 const Container = styled.div`
   ${mixins.flexBetween}
+  ${JobGraph.SC} {
+    ${tw`flex-grow`}
+  }
 `;
 
 const Actions = styled.div`
@@ -68,6 +71,8 @@ const JobDetails = ({ className, jobGraph, progress, nodesStats }) => {
     </Container>
   );
 };
+
+JobDetails.SC = Container;
 
 JobDetails.propTypes = {
   className: PropTypes.string,

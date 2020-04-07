@@ -1,20 +1,52 @@
+import { Divider } from '@atoms';
+import { JOBS } from '@config';
 import { useJob } from '@hooks';
 import { JobDetails, JobEntry } from '@molecules';
-import { mixins, spring } from '@styles';
+import { mixins } from '@styles';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 import JobActions from './JobActions.react';
+import JobTypes from './JobTypes.react';
 
-const JobReveal = styled(motion.div)``;
+const Reveal = styled(motion.div)`
+  ${tw`relative`}
+`;
+
+const Entry = styled.div`
+  ${mixins.flexStart}
+  ${mixins.rounded}
+  ${ifProp(`isSelected`, tw`shadow-xl`, tw`shadow-none`)}
+  ${tw`transition-shadow ease-in-out duration-300`}
+  ${tw`bg-white mt-4 items-center`}
+`;
+
+const DividerWrapper = styled.div`
+${mixins.flexCenter}
+${tw`w-full`}
+ > ${Divider.SC} {
+    ${tw`w-1/4`}
+  }
+`;
+
+const Content = styled.div`
+  ${mixins.fillContainer}
+  ${mixins.flexStart}
+  ${tw`flex-col`}
+  ${JobDetails.SC} {
+    ${tw`w-full pb-2`}
+  }
+`;
+
 const Container = styled(motion.div)``;
 
 const Item = styled(motion.div)`
   ${mixins.flexStart}
   ${tw`flex-row cursor-pointer mb-2 justify-start items-center`}
-  ${JobReveal} {
+  ${Reveal} {
     ${tw`flex-grow`}
   }
   ${JobActions.SC} {
@@ -22,47 +54,37 @@ const Item = styled(motion.div)`
   }
 `;
 
-const reveal = {
-  visible: {
-    x: 0,
-  },
-  reveal: {
-    opacity: 1,
-    display: `block`,
-    transition: spring.slow,
-  },
-  hidden: {
-    x: -100,
-    opacity: 0,
-    display: `none`,
-    transition: spring.slow,
-  },
-  moveRight: {
-    x: 10,
-    transition: spring.gentle,
-  },
-};
+const HoverDiv = styled(motion.div)`
+  ${mixins.rounded}
+  ${tw`w-full`}
+`;
 
-const item = {
-  visible: {
-    opacity: 1,
-    y: 0,
-  },
-  hidden: {
-    opacity: 0,
-    y: -20,
-  },
-};
+const RevealBox = styled(motion.div)`
+  ${mixins.flexCenter}
+  ${tw`w-6 h-8 ml-1`}
+  ${Divider.SC} {
+    ${mixins.timingSlow}
+    ${mixins.rounded}
+    ${tw`transition-colors w-1 h-6 min-h-0 top-0`}
+    ${ifProp(`isRevealed`, tw`bg-gray-700`)}
+  }
+`;
 
 const revealVariants = [`visible`, `reveal`];
 
 const JobItem = ({ className, jobId }) => {
-  const [isRevealed, setRevealed] = useState(false);
-
-  const { job, doShowDetails, isSelected, onSelect, jobDetails } = useJob(jobId);
-
-  const onHoverStart = useCallback(() => setRevealed(true), []);
-  const onHoverEnd = useCallback(() => setRevealed(false), []);
+  const {
+    job,
+    types,
+    doShowDetails,
+    isSelected,
+    onSelect,
+    jobDetails,
+    isRevealed,
+    onHoverEnd,
+    onHoverStart,
+    whileHover,
+  } = useJob(jobId);
 
   return (
     <Container
@@ -71,28 +93,41 @@ const JobItem = ({ className, jobId }) => {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      variants={item}>
+      variants={JOBS.ANIMATION.item}>
       <Item key={jobId} onHoverEnd={onHoverEnd}>
         {!doShowDetails && (
           <JobActions
             jobId={jobId}
             animate={isRevealed ? revealVariants : `hidden`}
-            variants={reveal}
+            variants={JOBS.ANIMATION.reveal}
           />
         )}
-        <JobReveal
+        <Reveal
           initial="visible"
-          variants={reveal}
-          animate={!doShowDetails ? (isRevealed ? `moveRight` : `visible`) : null}>
-          <JobEntry
-            {...job}
-            onSelect={onSelect}
-            isSelected={isSelected}
-            onHoverStart={onHoverStart}
-            isRevealed={isRevealed}
-          />
-          {doShowDetails && <JobDetails {...jobDetails} />}
-        </JobReveal>
+          variants={JOBS.ANIMATION.reveal}
+          animate={!doShowDetails && (isRevealed ? `moveRight` : `visible`)}>
+          <JobTypes types={types} />
+          <HoverDiv whileHover={whileHover} onClick={onSelect}>
+            <Entry isSelected={isSelected}>
+              {!doShowDetails && (
+                <RevealBox onHoverStart={onHoverStart} isRevealed={isRevealed}>
+                  <Divider vertical />
+                </RevealBox>
+              )}
+              <Content>
+                <JobEntry {...job} />
+                {doShowDetails && (
+                  <>
+                    <DividerWrapper>
+                      <Divider />
+                    </DividerWrapper>
+                    <JobDetails {...jobDetails} />
+                  </>
+                )}
+              </Content>
+            </Entry>
+          </HoverDiv>
+        </Reveal>
       </Item>
     </Container>
   );
