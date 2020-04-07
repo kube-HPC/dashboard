@@ -1,16 +1,22 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import { FixedSizeList as List } from 'react-window';
+import { VariableSizeList as List } from 'react-window';
 import CustomScrollbarsVirtualList from './CustomScrollbar.react';
 
-const DEFAULT_DIV_HEIGHT = 24;
+const DEFAULT_DIV_HEIGHT = () => 24;
 
 const SizerMemo = React.memo(AutoSizer);
 
 const VirtualList = ({ className, children = null, itemSize = DEFAULT_DIV_HEIGHT, list = [] }) => {
   const listRef = useRef();
   const outerRef = useRef();
+
+  useEffect(() => {
+    if (listRef.current) {
+      listRef.current.resetAfterIndex(0, false);
+    }
+  }, [itemSize]);
 
   const ListFunc = useCallback(
     ({ height, width }) => (
@@ -35,7 +41,7 @@ const VirtualList = ({ className, children = null, itemSize = DEFAULT_DIV_HEIGHT
 VirtualList.propTypes = {
   className: PropTypes.string,
   children: PropTypes.object.isRequired,
-  itemSize: PropTypes.number,
+  itemSize: PropTypes.func,
   list: PropTypes.array.isRequired,
 };
 

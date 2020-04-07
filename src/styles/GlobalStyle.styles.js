@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import tw from 'twin.macro';
+import Icon from '../components/atoms/Icons/Icon.react';
 import gradients from './gradients.styles';
 import mixins from './mixins.styles';
 
@@ -13,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
     ${tw`w-screen h-screen`};
   }
 
-  svg {
+  ${Icon.SC} {
     ${mixins.textSecondary}
     ${tw`fill-current w-8`}
     ${mixins.colorOnFocus}

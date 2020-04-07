@@ -1,8 +1,6 @@
 import { pipelineStatuses as PIPELINE_STATUS } from '@hkube/consts';
 import { createSelector } from '@reduxjs/toolkit';
 
-const findJob = ({ dataSource, jobId }) => dataSource?.find(({ key }) => key === jobId);
-
 export const mapToJobEntry = ({
   key: jobId,
   pipeline: { name, types, startTime },
@@ -17,17 +15,19 @@ export const mapToJobEntry = ({
   timeTook: results?.timeTook,
 });
 
-export const downloadPathSelector = jobId =>
-  createSelector(
-    state => state.jobs.dataSource,
-    dataSource => findJob({ dataSource, jobId })?.results?.data?.storageInfo?.path ?? null,
-  );
-
 const activeStates = [PIPELINE_STATUS.PENDING, PIPELINE_STATUS.ACTIVE, PIPELINE_STATUS.RESUMED];
 
 const isActive = state => activeStates.includes(state);
 const canPause = state => isActive(state);
 const canPauseOrStop = state => isActive(state) || state === PIPELINE_STATUS.PAUSED;
+
+const findJob = ({ dataSource, jobId }) => dataSource?.find(({ key }) => key === jobId);
+
+export const entrySelector = jobIdToFind =>
+  createSelector(
+    state => state.jobs.dataSource,
+    dataSource => dataSource?.map(mapToJobEntry)?.find(({ jobId }) => jobIdToFind === jobId),
+  );
 
 export const statusSelector = jobId =>
   createSelector(
@@ -40,5 +40,44 @@ export const statusSelector = jobId =>
       const canBePaused = canPause(status);
       const canBeDownload = downloadPath !== null;
       return { canBeStopped, canBePaused, canBeDownload };
+    },
+  );
+
+export const selectedStatsSelector = createSelector(
+  state => state.jobs,
+  ({ dataSource, selected }) => {
+    const job = findJob({ dataSource, jobId: selected });
+    const nodesStats = job?.status.data?.states;
+    const progress = job?.status.data?.progress;
+    const priority = job?.pipeline.priority;
+
+    return { nodesStats, priority, progress };
+  },
+);
+
+export const graphSelector = jobId =>
+  createSelector(
+    state => state.jobs.dataSource,
+    dataSource => {
+      const graph = findJob({ dataSource, jobId })?.graph ?? null;
+
+      if (graph) {
+        const { nodes, edges, timestamp, jobId } = graph;
+        return { nodes, edges, timestamp, jobId };
+      }
+
+      return null;
+    },
+  );
+
+export const progressSelector = jobId =>
+  createSelector(
+    state => state.jobs.dataSource,
+    dataSource => {
+      const job = findJob({ dataSource, jobId });
+      const nodesStats = job?.status.data?.states;
+      const progress = job?.status.data?.progress;
+
+      return { nodesStats, progress };
     },
   );

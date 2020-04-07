@@ -1,10 +1,9 @@
 import { Graph, Tag } from '@atoms';
 import { PRIORITY } from '@constants';
 import { useGraph } from '@hooks';
-import { iconNames } from '@icons';
-import { IconsBar, JobGraph } from '@molecules';
-import { createSelector } from '@reduxjs/toolkit';
+import { JobGraph } from '@molecules';
 import { COLORS, mixins } from '@styles';
+import { selectedStatsSelector } from '@utils';
 import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -45,24 +44,9 @@ const Tags = styled.div`
   ${mixins.flexCenter}
 `;
 
-const statsSelector = createSelector(
-  state => state.jobs,
-  ({ dataSource, selected }) => {
-    const job = dataSource?.find(({ key }) => key === selected);
-    const nodesStats = job?.status.data.states;
-    const priority = job?.pipeline.priority;
-    // const downloadPath = job?.results?.data?.storageInfo.path;
-
-    return { nodesStats, priority };
-  },
-);
-
-const { play, stop, pause, redo, fileDownload } = iconNames;
-const icons = [redo, play, stop, pause, fileDownload].map(name => ({ name }));
-
 const JobPanel = () => {
   const { selected } = useGraph();
-  const { nodesStats, priority } = useSelector(statsSelector, isEqual);
+  const { nodesStats, priority } = useSelector(selectedStatsSelector, isEqual);
   const { expanded } = useSelector(state => state.panel);
 
   return (
@@ -84,7 +68,6 @@ const JobPanel = () => {
         <div>Priority</div>
         <Tag color={COLORS.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
       </Item>
-      <IconsBar icons={icons} />
     </Container>
   );
 };

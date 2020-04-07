@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { areEqualGraphs } from '@utils';
 import { useSelector } from 'react-redux';
 
-const graphSelector = createSelector(
+const selectedGraphSelector = createSelector(
   state => state.jobs.selected,
   state => state.jobs.dataSource,
   (selected, dataSource) => {
@@ -18,7 +18,7 @@ const graphSelector = createSelector(
 );
 
 const useGraph = () => {
-  const selected = useSelector(graphSelector, areEqualGraphs);
+  const selected = useSelector(selectedGraphSelector, areEqualGraphs);
 
   return { selected };
 };

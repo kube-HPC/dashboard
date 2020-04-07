@@ -1,7 +1,10 @@
 import { VirtualList } from '@atoms';
+import pipelineStatuses from '@hkube/consts/lib/pipeline-statuses';
 import { useJobs } from '@hooks';
+import { createSelector } from '@reduxjs/toolkit';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
+import { useSelector } from 'react-redux';
 import { areEqual } from 'react-window';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -32,15 +35,21 @@ MemoRow.propTypes = {
 
 MemoRow.displayName = `List Row`;
 
-// Row size in px
-const ROW_SIZE = 75;
+const statusSelector = createSelector(
+  state => state.jobs.dataSource,
+  dataSource => {
+    const statuses = dataSource?.map(job => job?.status?.status);
+    return index => (statuses[index] === pipelineStatuses.COMPLETED ? 70 : 250);
+  },
+);
 
 const Jobs = ({ className }) => {
   const { jobIdList } = useJobs();
+  const itemSize = useSelector(statusSelector);
 
   return (
     <Container className={className}>
-      <VirtualList list={jobIdList} itemSize={ROW_SIZE}>
+      <VirtualList list={jobIdList} itemSize={itemSize}>
         {MemoRow}
       </VirtualList>
     </Container>
@@ -53,5 +62,4 @@ Jobs.propTypes = {
 
 Jobs.SC = { Container, RowItem };
 Jobs.displayName = `Jobs`;
-
 export default Jobs;

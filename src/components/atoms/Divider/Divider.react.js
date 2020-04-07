@@ -5,7 +5,7 @@ import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
 const horizontal = css`
-  ${tw`min-w-full w-full h-px my-2`}
+  ${tw`w-full h-px my-2`}
 `;
 
 const vertical = css`
