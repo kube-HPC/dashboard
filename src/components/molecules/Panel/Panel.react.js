@@ -9,6 +9,7 @@ import tw from 'twin.macro';
 
 const Container = styled(motion.div)`
   ${tw`h-full`}
+  ${tw`w-1/4 sm:w-1/2`}
 `;
 
 const Card = styled.div`
@@ -33,8 +34,8 @@ const container = {
     width: `100%`,
     transition: spring.gentle,
   },
-  compressed: ({ isSmall }) => ({
-    width: isSmall ? `40%` : `25%`,
+  compressed: isMdQuery => ({
+    width: isMdQuery ? `25%` : `40%`,
     transition: spring.gentle,
   }),
   visible: {
@@ -49,7 +50,7 @@ const container = {
 };
 
 const Panel = ({ className }) => {
-  const { expanded, toggle, Content, isSmall } = usePanel();
+  const { expanded, toggle, Content, isMdQuery } = usePanel();
 
   // Don't pass the event onClick;
   const onClick = useCallback(() => toggle(), [toggle]);
@@ -57,7 +58,7 @@ const Panel = ({ className }) => {
   return (
     <Container
       className={className}
-      custom={{ isSmall }}
+      custom={isMdQuery}
       initial={[`hidden`, `compressed`]}
       animate={[`visible`, expanded ? `expanded` : `compressed`]}
       variants={container}>

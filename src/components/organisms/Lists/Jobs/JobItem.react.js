@@ -35,19 +35,18 @@ ${tw`w-full`}
 const Content = styled.div`
   ${mixins.fillContainer}
   ${mixins.flexStart}
-  ${tw`flex-col`}
+  ${tw`flex-col p-2`}
   ${JobDetails.SC} {
     ${tw`w-full pb-2`}
   }
 `;
 
-const Container = styled(motion.div)``;
-
 const Item = styled(motion.div)`
   ${mixins.flexStart}
   ${tw`flex-row cursor-pointer mb-2 justify-start items-center`}
+  ${tw`w-full`}
   ${Reveal} {
-    ${tw`flex-grow`}
+    ${tw`flex-grow w-full`}
   }
   ${JobActions.SC} {
     ${tw`pt-4`}
@@ -88,7 +87,7 @@ const JobItem = ({ className, jobId }) => {
   } = useJob(jobId);
 
   return (
-    <Container
+    <motion.div
       className={className}
       key={jobId}
       initial="hidden"
@@ -131,7 +130,7 @@ const JobItem = ({ className, jobId }) => {
           </HoverDiv>
         </Reveal>
       </Item>
-    </Container>
+    </motion.div>
   );
 };
 

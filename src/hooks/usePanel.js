@@ -20,15 +20,12 @@ const useAdminPanel = () => {
   } = useActions();
   const { expanded } = useSelector(state => state.panel);
 
-  const isSmall = useMediaQuery(MEDIA_QUERIES.sm);
-
-  console.log(`useAdminPanel -> isSmall`, isSmall);
-
+  const isMdQuery = useMediaQuery(MEDIA_QUERIES.md);
   const { selected } = useJobs();
 
   const mode = selected ? jobs : welcome;
 
-  return { setValue, toggle, expanded, Content: PANEL_CONTENT[mode], mode, isSmall };
+  return { setValue, toggle, expanded, Content: PANEL_CONTENT[mode], mode, isMdQuery };
 };
 
 export default createStore(useAdminPanel);

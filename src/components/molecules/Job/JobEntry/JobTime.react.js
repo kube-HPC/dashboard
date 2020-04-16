@@ -12,7 +12,7 @@ const FullDate = styled(Moment)``;
 const Hour = styled(Moment)``;
 const Time = styled.span``;
 
-const responsiveHide = tw`hidden lg:inline-block`;
+const responsiveHide = tw`hidden xl:inline-block`;
 
 const Container = styled.div`
   ${tw`truncate`}

@@ -15,12 +15,12 @@ const Header = styled.div`
 
 const Container = styled.div`
   ${mixins.flexCenter}
-  ${tw`flex-col h-full break-words`}
+  ${tw`flex-col h-full break-normal md:break-words`}
 `;
 
 const Links = styled.div`
   ${mixins.flexCenter}
-  ${tw`w-full`}
+  ${tw`w-full mt-2`}
   > * {
     ${tw`mx-2`}
   }

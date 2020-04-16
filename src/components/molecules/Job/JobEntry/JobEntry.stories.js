@@ -26,7 +26,7 @@ export const Default = () => (
     <JobEntry {...jobExample} />
     <JobEntry
       {...jobExample}
-      jobId={`Id`.repeat(N)}
+      jobId={`VeryLongId-`.repeat(N)}
       pipelineName={`Pipeline`.repeat(N)}
       types={Object.values(pipelineTypes)}
       status={`Completed`}

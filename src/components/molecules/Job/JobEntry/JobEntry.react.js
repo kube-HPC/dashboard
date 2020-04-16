@@ -7,18 +7,21 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import JobTime from './JobTime.react';
 
-const TagFixed = styled(Tag)`
-  ${tw`w-auto sm:w-auto lg:w-32 capitalize`}
+const TagResponsive = styled(Tag)`
+  ${tw`w-auto sm:w-auto lg:w-24 xl:w-32 capitalize`}
 `;
 
 const Container = styled.div`
   ${mixins.flexBetween}
-  ${tw`p-2 text-center w-full`}
+  ${tw`text-center w-full`}
+
+  span {
+    ${tw`truncate`};
+  }
 
   > {
     :first-child {
-      ${mixins.flexStart}
-      ${tw`w-1/5 items-center text-left max-w-xs`}
+      ${tw`w-1/5 items-center text-left truncate`}
     }
 
     :nth-child(2) {
@@ -26,10 +29,7 @@ const Container = styled.div`
     }
 
     :last-child {
-      ${tw`w-1/3 text-left`}
-    }
-    span {
-      ${tw`truncate inline-block`};
+      ${tw`w-1/5 md:w-1/3 text-left`}
     }
   }
 `;
@@ -38,7 +38,7 @@ const JobEntry = ({ className, jobId, pipelineName, startTime, status, timeTook 
   <Container className={className}>
     <span>{jobId}</span>
     <span>{pipelineName}</span>
-    <TagFixed color={COLORS.pipeline.status[status]}>{status}</TagFixed>
+    <TagResponsive color={COLORS.pipeline.status[status]}>{status}</TagResponsive>
     <JobTime startTime={startTime} timeTook={timeTook} />
   </Container>
 );
