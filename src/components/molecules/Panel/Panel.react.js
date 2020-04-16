@@ -33,10 +33,10 @@ const container = {
     width: `100%`,
     transition: spring.gentle,
   },
-  compressed: {
-    width: `25%`,
+  compressed: ({ isSmall }) => ({
+    width: isSmall ? `40%` : `25%`,
     transition: spring.gentle,
-  },
+  }),
   visible: {
     x: 0,
     opacity: 1,
@@ -49,7 +49,7 @@ const container = {
 };
 
 const Panel = ({ className }) => {
-  const { expanded, toggle, Content } = usePanel();
+  const { expanded, toggle, Content, isSmall } = usePanel();
 
   // Don't pass the event onClick;
   const onClick = useCallback(() => toggle(), [toggle]);
@@ -57,6 +57,7 @@ const Panel = ({ className }) => {
   return (
     <Container
       className={className}
+      custom={{ isSmall }}
       initial={[`hidden`, `compressed`]}
       animate={[`visible`, expanded ? `expanded` : `compressed`]}
       variants={container}>

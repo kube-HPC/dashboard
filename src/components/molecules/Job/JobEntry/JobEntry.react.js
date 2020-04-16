@@ -8,7 +8,7 @@ import tw from 'twin.macro';
 import JobTime from './JobTime.react';
 
 const TagFixed = styled(Tag)`
-  ${tw`w-32 capitalize`}
+  ${tw`w-auto sm:w-auto lg:w-32 capitalize`}
 `;
 
 const Container = styled.div`
@@ -50,7 +50,7 @@ JobEntry.propTypes = {
   startTime: PropTypes.number,
   status: PropTypes.string.isRequired,
   timeTook: PropTypes.number,
-  types: PropTypes.array.isRequired,
+  types: PropTypes.array,
 };
 
 const MemoEntry = memo(JobEntry, isEqual);

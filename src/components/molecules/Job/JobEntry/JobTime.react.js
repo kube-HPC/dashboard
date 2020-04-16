@@ -7,9 +7,17 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 const SEC = 1000;
+
+const FullDate = styled(Moment)``;
+const Hour = styled(Moment)``;
+const Time = styled.span``;
+
+const responsiveHide = tw`hidden lg:inline-block`;
+
 const Container = styled.div`
-  span {
-    ${tw`truncate`}
+  ${tw`truncate`}
+  ${FullDate}, ${Hour},${Divider.SC} {
+    ${responsiveHide}
   }
 `;
 
@@ -33,15 +41,15 @@ const JobTime = ({ timeTook, startTime, length = 15 }) => {
 
   return (
     <Container>
-      <Moment format="DD/MM/YY">{startTime}</Moment>
+      <FullDate format="DD/MM/YY">{startTime}</FullDate>
       <Divider vertical />
-      <Moment format="HH:mm:ss">{startTime}</Moment>
+      <Hour format="HH:mm:ss">{startTime}</Hour>
       <Divider vertical />
-      <span>
+      <Time>
         {HumanizeDuration(timeTook ? timeTook * 1000 : time - startTime, {
           maxDecimalPoints: 2,
         }).slice(0, length)}
-      </span>
+      </Time>
     </Container>
   );
 };
