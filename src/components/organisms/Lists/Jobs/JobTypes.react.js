@@ -6,10 +6,12 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 const Types = styled.div`
-  ${tw`absolute right-0 top-0 mr-5 capitalize`}
+  ${tw`absolute right-0 top-0 mr-2 capitalize`}
   ${tw`hidden lg:block`}
-  ${Tag.SC}:not(:first-child) {
+  ${Tag.SC} {
+    :not(:first-child) {
     ${tw`ml-2`}
+    }
   }
 `;
 

@@ -35,7 +35,7 @@ const useJob = jobId => {
     onHoverStart,
     onHoverEnd,
     isRevealed,
-    isCompleted: job?.status === PIPELINE_STATUS.COMPLETED,
+    isCompleted: job?.status !== PIPELINE_STATUS.ACTIVE,
     onSelect,
     jobDetails: {
       nodesStats,

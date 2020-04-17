@@ -10,18 +10,20 @@ const SEC = 1000;
 
 const FullDate = styled(Moment)``;
 const Hour = styled(Moment)``;
-const Time = styled.span``;
+const Time = styled.div`
+  ${tw`inline-block`}
+`;
 
 const responsiveHide = tw`hidden xl:inline-block`;
 
 const Container = styled.div`
   ${tw`truncate`}
-  ${FullDate}, ${Hour},${Divider.SC} {
+  ${FullDate},${Divider.SC},${Hour} {
     ${responsiveHide}
   }
 `;
 
-const JobTime = ({ timeTook, startTime, length = 15 }) => {
+const JobTime = ({ timeTook, startTime }) => {
   const [time, setTime] = useState(Date.now());
   const intervalId = useRef();
 
@@ -48,7 +50,7 @@ const JobTime = ({ timeTook, startTime, length = 15 }) => {
       <Time>
         {HumanizeDuration(timeTook ? timeTook * 1000 : time - startTime, {
           maxDecimalPoints: 2,
-        }).slice(0, length)}
+        })}
       </Time>
     </Container>
   );
@@ -56,7 +58,6 @@ const JobTime = ({ timeTook, startTime, length = 15 }) => {
 
 JobTime.propTypes = {
   startTime: PropTypes.number,
-  length: PropTypes.number,
   timeTook: PropTypes.number,
   results: PropTypes.object,
 };

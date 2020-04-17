@@ -1,5 +1,5 @@
 import { VirtualList } from '@atoms';
-import pipelineStatuses from '@hkube/consts/lib/pipeline-statuses';
+import PIPELINE_STATUS from '@hkube/consts/lib/pipeline-statuses';
 import { useJobs } from '@hooks';
 import { createSelector } from '@reduxjs/toolkit';
 import PropTypes from 'prop-types';
@@ -39,7 +39,7 @@ const statusSelector = createSelector(
   state => state.jobs.dataSource,
   dataSource => {
     const statuses = dataSource?.map(job => job?.status?.status);
-    return index => (statuses[index] === pipelineStatuses.COMPLETED ? 70 : 250);
+    return index => (statuses[index] !== PIPELINE_STATUS.ACTIVE ? 70 : 250);
   },
 );
 

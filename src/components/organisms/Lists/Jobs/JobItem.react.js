@@ -26,7 +26,7 @@ const Entry = styled.div`
 
 const DividerWrapper = styled.div`
 ${mixins.flexCenter}
-${tw`w-full`}
+${tw`w-full mt-1`}
  > ${Divider.SC} {
     ${tw`w-1/2`}
   }

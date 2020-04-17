@@ -7,19 +7,11 @@ import styled, { css } from 'styled-components';
 import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
-const selected = css`
-  ${tw`text-black`}
-`;
-
-const underline = css`
-  ${tw`bg-black`}
-`;
-
 const Item = styled(motion.div)`
   ${mixins.colorOnFocus}
   ${mixins.timingNormal}
   ${tw`transition-colors text-secondary text-center`};
-  ${ifProp(`selected`, selected)};
+  ${ifProp(`selected`, tw`text-black`)};
 
   span {
     ${tw`inline-block`}
@@ -27,7 +19,7 @@ const Item = styled(motion.div)`
       content: '';
       ${mixins.timingNormal}
       ${tw`w-full h-px block transition-colors bg-transparent`}
-      ${ifProp(`selected`, underline)};
+      ${ifProp(`selected`, tw`bg-black`)};
     }
   }
 `;
@@ -48,6 +40,7 @@ const vertical = css`
 
 const Items = styled(motion.div)`
   ${mixins.flexCenter}
+  ${tw`text-xs md:text-sm lg:text-base`}
   ${ifProp(`horizontal`, horizontal, vertical)}
 `;
 
