@@ -10,11 +10,12 @@ const SelfCenter = styled.div`
 `;
 
 const Header = styled.div`
-  ${tw`text-xl`}
+  ${tw`text-lg md:text-xl`}
 `;
 
 const Container = styled.div`
   ${mixins.flexCenter}
+  ${tw`text-sm lg:text-base`}
   ${tw`flex-col h-full break-normal md:break-words`}
 `;
 

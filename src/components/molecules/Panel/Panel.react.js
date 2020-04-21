@@ -35,7 +35,7 @@ const container = {
     transition: spring.gentle,
   },
   compressed: isMdQuery => ({
-    width: isMdQuery ? `20%` : `40%`,
+    width: isMdQuery ? `30%` : `40%`,
     transition: spring.gentle,
   }),
   visible: {

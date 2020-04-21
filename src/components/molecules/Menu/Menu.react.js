@@ -27,7 +27,7 @@ const Item = styled(motion.div)`
 const horizontal = css`
   ${tw`flex-row`}
   ${Item}:not(:last-child) {
-    ${tw`mr-10`}
+    ${tw`mr-5 md:mr-8 lg:mr-10`}
   }
 `;
 
@@ -40,7 +40,7 @@ const vertical = css`
 
 const Items = styled(motion.div)`
   ${mixins.flexCenter}
-  ${tw`text-xs md:text-sm lg:text-base`}
+  ${tw`text-xs lg:text-sm xl:text-base`}
   ${ifProp(`horizontal`, horizontal, vertical)}
 `;
 

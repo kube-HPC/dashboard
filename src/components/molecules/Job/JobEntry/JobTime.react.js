@@ -17,13 +17,12 @@ const Time = styled.div`
 const responsiveHide = tw`hidden xl:inline-block`;
 
 const Container = styled.div`
-  ${tw`truncate`}
   ${FullDate},${Divider.SC},${Hour} {
     ${responsiveHide}
   }
 `;
 
-const JobTime = ({ timeTook, startTime }) => {
+const JobTime = ({ timeTook, startTime, className }) => {
   const [time, setTime] = useState(Date.now());
   const intervalId = useRef();
 
@@ -42,7 +41,7 @@ const JobTime = ({ timeTook, startTime }) => {
   }, [timeTook]);
 
   return (
-    <Container>
+    <Container className={className}>
       <FullDate format="DD/MM/YY">{startTime}</FullDate>
       <Divider vertical />
       <Hour format="HH:mm:ss">{startTime}</Hour>
@@ -60,7 +59,10 @@ JobTime.propTypes = {
   startTime: PropTypes.number,
   timeTook: PropTypes.number,
   results: PropTypes.object,
+  className: PropTypes.string,
 };
+
+JobTime.SC = Container;
 
 const JobTimeMemo = memo(JobTime);
 JobTimeMemo.displayName = `JobTime`;

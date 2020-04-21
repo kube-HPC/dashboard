@@ -19,14 +19,14 @@ const Reveal = styled(motion.div)`
 const Entry = styled.div`
   ${mixins.flexStart}
   ${mixins.rounded}
-  ${ifProp(`isSelected`, tw`shadow-xl`, tw`shadow-none`)}
-  ${tw`transition-shadow ease-in-out duration-300`}
   ${tw`bg-white mt-4 items-center`}
+  ${tw`transition-shadow ease-in-out duration-300`}
+  ${ifProp(`isSelected`, tw`shadow-xl`, tw`shadow-none`)}
 `;
 
 const DividerWrapper = styled.div`
 ${mixins.flexCenter}
-${tw`w-full mt-1`}
+${tw`w-full mt-2`}
  > ${Divider.SC} {
     ${tw`w-1/2`}
   }
@@ -35,7 +35,7 @@ ${tw`w-full mt-1`}
 const Content = styled.div`
   ${mixins.fillContainer}
   ${mixins.flexStart}
-  ${tw`flex-col p-2`}
+  ${tw`flex-col p-2 overflow-auto`}
   ${JobDetails.SC} {
     ${tw`w-full pb-2`}
   }
@@ -44,7 +44,6 @@ const Content = styled.div`
 const Item = styled(motion.div)`
   ${mixins.flexStart}
   ${tw`flex-row cursor-pointer mb-2 justify-start items-center`}
-  ${tw`w-full`}
   ${Reveal} {
     ${tw`flex-grow w-full`}
   }

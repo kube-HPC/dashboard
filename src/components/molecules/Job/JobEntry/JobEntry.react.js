@@ -20,6 +20,9 @@ const Container = styled.div`
   }
 
   > {
+    :not(:last-child) {
+      ${tw`mr-1`}
+    }
     :first-child {
       ${tw`w-1/5 items-center text-left truncate`}
     }
@@ -27,9 +30,8 @@ const Container = styled.div`
     :nth-child(2) {
       ${tw`w-1/6 text-left max-w-xs`}
     }
-
-    :last-child {
-      ${tw`w-1/5 md:w-1/3 text-left`}
+    ${JobTime.SC} {
+      ${tw`max-w-sm text-left`}
     }
   }
 `;

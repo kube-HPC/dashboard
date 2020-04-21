@@ -9,8 +9,9 @@ const Types = styled.div`
   ${tw`absolute right-0 top-0 mr-2 capitalize`}
   ${tw`hidden lg:block`}
   ${Tag.SC} {
+    ${tw`py-px`}
     :not(:first-child) {
-    ${tw`ml-2`}
+      ${tw`ml-px lg:ml-1`}
     }
   }
 `;

@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
   ${Icon.SC} {
     ${mixins.textSecondary}
-    ${tw`fill-current w-8`}
+    ${tw`fill-current w-5 md:w-6 lg:w-8`}
     ${mixins.colorOnFocus}
     ${mixins.timingNormal}
   }
