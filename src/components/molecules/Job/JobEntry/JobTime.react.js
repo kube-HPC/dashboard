@@ -62,9 +62,8 @@ JobTime.propTypes = {
   className: PropTypes.string,
 };
 
-JobTime.SC = Container;
-
 const JobTimeMemo = memo(JobTime);
 JobTimeMemo.displayName = `JobTime`;
+JobTimeMemo.SC = Container;
 
 export default JobTimeMemo;

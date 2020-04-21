@@ -7,9 +7,15 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import JobTime from './JobTime.react';
 
-const TagResponsive = styled(Tag)`
-  ${tw`w-auto sm:w-auto lg:w-24 xl:w-32 capitalize`}
+const TagContainer = styled.div`
+  ${mixins.flexCenter}
+  ${Tag.SC} {
+    ${tw`w-auto lg:w-24 xl:w-32 capitalize`}
+  }
 `;
+
+const JobId = styled.span``;
+const PipelineName = styled.span``;
 
 const Container = styled.div`
   ${mixins.flexBetween}
@@ -23,24 +29,31 @@ const Container = styled.div`
     :not(:last-child) {
       ${tw`mr-1`}
     }
-    :first-child {
+    ${JobId} {
       ${tw`w-1/5 items-center text-left truncate`}
     }
 
-    :nth-child(2) {
+    ${PipelineName} {
       ${tw`w-1/6 text-left max-w-xs`}
     }
+
+    ${TagContainer} {
+      ${tw`w-1/6`}
+    }
+
     ${JobTime.SC} {
-      ${tw`max-w-sm text-left`}
+      ${tw`w-1/6 xl:w-full max-w-xs`}
     }
   }
 `;
 
 const JobEntry = ({ className, jobId, pipelineName, startTime, status, timeTook }) => (
   <Container className={className}>
-    <span>{jobId}</span>
-    <span>{pipelineName}</span>
-    <TagResponsive color={COLORS.pipeline.status[status]}>{status}</TagResponsive>
+    <JobId>{jobId}</JobId>
+    <PipelineName>{pipelineName}</PipelineName>
+    <TagContainer>
+      <Tag color={COLORS.pipeline.status[status]}>{status}</Tag>
+    </TagContainer>
     <JobTime startTime={startTime} timeTook={timeTook} />
   </Container>
 );

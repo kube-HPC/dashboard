@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
 const Twitter = ({ type = `summary_large_image`, username = null, title, desc, image }) => (
   <Helmet>

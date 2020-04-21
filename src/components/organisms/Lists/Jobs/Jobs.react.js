@@ -39,7 +39,7 @@ const statusSelector = createSelector(
   state => state.jobs.dataSource,
   dataSource => {
     const statuses = dataSource?.map(job => job?.status?.status);
-    return index => (statuses[index] !== PIPELINE_STATUS.ACTIVE ? 70 : 250);
+    return index => (statuses[index] !== PIPELINE_STATUS.ACTIVE ? 75 : 250);
   },
 );
 
