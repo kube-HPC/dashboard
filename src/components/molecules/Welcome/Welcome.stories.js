@@ -21,8 +21,6 @@ export default {
 };
 
 export const Default = Welcome;
-export const InPanel = () => (
-  <Panel>
-    <Welcome />
-  </Panel>
-);
+
+// Default is welcome screen
+export const InPanel = Panel;

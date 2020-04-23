@@ -1,5 +1,6 @@
 import { Tag } from '@atoms';
-import { COLORS, mixins } from '@styles';
+import { useTheme } from '@hooks';
+import { mixins } from '@styles';
 import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
@@ -47,16 +48,19 @@ const Container = styled.div`
   }
 `;
 
-const JobEntry = ({ className, jobId, pipelineName, startTime, status, timeTook }) => (
-  <Container className={className}>
-    <JobId>{jobId}</JobId>
-    <PipelineName>{pipelineName}</PipelineName>
-    <TagContainer>
-      <Tag color={COLORS.pipeline.status[status]}>{status}</Tag>
-    </TagContainer>
-    <JobTime startTime={startTime} timeTook={timeTook} />
-  </Container>
-);
+const JobEntry = ({ className, jobId, pipelineName, startTime, status, timeTook }) => {
+  const { colors } = useTheme();
+  return (
+    <Container className={className}>
+      <JobId>{jobId}</JobId>
+      <PipelineName>{pipelineName}</PipelineName>
+      <TagContainer>
+        <Tag color={colors.pipeline.status[status]}>{status}</Tag>
+      </TagContainer>
+      <JobTime startTime={startTime} timeTook={timeTook} />
+    </Container>
+  );
+};
 
 JobEntry.propTypes = {
   className: PropTypes.string,

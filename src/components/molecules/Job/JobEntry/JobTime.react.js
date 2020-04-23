@@ -1,5 +1,5 @@
 import { Divider } from '@atoms';
-import HumanizeDuration from 'humanize-duration';
+import prettyMilliseconds from 'pretty-ms';
 import PropTypes from 'prop-types';
 import React, { memo, useEffect, useRef, useState } from 'react';
 import Moment from 'react-moment';
@@ -40,17 +40,15 @@ const JobTime = ({ timeTook, startTime, className }) => {
     }
   }, [timeTook]);
 
+  const runningTime = prettyMilliseconds(timeTook ? timeTook * 1000 : time - startTime);
+
   return (
     <Container className={className}>
       <FullDate format="DD/MM/YY">{startTime}</FullDate>
       <Divider vertical />
       <Hour format="HH:mm:ss">{startTime}</Hour>
       <Divider vertical />
-      <Time>
-        {HumanizeDuration(timeTook ? timeTook * 1000 : time - startTime, {
-          maxDecimalPoints: 2,
-        })}
-      </Time>
+      <Time>{runningTime}</Time>
     </Container>
   );
 };

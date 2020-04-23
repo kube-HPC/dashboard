@@ -1,5 +1,5 @@
 import { Tag } from '@atoms';
-import { COLORS } from '@styles';
+import { useTheme } from '@hooks';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
@@ -16,15 +16,18 @@ const Types = styled.div`
   }
 `;
 
-const JobTypes = ({ className, types }) => (
-  <Types className={className}>
-    {types.map(type => (
-      <Tag key={type} color={COLORS.pipeline.type[type]}>
-        {type}
-      </Tag>
-    ))}
-  </Types>
-);
+const JobTypes = ({ className, types }) => {
+  const { colors } = useTheme();
+  return (
+    <Types className={className}>
+      {types.map(type => (
+        <Tag key={type} color={colors.pipeline.type[type]}>
+          {type}
+        </Tag>
+      ))}
+    </Types>
+  );
+};
 
 JobTypes.propTypes = {
   className: PropTypes.string,

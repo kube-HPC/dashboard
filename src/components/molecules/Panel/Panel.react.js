@@ -4,12 +4,12 @@ import { mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
+import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
 const Container = styled(motion.div)`
-  ${tw`h-full`}
-  ${tw`w-1/4 sm:w-1/2`}
+  ${tw`w-1/4 sm:w-1/2 h-full overflow-hidden`}
 `;
 
 const Card = styled.div`
@@ -18,10 +18,15 @@ const Card = styled.div`
   ${tw`h-full flex-col shadow-md`}
 `;
 
-const PanelContent = styled.div`
-${mixins.fillContainer}
+const ContentWrapper = styled.div`
+  ${mixins.fillContainer}
+  ${tw`mt-5`}
+`;
+
+const ContentContainer = styled.div`
+  ${mixins.fillContainer}
   ${mixins.flexCenter}
-  ${tw`flex-grow flex-col`}
+  ${tw`flex-grow flex-col overflow-auto`}
 `;
 
 const TopRight = styled.div`
@@ -52,7 +57,7 @@ const container = {
 const Panel = ({ className }) => {
   const { expanded, toggle, Content, isMdQuery } = usePanel();
 
-  // Don't pass the event onClick;
+  // Don't pass the event onClick, don't do this: (e) => toggle(e)
   const onClick = useCallback(() => toggle(), [toggle]);
 
   return (
@@ -66,9 +71,13 @@ const Panel = ({ className }) => {
         <TopRight>
           <IconExpand onClick={onClick} expanded={expanded} />
         </TopRight>
-        <PanelContent>
-          <Content />
-        </PanelContent>
+        <ContentContainer>
+          <Scrollbars>
+            <ContentWrapper>
+              <Content />
+            </ContentWrapper>
+          </Scrollbars>
+        </ContentContainer>
       </Card>
     </Container>
   );

@@ -9,7 +9,12 @@ export {
   selectedStatsSelector,
   statusSelector,
 } from './jobs';
-export { getBooleanLSItem, getLsItem, getLsObjectItem, setLsItem } from './localStorage';
+export {
+  getBooleanLSItem,
+  getLocalStorageItem,
+  getLocalStorageObjectItem,
+  setLocalStorageItem,
+} from './localStorage';
 export { calc, trans } from './parallax';
 export { pipelineSelector } from './pipeline';
 export { sorter, stringify, toBoolean, toUpperCaseFirstLetter } from './string';
