@@ -10,7 +10,7 @@ export default {
 export const Default = () => {
   const { setValue } = usePanel();
   useEffect(() => {
-    setValue(PANEL.colorSettings);
+    setValue(PANEL.theme);
   }, [setValue]);
 
   return <Panel />;

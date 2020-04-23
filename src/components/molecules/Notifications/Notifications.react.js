@@ -9,7 +9,7 @@ import tw from 'twin.macro';
 
 const Notification = styled(motion.li)`
   ${tw`overflow-hidden shadow-lg rounded`}
-  ${gradients.background}
+  ${gradients.cloudyKnoxville}
 `;
 
 const Container = styled.ul`

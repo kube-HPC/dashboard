@@ -13,7 +13,7 @@ const Decorator = styled.div`
 `;
 
 export default {
-  title: `${SB_LABELS.ATOMS}Theme/Color Property`,
+  title: `${SB_LABELS.MOLECULES}Theme/Color Property`,
   decorators: [
     S => (
       <Decorator>

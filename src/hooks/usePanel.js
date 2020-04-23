@@ -7,12 +7,12 @@ import { useSelector } from 'react-redux';
 import { createStore } from 'reusable';
 import useJobs from './useJobs';
 
-const { jobs, welcome, colorSettings } = PANEL;
+const { jobs, welcome, theme } = PANEL;
 
 const PANEL_CONTENT = {
   [welcome]: Welcome,
   [jobs]: JobPanel,
-  [colorSettings]: ThemePanel,
+  [theme]: ThemePanel,
 };
 
 const usePanel = () => {
@@ -26,7 +26,7 @@ const usePanel = () => {
 
   const mode = value ? value : selected ? jobs : welcome;
 
-  return { setValue, toggle, expanded, Content: PANEL_CONTENT[mode], mode, isMdQuery };
+  return { value, setValue, toggle, expanded, Content: PANEL_CONTENT[mode], mode, isMdQuery };
 };
 
 export default createStore(usePanel);

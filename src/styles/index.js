@@ -3,4 +3,4 @@ export { COLORS } from './colors';
 export { default as GlobalStyle } from './GlobalStyle.styles';
 export { default as gradients } from './gradients.styles';
 export { default as mixins } from './mixins.styles';
-export { default as theme } from './theme';
+export { default as pallettes } from './pallettes';

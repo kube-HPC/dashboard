@@ -1,7 +1,7 @@
 const panels = {
   welcome: `welcome`,
   jobs: `jobs`,
-  colorSettings: `colorSettings`,
+  theme: `theme`,
 };
 
 export default panels;
