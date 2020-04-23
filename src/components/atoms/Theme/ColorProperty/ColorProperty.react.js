@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 const ColorBox = styled.div`
-  ${tw`border border-gray-400 bg-white hocus:cursor-pointer`}
+  ${tw`border border-gray-400 bg-white hocus:cursor-pointer ml-2`}
   ${tw`transition-colors transition-opacity hocus:opacity-50`}
   > div {
     ${tw`h-3 w-10 m-1 rounded-sm `}

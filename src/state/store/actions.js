@@ -6,6 +6,7 @@ import {
   pipelinesSlice,
   sidebarSlice,
   socketSlice,
+  themeSlice,
 } from '@slices';
 
 const actions = {
@@ -16,6 +17,7 @@ const actions = {
   jobs: { ...jobsSlice.actions, ...jobsSlice.thunks },
   pipelines: { ...pipelinesSlice.actions, ...pipelinesSlice.thunks },
   notifications: notificationsSlice.actions,
+  theme: themeSlice.actions,
 };
 
 export default actions;

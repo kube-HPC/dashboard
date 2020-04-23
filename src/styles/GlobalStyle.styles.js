@@ -14,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
     ${tw`w-screen h-screen`};
   }
 
+  h1 {
+    ${tw`text-lg md:text-xl`}
+  }
+
   ${Icon.SC} {
     ${mixins.textSecondary}
     ${tw`fill-current w-5 md:w-6 lg:w-8`}
