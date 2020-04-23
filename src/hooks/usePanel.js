@@ -7,26 +7,32 @@ import { useSelector } from 'react-redux';
 import { createStore } from 'reusable';
 import useJobs from './useJobs';
 
-const { jobs, welcome, theme } = PANEL;
-
 const PANEL_CONTENT = {
-  [welcome]: Welcome,
-  [jobs]: JobPanel,
-  [theme]: ThemePanel,
+  [PANEL.welcome]: Welcome,
+  [PANEL.jobs]: JobPanel,
+  [PANEL.theme]: ThemePanel,
 };
 
 const usePanel = () => {
   const {
     panel: { setValue, toggle },
   } = useActions();
-  const { expanded, value } = useSelector(state => state.panel);
+  const { expanded, value: panelName } = useSelector(state => state.panel);
 
   const isMdQuery = useMediaQuery(MEDIA_QUERIES.md);
   const { selected } = useJobs();
 
-  const mode = value ? value : selected ? jobs : welcome;
+  const mode = selected ? PANEL.jobs : panelName || PANEL.welcome;
 
-  return { value, setValue, toggle, expanded, Content: PANEL_CONTENT[mode], mode, isMdQuery };
+  return {
+    value: panelName,
+    setValue,
+    toggle,
+    expanded,
+    Content: PANEL_CONTENT[mode],
+    mode,
+    isMdQuery,
+  };
 };
 
 export default createStore(usePanel);
