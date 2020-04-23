@@ -25,7 +25,7 @@
     }
   },
   "lint-staged": {
-    "!(node_modules)/**/*.{js,jsx,json,md}": [
+    "src/**/*.{js,jsx,json,md}": [
       "eslint --cache --fix",
       "prettier --write"
     ]
