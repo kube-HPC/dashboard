@@ -10,8 +10,9 @@ import tw from 'twin.macro';
 import ThemeProperty from './ThemeProperty.react';
 
 const Container = styled.div`
+  ${mixins.fillContainer}
   ${mixins.flexCenter}
-  ${tw`flex-col w-full h-full`}
+  ${tw`flex-col`}
   ${ColorProperty.SC} {
     ${tw`capitalize`}
   }
