@@ -1,11 +1,11 @@
 import { SOCKET } from '@config';
 import { LOCAL_STORAGE } from '@constants';
 import { createSlice } from '@reduxjs/toolkit';
-import { getLsItem } from '@utils';
+import { getLocalStorageItem } from '@utils';
 
 const initialState = {
   dataSource: [],
-  value: getLsItem(LOCAL_STORAGE.EXPERIMENT) || SOCKET.ROOM.default,
+  value: getLocalStorageItem(LOCAL_STORAGE.EXPERIMENT) || SOCKET.ROOM.default,
   lastValue: null,
   loading: true,
 };

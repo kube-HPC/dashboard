@@ -1,8 +1,11 @@
+import { THEME } from '@constants';
 import { COLORS } from './colors';
 import gradients from './gradients.styles';
 
+const { pallette } = THEME;
+
 const pallettes = {
-  default: {
+  [pallette.default]: {
     background: gradients.cloudyKnoxville,
     colors: COLORS,
   },

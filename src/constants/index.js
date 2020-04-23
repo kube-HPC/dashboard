@@ -6,3 +6,4 @@ export { default as PANEL } from './panel';
 export { default as PRIORITY } from './priority';
 export { default as RAW } from './raw/index';
 export { default as SB_LABELS } from './storybook';
+export { default as THEME } from './theme';

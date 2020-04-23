@@ -17,11 +17,11 @@ const Types = styled.div`
 `;
 
 const JobTypes = ({ className, types }) => {
-  const { theme } = useTheme();
+  const { colors } = useTheme();
   return (
     <Types className={className}>
       {types.map(type => (
-        <Tag key={type} color={theme.pipeline.type[type]}>
+        <Tag key={type} color={colors.pipeline.type[type]}>
           {type}
         </Tag>
       ))}

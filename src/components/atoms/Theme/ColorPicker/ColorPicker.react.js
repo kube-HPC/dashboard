@@ -16,7 +16,12 @@ const Container = styled.div`
   }
 `;
 
-const ColorPicker = ({ className, color, onChange: onColorChange = NOOP, disabled = false }) => {
+const ColorPicker = ({
+  className,
+  color = `#000`,
+  onChange: onColorChange = NOOP,
+  disabled = false,
+}) => {
   const onChange = ({ hex }) => onColorChange(hex);
 
   return (
