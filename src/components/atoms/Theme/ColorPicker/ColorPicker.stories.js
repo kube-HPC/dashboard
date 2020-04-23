@@ -20,3 +20,4 @@ export default {
 };
 
 export const Default = ColorPicker;
+export const Disabled = () => <ColorPicker disabled={true} />;

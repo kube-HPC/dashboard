@@ -1,3 +1,4 @@
+export { default as ColorSettings } from './ColorSettings/ColorSettings.react';
 export { default as IconsBar } from './IconsBar/IconsBar.react';
 export { JobDetails, JobEntry, JobGraph } from './Job';
 export { default as Menu } from './Menu/Menu.react';

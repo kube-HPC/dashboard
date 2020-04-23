@@ -1,8 +1,9 @@
-import { SB_LABELS } from '@constants';
+import { PANEL, SB_LABELS } from '@constants';
+import { usePanel } from '@hooks';
 import { Panel } from '@molecules';
 import { JobSelectHelper } from '@storybookHelpers';
 import { mixins } from '@styles';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import JobPanel from './JobPanel.react';
@@ -26,8 +27,10 @@ export default {
 
 export const Content = JobPanel;
 
-export const InPanel = () => (
-  <Panel>
-    <JobPanel />
-  </Panel>
-);
+export const InPanel = () => {
+  const { setValue } = usePanel();
+  useEffect(() => {
+    setValue(PANEL.jobs);
+  }, [setValue]);
+  return <Panel />;
+};
