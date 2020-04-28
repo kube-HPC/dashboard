@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ReusableProvider } from 'reusable';
-import ThemeProvider from './src/components/';
+import { ThemeProvider } from './src/components';
 import createStore from './src/state/store/createStore';
 
 // Instantiating store in `wrapRootElement` handler ensures:
