@@ -1,3 +1,4 @@
+import { PANEL } from '@constants';
 import PIPELINE_STATUS from '@hkube/consts/lib/pipeline-statuses';
 import { areEqualGraphs, entrySelector, graphSelector, progressSelector } from '@utils';
 import isEqual from 'lodash.isequal';
@@ -18,12 +19,18 @@ const useJob = jobId => {
 
   const {
     jobs: { select },
+    panel: { set },
   } = useActions();
 
   const { types, ...job } = jobEntry;
 
   const whileHover = useMemo(() => ({ boxShadow: onHoverShadow }), []);
-  const onSelect = useCallback(() => select(jobId), [select, jobId]);
+
+  const onSelect = useCallback(() => {
+    select(jobId);
+    set(PANEL.jobs);
+  }, [select, jobId, set]);
+
   const onHoverStart = useCallback(() => setRevealed(true), []);
   const onHoverEnd = useCallback(() => setRevealed(false), []);
 

@@ -4,7 +4,7 @@ import { NOOP } from '@utils';
 import usePanel from './usePanel';
 
 const useTopActions = () => {
-  const { value, setValue } = usePanel();
+  const { value, set: setValue } = usePanel();
 
   const setThemePanel = () => setValue(value === PANEL.theme ? PANEL.welcome : PANEL.theme);
 

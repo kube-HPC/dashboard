@@ -20,13 +20,12 @@ const Card = styled.div`
 
 const ContentWrapper = styled.div`
   ${mixins.fillContainer}
-  ${tw`mt-5`}
 `;
 
 const ContentContainer = styled.div`
   ${mixins.fillContainer}
   ${mixins.flexCenter}
-  ${tw`flex-grow flex-col overflow-auto`}
+  ${tw`flex-grow flex-col overflow-hidden`}
 `;
 
 const TopRight = styled.div`

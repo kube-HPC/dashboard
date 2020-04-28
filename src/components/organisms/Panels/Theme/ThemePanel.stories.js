@@ -18,7 +18,7 @@ export default {
 };
 
 export const Default = () => {
-  const { setValue } = usePanel();
+  const { set: setValue } = usePanel();
   useEffect(() => {
     setValue(PANEL.theme);
   }, [setValue]);

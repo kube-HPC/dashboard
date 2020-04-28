@@ -1,4 +1,4 @@
-export const setValue = (state, { payload }) => {
+export const set = (state, { payload }) => {
   state.value = payload;
 };
 

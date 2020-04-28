@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { setValue, toggle } from './panel.reducers';
+import { set, toggle } from './panel.reducers';
 
 const initialState = { value: null, expanded: false };
 
 const panel = createSlice({
   name: `panel`,
   initialState,
-  reducers: { setValue, toggle },
+  reducers: { set, toggle },
 });
 
 export default panel;

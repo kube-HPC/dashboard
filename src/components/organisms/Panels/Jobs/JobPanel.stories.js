@@ -28,7 +28,7 @@ export default {
 export const Content = JobPanel;
 
 export const InPanel = () => {
-  const { setValue } = usePanel();
+  const { set: setValue } = usePanel();
   useEffect(() => {
     setValue(PANEL.jobs);
   }, [setValue]);
