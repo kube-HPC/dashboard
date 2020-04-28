@@ -31,8 +31,19 @@ const fixed = css`
   ${tw`fixed z-10`}
 `;
 
+const timingSlow = css`
+  ${tw`ease-in-out duration-700`}
+`;
+
+const timingNormal = css`
+  ${timingSlow}
+  ${tw`duration-500`}
+`;
+
 const colorOnFocus = css`
   ${tw`cursor-pointer`}
+  ${timingSlow}
+  ${tw`transition-opacity hocus:opacity-50`}
   ${onMode(tw`hocus:text-black`, tw`hocus:text-white`)}
 `;
 
@@ -52,15 +63,6 @@ const card = css`
   ${rounded}
   ${tw`p-3 text-center`}
   ${theme(THEME.value.background)}
-`;
-
-const timingSlow = css`
-  ${tw`ease-in-out duration-700`}
-`;
-
-const timingNormal = css`
-  ${timingSlow}
-  ${tw`duration-500`}
 `;
 
 const mixins = {

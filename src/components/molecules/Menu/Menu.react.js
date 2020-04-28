@@ -17,8 +17,7 @@ const whileHover = {
 const Item = styled(motion.div)`
   ${mixins.colorOnFocus}
   ${mixins.textSecondary}
-  ${mixins.timingSlow}
-  ${tw`transition-opacity transition-colors text-center`};
+  ${tw`transition-colors text-center`};
   ${styleOnSelect(tw`text-black`, tw`text-white`)}
 
   span {

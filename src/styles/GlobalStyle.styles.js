@@ -22,12 +22,14 @@ const GlobalStyle = createGlobalStyle`
   h1 {
     ${tw`text-lg md:text-xl`}
   }
+  h2 {
+    ${tw`text-base md:text-lg`}
+  }
 
   ${Icon.SC} {
     ${mixins.textSecondary}
     ${tw`fill-current w-5 md:w-6 lg:w-8`}
     ${mixins.colorOnFocus}
-    ${mixins.timingNormal}
   }
 `;
 

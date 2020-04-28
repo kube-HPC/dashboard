@@ -3,6 +3,7 @@ import { usePanel } from '@hooks';
 import { Panel } from '@molecules';
 import React, { useEffect } from 'react';
 import tw from 'twin.macro';
+import ThemePanel from './ThemePanel.react';
 
 const Decorator = tw.div`h-screen`;
 
@@ -17,7 +18,9 @@ export default {
   ],
 };
 
-export const Default = () => {
+export const Content = ThemePanel;
+
+export const InPanel = () => {
   const { set: setValue } = usePanel();
   useEffect(() => {
     setValue(PANEL.theme);

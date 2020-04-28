@@ -6,6 +6,7 @@ const { palette, gradients, value } = THEME;
 
 const palettes = {
   [palette.default]: {
+    name: `default`,
     mode: `light`,
     [value.backgroundGradient]: gradients.cloudyKnoxville,
     [value.headerGradient]: gradients.slickCarbon,
@@ -14,6 +15,7 @@ const palettes = {
     colors: COLORS,
   },
   [palette.carbon]: {
+    name: `carbon`,
     mode: `dark`,
     [value.backgroundGradient]: gradients.slickCarbon,
     [value.headerGradient]: gradients.cloudyKnoxville,

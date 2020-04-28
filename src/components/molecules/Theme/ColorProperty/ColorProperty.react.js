@@ -13,10 +13,6 @@ const Container = styled.div`
   ${tw`transition duration-500 ease-in-out`}
   ${tw`hocus:opacity-75 hocus:shadow-md`}
   ${ifProp(`isSelected`, tw`shadow-lg`)}
-
-  ${ColorBox.SC.Container} {
-    ${tw`w-12 ml-2`}
-  }
 `;
 
 const ColorProperty = ({

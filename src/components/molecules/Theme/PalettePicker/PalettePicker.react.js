@@ -9,7 +9,7 @@ import tw from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.flexCenter}
-  ${tw`p-2 flex-row`}
+  ${tw`p-2 flex-row w-full`}
   ${tw`transition duration-500 ease-in-out`}
   ${tw`hocus:opacity-75 hocus:shadow-md`}
   ${ifProp(`isSelected`, tw`shadow-lg`)}
