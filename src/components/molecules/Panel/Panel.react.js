@@ -71,7 +71,7 @@ const Panel = ({ className }) => {
           <IconExpand onClick={onClick} expanded={expanded} />
         </TopRight>
         <ContentContainer>
-          <Scrollbars>
+          <Scrollbars autoHide style={{ overflow: `hidden` }}>
             <ContentWrapper>
               <Content />
             </ContentWrapper>

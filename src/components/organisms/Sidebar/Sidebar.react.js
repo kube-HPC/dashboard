@@ -1,17 +1,19 @@
 import { SIDEBAR } from '@config';
+import { THEME } from '@constants';
 import { useSidebar } from '@hooks';
 import { Menu } from '@molecules';
 import { mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
+import { theme } from 'styled-tools';
 import tw from 'twin.macro';
 
 const Container = styled(motion.div)`
+  ${theme(THEME.value.background, tw`bg-white`)}
   ${mixins.flexBetween};
   ${mixins.upperCase}
-  ${mixins.textSecondary}
-  ${tw`flex-col bg-white h-screen py-2`};
+  ${tw`flex-col h-screen py-2`};
   ${tw`w-24 xl:w-32`}
   ${tw`px-1 md:px-2`}
   ${Menu.SC.Item}:not(:last-child) {
@@ -58,5 +60,7 @@ const Sidebar = () => {
     </Container>
   );
 };
+
+Sidebar.className = Container;
 
 export default Sidebar;

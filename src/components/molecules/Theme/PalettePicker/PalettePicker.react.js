@@ -1,5 +1,5 @@
 import { ColorBox } from '@atoms';
-import { pallettes as PALLETTES } from '@styles';
+import { gradients as GRADIENTS, mixins, palettes as PALETTES } from '@styles';
 import { NOOP } from '@utils';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -8,34 +8,35 @@ import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
 const Container = styled.div`
-  ${tw`p-2`}
+  ${mixins.flexCenter}
+  ${tw`p-2 flex-row`}
   ${tw`transition duration-500 ease-in-out`}
   ${tw`hocus:opacity-75 hocus:shadow-md`}
   ${ifProp(`isSelected`, tw`shadow-lg`)}
   ${tw`w-20`}
 `;
 
-const PallettePicker = ({
+const PalettePicker = ({
   className,
-  pallettes = PALLETTES,
+  pallettes: palettes = PALETTES,
   onClick: onPalletteClick = NOOP,
-  isSelected,
+  isSelected = false,
 }) => (
   <Container className={className} role="button" isSelected={isSelected}>
-    {Object.entries(pallettes).map(([name, { colors, background }]) => {
+    {Object.entries(palettes).map(([name, { backgroundGradient }]) => {
       const onClick = () => onPalletteClick(name);
-      return <ColorBox key={name} gradient={background} onClick={onClick} />;
+      return <ColorBox key={name} gradient={GRADIENTS[backgroundGradient]} onClick={onClick} />;
     })}
   </Container>
 );
 
-PallettePicker.propTypes = {
+PalettePicker.propTypes = {
   className: PropTypes.string,
   pallettes: PropTypes.object,
   onClick: PropTypes.func,
-  isSelected: PropTypes.func,
+  isSelected: PropTypes.bool,
 };
 
-PallettePicker.SC = Container;
+PalettePicker.SC = Container;
 
-export default PallettePicker;
+export default PalettePicker;

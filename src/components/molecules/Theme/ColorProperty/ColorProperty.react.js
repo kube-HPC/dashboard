@@ -19,7 +19,14 @@ const Container = styled.div`
   }
 `;
 
-const ColorProperty = ({ className, children, color, gradient, onClick = NOOP, isSelected }) => (
+const ColorProperty = ({
+  className,
+  children,
+  color,
+  gradient,
+  onClick = NOOP,
+  isSelected = false,
+}) => (
   <Container className={className} role="button" onClick={onClick} isSelected={isSelected}>
     <div>{children}</div>
     <ColorBox color={color} gradient={gradient} />
@@ -31,7 +38,7 @@ ColorProperty.propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  isSelected: PropTypes.func,
+  isSelected: PropTypes.bool,
   gradient: PropTypes.object,
 };
 

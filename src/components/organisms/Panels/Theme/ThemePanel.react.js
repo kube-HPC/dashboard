@@ -1,6 +1,6 @@
 import { ColorPicker } from '@atoms';
 import { THEME } from '@constants';
-import { useTheme } from '@hooks';
+import { useUserTheme } from '@hooks';
 import { ColorProperty } from '@molecules';
 import { mixins } from '@styles';
 import PropTypes from 'prop-types';
@@ -21,24 +21,28 @@ const Container = styled.div`
   }
 `;
 
-const isPallette = path => Object.values(THEME.pallette).includes(path);
-const DEFAULT_THEME = { path: THEME.pallette.default, value: `#000` };
+const isPallette = path => Object.values(THEME.palette).includes(path);
+const DEFAULT_THEME = { path: THEME.palette.default, value: `#000` };
 
 const ThemePanel = ({ className }) => {
-  const { colors, setProperty, setPallette } = useTheme();
+  const {
+    theme: { colors },
+    setProperty,
+    setPalette,
+  } = useUserTheme();
   const [{ path, value }, setTheme] = useState(DEFAULT_THEME);
 
   const onColorChange = value => setTheme(prev => ({ ...prev, value }));
   const onPathChange = path => setTheme(prev => ({ ...prev, path }));
 
   useEffect(() => {
-    isPallette(path) ? setPallette(path) : setProperty({ path, value });
-  }, [path, setPallette, setProperty, value]);
+    isPallette(path) ? setPalette(path) : setProperty({ path, value });
+  }, [path, setPalette, setProperty, value]);
 
   return (
     <Container className={className}>
       <ColorPicker color={value} onChange={onColorChange} disabled={isPallette(path)} />
-      <ThemeProperty title="Pallettes" isPallette currPath={path} onClick={onPathChange} />
+      <ThemeProperty title="Palettes" isPallette currPath={path} onClick={onPathChange} />
       <ThemeProperty
         title="Types"
         currPath={path}

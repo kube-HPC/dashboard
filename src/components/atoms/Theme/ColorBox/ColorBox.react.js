@@ -32,7 +32,7 @@ ColorBox.propTypes = {
   color: PropTypes.string,
   onClick: PropTypes.func,
   isSelected: PropTypes.func,
-  gradient: PropTypes.object,
+  gradient: PropTypes.array,
 };
 
 ColorBox.SC = { Container, Box };

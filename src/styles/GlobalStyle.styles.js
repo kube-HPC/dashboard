@@ -1,13 +1,16 @@
+import { THEME } from '@constants';
+import Icon from 'components/atoms/Icons/Icon.react';
 import { createGlobalStyle } from 'styled-components';
+import { withProp } from 'styled-tools';
 import tw from 'twin.macro';
-import Icon from '../components/atoms/Icons/Icon.react';
 import gradients from './gradients.styles';
 import mixins from './mixins.styles';
 
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    ${gradients.cloudyKnoxville}
+    ${withProp(`theme.${THEME.value.backgroundGradient}`, background => gradients[background])}
+    ${withProp(`theme.mode`, mode => (mode === THEME.mode.light ? tw`text-black` : tw`text-white`))}
   }
 
   main {

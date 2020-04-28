@@ -10,7 +10,8 @@ import tw from 'twin.macro';
 const Item = styled(motion.div)`
   ${mixins.colorOnFocus}
   ${mixins.timingNormal}
-  ${tw`transition-colors text-secondary text-center`};
+  ${mixins.textSecondary}
+  ${tw`transition-colors text-center`};
   ${ifProp(`selected`, tw`text-black`)};
 
   span {

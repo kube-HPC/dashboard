@@ -6,20 +6,19 @@ import { useSelector } from 'react-redux';
 import { createStore } from 'reusable';
 import useActions from './useActions';
 
-const useTheme = () => {
+const useUserTheme = () => {
   const theme = useSelector(state => state.theme, isEqual);
   const [, setLocalStorageTheme] = useLocalStorage(LOCAL_STORAGE.THEME, theme);
 
   const {
-    theme: { setProperty, setPallette },
+    theme: { setProperty, setPalette },
   } = useActions();
 
   useEffect(() => {
     setLocalStorageTheme(theme);
   }, [setLocalStorageTheme, theme]);
 
-  const { background, colors } = theme;
-  return { colors, background, setProperty, setPallette };
+  return { theme, setProperty, setPalette: setPalette };
 };
 
-export default createStore(useTheme);
+export default createStore(useUserTheme);

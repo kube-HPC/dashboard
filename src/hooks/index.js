@@ -8,6 +8,6 @@ export { default as useNotification } from './useNotification';
 export { default as usePanel } from './usePanel';
 export { default as useSidebar } from './useSidebar';
 export { default as useSocket } from './useSocket';
-export { default as useTheme } from './useTheme';
 export { default as useTopActions } from './useTopActions';
+export { default as useUserTheme } from './useUserTheme';
 export { default as useUtilities } from './useUtilities';

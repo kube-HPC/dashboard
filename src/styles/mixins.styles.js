@@ -1,4 +1,6 @@
+import { THEME } from '@constants';
 import { css } from 'styled-components';
+import { theme } from 'styled-tools';
 import tw from 'twin.macro';
 
 const fillContainer = css`
@@ -37,7 +39,7 @@ const upperCase = css`
 `;
 
 const textSecondary = css`
-  ${tw`text-secondary`}
+  ${theme(THEME.value.textSecondary, tw`text-gray-500`)}
 `;
 
 const rounded = css`
@@ -46,7 +48,8 @@ const rounded = css`
 
 const card = css`
   ${rounded}
-  ${tw`bg-white p-3 text-center`}
+  ${tw`p-3 text-center`}
+  ${theme(THEME.value.background, tw`bg-white`)}
 `;
 
 const timingSlow = css`

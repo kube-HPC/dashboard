@@ -1,18 +1,18 @@
 import { LOCAL_STORAGE, THEME } from '@constants';
 import { createSlice } from '@reduxjs/toolkit';
-import { pallettes } from '@styles';
+import { palettes } from '@styles';
 import { getLocalStorageObjectItem } from '@utils';
-import { setPallette, setProperty } from './theme.reducers';
+import { setPalette, setProperty } from './theme.reducers';
 
 const initialState =
-  getLocalStorageObjectItem(LOCAL_STORAGE.THEME) || pallettes[THEME.pallette.default];
+  getLocalStorageObjectItem(LOCAL_STORAGE.THEME) || palettes[THEME.palette.default];
 
 const themeSlice = createSlice({
   name: `theme`,
   initialState,
   reducers: {
     setProperty,
-    setPallette,
+    setPalette,
   },
 });
 
