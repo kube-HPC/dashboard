@@ -39,7 +39,7 @@ const upperCase = css`
 `;
 
 const textSecondary = css`
-  ${theme(THEME.value.textSecondary, tw`text-gray-500`)}
+  ${theme(THEME.value.textSecondary)}
 `;
 
 const rounded = css`
@@ -49,7 +49,7 @@ const rounded = css`
 const card = css`
   ${rounded}
   ${tw`p-3 text-center`}
-  ${theme(THEME.value.background, tw`bg-white`)}
+  ${theme(THEME.value.background)}
 `;
 
 const timingSlow = css`
