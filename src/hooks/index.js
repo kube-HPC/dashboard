@@ -4,6 +4,7 @@ export { default as useGraphInfo } from './useGraphInfo';
 export { default as useJob } from './useJob';
 export { default as useJobActions } from './useJobActions';
 export { default as useJobs } from './useJobs';
+export { default as useLocalStorage } from './useLocalStorage';
 export { default as useNotification } from './useNotification';
 export { default as usePanel } from './usePanel';
 export { default as useSidebar } from './useSidebar';

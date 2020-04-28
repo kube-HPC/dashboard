@@ -1,4 +1,4 @@
-export { EMPTY_ARRAY, IS_WINDOW_DEFINED, NOOP } from './common';
+export { EMPTY_ARRAY, IS_WINDOW_DEFINED, NOOP, safeParserJson } from './common';
 export { areEqualGraphs, formatEdge, formatNode } from './graph';
 export { iconsToActions } from './icons';
 export {

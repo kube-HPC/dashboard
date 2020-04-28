@@ -1,10 +1,10 @@
 import { LOCAL_STORAGE } from '@constants';
-import { useLocalStorage } from 'beautiful-react-hooks';
 import isEqual from 'lodash.isequal';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { createStore } from 'reusable';
 import useActions from './useActions';
+import useLocalStorage from './useLocalStorage';
 
 const useUserTheme = () => {
   const theme = useSelector(state => state.theme, isEqual);
