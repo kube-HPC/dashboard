@@ -3,18 +3,18 @@ import useActions from './useActions';
 
 const useUtilities = () => {
   const {
-    panel: { setValue },
+    panel: { set },
   } = useActions();
 
   const onAction = useCallback(
     ({ name, action }) => {
-      setValue(name);
+      set(name);
       action?.();
     },
-    [setValue],
+    [set],
   );
 
-  return { setValue, onAction };
+  return { set, onAction };
 };
 
 export default useUtilities;

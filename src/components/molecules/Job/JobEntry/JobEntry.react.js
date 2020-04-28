@@ -1,5 +1,5 @@
 import { Tag } from '@atoms';
-import { useTheme } from '@hooks';
+import { useUserTheme } from '@hooks';
 import { mixins } from '@styles';
 import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
@@ -10,7 +10,7 @@ import JobTime from './JobTime.react';
 
 const TagContainer = styled.div`
   ${mixins.flexCenter}
-  ${Tag.SC} {
+  ${Tag.className} {
     ${tw`w-auto lg:w-24 xl:w-32 capitalize`}
   }
 `;
@@ -49,7 +49,9 @@ const Container = styled.div`
 `;
 
 const JobEntry = ({ className, jobId, pipelineName, startTime, status, timeTook }) => {
-  const { colors } = useTheme();
+  const {
+    theme: { colors },
+  } = useUserTheme();
   return (
     <Container className={className}>
       <JobId>{jobId}</JobId>

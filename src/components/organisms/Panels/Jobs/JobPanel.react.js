@@ -32,7 +32,7 @@ const Container = styled.div`
   ${Item} {
     ${tw`mt-2`}
   }
-  ${Tag.SC} {
+  ${Tag.className} {
     ${tw`mr-1 capitalize`};
     :last-child {
       ${tw`mr-0`};

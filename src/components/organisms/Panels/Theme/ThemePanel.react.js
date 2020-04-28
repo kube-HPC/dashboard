@@ -1,44 +1,57 @@
 import { ColorPicker } from '@atoms';
 import { THEME } from '@constants';
-import { useTheme } from '@hooks';
+import { useUserTheme } from '@hooks';
 import { ColorProperty } from '@molecules';
 import { mixins } from '@styles';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import ThemeProperty from './ThemeProperty.react';
 
 const Container = styled.div`
+  ${tw`mt-5`} /* Margin because of custom-scroll */
   ${mixins.fillContainer}
   ${mixins.flexCenter}
   ${tw`flex-col`}
   ${ColorProperty.SC} {
     ${tw`capitalize`}
   }
-  h1 {
-    ${tw`mt-2`}
+  h2 {
+    ${tw`underline`}
+  }
+  ${ThemeProperty.className} {
+    ${tw`my-2`}
   }
 `;
 
-const isPallette = path => Object.values(THEME.pallette).includes(path);
-const DEFAULT_THEME = { path: THEME.pallette.default, value: `#000` };
+const isPallette = path => Object.values(THEME.palette).includes(path);
 
 const ThemePanel = ({ className }) => {
-  const { colors, setProperty, setPallette } = useTheme();
-  const [{ path, value }, setTheme] = useState(DEFAULT_THEME);
+  const {
+    theme: { colors, name },
+    setProperty,
+    setPalette,
+  } = useUserTheme();
+
+  const [{ path, value }, setTheme] = useState(() => ({ path: name, value: `#000` }));
+
+  const isMounted = useRef(false);
 
   const onColorChange = value => setTheme(prev => ({ ...prev, value }));
   const onPathChange = path => setTheme(prev => ({ ...prev, path }));
 
   useEffect(() => {
-    isPallette(path) ? setPallette(path) : setProperty({ path, value });
-  }, [path, setPallette, setProperty, value]);
+    if (isMounted.current) {
+      isPallette(path) ? setPalette(path) : setProperty({ path, value });
+    } else {
+      isMounted.current = true;
+    }
+  }, [path, setPalette, setProperty, value]);
 
   return (
     <Container className={className}>
-      <ColorPicker color={value} onChange={onColorChange} disabled={isPallette(path)} />
-      <ThemeProperty title="Pallettes" isPallette currPath={path} onClick={onPathChange} />
+      <ThemeProperty title="Palettes" isPallette currPath={path} onClick={onPathChange} />
       <ThemeProperty
         title="Types"
         currPath={path}
@@ -53,6 +66,7 @@ const ThemePanel = ({ className }) => {
         propertyPath={`pipeline.status`}
         onClick={setTheme}
       />
+      <ColorPicker color={value} onChange={onColorChange} disabled={isPallette(path)} />
     </Container>
   );
 };

@@ -8,6 +8,7 @@ import createStore from 'state/store/createStore';
 import { GlobalStyle } from 'styles';
 import 'tailwindcss/dist/base.css';
 import 'typeface-rajdhani';
+import { ThemeProvider } from '../src/components';
 
 const Container = ({ children }) => {
   useSocket();
@@ -27,12 +28,14 @@ addDecorator(S => {
   const store = createStore();
   return (
     <React.StrictMode>
-      <GlobalStyle />
       <Provider store={store}>
         <ReusableProvider>
-          <Container>
-            <S />
-          </Container>
+          <ThemeProvider>
+            <GlobalStyle />
+            <Container>
+              <S />
+            </Container>
+          </ThemeProvider>
         </ReusableProvider>
       </Provider>
     </React.StrictMode>

@@ -1,5 +1,8 @@
+import { THEME } from '@constants';
 import { css } from 'styled-components';
+import { theme } from 'styled-tools';
 import tw from 'twin.macro';
+import { onMode } from '../utils/styles';
 
 const fillContainer = css`
   ${tw`w-full h-full`}
@@ -28,8 +31,20 @@ const fixed = css`
   ${tw`fixed z-10`}
 `;
 
+const timingSlow = css`
+  ${tw`ease-in-out duration-700`}
+`;
+
+const timingNormal = css`
+  ${timingSlow}
+  ${tw`duration-500`}
+`;
+
 const colorOnFocus = css`
-  ${tw`hocus:text-black cursor-pointer`}
+  ${tw`cursor-pointer`}
+  ${timingSlow}
+  ${tw`transition-opacity hocus:opacity-50`}
+  ${onMode(tw`hocus:text-black`, tw`hocus:text-white`)}
 `;
 
 const upperCase = css`
@@ -37,7 +52,7 @@ const upperCase = css`
 `;
 
 const textSecondary = css`
-  ${tw`text-secondary`}
+  ${theme(THEME.value.textSecondary)}
 `;
 
 const rounded = css`
@@ -46,16 +61,8 @@ const rounded = css`
 
 const card = css`
   ${rounded}
-  ${tw`bg-white p-3 text-center`}
-`;
-
-const timingSlow = css`
-  ${tw`ease-in-out duration-700`}
-`;
-
-const timingNormal = css`
-  ${timingSlow}
-  ${tw`duration-500`}
+  ${tw`p-3 text-center`}
+  ${theme(THEME.value.background)}
 `;
 
 const mixins = {

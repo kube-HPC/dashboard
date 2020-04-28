@@ -1,4 +1,4 @@
-import { pallettes } from '@styles';
+import { palettes } from '@styles';
 import set from 'lodash.set';
 
 export const setProperty = (state, { payload }) => {
@@ -6,4 +6,4 @@ export const setProperty = (state, { payload }) => {
   set(state.colors, path, value);
 };
 
-export const setPallette = (state, { payload }) => pallettes[payload];
+export const setPalette = (state, { payload }) => palettes[payload];

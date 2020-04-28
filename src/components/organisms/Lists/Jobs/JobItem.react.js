@@ -1,5 +1,6 @@
 import { Divider } from '@atoms';
 import { JOBS } from '@config';
+import { THEME } from '@constants';
 import { useJob } from '@hooks';
 import { JobDetails, JobEntry } from '@molecules';
 import { mixins } from '@styles';
@@ -7,7 +8,7 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { ifProp } from 'styled-tools';
+import { ifProp, theme } from 'styled-tools';
 import tw from 'twin.macro';
 import JobActions from './JobActions.react';
 import JobTypes from './JobTypes.react';
@@ -17,9 +18,10 @@ const Reveal = styled(motion.div)`
 `;
 
 const Entry = styled.div`
+  ${theme(THEME.value.background, tw`bg-white`)}
   ${mixins.flexStart}
   ${mixins.rounded}
-  ${tw`bg-white mt-4 items-center`}
+  ${tw`mt-4 items-center`}
   ${tw`transition-shadow ease-in-out duration-300`}
   ${ifProp(`isSelected`, tw`shadow-xl`, tw`shadow-none`)}
 `;

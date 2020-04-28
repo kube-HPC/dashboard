@@ -1,17 +1,19 @@
 import { SIDEBAR } from '@config';
+import { THEME } from '@constants';
 import { useSidebar } from '@hooks';
 import { Menu } from '@molecules';
-import { mixins, spring } from '@styles';
+import { gradients, mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
+import { theme, withProp } from 'styled-tools';
 import tw from 'twin.macro';
 
 const Container = styled(motion.div)`
+  ${theme(THEME.value.background)}
   ${mixins.flexBetween};
   ${mixins.upperCase}
-  ${mixins.textSecondary}
-  ${tw`flex-col bg-white h-screen py-2`};
+  ${tw`flex-col h-screen py-2`};
   ${tw`w-24 xl:w-32`}
   ${tw`px-1 md:px-2`}
   ${Menu.SC.Item}:not(:last-child) {
@@ -23,8 +25,8 @@ const Container = styled(motion.div)`
 `;
 
 const Header = styled(motion.div)`
+  ${withProp(`theme.${THEME.value.headerGradient}`, gradient => gradients[gradient])}
   ${tw`text-xl md:text-2xl lg:text-3xl xl:text-4xl pt-10`};
-  background: linear-gradient(0deg, #868f96 0%, #596164 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: 'Rajdhani', sans-serif;
@@ -58,5 +60,7 @@ const Sidebar = () => {
     </Container>
   );
 };
+
+Sidebar.className = Container;
 
 export default Sidebar;

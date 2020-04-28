@@ -13,13 +13,16 @@ const Container = styled.div`
   ${tw`transition duration-500 ease-in-out`}
   ${tw`hocus:opacity-75 hocus:shadow-md`}
   ${ifProp(`isSelected`, tw`shadow-lg`)}
-
-  ${ColorBox.SC.Container} {
-    ${tw`w-12 ml-2`}
-  }
 `;
 
-const ColorProperty = ({ className, children, color, gradient, onClick = NOOP, isSelected }) => (
+const ColorProperty = ({
+  className,
+  children,
+  color,
+  gradient,
+  onClick = NOOP,
+  isSelected = false,
+}) => (
   <Container className={className} role="button" onClick={onClick} isSelected={isSelected}>
     <div>{children}</div>
     <ColorBox color={color} gradient={gradient} />
@@ -31,7 +34,7 @@ ColorProperty.propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  isSelected: PropTypes.func,
+  isSelected: PropTypes.bool,
   gradient: PropTypes.object,
 };
 

@@ -5,7 +5,6 @@ import { JobPanel, ThemePanel } from '@organisms';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { useSelector } from 'react-redux';
 import { createStore } from 'reusable';
-import useJobs from './useJobs';
 
 const PANEL_CONTENT = {
   [PANEL.welcome]: Welcome,
@@ -15,18 +14,16 @@ const PANEL_CONTENT = {
 
 const usePanel = () => {
   const {
-    panel: { setValue, toggle },
+    panel: { set, toggle },
   } = useActions();
   const { expanded, value: panelName } = useSelector(state => state.panel);
 
   const isMdQuery = useMediaQuery(MEDIA_QUERIES.md);
-  const { selected } = useJobs();
-
-  const mode = selected ? PANEL.jobs : panelName || PANEL.welcome;
+  const mode = panelName || PANEL.welcome;
 
   return {
     value: panelName,
-    setValue,
+    set,
     toggle,
     expanded,
     Content: PANEL_CONTENT[mode],

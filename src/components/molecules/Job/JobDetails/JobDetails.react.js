@@ -16,7 +16,7 @@ const Details = styled.div`
 
 const Tasks = styled.ul`
   ${tw`mr-10`}
-  ${Tag.SC} {
+  ${Tag.className} {
     ${tw`font-bold ml-10`}
   }
   h1 {
