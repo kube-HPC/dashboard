@@ -4,7 +4,7 @@ import { useUserTheme } from '@hooks';
 import { ColorProperty } from '@molecules';
 import { mixins } from '@styles';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import ThemeProperty from './ThemeProperty.react';
@@ -36,11 +36,17 @@ const ThemePanel = ({ className }) => {
 
   const [{ path, value }, setTheme] = useState(() => ({ path: name, value: `#000` }));
 
+  const isMounted = useRef(false);
+
   const onColorChange = value => setTheme(prev => ({ ...prev, value }));
   const onPathChange = path => setTheme(prev => ({ ...prev, path }));
 
   useEffect(() => {
-    isPallette(path) ? setPalette(path) : setProperty({ path, value });
+    if (isMounted.current) {
+      isPallette(path) ? setPalette(path) : setProperty({ path, value });
+    } else {
+      isMounted.current = true;
+    }
   }, [path, setPalette, setProperty, value]);
 
   return (
