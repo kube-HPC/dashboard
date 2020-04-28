@@ -2,12 +2,14 @@ import { PANEL } from '@constants';
 import PIPELINE_STATUS from '@hkube/consts/lib/pipeline-statuses';
 import { areEqualGraphs, entrySelector, graphSelector, progressSelector } from '@utils';
 import isEqual from 'lodash.isequal';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import tw from 'twin.macro';
 import useActions from './useActions';
 
 const onHoverShadow = tw`shadow-md`.boxShadow;
+
+const whileHover = { boxShadow: onHoverShadow };
 
 const useJob = jobId => {
   const isSelected = useSelector(state => state.jobs.selected === jobId);
@@ -23,8 +25,6 @@ const useJob = jobId => {
   } = useActions();
 
   const { types, ...job } = jobEntry;
-
-  const whileHover = useMemo(() => ({ boxShadow: onHoverShadow }), []);
 
   const onSelect = useCallback(() => {
     select(jobId);

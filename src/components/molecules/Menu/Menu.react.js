@@ -1,5 +1,5 @@
 import { mixins, spring } from '@styles';
-import { NOOP } from '@utils';
+import { NOOP, onMode } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { Children, useEffect, useState } from 'react';
@@ -7,12 +7,19 @@ import styled, { css } from 'styled-components';
 import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
+const styleOnSelect = (lightProp, darkProp) => ifProp(`selected`, onMode(lightProp, darkProp));
+
+const whileHover = {
+  opacity: 0.4,
+  transition: { duration: 0.5 },
+};
+
 const Item = styled(motion.div)`
   ${mixins.colorOnFocus}
-  ${mixins.timingNormal}
   ${mixins.textSecondary}
-  ${tw`transition-colors text-center`};
-  ${ifProp(`selected`, tw`text-black`)};
+  ${mixins.timingSlow}
+  ${tw`transition-opacity transition-colors text-center`};
+  ${styleOnSelect(tw`text-black`, tw`text-white`)}
 
   span {
     ${tw`inline-block`}
@@ -20,7 +27,7 @@ const Item = styled(motion.div)`
       content: '';
       ${mixins.timingNormal}
       ${tw`w-full h-px block transition-colors bg-transparent`}
-      ${ifProp(`selected`, tw`bg-black`)};
+      ${styleOnSelect(tw`bg-black`, tw`bg-white`)}
     }
   }
 `;
@@ -98,6 +105,7 @@ const Menu = ({
             custom={horizontal}
             key={key}
             selected={selected === key}
+            whileHover={whileHover}
             onClick={onClick}
             variants={item}>
             <span>{child}</span>

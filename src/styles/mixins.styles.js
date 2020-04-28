@@ -2,6 +2,7 @@ import { THEME } from '@constants';
 import { css } from 'styled-components';
 import { theme } from 'styled-tools';
 import tw from 'twin.macro';
+import { onMode } from '../utils/styles';
 
 const fillContainer = css`
   ${tw`w-full h-full`}
@@ -31,7 +32,8 @@ const fixed = css`
 `;
 
 const colorOnFocus = css`
-  ${tw`hocus:text-black cursor-pointer`}
+  ${tw`cursor-pointer`}
+  ${onMode(tw`hocus:text-black`, tw`hocus:text-white`)}
 `;
 
 const upperCase = css`

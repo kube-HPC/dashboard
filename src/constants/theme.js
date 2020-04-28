@@ -13,9 +13,11 @@ const theme = {
     slickCarbon: `slickCarbon`,
   },
   value: {
+    mode: `mode`,
     backgroundGradient: `backgroundGradient`,
     background: `background`,
     textSecondary: `textSecondary`,
+    headerGradient: `headerGradient`,
   },
 };
 

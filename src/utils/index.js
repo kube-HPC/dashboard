@@ -18,3 +18,4 @@ export {
 export { calc, trans } from './parallax';
 export { pipelineSelector } from './pipeline';
 export { sorter, stringify, toBoolean, toUpperCaseFirstLetter } from './string';
+export { onMode } from './styles';

@@ -11,7 +11,6 @@ const shadyWater = css`
 `;
 
 const slickCarbon = css`
-  /* background-image: linear-gradient(to right, black 0%, #434343 100%); */
   background-image: linear-gradient(120deg, #434343 0%, black 100%);
 `;
 
