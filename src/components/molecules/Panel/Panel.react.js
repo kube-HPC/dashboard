@@ -60,7 +60,7 @@ const Scrollbar = styled(Scrollbars)`
 `;
 
 const ContentContainer = styled.div`
-  ${tw`p-3`}
+  ${tw`p-3 h-full`}
 `;
 
 const Container = styled(motion.div)`
