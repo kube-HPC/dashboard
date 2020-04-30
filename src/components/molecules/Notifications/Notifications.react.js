@@ -1,36 +1,14 @@
 import { NOTIFICATIONS } from '@config';
+import { THEME } from '@constants';
 import { useNotification } from '@hooks';
 import { gradients, mixins, spring } from '@styles';
+import { onMode } from '@utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import { theme } from 'styled-tools';
 import tw from 'twin.macro';
-
-const Notification = styled(motion.li)`
-  ${tw`overflow-hidden shadow-lg rounded`}
-  ${gradients.cloudyKnoxville}
-`;
-
-const Container = styled.ul`
-  ${mixins.flexEnd}
-  ${tw`fixed inset-y-0 right-0 flex-col list-none overflow-hidden z-40 mb-2 mr-2`}
-  ${Notification} {
-    ${tw`mt-2 hocus:cursor-pointer`};
-    :first-child {
-      ${tw`mt-0`}
-    }
-  }
-`;
-
-const Progress = styled(motion.div)`
-  ${tw`h-1 p-0`}
-  ${gradients.shadyWater}
-`;
-
-const Content = styled.div`
-  ${tw`p-2`}
-`;
 
 const variants = {
   visible: {
@@ -96,7 +74,33 @@ const Notifications = ({ className }) => {
   );
 };
 
-Notification.SC = Container;
+const Notification = styled(motion.li)`
+  ${tw`overflow-hidden shadow-lg rounded border`}
+  ${onMode(tw`border-black`, tw`border-white`)}
+  ${theme(THEME.value.backgroundGradient)}
+`;
+
+const Container = styled.ul`
+  ${mixins.flexEnd}
+  ${tw`fixed inset-y-0 right-0 flex-col list-none overflow-hidden z-40 mb-2 ml-2`}
+  ${Notification} {
+    ${tw`mt-2 hocus:cursor-pointer`};
+    :first-child {
+      ${tw`mt-0`}
+    }
+  }
+`;
+
+const Progress = styled(motion.div)`
+  ${tw`h-1 p-0`}
+  ${gradients.shadyWater}
+`;
+
+const Content = styled.div`
+  ${tw`p-2`}
+`;
+
+Notifications.className = Container;
 
 Notifications.propTypes = {
   className: PropTypes.string,

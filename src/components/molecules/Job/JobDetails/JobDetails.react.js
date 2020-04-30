@@ -72,7 +72,7 @@ const JobDetails = ({ className, jobGraph, progress, nodesStats }) => {
   );
 };
 
-JobDetails.SC = Container;
+JobDetails.className = Container;
 
 JobDetails.propTypes = {
   className: PropTypes.string,

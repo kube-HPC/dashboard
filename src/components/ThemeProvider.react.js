@@ -6,11 +6,27 @@ import { ThemeProvider as SCThemeProvider } from 'styled-components';
 const ThemeProvider = ({ children }) => {
   const { theme } = useUserTheme();
 
-  const { backgroundGradient, headerGradient, textSecondary, mode, background, name } = theme;
+  const {
+    backgroundGradient,
+    headerGradient,
+    textSecondary,
+    mode,
+    background,
+    name,
+    backgroundDark,
+  } = theme;
 
   return (
     <SCThemeProvider
-      theme={{ name, mode, background, backgroundGradient, headerGradient, textSecondary }}>
+      theme={{
+        name,
+        mode,
+        background,
+        backgroundGradient,
+        headerGradient,
+        textSecondary,
+        backgroundDark,
+      }}>
       {children}
     </SCThemeProvider>
   );

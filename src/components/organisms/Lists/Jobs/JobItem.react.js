@@ -4,6 +4,7 @@ import { THEME } from '@constants';
 import { useJob } from '@hooks';
 import { JobDetails, JobEntry } from '@molecules';
 import { mixins } from '@styles';
+import { onMode } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -23,13 +24,13 @@ const Entry = styled.div`
   ${mixins.rounded}
   ${tw`mt-4 items-center`}
   ${tw`transition-shadow ease-in-out duration-300`}
-  ${ifProp(`isSelected`, tw`shadow-xl`, tw`shadow-none`)}
+  ${ifProp(`isSelected`, onMode(tw`shadow-xl`, tw`shadow-xlLight`))}
 `;
 
 const DividerWrapper = styled.div`
 ${mixins.flexCenter}
 ${tw`w-full mt-2`}
- > ${Divider.SC} {
+ > ${Divider.className} {
     ${tw`w-1/2`}
   }
 `;
@@ -38,7 +39,7 @@ const Content = styled.div`
   ${mixins.fillContainer}
   ${mixins.flexStart}
   ${tw`flex-col p-2 overflow-auto`}
-  ${JobDetails.SC} {
+  ${JobDetails.className} {
     ${tw`w-full pb-2`}
   }
 `;
@@ -49,7 +50,7 @@ const Item = styled(motion.div)`
   ${Reveal} {
     ${tw`flex-grow w-full`}
   }
-  ${JobActions.SC} {
+  ${JobActions.className} {
     ${tw`pt-4`}
   }
 `;
@@ -62,7 +63,7 @@ const HoverDiv = styled(motion.div)`
 const RevealBox = styled(motion.div)`
   ${mixins.flexCenter}
   ${tw`w-6 h-8 ml-1`}
-  ${Divider.SC} {
+  ${Divider.className} {
     ${mixins.timingSlow}
     ${mixins.rounded}
     ${tw`transition-colors w-1 min-h-0 top-0`}
@@ -108,7 +109,7 @@ const JobItem = ({ className, jobId }) => {
           variants={JOBS.ANIMATION.reveal}
           animate={isCompleted && (isRevealed ? `moveRight` : `visible`)}>
           <JobTypes types={types} />
-          <HoverDiv whileHover={whileHover} onClick={onSelect}>
+          <HoverDiv whileHover={whileHover}>
             <Entry isSelected={isSelected}>
               <RevealBox
                 onHoverStart={onHoverStart}
@@ -116,7 +117,7 @@ const JobItem = ({ className, jobId }) => {
                 isFullHeight={!isCompleted}>
                 <Divider vertical />
               </RevealBox>
-              <Content>
+              <Content onClick={onSelect}>
                 <JobEntry {...job} />
                 {!isCompleted && (
                   <>

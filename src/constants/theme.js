@@ -16,6 +16,7 @@ const theme = {
     mode: `mode`,
     backgroundGradient: `backgroundGradient`,
     background: `background`,
+    backgroundDark: `backgroundDark`,
     textSecondary: `textSecondary`,
     headerGradient: `headerGradient`,
   },

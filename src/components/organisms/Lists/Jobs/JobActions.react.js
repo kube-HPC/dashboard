@@ -27,6 +27,6 @@ JobActions.propTypes = {
 
 const MemoActions = React.memo(JobActions, isEqual);
 MemoActions.displayName = `Job Actions`;
-MemoActions.SC = Container;
+MemoActions.className = Container;
 
 export default MemoActions;

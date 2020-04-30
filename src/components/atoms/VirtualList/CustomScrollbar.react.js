@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
+import Thumb from '../Thumb/Thumb.react';
 
 // https://codesandbox.io/s/t4352
 const CustomScrollbars = ({ onScroll, forwardedRef, style, children }) => {
@@ -14,7 +15,9 @@ const CustomScrollbars = ({ onScroll, forwardedRef, style, children }) => {
       ref={refSetter}
       autoHide
       style={{ ...style, overflow: `hidden` }}
-      onScroll={onScroll}>
+      onScroll={onScroll}
+      renderThumbHorizontal={Thumb}
+      renderThumbVertical={Thumb}>
       {children}
     </Scrollbars>
   );

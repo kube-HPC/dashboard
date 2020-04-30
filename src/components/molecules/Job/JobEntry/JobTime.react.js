@@ -17,7 +17,7 @@ const Time = styled.div`
 const responsiveHide = tw`hidden xl:inline-block`;
 
 const Container = styled.div`
-  ${FullDate},${Divider.SC},${Hour} {
+  ${FullDate},${Divider.className},${Hour} {
     ${responsiveHide}
   }
 `;

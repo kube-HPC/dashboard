@@ -7,9 +7,9 @@ import tw from 'twin.macro';
 const defaultColor = tw`bg-gray-500`.backgroundColor;
 
 const Container = styled.span`
-  ${tw`rounded-lg inline-block`}
+  ${tw`rounded-sm inline-block`}
   ${tw`py-px xl:py-1 px-2`}
-  ${tw`text-sm xl:text-base`}
+  ${tw`text-white text-sm xl:text-base`}
   background-color: ${prop(`color`, defaultColor)};
 `;
 

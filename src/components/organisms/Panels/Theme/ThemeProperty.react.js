@@ -1,5 +1,5 @@
 import { ColorProperty } from '@molecules';
-import { gradients, mixins, palettes } from '@styles';
+import { mixins, palettes } from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
@@ -31,7 +31,7 @@ const ThemeProperty = ({
           return (
             <ColorProperty
               key={name}
-              gradient={gradients[backgroundGradient]}
+              gradient={backgroundGradient}
               onClick={_onClick}
               isSelected={currPath === name}>
               {name}
@@ -40,7 +40,6 @@ const ThemeProperty = ({
         })}
       </Grid>
     ) : (
-      // <PalettePicker isSelected={currPath === THEME.palette.default} onClick={onClick} />
       <Grid className={className}>
         {Object.entries(properties).map(([property, color]) => {
           const path = `${propertyPath}.${property}`;

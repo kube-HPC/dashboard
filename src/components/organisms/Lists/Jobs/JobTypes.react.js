@@ -11,7 +11,7 @@ const Types = styled.div`
   ${Tag.className} {
     ${tw`py-px`}
     :not(:first-child) {
-      ${tw`ml-px lg:ml-1`}
+      ${tw`ml-px lg:ml-2`}
     }
   }
 `;
