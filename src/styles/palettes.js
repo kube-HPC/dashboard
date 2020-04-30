@@ -1,7 +1,7 @@
 import { THEME } from '@constants';
 import { gradients } from '@styles';
 import tw from 'twin.macro';
-import { COLORS } from './colors';
+import { COLORS, COLORS_DARK } from './colors';
 
 const { palette, value } = THEME;
 
@@ -24,7 +24,7 @@ const palettes = {
     [value.background]: tw`bg-darkGray-500`,
     [value.backgroundDark]: tw`bg-darkGray-100`,
     [value.textSecondary]: tw`text-darkGray-100`,
-    colors: COLORS,
+    colors: COLORS_DARK,
   },
 };
 

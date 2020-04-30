@@ -1,12 +1,12 @@
 import { Graph, Tag } from '@atoms';
 import { PRIORITY } from '@constants';
-import { useGraph } from '@hooks';
+import { useGraph, useUserTheme } from '@hooks';
 import { JobGraph } from '@molecules';
-import { COLORS, mixins } from '@styles';
-import { isLightThemeSelector, selectedStatsSelector } from '@utils';
+import { mixins } from '@styles';
+import { selectedStatsSelector } from '@utils';
 import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
@@ -48,21 +48,17 @@ const JobPanel = () => {
   const { selected } = useGraph();
   const { nodesStats, priority } = useSelector(selectedStatsSelector, isEqual);
   const { expanded } = useSelector(state => state.panel);
-  const isLightTheme = useSelector(isLightThemeSelector);
-
-  const options = useMemo(() => (isLightTheme ? tw`text-black` : tw`text-gray-500`), [
-    isLightTheme,
-  ]);
+  const { theme } = useUserTheme();
 
   return (
     <Container isExpanded={expanded}>
-      {selected && <JobGraph jobGraph={selected} options={options} />}
+      {selected && <JobGraph jobGraph={selected} />}
       {nodesStats && (
         <Item>
           <div>Node Stats</div>
           <Tags>
             {Object.entries(nodesStats).map(([status, count]) => (
-              <Tag key={status} color={COLORS.task.status[status]}>
+              <Tag key={status} color={theme.colors.task.status[status]}>
                 {status}: {count}
               </Tag>
             ))}
@@ -71,7 +67,7 @@ const JobPanel = () => {
       )}
       <Item>
         <div>Priority</div>
-        <Tag color={COLORS.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
+        <Tag color={theme.colors.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
       </Item>
     </Container>
   );

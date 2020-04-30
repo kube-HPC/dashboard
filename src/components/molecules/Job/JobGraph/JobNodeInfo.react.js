@@ -1,6 +1,7 @@
 import { Tag } from '@atoms';
 import { THEME } from '@constants';
-import { COLORS, mixins, variants } from '@styles';
+import { useUserTheme } from '@hooks';
+import { mixins, variants } from '@styles';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -33,25 +34,29 @@ const JobNodeInfo = ({
   warnings,
   isVisible,
   innerRef,
-}) => (
-  <Container
-    className={className}
-    ref={innerRef}
-    initial="hidden"
-    animate={status ? `visible` : `hidden`}
-    isVisible={isVisible && status}
-    variants={variants.revealOpacity}>
-    {algorithmName && <Item>Algorithm Name: {algorithmName}</Item>}
-    {status && (
-      <div>
-        <span>Status: </span>
-        <Tag color={COLORS.task.status[status]}>{status}</Tag>
-      </div>
-    )}
-    {warnings && <Item>Warnings: {warnings.length}</Item>}
-    {retries && <Item>Retries: {retries}</Item>}
-  </Container>
-);
+}) => {
+  const { theme } = useUserTheme();
+
+  return (
+    <Container
+      className={className}
+      ref={innerRef}
+      initial="hidden"
+      animate={status ? `visible` : `hidden`}
+      isVisible={isVisible && status}
+      variants={variants.revealOpacity}>
+      {algorithmName && <Item>Algorithm Name: {algorithmName}</Item>}
+      {status && (
+        <div>
+          <span>Status: </span>
+          <Tag color={theme.colors.task.status[status]}>{status}</Tag>
+        </div>
+      )}
+      {warnings && <Item>Warnings: {warnings.length}</Item>}
+      {retries && <Item>Retries: {retries}</Item>}
+    </Container>
+  );
+};
 
 JobNodeInfo.propTypes = {
   algorithmName: PropTypes.string,
