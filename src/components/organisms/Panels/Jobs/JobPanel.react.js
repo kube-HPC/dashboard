@@ -3,10 +3,10 @@ import { PRIORITY } from '@constants';
 import { useGraph } from '@hooks';
 import { JobGraph } from '@molecules';
 import { COLORS, mixins } from '@styles';
-import { selectedStatsSelector } from '@utils';
+import { isLightThemeSelector, selectedStatsSelector } from '@utils';
 import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
@@ -48,10 +48,15 @@ const JobPanel = () => {
   const { selected } = useGraph();
   const { nodesStats, priority } = useSelector(selectedStatsSelector, isEqual);
   const { expanded } = useSelector(state => state.panel);
+  const isLightTheme = useSelector(isLightThemeSelector);
+
+  const options = useMemo(() => (isLightTheme ? tw`text-black` : tw`text-gray-500`), [
+    isLightTheme,
+  ]);
 
   return (
     <Container isExpanded={expanded}>
-      {selected && <JobGraph jobGraph={selected} />}
+      {selected && <JobGraph jobGraph={selected} options={options} />}
       {nodesStats && (
         <Item>
           <div>Node Stats</div>

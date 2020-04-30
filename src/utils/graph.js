@@ -1,6 +1,5 @@
 import { GRAPH } from '@constants';
 import { graphEdgeTypes } from '@hkube/consts';
-import { COLORS } from '@styles';
 
 const { BATCH } = GRAPH.types;
 
@@ -66,7 +65,7 @@ const handleBatch = ({ batchInfo, ...rest }) => {
   };
 };
 
-export const formatNode = task => {
+export const formatNode = colors => task => {
   const isBatch = task.batchInfo;
   const { nodeName, status, extra, ...rest } = isBatch ? handleBatch(task) : handleTask(task);
 
@@ -76,7 +75,7 @@ export const formatNode = task => {
   };
 
   const color = {
-    background: COLORS.task.status[status],
+    background: colors.task.status[status],
   };
 
   return { nodeName, status, color: isBatch ? undefined : color, ...node, ...rest };

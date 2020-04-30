@@ -1,16 +1,18 @@
 import { Tag } from '@atoms';
+import { THEME } from '@constants';
 import { COLORS, mixins, variants } from '@styles';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { ifProp } from 'styled-tools';
+import { ifProp, theme } from 'styled-tools';
 import tw from 'twin.macro';
 
 const Container = styled(motion.div)`
   ${mixins.flexStart}
-  ${tw`flex-col p-2 rounded-lg shadow-lg bg-white text-left border border-gray-400`}
+  ${tw`flex-col p-2 rounded-lg shadow-lg text-left border border-gray-400`}
   ${ifProp(`isVisible`, tw`block`, tw`hidden`)};
+  ${theme(THEME.value.background)};
 `;
 
 const Item = ({ children }) => (

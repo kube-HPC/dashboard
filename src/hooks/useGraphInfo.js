@@ -1,11 +1,13 @@
 import { GRAPH } from '@constants';
 import { formatEdge, formatNode } from '@utils';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import useUserTheme from './useUserTheme';
 
 const DEFAULT = { nodes: [], edges: [] };
 
 const useGraphInfo = (jobGraph, tooltipRef) => {
   const [graph, setGraph] = useState(DEFAULT);
+  const { theme } = useUserTheme();
 
   const nodesMap = useRef();
 
@@ -29,7 +31,7 @@ const useGraphInfo = (jobGraph, tooltipRef) => {
   );
 
   useEffect(() => {
-    const nodes = jobGraph.nodes.map(formatNode);
+    const nodes = jobGraph.nodes.map(formatNode(theme.colors));
     const edges = jobGraph.edges.map(formatEdge);
     const nodesTool = nodes.map(node => ({ ...node, title: tooltipRef }));
 
@@ -39,7 +41,7 @@ const useGraphInfo = (jobGraph, tooltipRef) => {
       (acc, { nodeName, ...rest }) => ({ ...acc, [nodeName]: { ...rest } }),
       {},
     );
-  }, [jobGraph, tooltipRef]);
+  }, [jobGraph, tooltipRef, theme]);
 
   return { graph, edgeInfo, nodeInfo, events };
 };

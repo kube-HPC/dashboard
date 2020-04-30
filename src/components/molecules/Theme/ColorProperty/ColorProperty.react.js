@@ -32,10 +32,10 @@ const ColorProperty = ({
 ColorProperty.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   onClick: PropTypes.func,
   isSelected: PropTypes.bool,
-  gradient: PropTypes.object,
+  gradient: PropTypes.array,
 };
 
 ColorProperty.SC = Container;
