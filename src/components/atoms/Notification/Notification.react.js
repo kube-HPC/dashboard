@@ -1,13 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import tw from 'twin.macro';
 
-const Container = styled.div`
-  h1 {
-    ${tw`text-lg text-secondary`}
-  }
-`;
+const Container = styled.div``;
 
 const Notification = ({ className, title, children }) => (
   <Container className={className}>

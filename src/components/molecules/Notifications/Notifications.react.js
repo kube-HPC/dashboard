@@ -77,12 +77,12 @@ const Notifications = ({ className }) => {
 const Notification = styled(motion.li)`
   ${tw`overflow-hidden shadow-lg rounded border`}
   ${onMode(tw`border-black`, tw`border-white`)}
-  ${theme(THEME.value.backgroundGradient)}
+  ${theme(THEME.value.background)}
 `;
 
 const Container = styled.ul`
   ${mixins.flexEnd}
-  ${tw`fixed inset-y-0 right-0 flex-col list-none overflow-hidden z-40 mb-2 ml-2`}
+  ${tw`fixed inset-y-0 right-0 flex-col list-none overflow-hidden z-40 mb-5 mr-5`}
   ${Notification} {
     ${tw`mt-2 hocus:cursor-pointer`};
     :first-child {
