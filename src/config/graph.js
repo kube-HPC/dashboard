@@ -11,6 +11,7 @@ const options = ({
   hierarchical = defaultOptions.hierarchical,
   visible = defaultOptions.visible,
   direction = DIRECTION.LR,
+  color,
 } = defaultOptions) => ({
   autoResize: true,
   layout: {
@@ -53,9 +54,10 @@ const options = ({
     width: 2,
     hidden: !visible,
     smooth: {
-      enabled: false,
+      enabled: true,
       type: `cubicBezier`,
     },
+    color,
   },
   interaction: {
     dragNodes: true,

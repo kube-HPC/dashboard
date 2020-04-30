@@ -1,6 +1,6 @@
 import { Tag } from '@atoms';
-import { useJobActions } from '@hooks';
-import { COLORS, mixins } from '@styles';
+import { useJobActions, useUserTheme } from '@hooks';
+import { mixins } from '@styles';
 import IconsBar from 'components/molecules/IconsBar/IconsBar.react';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -48,6 +48,7 @@ const Actions = styled.div`
 
 const JobDetails = ({ className, jobGraph, progress, nodesStats }) => {
   const { icons } = useJobActions(jobGraph?.jobId);
+  const { theme } = useUserTheme();
   return (
     <Container className={className}>
       <JobGraph jobGraph={jobGraph} />
@@ -58,7 +59,7 @@ const JobDetails = ({ className, jobGraph, progress, nodesStats }) => {
             {Object.entries(nodesStats).map(([status, count]) => (
               <li key={status}>
                 <span>{status}</span>
-                <Tag color={COLORS.task.status[status]}>{count}</Tag>
+                <Tag color={theme.colors.task.status[status]}>{count}</Tag>
               </li>
             ))}
           </Tasks>

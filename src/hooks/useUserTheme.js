@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE } from '@constants';
+import { LOCAL_STORAGE, THEME } from '@constants';
 import isEqual from 'lodash.isequal';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -18,7 +18,12 @@ const useUserTheme = () => {
     setLocalStorageTheme(theme);
   }, [setLocalStorageTheme, theme]);
 
-  return { theme, setProperty, setPalette: setPalette };
+  return {
+    theme,
+    setProperty,
+    setPalette: setPalette,
+    isLightTheme: theme.mode === THEME.mode.light,
+  };
 };
 
 export default createStore(useUserTheme);

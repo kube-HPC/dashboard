@@ -1,4 +1,3 @@
-import { useUtilities } from '@hooks';
 import iconsMap from '@icons';
 import { mixins, spring } from '@styles';
 import { EMPTY_ARRAY } from '@utils';
@@ -35,26 +34,23 @@ const item = {
   },
 };
 
-const IconsBar = ({ icons = EMPTY_ARRAY, reveal = `` }) => {
-  const { onAction } = useUtilities();
-  return (
-    <Container initial={reveal} animate="visible" variants={item}>
-      {icons.map(({ name, action, isAvailable = true }) => {
-        const Icon = iconsMap[name];
-        const onClick = () => onAction({ name, action });
-        return (
-          isAvailable && (
-            <Item key={name} onClick={onClick} variants={item}>
-              <Icon />
-            </Item>
-          )
-        );
-      })}
-    </Container>
-  );
-};
+const IconsBar = ({ icons = EMPTY_ARRAY, reveal = `` }) => (
+  <Container initial={reveal} animate="visible" variants={item}>
+    {icons.map(({ name, action, isAvailable = true }) => {
+      const Icon = iconsMap[name];
+      const onClick = () => action();
+      return (
+        isAvailable && (
+          <Item key={name} onClick={onClick} variants={item}>
+            <Icon />
+          </Item>
+        )
+      );
+    })}
+  </Container>
+);
 
-IconsBar.SC = Container;
+IconsBar.className = Container;
 
 IconsBar.propTypes = {
   icons: PropTypes.array.isRequired,

@@ -4,14 +4,12 @@ import { useUserTheme } from '@hooks';
 import { ColorProperty } from '@molecules';
 import { mixins } from '@styles';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import ThemeProperty from './ThemeProperty.react';
 
 const Container = styled.div`
-  ${tw`mt-5`} /* Margin because of custom-scroll */
-  ${mixins.fillContainer}
   ${mixins.flexCenter}
   ${tw`flex-col`}
   ${ColorProperty.SC} {
@@ -49,23 +47,28 @@ const ThemePanel = ({ className }) => {
     }
   }, [path, setPalette, setProperty, value]);
 
+  const themeProperties = useMemo(
+    () => [
+      [`Pipeline Type`, colors.pipeline.type, `pipeline.type`],
+      [`Pipeline Status`, colors.pipeline.status, `pipeline.status`],
+      [`Task Status`, colors.task.status, `task.status`],
+    ],
+    [colors],
+  );
+
   return (
     <Container className={className}>
       <ThemeProperty title="Palettes" isPallette currPath={path} onClick={onPathChange} />
-      <ThemeProperty
-        title="Types"
-        currPath={path}
-        properties={colors.pipeline.type}
-        propertyPath={`pipeline.type`}
-        onClick={setTheme}
-      />
-      <ThemeProperty
-        title="Statuses"
-        currPath={path}
-        properties={colors.pipeline.status}
-        propertyPath={`pipeline.status`}
-        onClick={setTheme}
-      />
+      {themeProperties.map(([title, properties, propertyPath]) => (
+        <ThemeProperty
+          key={propertyPath}
+          title={title}
+          currPath={path}
+          properties={properties}
+          propertyPath={propertyPath}
+          onClick={setTheme}
+        />
+      ))}
       <ColorPicker color={value} onChange={onColorChange} disabled={isPallette(path)} />
     </Container>
   );

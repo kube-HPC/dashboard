@@ -1,16 +1,19 @@
 import { Tag } from '@atoms';
-import { COLORS, mixins, variants } from '@styles';
+import { THEME } from '@constants';
+import { useUserTheme } from '@hooks';
+import { mixins, variants } from '@styles';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { ifProp } from 'styled-tools';
+import { ifProp, theme } from 'styled-tools';
 import tw from 'twin.macro';
 
 const Container = styled(motion.div)`
   ${mixins.flexStart}
-  ${tw`flex-col p-2 rounded-lg shadow-lg bg-white text-left border border-gray-400`}
+  ${tw`flex-col p-2 rounded-lg shadow-lg text-left border border-gray-400`}
   ${ifProp(`isVisible`, tw`block`, tw`hidden`)};
+  ${theme(THEME.value.background)};
 `;
 
 const Item = ({ children }) => (
@@ -31,25 +34,29 @@ const JobNodeInfo = ({
   warnings,
   isVisible,
   innerRef,
-}) => (
-  <Container
-    className={className}
-    ref={innerRef}
-    initial="hidden"
-    animate={status ? `visible` : `hidden`}
-    isVisible={isVisible && status}
-    variants={variants.revealOpacity}>
-    {algorithmName && <Item>Algorithm Name: {algorithmName}</Item>}
-    {status && (
-      <div>
-        <span>Status: </span>
-        <Tag color={COLORS.task.status[status]}>{status}</Tag>
-      </div>
-    )}
-    {warnings && <Item>Warnings: {warnings.length}</Item>}
-    {retries && <Item>Retries: {retries}</Item>}
-  </Container>
-);
+}) => {
+  const { theme } = useUserTheme();
+
+  return (
+    <Container
+      className={className}
+      ref={innerRef}
+      initial="hidden"
+      animate={status ? `visible` : `hidden`}
+      isVisible={isVisible && status}
+      variants={variants.revealOpacity}>
+      {algorithmName && <Item>Algorithm Name: {algorithmName}</Item>}
+      {status && (
+        <div>
+          <span>Status: </span>
+          <Tag color={theme.colors.task.status[status]}>{status}</Tag>
+        </div>
+      )}
+      {warnings && <Item>Warnings: {warnings.length}</Item>}
+      {retries && <Item>Retries: {retries}</Item>}
+    </Container>
+  );
+};
 
 JobNodeInfo.propTypes = {
   algorithmName: PropTypes.string,

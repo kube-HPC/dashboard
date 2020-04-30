@@ -1,8 +1,8 @@
 import { Graph } from '@atoms';
-import { useGraphInfo } from '@hooks';
+import { useGraphInfo, useUserTheme } from '@hooks';
 import { mixins } from '@styles';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
@@ -37,6 +37,13 @@ const JobGraph = ({ className, jobGraph, options }) => {
 
   const { graph, nodeInfo, events } = useGraphInfo(jobGraph, tooltipRef);
 
+  const { isLightTheme } = useUserTheme();
+
+  const themedOptions = useMemo(() => {
+    const colors = isLightTheme ? tw`text-black` : tw`text-gray-500`;
+    return { ...options, ...colors };
+  }, [isLightTheme, options]);
+
   useEffect(() => {
     // Need some delay for portal the tooltip to canvas
     if (!isFirstReveal && nodeInfo) {
@@ -48,7 +55,7 @@ const JobGraph = ({ className, jobGraph, options }) => {
 
   return (
     <Container className={className} isHovered={nodeInfo !== null}>
-      <Graph graph={graph} options={options} events={events} />
+      <Graph graph={graph} options={themedOptions} events={events} />
       <JobNodeInfo innerRef={setTooltipRef} isVisible={isFirstReveal} {...nodeInfo} />
     </Container>
   );

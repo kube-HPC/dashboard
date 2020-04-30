@@ -1,8 +1,8 @@
 import { Graph, Tag } from '@atoms';
 import { PRIORITY } from '@constants';
-import { useGraph } from '@hooks';
+import { useGraph, useUserTheme } from '@hooks';
 import { JobGraph } from '@molecules';
-import { COLORS, mixins } from '@styles';
+import { mixins } from '@styles';
 import { selectedStatsSelector } from '@utils';
 import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
@@ -48,6 +48,7 @@ const JobPanel = () => {
   const { selected } = useGraph();
   const { nodesStats, priority } = useSelector(selectedStatsSelector, isEqual);
   const { expanded } = useSelector(state => state.panel);
+  const { theme } = useUserTheme();
 
   return (
     <Container isExpanded={expanded}>
@@ -57,7 +58,7 @@ const JobPanel = () => {
           <div>Node Stats</div>
           <Tags>
             {Object.entries(nodesStats).map(([status, count]) => (
-              <Tag key={status} color={COLORS.task.status[status]}>
+              <Tag key={status} color={theme.colors.task.status[status]}>
                 {status}: {count}
               </Tag>
             ))}
@@ -66,7 +67,7 @@ const JobPanel = () => {
       )}
       <Item>
         <div>Priority</div>
-        <Tag color={COLORS.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
+        <Tag color={theme.colors.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
       </Item>
     </Container>
   );

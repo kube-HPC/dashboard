@@ -1,6 +1,8 @@
+import { Thumb } from '@atoms';
 import { usePanel } from '@hooks';
 import { IconExpand } from '@icons';
 import { mixins, spring } from '@styles';
+import { onMode } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
@@ -28,8 +30,6 @@ const container = {
   },
 };
 
-const Thumb = props => <ThumbColored {...props} />;
-
 const Panel = ({ className }) => {
   const { expanded, toggle, Content, isMdQuery } = usePanel();
 
@@ -43,44 +43,36 @@ const Panel = ({ className }) => {
       initial={[`hidden`, `compressed`]}
       animate={[`visible`, expanded ? `expanded` : `compressed`]}
       variants={container}>
-      <Card>
-        <TopRight>
-          <IconExpand onClick={onClick} expanded={expanded} />
-        </TopRight>
+      <TopRight>
+        <IconExpand onClick={onClick} expanded={expanded} />
+      </TopRight>
+      <Scrollbar renderThumbVertical={Thumb}>
         <ContentContainer>
-          <Scrollbars autoHide style={{ overflow: `hidden` }} renderTrackVertical={Thumb}>
-            <ContentWrapper>
-              <Content />
-            </ContentWrapper>
-          </Scrollbars>
+          <Content />
         </ContentContainer>
-      </Card>
+      </Scrollbar>
     </Container>
   );
 };
 
-const ThumbColored = styled.div`
-  ${tw`text-red-500`}
-`;
-
-const Container = styled(motion.div)`
-  ${tw`w-1/4 sm:w-1/2 h-full overflow-hidden`}
-`;
-
-const Card = styled.div`
-  ${mixins.card}
-  ${mixins.flexBetween}
-  ${tw`h-full flex-col shadow-md`}
-`;
-
-const ContentWrapper = styled.div`
+const Scrollbar = styled(Scrollbars)`
   ${mixins.fillContainer}
 `;
 
 const ContentContainer = styled.div`
-  ${mixins.fillContainer}
-  ${mixins.flexCenter}
-  ${tw`flex-grow flex-col overflow-hidden`}
+  ${tw`p-3 h-full`}
+`;
+
+const Container = styled(motion.div)`
+  ${mixins.card}
+  ${mixins.flexStart}
+  ${tw`w-1/4 sm:w-1/2 h-full`}
+  ${tw`flex-col`}
+  ${onMode(tw`shadow-md`, tw`shadow-mdLight`)}
+
+  ${Scrollbar} {
+    ${tw`flex-grow`}
+  }
 `;
 
 const TopRight = styled.div`
