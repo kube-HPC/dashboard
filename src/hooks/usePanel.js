@@ -16,6 +16,7 @@ const usePanel = () => {
   const {
     panel: { set, toggle },
   } = useActions();
+
   const { expanded, value: panelName } = useSelector(state => state.panel);
 
   const isMdQuery = useMediaQuery(MEDIA_QUERIES.md);

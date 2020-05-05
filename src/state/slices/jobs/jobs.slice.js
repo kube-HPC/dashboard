@@ -1,4 +1,4 @@
-import { SOCKET } from '@config';
+import { JOBS, SOCKET } from '@config';
 import { PANEL } from '@constants';
 import { createSlice } from '@reduxjs/toolkit';
 import panelSlice from '../panel';
@@ -7,7 +7,7 @@ import { select } from './jobs.reducers';
 const initialState = { dataSource: null, selected: null };
 
 const jobsSlice = createSlice({
-  name: `jobs`,
+  name: JOBS.STATE.name,
   initialState,
   reducers: {
     select,

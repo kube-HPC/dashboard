@@ -51,25 +51,27 @@ const JobPanel = () => {
   const { theme } = useUserTheme();
 
   return (
-    <Container isExpanded={expanded}>
-      {selected && <JobGraph jobGraph={selected} />}
-      {nodesStats && (
+    selected && (
+      <Container isExpanded={expanded}>
+        <JobGraph jobGraph={selected} />
+        {nodesStats && (
+          <Item>
+            <div>Node Stats</div>
+            <Tags>
+              {Object.entries(nodesStats).map(([status, count]) => (
+                <Tag key={status} color={theme.colors.task.status[status]}>
+                  {status}: {count}
+                </Tag>
+              ))}
+            </Tags>
+          </Item>
+        )}
         <Item>
-          <div>Node Stats</div>
-          <Tags>
-            {Object.entries(nodesStats).map(([status, count]) => (
-              <Tag key={status} color={theme.colors.task.status[status]}>
-                {status}: {count}
-              </Tag>
-            ))}
-          </Tags>
+          <div>Priority</div>
+          <Tag color={theme.colors.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
         </Item>
-      )}
-      <Item>
-        <div>Priority</div>
-        <Tag color={theme.colors.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
-      </Item>
-    </Container>
+      </Container>
+    )
   );
 };
 
