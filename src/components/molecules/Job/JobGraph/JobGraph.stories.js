@@ -10,7 +10,7 @@ import JobGraph from './JobGraph.react';
 const Flex = styled.div`
   ${mixins.flexStart}
   ${tw`flex-col h-screen overflow-hidden`}
-  ${JobGraph.SC} {
+  ${JobGraph.className} {
     ${tw`flex-grow`}
   }
 `;

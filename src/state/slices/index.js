@@ -1,3 +1,4 @@
+export { default as dashboardSlice } from './dashboard';
 export { default as experimentsSlice } from './experiments';
 export { default as jobsSlice } from './jobs';
 export { default as notificationsSlice } from './notifications';

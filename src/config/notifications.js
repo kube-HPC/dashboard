@@ -4,24 +4,22 @@ import React from 'react';
 const duration = 2;
 const SEC_IN_MS = 1000;
 
-/* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 const ShowNameId = ({ jobId }) => (
-  <>
-    <div>
-      ID: <Text bold>{jobId}</Text>
-    </div>
-  </>
+  <div>
+    ID: <Text>{jobId}</Text>
+  </div>
 );
 
+/* eslint-disable react/display-name */
 const config = {
-  duration: 2,
+  duration: 1,
   removeDuration: (duration + 1) * SEC_IN_MS,
   components: {
     jobs: {
       downloadResults: jobId => (
         <Notification title="Download Results">
-          Job ID: <Text bold>{jobId}</Text>
+          Job ID: <Text>{jobId}</Text>
         </Notification>
       ),
     },

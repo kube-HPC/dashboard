@@ -5,6 +5,7 @@ import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
 const Container = styled.span`
+  ${tw`font-light`}
   ${ifProp(`bold`, tw`font-bold`)}
 `;
 

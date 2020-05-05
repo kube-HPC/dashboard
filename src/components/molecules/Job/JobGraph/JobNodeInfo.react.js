@@ -9,13 +9,6 @@ import styled from 'styled-components';
 import { ifProp, theme } from 'styled-tools';
 import tw from 'twin.macro';
 
-const Container = styled(motion.div)`
-  ${mixins.flexStart}
-  ${tw`flex-col p-2 rounded-lg shadow-lg text-left border border-gray-400`}
-  ${ifProp(`isVisible`, tw`block`, tw`hidden`)};
-  ${theme(THEME.value.background)};
-`;
-
 const Item = ({ children }) => (
   <div>
     <span>{children}</span>
@@ -58,6 +51,13 @@ const JobNodeInfo = ({
   );
 };
 
+const Container = styled(motion.div)`
+  ${mixins.flexStart}
+  ${tw`flex-col p-2 rounded-lg shadow-lg text-left border border-gray-400`}
+  ${ifProp(`isVisible`, tw`block`, tw`hidden`)};
+  ${theme(THEME.value.background)};
+`;
+
 JobNodeInfo.propTypes = {
   algorithmName: PropTypes.string,
   className: PropTypes.string,
@@ -68,7 +68,7 @@ JobNodeInfo.propTypes = {
   warnings: PropTypes.number,
 };
 
-JobNodeInfo.SC = Container;
+JobNodeInfo.className = Container;
 
 const MemoJobNodeInfo = React.memo(JobNodeInfo);
 MemoJobNodeInfo.displayName = `Node Info`;

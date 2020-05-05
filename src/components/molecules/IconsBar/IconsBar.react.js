@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
 const Item = styled(motion.div)``;
@@ -14,8 +15,9 @@ const Container = styled(motion.div)`
   ${mixins.textSecondary}
   ${mixins.flexCenter};
   ${Item}:not(:last-child) {
-    ${tw`mr-2`}
+    ${ifProp(`vertical`, tw`mb-2`, tw`mr-2`)}
   }
+  ${ifProp(`vertical`, tw`flex-col`)}
 `;
 
 const item = {
@@ -34,8 +36,8 @@ const item = {
   },
 };
 
-const IconsBar = ({ icons = EMPTY_ARRAY, reveal = `` }) => (
-  <Container initial={reveal} animate="visible" variants={item}>
+const IconsBar = ({ icons = EMPTY_ARRAY, reveal = ``, vertical = false }) => (
+  <Container initial={reveal} animate="visible" variants={item} vertical={vertical}>
     {icons.map(({ name, action, isAvailable = true }) => {
       const Icon = iconsMap[name];
       const onClick = () => action();
@@ -57,6 +59,7 @@ IconsBar.propTypes = {
   actions: PropTypes.array,
   isActionAvailable: PropTypes.array,
   reveal: PropTypes.string,
+  vertical: PropTypes.bool,
 };
 
 export default IconsBar;

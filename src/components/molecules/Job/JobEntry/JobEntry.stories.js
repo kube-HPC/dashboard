@@ -17,6 +17,7 @@ const jobExample = {
   status: `status`,
   pipelineName: `pipelineName`,
   types: [`type1`, `type2`],
+  timeTook: 50,
 };
 
 const N = 100;
@@ -24,6 +25,7 @@ const N = 100;
 export const Default = () => (
   <>
     <JobEntry {...jobExample} />
+    <br />
     <JobEntry
       {...jobExample}
       jobId={`VeryLongId-`.repeat(N)}
@@ -43,8 +45,14 @@ export const SocketList = () => {
   const list = useSelector(listSelector);
 
   const { isConnected } = useSocket();
+
   return isConnected
-    ? list.map(job => <JobEntry key={job.jobId} {...job} />)
+    ? list.map(job => (
+        <div key={job.jobId}>
+          <JobEntry key={job.jobId} {...job} />
+          <br />
+        </div>
+      ))
     : `Connecting Socket...`;
 };
 

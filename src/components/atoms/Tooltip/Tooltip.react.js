@@ -18,7 +18,7 @@ const Tooltip = ({ children, x = 0, y = 0 }) => (
   </Container>
 );
 
-Tooltip.SC = Container;
+Tooltip.className = Container;
 
 Tooltip.propTypes = {
   x: PropTypes.number.isRequired,

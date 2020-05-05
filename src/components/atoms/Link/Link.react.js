@@ -1,10 +1,14 @@
+import { mixins } from '@styles';
+import { onMode } from '@utils';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
 const Href = styled.a`
-  ${tw`text-blue-400 cursor-pointer hocus:text-blue-500`}
+  ${onMode(tw`text-blue-400 hocus:text-blue-500`, tw`text-blue-300 hocus:text-blue-200`)}
+  ${mixins.timingNormal}
+  ${tw`cursor-pointer transition-colors`}
 `;
 
 const Link = ({ className, href, label, children }) => (
