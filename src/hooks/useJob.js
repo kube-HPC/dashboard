@@ -32,8 +32,10 @@ const useJob = jobId => {
 
   const onSelect = useCallback(() => {
     select(jobId);
-    set(PANEL.jobs);
-  }, [select, jobId, set]);
+    if (isSelected) {
+      set(PANEL.welcome);
+    }
+  }, [select, jobId, isSelected, set]);
 
   const onRevealStart = useCallback(() => setRevealed(true), []);
   const onRevealEnd = useCallback(() => setRevealed(false), []);

@@ -39,6 +39,7 @@ const jobs = {
     name,
     downloadResults: `${name}/downloadResults`,
     getLogs: `${name}/getLogs`,
+    select: `${name}/select`,
   },
   ANIMATION: { reveal, item },
 };
