@@ -33,7 +33,7 @@ const Tasks = styled.ul`
 
 const Container = styled.div`
   ${mixins.flexBetween}
-  ${JobGraph.SC} {
+  ${JobGraph.className} {
     ${tw`flex-grow`}
   }
 `;

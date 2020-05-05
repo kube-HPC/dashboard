@@ -1,4 +1,4 @@
-import { IS_WINDOW_DEFINED, safeParserJson, stringify } from '@utils';
+import { IS_WINDOW_DEFINED, safeParserJson, setLocalStorageItem, stringify } from '@utils';
 import { useEffect, useState } from 'react';
 
 const useLocalStorage = (localStorageKey, defaultValue) => {
@@ -9,7 +9,7 @@ const useLocalStorage = (localStorageKey, defaultValue) => {
   );
 
   useEffect(() => {
-    window.localStorage.setItem(localStorageKey, stringify(value));
+    setLocalStorageItem(localStorageKey, value);
   }, [localStorageKey, value]);
 
   return [value, setValue];

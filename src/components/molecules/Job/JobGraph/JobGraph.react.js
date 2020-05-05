@@ -1,4 +1,4 @@
-import { Graph } from '@atoms';
+import { Graph, Tag } from '@atoms';
 import { useGraphInfo, useUserTheme } from '@hooks';
 import { mixins } from '@styles';
 import PropTypes from 'prop-types';
@@ -7,27 +7,6 @@ import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 import JobNodeInfo from './JobNodeInfo.react';
-
-const Container = styled.div`
-  ${mixins.fillContainer}
-  ${ifProp(
-    `isHovered`,
-    tw`cursor-pointer`,
-    tw`cursor-default`,
-  )}
-
-  /* Built-in tooltip reset */
-  div.vis-tooltip {
-    background-color: transparent;
-    border: unset;
-    border-radius: unset;
-    font-family: unset;
-    padding: unset;
-    font-size: unset;
-    color: unset;
-    box-shadow: unset;
-  }
-`;
 
 const PORTAL_DELAY = 100;
 
@@ -61,7 +40,30 @@ const JobGraph = ({ className, jobGraph, options }) => {
   );
 };
 
-JobGraph.SC = Container;
+const Container = styled.div`
+  ${mixins.fillContainer}
+  ${ifProp(`isHovered`, tw`cursor-pointer`, tw`cursor-default`)}
+
+  ${JobNodeInfo.className} {
+    ${Tag.className} {
+      ${tw`capitalize`}
+    }
+  }
+
+  /* Built-in tooltip reset */
+  div.vis-tooltip {
+    background-color: transparent;
+    border: unset;
+    border-radius: unset;
+    font-family: unset;
+    padding: unset;
+    font-size: unset;
+    color: unset;
+    box-shadow: unset;
+  }
+`;
+
+JobGraph.className = Container;
 
 JobGraph.propTypes = {
   className: PropTypes.string,

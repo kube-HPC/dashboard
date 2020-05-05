@@ -31,9 +31,7 @@ const JobTime = ({ timeTook, startTime, className }) => {
   return (
     <Container className={className}>
       <FullDate format="DD/MM/YY">{startTime}</FullDate>
-      <Divider vertical />
       <Hour format="HH:mm:ss">{startTime}</Hour>
-      <Divider vertical />
       <Time>{runningTime}</Time>
     </Container>
   );
@@ -46,8 +44,12 @@ const Time = styled.div`
 `;
 
 const Container = styled.div`
+  ${tw`grid grid-cols-3 text-center gap-1`}
+  ${Time} {
+    ${tw`font-medium`}
+  }
   ${FullDate},${Divider.className},${Hour} {
-    ${tw`hidden xl:inline-block`}
+    ${tw`hidden xl:inline-block font-light`}
   }
 `;
 

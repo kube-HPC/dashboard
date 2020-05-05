@@ -45,6 +45,14 @@ const Container = styled.div`
       ${tw`truncate`};
     }
 
+    ${JobId} {
+      ${tw`font-light`}
+    }
+
+    ${PipelineName} {
+      ${tw`font-medium`}
+    }
+
     ${JobTime.SC} {
       ${tw`text-left`}
     }

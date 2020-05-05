@@ -20,7 +20,7 @@ const Container = styled.div`
   ${mixins.fillContainer}
   ${mixins.flexBetween}
   ${tw`flex-col`}
-  ${JobGraph.SC} {
+  ${JobGraph.className} {
     ${tw`flex-grow`}
     ${Graph.SC} {
       ${ifProp(`isExpanded`, tw`h-64`)}
