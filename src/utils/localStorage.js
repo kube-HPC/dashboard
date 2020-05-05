@@ -11,5 +11,3 @@ export const getBooleanLSItem = str => {
   const storageItem = getLocalStorageItem(str);
   return storageItem === `true` || !storageItem ? true : false;
 };
-
-export const getLocalStorageObjectItem = key => safeParserJson(getLocalStorageItem(key));

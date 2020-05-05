@@ -80,10 +80,11 @@ export const progressSelector = jobId =>
     state => state.jobs.dataSource,
     dataSource => {
       const job = findJob({ dataSource, jobId });
+      const status = job?.status?.status;
       const nodesStats = job?.status.data?.states;
       const progress = job?.status.data?.progress;
 
-      return { nodesStats, progress };
+      return { status, nodesStats, progress };
     },
   );
 

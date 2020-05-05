@@ -1,7 +1,7 @@
 import { PANEL, THEME } from '@constants';
 import { areEqualGraphs, entrySelector, graphSelector, progressSelector } from '@utils';
 import isEqual from 'lodash.isequal';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import tw from 'twin.macro';
 import useActions from './useActions';
@@ -11,7 +11,7 @@ const useJob = jobId => {
   const isSelected = useSelector(state => state.jobs.selected === jobId);
   const jobEntry = useSelector(entrySelector(jobId), isEqual);
   const jobGraph = useSelector(graphSelector(jobId), areEqualGraphs);
-  const { nodesStats, priority, progress } = useSelector(progressSelector(jobId), isEqual);
+  const { nodesStats, priority, progress, status } = useSelector(progressSelector(jobId), isEqual);
   const themeMode = useSelector(state => state.theme.mode);
 
   const [isRevealed, setRevealed] = useState(false);
@@ -22,10 +22,6 @@ const useJob = jobId => {
     () => (themeMode === THEME.mode.light ? tw`shadow-md` : tw`shadow-mdLight`),
     [themeMode],
   );
-
-  useEffect(() => {
-    setRevealed(isEyed);
-  }, [isEyed]);
 
   const {
     jobs: { select },
@@ -57,6 +53,7 @@ const useJob = jobId => {
       priority,
       progress,
       jobGraph,
+      status,
     },
   };
 };

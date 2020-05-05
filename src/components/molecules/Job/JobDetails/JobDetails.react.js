@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Circle from 'react-circle';
 import styled from 'styled-components';
+import { prop } from 'styled-tools';
 import tw from 'twin.macro';
 import JobGraph from '../JobGraph/JobGraph.react';
 
@@ -40,12 +41,18 @@ const Container = styled.div`
 const Actions = styled.div`
   ${mixins.flexBetween}
   ${tw`flex-col w-auto`};
-  > :last-child {
-    ${tw`mt-2`}
+  svg {
+    text {
+      ${tw`fill-current`}
+    }
+    circle {
+      color: ${prop(`color`)};
+      ${tw`stroke-current`}
+    }
   }
 `;
 
-const JobDetails = ({ className, jobGraph, progress, nodesStats }) => {
+const JobDetails = ({ className, jobGraph, progress, nodesStats, status }) => {
   const { theme } = useUserTheme();
   return (
     <Container className={className}>
@@ -62,8 +69,8 @@ const JobDetails = ({ className, jobGraph, progress, nodesStats }) => {
             ))}
           </Tasks>
         )}
-        <Actions>
-          <Circle animate={true} lineWidth="40" progress={progress} animationDuration="1s" />
+        <Actions color={theme.colors.pipeline.status[status]}>
+          <Circle animate={true} progress={progress} animationDuration="1s" />
         </Actions>
       </Details>
     </Container>
@@ -77,6 +84,7 @@ JobDetails.propTypes = {
   jobGraph: PropTypes.object,
   progress: PropTypes.number,
   nodesStats: PropTypes.object,
+  status: PropTypes.string,
 };
 
 export default JobDetails;
