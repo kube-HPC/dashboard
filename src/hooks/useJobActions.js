@@ -4,9 +4,10 @@ import isEqual from 'lodash.isequal';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import useActions from './useActions';
+import useEye from './useEye';
 
-const { redo, fileDownload, stop, pause, play } = iconNames;
-const pickedIcons = [redo, play, pause, stop, fileDownload];
+const { redo, eye, fileDownload, stop, pause, play } = iconNames;
+const pickedIcons = [redo, play, pause, stop, eye, fileDownload];
 const createAction = jobId => action => () => action(jobId);
 
 const useJobActions = jobId => {
@@ -16,6 +17,7 @@ const useJobActions = jobId => {
   } = useActions();
 
   const { canBeStopped, canBePaused, canBeDownload } = useSelector(statusSelector(jobId), isEqual);
+  const { isEyed, toggleJobEye } = useEye(jobId);
 
   const isAvailable = useMemo(
     () => [
@@ -23,17 +25,18 @@ const useJobActions = jobId => {
       !canBePaused && canBeStopped,
       canBePaused && canBeStopped,
       canBeStopped,
+      !isEyed,
       canBeDownload,
     ],
-    [canBeDownload, canBePaused, canBeStopped],
+    [canBeDownload, canBePaused, canBeStopped, isEyed],
   );
 
   const actions = useMemo(
     () =>
-      [rerunRaw, resumePipeline, pausePipeline, stopPipeline, downloadResults].map(
+      [rerunRaw, resumePipeline, pausePipeline, stopPipeline, toggleJobEye, downloadResults].map(
         createAction(jobId),
       ),
-    [downloadResults, jobId, pausePipeline, rerunRaw, resumePipeline, stopPipeline],
+    [downloadResults, jobId, pausePipeline, rerunRaw, resumePipeline, stopPipeline, toggleJobEye],
   );
 
   const icons = useMemo(

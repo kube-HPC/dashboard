@@ -1,5 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import {
+  dashboardSlice,
   experimentsSlice,
   jobsSlice,
   notificationsSlice,
@@ -10,23 +11,25 @@ import {
   themeSlice,
 } from '@slices';
 
-const { reducer: socket } = socketSlice;
-const { reducer: sidebar } = sidebarSlice;
+const { reducer: dashboard } = dashboardSlice;
 const { reducer: experiments } = experimentsSlice;
-const { reducer: panel } = panelSlice;
 const { reducer: jobs } = jobsSlice;
-const { reducer: pipelines } = pipelinesSlice;
 const { reducer: notifications } = notificationsSlice;
+const { reducer: panel } = panelSlice;
+const { reducer: pipelines } = pipelinesSlice;
+const { reducer: sidebar } = sidebarSlice;
+const { reducer: socket } = socketSlice;
 const { reducer: theme } = themeSlice;
 
 const reducer = combineReducers({
+  dashboard,
+  experiments,
+  jobs,
+  notifications,
+  panel,
+  pipelines,
   sidebar,
   socket,
-  experiments,
-  panel,
-  jobs,
-  pipelines,
-  notifications,
   theme,
 });
 

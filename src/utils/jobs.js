@@ -81,3 +81,5 @@ export const progressSelector = jobId =>
       return { nodesStats, progress };
     },
   );
+
+export const eyeSelector = jobId => state => state.dashboard.eyes.jobs.includes(jobId);

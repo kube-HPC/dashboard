@@ -1,4 +1,5 @@
 import {
+  dashboardSlice,
   experimentsSlice,
   jobsSlice,
   notificationsSlice,
@@ -10,13 +11,14 @@ import {
 } from '@slices';
 
 const actions = {
+  dashboard: dashboardSlice.actions,
+  experiment: experimentsSlice.actions,
+  jobs: { ...jobsSlice.actions, ...jobsSlice.thunks },
+  notifications: notificationsSlice.actions,
+  panel: panelSlice.actions,
+  pipelines: { ...pipelinesSlice.actions, ...pipelinesSlice.thunks },
   sidebar: sidebarSlice.actions,
   socket: { ...socketSlice.actions, ...socketSlice.thunks },
-  experiment: experimentsSlice.actions,
-  panel: panelSlice.actions,
-  jobs: { ...jobsSlice.actions, ...jobsSlice.thunks },
-  pipelines: { ...pipelinesSlice.actions, ...pipelinesSlice.thunks },
-  notifications: notificationsSlice.actions,
   theme: themeSlice.actions,
 };
 

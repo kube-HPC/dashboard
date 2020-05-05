@@ -18,15 +18,15 @@ const revealVariants = [`visible`, `reveal`];
 
 const JobItem = ({ className, jobId }) => {
   const {
-    job,
-    types,
-    isCompleted,
-    isSelected,
-    onSelect,
-    jobDetails,
     isRevealed,
-    onHoverEnd,
-    onHoverStart,
+    isSelected,
+    isShowDetails,
+    job,
+    jobDetails,
+    onRevealEnd,
+    onRevealStart,
+    onSelect,
+    types,
     whileHover,
   } = useJob(jobId);
 
@@ -38,8 +38,8 @@ const JobItem = ({ className, jobId }) => {
       animate="visible"
       exit="hidden"
       variants={JOBS.ANIMATION.item}>
-      <Item key={jobId} onHoverEnd={onHoverEnd}>
-        {isCompleted && (
+      <Item key={jobId} onHoverEnd={onRevealEnd}>
+        {!isShowDetails && (
           <JobActions
             jobId={jobId}
             animate={isRevealed ? revealVariants : `hidden`}
@@ -49,19 +49,19 @@ const JobItem = ({ className, jobId }) => {
         <Reveal
           initial="visible"
           variants={JOBS.ANIMATION.reveal}
-          animate={isCompleted && (isRevealed ? `moveRight` : `visible`)}>
+          animate={!isShowDetails && (isRevealed ? `moveRight` : `visible`)}>
           <JobTypes types={types} />
           <HoverDiv whileHover={whileHover}>
             <Entry isSelected={isSelected}>
               <RevealBox
-                onHoverStart={onHoverStart}
+                onHoverStart={onRevealStart}
                 isRevealed={isRevealed}
-                isFullHeight={!isCompleted}>
+                isFullHeight={isShowDetails}>
                 <Divider vertical />
               </RevealBox>
               <Content onClick={onSelect}>
                 <JobEntry {...job} />
-                {!isCompleted && (
+                {isShowDetails && (
                   <>
                     <DividerWrapper>
                       <Divider />
