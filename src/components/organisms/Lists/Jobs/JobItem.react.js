@@ -39,17 +39,16 @@ const JobItem = ({ className, jobId }) => {
       exit="hidden"
       variants={JOBS.ANIMATION.item}>
       <Item key={jobId} onHoverEnd={onRevealEnd}>
-        {!isShowDetails && (
-          <JobActions
-            jobId={jobId}
-            animate={isRevealed ? revealVariants : `hidden`}
-            variants={JOBS.ANIMATION.reveal}
-          />
-        )}
+        <JobActions
+          jobId={jobId}
+          animate={isRevealed ? revealVariants : `hidden`}
+          variants={JOBS.ANIMATION.reveal}
+          isShowDetails={isShowDetails}
+        />
         <Reveal
           initial="visible"
           variants={JOBS.ANIMATION.reveal}
-          animate={!isShowDetails && (isRevealed ? `moveRight` : `visible`)}>
+          animate={isRevealed ? `moveRight` : `visible`}>
           <JobTypes types={types} />
           <HoverDiv whileHover={whileHover}>
             <Entry isSelected={isSelected}>
@@ -61,14 +60,7 @@ const JobItem = ({ className, jobId }) => {
               </RevealBox>
               <Content onClick={onSelect}>
                 <JobEntry {...job} />
-                {isShowDetails && (
-                  <>
-                    <DividerWrapper>
-                      <Divider />
-                    </DividerWrapper>
-                    <JobDetails {...jobDetails} />
-                  </>
-                )}
+                {isShowDetails && <JobDetails {...jobDetails} />}
               </Content>
             </Entry>
           </HoverDiv>
@@ -89,14 +81,6 @@ const Entry = styled.div`
   ${tw`mt-4 items-center`}
   ${tw`transition-shadow ease-in-out duration-300`}
   ${ifProp(`isSelected`, onMode(tw`shadow-xl`, tw`shadow-xlLight`))}
-`;
-
-const DividerWrapper = styled.div`
-${mixins.flexCenter}
-${tw`w-full mt-2`}
- > ${Divider.className} {
-    ${tw`w-1/2`}
-  }
 `;
 
 const Content = styled.div`

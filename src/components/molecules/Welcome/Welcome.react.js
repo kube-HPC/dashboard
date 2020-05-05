@@ -17,6 +17,9 @@ const Container = styled.div`
   ${mixins.flexCenter}
   ${tw`text-sm lg:text-base`}
   ${tw`flex-col h-full break-normal md:break-words`}
+  p {
+    ${tw`font-light`}
+  }
 `;
 
 const Links = styled.div`
@@ -37,7 +40,7 @@ const Welcome = () => (
       Dashboard <Version>v2.0.0</Version>
     </Header>
     <SelfCenter>
-      <div>{META.titleAlt}</div>
+      <h1>{META.titleAlt}</h1>
       <Divider />
       <p>{META.description}</p>
       <Links>

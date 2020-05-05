@@ -8,4 +8,5 @@ export { default as REST } from './rest';
 export { default as SCROLL } from './scroll';
 export { default as SIDEBAR } from './sidebar';
 export { default as SOCKET } from './socket';
+export { default as STYLE } from './style';
 export { default as TOP_BAR } from './topBar';

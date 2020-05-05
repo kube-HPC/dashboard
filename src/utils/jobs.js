@@ -1,3 +1,4 @@
+import { STYLE } from '@config';
 import { pipelineStatuses as PIPELINE_STATUS } from '@hkube/consts';
 import { createSelector } from '@reduxjs/toolkit';
 
@@ -15,7 +16,11 @@ export const mapToJobEntry = ({
   timeTook: results?.timeTook,
 });
 
-const activeStates = [PIPELINE_STATUS.PENDING, PIPELINE_STATUS.ACTIVE, PIPELINE_STATUS.RESUMED];
+export const activeStates = [
+  PIPELINE_STATUS.PENDING,
+  PIPELINE_STATUS.ACTIVE,
+  PIPELINE_STATUS.RESUMED,
+];
 
 const isActive = state => activeStates.includes(state);
 const canPause = state => isActive(state);
@@ -82,4 +87,22 @@ export const progressSelector = jobId =>
     },
   );
 
-export const eyeSelector = jobId => state => state.dashboard.eyes.jobs.includes(jobId);
+export const eyeSelector = jobId =>
+  createSelector(
+    state => state.dashboard.eyes,
+    eyes => {
+      const { isShowDetails } = eyes.jobs[jobId];
+      return isShowDetails;
+    },
+  );
+
+export const itemSizeSelector = createSelector(
+  state => state.jobs.dataSource,
+  state => state.dashboard.eyes,
+  (dataSource, eyes) => index => {
+    const jobId = dataSource[index]?.key;
+    const { isShowDetails } = eyes.jobs[jobId];
+
+    return isShowDetails ? STYLE.itemSize.jobs.open : STYLE.itemSize.jobs.normal;
+  },
+);

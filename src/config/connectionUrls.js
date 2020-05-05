@@ -1,4 +1,4 @@
-import { IS_WINDOW_DEFINED, toBoolean } from '@utils';
+/* eslint-disable no-unused-vars */
 const schema = `http${process.env.IS_SECURE ? `s` : ``}://`;
 
 const defaultConnection = {
@@ -22,11 +22,11 @@ const board = {
   path: process.env.BOARD_PATH || defaultConnection.path,
 };
 
+/*
 const monitorUseLocation = toBoolean(process.env.MONITOR_BACKEND_USE_LOCATION);
 const boardUseLocation = toBoolean(process.env.BOARD_USE_LOCATION);
 const origin = IS_WINDOW_DEFINED ? window.location.origin : undefined;
 
-/* eslint-disable no-unused-vars */
 const connectionConfig = {
   monitor: {
     url: monitorUseLocation
@@ -38,6 +38,8 @@ const connectionConfig = {
     ? `${origin}${board.path}`
     : `${schema}${board.host}:${board.port}${board.path}`,
 };
+
+*/
 
 const tempHardCodedConfig = {
   monitor: {

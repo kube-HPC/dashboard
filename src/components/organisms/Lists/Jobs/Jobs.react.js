@@ -1,7 +1,6 @@
 import { VirtualList } from '@atoms';
-import PIPELINE_STATUS from '@hkube/consts/lib/pipeline-statuses';
 import { useJobs } from '@hooks';
-import { createSelector } from '@reduxjs/toolkit';
+import { itemSizeSelector } from '@utils';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
@@ -35,17 +34,9 @@ MemoRow.propTypes = {
 
 MemoRow.displayName = `List Row`;
 
-const statusSelector = createSelector(
-  state => state.jobs.dataSource,
-  dataSource => {
-    const statuses = dataSource?.map(job => job?.status?.status);
-    return index => (statuses[index] !== PIPELINE_STATUS.ACTIVE ? 75 : 250);
-  },
-);
-
 const Jobs = ({ className }) => {
   const { jobIdList } = useJobs();
-  const itemSize = useSelector(statusSelector);
+  const itemSize = useSelector(itemSizeSelector);
 
   return (
     <Container className={className}>

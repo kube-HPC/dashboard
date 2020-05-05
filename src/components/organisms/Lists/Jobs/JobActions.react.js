@@ -8,12 +8,12 @@ import styled from 'styled-components';
 
 const Container = styled(motion.div)``;
 
-const JobActions = ({ className, animate, variants, jobId }) => {
+const JobActions = ({ className, animate, variants, jobId, isShowDetails = false }) => {
   const { icons } = useJobActions(jobId);
 
   return (
     <Container className={className} initial="hidden" variants={variants} animate={animate}>
-      <IconsBar icons={icons} />
+      <IconsBar icons={icons} vertical={isShowDetails} />
     </Container>
   );
 };
@@ -23,6 +23,7 @@ JobActions.propTypes = {
   animate: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   variants: PropTypes.object.isRequired,
   jobId: PropTypes.string.isRequired,
+  isShowDetails: PropTypes.bool.isRequired,
 };
 
 const MemoActions = React.memo(JobActions, isEqual);

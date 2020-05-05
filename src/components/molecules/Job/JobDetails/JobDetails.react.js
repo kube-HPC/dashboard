@@ -1,7 +1,6 @@
 import { Tag } from '@atoms';
-import { useJobActions, useUserTheme } from '@hooks';
+import { useUserTheme } from '@hooks';
 import { mixins } from '@styles';
-import IconsBar from 'components/molecules/IconsBar/IconsBar.react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Circle from 'react-circle';
@@ -47,7 +46,6 @@ const Actions = styled.div`
 `;
 
 const JobDetails = ({ className, jobGraph, progress, nodesStats }) => {
-  const { icons } = useJobActions(jobGraph?.jobId);
   const { theme } = useUserTheme();
   return (
     <Container className={className}>
@@ -66,7 +64,6 @@ const JobDetails = ({ className, jobGraph, progress, nodesStats }) => {
         )}
         <Actions>
           <Circle animate={true} lineWidth="40" progress={progress} animationDuration="1s" />
-          <IconsBar icons={icons} />
         </Actions>
       </Details>
     </Container>

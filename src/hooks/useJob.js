@@ -1,8 +1,7 @@
 import { PANEL, THEME } from '@constants';
-import PIPELINE_STATUS from '@hkube/consts/lib/pipeline-statuses';
 import { areEqualGraphs, entrySelector, graphSelector, progressSelector } from '@utils';
 import isEqual from 'lodash.isequal';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import tw from 'twin.macro';
 import useActions from './useActions';
@@ -24,6 +23,10 @@ const useJob = jobId => {
     [themeMode],
   );
 
+  useEffect(() => {
+    setRevealed(isEyed);
+  }, [isEyed]);
+
   const {
     jobs: { select },
     panel: { set },
@@ -42,7 +45,7 @@ const useJob = jobId => {
   return {
     isRevealed,
     isSelected,
-    isShowDetails: isEyed || job?.status === PIPELINE_STATUS.ACTIVE,
+    isShowDetails: isEyed,
     job,
     onRevealEnd,
     onRevealStart,
