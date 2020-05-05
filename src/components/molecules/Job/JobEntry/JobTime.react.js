@@ -8,20 +8,6 @@ import tw from 'twin.macro';
 
 const SEC = 1000;
 
-const FullDate = styled(Moment)``;
-const Hour = styled(Moment)``;
-const Time = styled.div`
-  ${tw`inline-block`}
-`;
-
-const responsiveHide = tw`hidden xl:inline-block`;
-
-const Container = styled.div`
-  ${FullDate},${Divider.className},${Hour} {
-    ${responsiveHide}
-  }
-`;
-
 const JobTime = ({ timeTook, startTime, className }) => {
   const [time, setTime] = useState(Date.now());
   const intervalId = useRef();
@@ -52,6 +38,18 @@ const JobTime = ({ timeTook, startTime, className }) => {
     </Container>
   );
 };
+
+const FullDate = styled(Moment)``;
+const Hour = styled(Moment)``;
+const Time = styled.div`
+  ${tw`inline-block`}
+`;
+
+const Container = styled.div`
+  ${FullDate},${Divider.className},${Hour} {
+    ${tw`hidden xl:inline-block`}
+  }
+`;
 
 JobTime.propTypes = {
   startTime: PropTypes.number,

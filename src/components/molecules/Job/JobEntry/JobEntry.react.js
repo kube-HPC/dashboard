@@ -1,52 +1,11 @@
 import { Tag } from '@atoms';
 import { useUserTheme } from '@hooks';
-import { mixins } from '@styles';
 import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import JobTime from './JobTime.react';
-
-const TagContainer = styled.div`
-  ${mixins.flexCenter}
-  ${Tag.className} {
-    ${tw`w-auto lg:w-24 xl:w-32 capitalize`}
-  }
-`;
-
-const JobId = styled.span``;
-const PipelineName = styled.span``;
-
-const Container = styled.div`
-  ${mixins.flexBetween}
-  ${tw`text-center w-full`}
-
-  span {
-    ${tw`truncate`};
-  }
-
-  > {
-    :not(:last-child) {
-      ${tw`mr-1`}
-    }
-    ${JobId} {
-      ${tw`w-1/5 items-center text-left truncate`}
-    }
-
-    ${PipelineName} {
-      ${tw`w-1/6 text-left max-w-xs`}
-    }
-
-    ${TagContainer} {
-      ${tw`w-1/6`}
-    }
-
-    ${JobTime.SC} {
-      ${tw`w-1/6 xl:w-full max-w-xs`}
-    }
-  }
-`;
 
 const JobEntry = ({ className, jobId, pipelineName, startTime, status, timeTook }) => {
   const {
@@ -63,6 +22,34 @@ const JobEntry = ({ className, jobId, pipelineName, startTime, status, timeTook 
     </Container>
   );
 };
+
+const TagContainer = styled.div`
+  ${Tag.className} {
+    ${tw`w-auto lg:w-24 xl:w-32 capitalize`}
+  }
+`;
+
+const JobId = styled.span``;
+const PipelineName = styled.span``;
+
+const Container = styled.div`
+  ${tw`grid grid-cols-4 grid-flow-row gap-2`}
+  ${tw`w-full truncate text-center items-center justify-center`}
+
+  > {
+    ${JobId} {
+      ${tw`text-left`}
+    }
+
+    span {
+      ${tw`truncate`};
+    }
+
+    ${JobTime.SC} {
+      ${tw`text-left`}
+    }
+  }
+`;
 
 JobEntry.propTypes = {
   className: PropTypes.string,
