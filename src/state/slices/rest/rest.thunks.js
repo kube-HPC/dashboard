@@ -25,6 +25,7 @@ export const post = createAsyncThunk(STATE.post, async ({ url, body }) => {
 });
 
 export const get = createAsyncThunk(STATE.get, async ({ url }) => {
+  console.log(toUrl(url));
   const res = await axios.get(toUrl(url));
   return res.data;
 });

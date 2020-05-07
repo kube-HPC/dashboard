@@ -23,15 +23,29 @@ export const downloadResults = createAsyncThunk(
   },
 );
 
-// TODO: finish
-export const getLogs = createAsyncThunk(STATE.getLogs, async (jobId, { dispatch, getState }) => {
-  const { jobs } = getState();
+export const getLogs = createAsyncThunk(STATE.getLogs, async (_, { dispatch, getState }) => {
+  const {
+    jobs: { dataSource, selected },
+  } = getState();
 
-  const { podName, taskId, source = `k8s` } =
-    jobs.dataSource?.find(({ key }) => key === jobId)?.results?.data?.storageInfo?.path ?? null;
+  const job = dataSource?.find(({ key }) => key === selected);
 
-  const { payload } = await dispatch(
-    get(`logs?podName=${podName}&taskId=${taskId}&source=${source}`),
-  );
-  return payload;
+  const nodes = job?.graph.nodes;
+  const firstTask = nodes?.[0];
+
+  console.log(`getLogs -> firstTask`, firstTask);
+
+  if (firstTask) {
+    const { podName, taskId, source = `k8s` } = firstTask;
+    console.log(`getLogs -> { podName, taskId, source = \`k8s\` }`, { podName, taskId, source });
+
+    const { payload } = await dispatch(
+      get({ url: `logs?podName=${podName}&taskId=${taskId}&source=${source}` }),
+    );
+
+    console.log(`payload logs`, payload);
+    return payload;
+  }
+
+  return null;
 });
