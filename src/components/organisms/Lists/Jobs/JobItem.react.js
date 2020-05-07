@@ -6,8 +6,10 @@ import { JobDetails, JobEntry } from '@molecules';
 import { mixins } from '@styles';
 import { onMode } from '@utils';
 import { motion } from 'framer-motion';
+import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { ifProp, theme } from 'styled-tools';
 import tw from 'twin.macro';
@@ -15,20 +17,32 @@ import JobActions from './JobActions.react';
 import JobTypes from './JobTypes.react';
 
 const revealVariants = [`visible`, `reveal`];
+const ANIMATION_WAIT_MS = 100;
+
+const waitForAnimation = (set, value) => () => {
+  const id = setTimeout(() => {
+    set(value);
+  }, ANIMATION_WAIT_MS);
+
+  return id;
+};
+
+const shadowSelector = state =>
+  state.theme.mode === THEME.mode.light ? tw`shadow-md` : tw`shadow-mdLight`;
 
 const JobItem = ({ className, jobId }) => {
-  const {
-    isRevealed,
-    isSelected,
-    isShowDetails,
-    job,
-    jobDetails,
-    onRevealEnd,
-    onRevealStart,
-    onSelect,
-    types,
-    whileHover,
-  } = useJob(jobId);
+  const whileHover = useSelector(shadowSelector, isEqual);
+
+  const [isRevealed, setRevealed] = useState(false);
+
+  const onHoverStart = waitForAnimation(setRevealed, true);
+  const onHoverEnd = waitForAnimation(setRevealed, false);
+
+  const { isSelected, isShowDetails, job, jobDetails, onSelect, types } = useJob(jobId);
+
+  useEffect(() => {
+    setRevealed(isShowDetails);
+  }, [isShowDetails]);
 
   return (
     <motion.div
@@ -38,7 +52,7 @@ const JobItem = ({ className, jobId }) => {
       animate="visible"
       exit="hidden"
       variants={JOBS.ANIMATION.item}>
-      <Item key={jobId} onHoverEnd={onRevealEnd}>
+      <Item key={jobId} onHoverEnd={onHoverEnd}>
         <JobActions
           jobId={jobId}
           animate={isRevealed ? revealVariants : `hidden`}
@@ -53,14 +67,21 @@ const JobItem = ({ className, jobId }) => {
           <HoverDiv whileHover={whileHover}>
             <Entry isSelected={isSelected}>
               <RevealBox
-                onHoverStart={onRevealStart}
+                onHoverStart={onHoverStart}
                 isRevealed={isRevealed}
                 isFullHeight={isShowDetails}>
                 <Divider vertical />
               </RevealBox>
               <Content onClick={onSelect}>
                 <JobEntry {...job} />
-                {isShowDetails && <JobDetails {...jobDetails} />}
+                <DetailsReveal
+                  key={`${jobId}-details`}
+                  initial="hidden"
+                  animate={isShowDetails ? `visible` : `hidden`}
+                  exit="hidden"
+                  variants={JOBS.ANIMATION.showDetails}>
+                  {isShowDetails && <JobDetails {...jobDetails} />}
+                </DetailsReveal>
               </Content>
             </Entry>
           </HoverDiv>
@@ -69,6 +90,10 @@ const JobItem = ({ className, jobId }) => {
     </motion.div>
   );
 };
+
+const DetailsReveal = styled(motion.div)`
+  ${tw`w-full overflow-hidden`}
+`;
 
 const Reveal = styled(motion.div)`
   ${tw`relative`}

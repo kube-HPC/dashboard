@@ -43,11 +43,11 @@ const connectionConfig = {
 
 const tempHardCodedConfig = {
   monitor: {
-    url: `https://40.69.222.75:443`,
+    url: `https://cd.hkube.io`,
     path: `hkube/monitor-server`,
     socketPath: `/hkube/monitor-server/socket.io`,
   },
-  board: `https://40.69.222.75:443/hkube/board`,
+  board: `hkube/dashboard/hkube/board`,
 };
 
 // TODO: figure out how to handle env in build

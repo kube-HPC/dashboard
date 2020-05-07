@@ -1,4 +1,5 @@
 import { spring } from '@styles';
+import tw from 'twin.macro';
 
 const name = `jobs`;
 
@@ -24,14 +25,13 @@ const reveal = {
 };
 
 const item = {
-  visible: {
-    opacity: 1,
-    y: 0,
-  },
-  hidden: {
-    opacity: 0,
-    y: -20,
-  },
+  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: -20 },
+};
+
+const showDetails = {
+  hidden: { opacity: 0, height: 0, transition: spring.gentle },
+  visible: { opacity: 1, height: tw`h-40`.height, transition: spring.gentle },
 };
 
 const jobs = {
@@ -41,7 +41,7 @@ const jobs = {
     getLogs: `${name}/getLogs`,
     select: `${name}/select`,
   },
-  ANIMATION: { reveal, item },
+  ANIMATION: { reveal, item, showDetails },
 };
 
 export default jobs;
