@@ -31,7 +31,7 @@ const useGraph = () => {
   const jobId = selected?.jobId;
 
   useEffect(() => {
-    getLogs(jobId);
+    getLogs();
   }, [jobId, getLogs]);
 
   return { selected };

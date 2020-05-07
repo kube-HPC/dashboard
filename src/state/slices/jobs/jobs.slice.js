@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import panelSlice from '../panel';
 import { select } from './jobs.reducers';
 
-const initialState = { dataSource: null, selected: null };
+const initialState = { dataSource: null, selected: null, task: null };
 
 const jobsSlice = createSlice({
   name: JOBS.STATE.name,
