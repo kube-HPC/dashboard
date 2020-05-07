@@ -24,17 +24,24 @@ const useGraph = () => {
     jobs: { getLogs },
   } = useActions();
 
-  const selected = useSelector(selectedGraphSelector, areEqualGraphs);
+  const graph = useSelector(selectedGraphSelector, areEqualGraphs);
+  const taskId = useSelector(state => state.jobs.taskId);
 
   const [logs, setLogs] = useState(null);
 
-  const jobId = selected?.jobId;
-
   useEffect(() => {
-    getLogs();
-  }, [jobId, getLogs]);
+    const fetchLogs = async () => {
+      const { payload } = await getLogs();
+      const areLogsAvailable = payload?.[0]?.timestamp;
+      setLogs(areLogsAvailable ? payload : null);
+    };
 
-  return { selected };
+    if (taskId) {
+      fetchLogs();
+    }
+  }, [getLogs, taskId]);
+
+  return { graph, logs, taskId };
 };
 
 export default useGraph;

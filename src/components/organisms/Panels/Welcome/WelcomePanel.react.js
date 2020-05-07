@@ -34,7 +34,7 @@ const Version = styled.span`
   ${tw`text-secondary`}
 `;
 
-const Welcome = () => (
+const WelcomePanel = () => (
   <Container>
     <Header>
       Dashboard <Version>v2.0.0</Version>
@@ -52,6 +52,6 @@ const Welcome = () => (
   </Container>
 );
 
-Welcome.propTypes = {};
+WelcomePanel.propTypes = {};
 
-export default Welcome;
+export default WelcomePanel;

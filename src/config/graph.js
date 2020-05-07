@@ -63,7 +63,7 @@ const options = ({
     dragNodes: true,
     dragView: true,
     navigationButtons: false,
-    multiselect: true,
+    multiselect: false,
     hover: true,
     tooltipDelay: 0,
     selectable: true,

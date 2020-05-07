@@ -1,7 +1,7 @@
 import { Graph, Tag } from '@atoms';
 import { PRIORITY } from '@constants';
 import { useGraph, useUserTheme } from '@hooks';
-import { JobGraph } from '@molecules';
+import { JobGraph, LogsViewer } from '@molecules';
 import { mixins } from '@styles';
 import { selectedStatsSelector } from '@utils';
 import isEqual from 'lodash.isequal';
@@ -11,6 +11,39 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
+
+const JobPanel = () => {
+  const { graph, logs, taskId } = useGraph();
+  const { nodesStats, priority } = useSelector(selectedStatsSelector, isEqual);
+  const { expanded } = useSelector(state => state.panel);
+  const { theme } = useUserTheme();
+
+  return (
+    graph && (
+      <Container isExpanded={expanded}>
+        <JobGraph jobGraph={graph} />
+        <Item>Current task ID: {taskId}</Item>
+        <Item>{logs ? <LogsViewer logs={logs} /> : `No Logs Available`}</Item>
+        {nodesStats && (
+          <Item>
+            <div>Node Stats</div>
+            <Tags>
+              {Object.entries(nodesStats).map(([status, count]) => (
+                <Tag key={status} color={theme.colors.task.status[status]}>
+                  {status}: {count}
+                </Tag>
+              ))}
+            </Tags>
+          </Item>
+        )}
+        <Item>
+          <div>Priority</div>
+          <Tag color={theme.colors.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
+        </Item>
+      </Container>
+    )
+  );
+};
 
 const Item = styled.div`
   ${mixins.flexBetween}
@@ -43,37 +76,6 @@ const Container = styled.div`
 const Tags = styled.div`
   ${mixins.flexCenter}
 `;
-
-const JobPanel = () => {
-  const { selected } = useGraph();
-  const { nodesStats, priority } = useSelector(selectedStatsSelector, isEqual);
-  const { expanded } = useSelector(state => state.panel);
-  const { theme } = useUserTheme();
-
-  return (
-    selected && (
-      <Container isExpanded={expanded}>
-        <JobGraph jobGraph={selected} />
-        {nodesStats && (
-          <Item>
-            <div>Node Stats</div>
-            <Tags>
-              {Object.entries(nodesStats).map(([status, count]) => (
-                <Tag key={status} color={theme.colors.task.status[status]}>
-                  {status}: {count}
-                </Tag>
-              ))}
-            </Tags>
-          </Item>
-        )}
-        <Item>
-          <div>Priority</div>
-          <Tag color={theme.colors.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
-        </Item>
-      </Container>
-    )
-  );
-};
 
 JobPanel.propTypes = {
   className: PropTypes.string,

@@ -25,7 +25,7 @@ export default {
 };
 
 export const Default = () => {
-  const { selected: jobGraph } = useGraph();
+  const { graph: jobGraph } = useGraph();
   const { nodesStats, progress } = useSelector(selectedStatsSelector);
 
   return jobGraph && <JobDetails jobGraph={jobGraph} progress={progress} nodesStats={nodesStats} />;
