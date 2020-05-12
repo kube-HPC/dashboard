@@ -60,7 +60,7 @@ export const selectedStatsSelector = createSelector(
   },
 );
 
-export const graphSelector = jobId =>
+export const graphSelectorByJobId = jobId =>
   createSelector(
     state => state.jobs.dataSource,
     dataSource => {
@@ -105,5 +105,38 @@ export const itemSizeSelector = createSelector(
     const { isShowDetails } = eyes.jobs[jobId];
 
     return isShowDetails ? STYLE.itemSize.jobs.open : STYLE.itemSize.jobs.normal;
+  },
+);
+
+export const graphSelector = createSelector(
+  state => state.jobs.selected,
+  state => state.jobs.dataSource,
+  (selected, dataSource) => {
+    const graph = selected ? dataSource.find(job => job?.graph?.jobId === selected)?.graph : null;
+
+    if (graph) {
+      const { nodes, edges, timestamp, jobId } = graph;
+      return { nodes, edges, timestamp, jobId };
+    }
+
+    return null;
+  },
+);
+
+const defaultNode = {
+  nodeName: ``,
+  algorithmName: ``,
+  stats: ``,
+};
+
+export const taskIdStatsSelector = createSelector(
+  state => state.jobs,
+  ({ dataSource, selected, taskId }) => {
+    const job = findJob({ dataSource, jobId: selected });
+    const node = job?.graph.nodes.find(({ taskId: curr }) => curr === taskId);
+
+    const { nodeName, algorithmName, status } = node ?? defaultNode;
+
+    return { id: taskId, nodeName, algorithmName, status };
   },
 );

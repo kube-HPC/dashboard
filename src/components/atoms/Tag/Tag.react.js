@@ -15,7 +15,7 @@ const Container = styled.div`
 
 const Tag = ({ className, children, color = defaultColor }) => (
   <Container className={className} color={color}>
-    <span>{children}</span>
+    {children}
   </Container>
 );
 

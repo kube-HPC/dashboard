@@ -28,7 +28,7 @@ export const EmptyGraph = () => <JobGraph />;
 const { LR, UD } = GRAPH.direction;
 
 export const GraphFromSocket = () => {
-  const { selected: graph } = useGraph();
+  const { graph: graph } = useGraph();
   const [direction, toggle] = useReducer(p => !p, true);
   const options = useMemo(() => ({ direction: direction ? LR : UD }), [direction]);
 

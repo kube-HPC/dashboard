@@ -1,6 +1,7 @@
 import { GRAPH } from '@constants';
 import { formatEdge, formatNode } from '@utils';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import useActions from './useActions';
 import useUserTheme from './useUserTheme';
 
 const DEFAULT = { nodes: [], edges: [] };
@@ -14,9 +15,17 @@ const useGraphInfo = (jobGraph, tooltipRef) => {
   const [edgeInfo, setEdgeInfo] = useState();
   const [nodeInfo, setNodeInfo] = useState(null);
 
+  const {
+    jobs: { changeTaskId },
+  } = useActions();
+
   const events = useMemo(
     () => ({
-      selectNode: () => {},
+      selectNode: ({ nodes }) => {
+        const node = nodes?.[0] ?? null;
+        const taskId = nodesMap.current[node].taskId;
+        changeTaskId(taskId);
+      },
       hoverNode: ({ node }) => {
         setNodeInfo(nodesMap.current[node]);
       },
@@ -27,7 +36,7 @@ const useGraphInfo = (jobGraph, tooltipRef) => {
       },
       blurEdge: () => setEdgeInfo(null),
     }),
-    [],
+    [changeTaskId],
   );
 
   useEffect(() => {

@@ -1,26 +1,32 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { areEqualGraphs } from '@utils';
+import { areEqualGraphs, graphSelector, taskIdStatsSelector } from '@utils';
+import isEqual from 'lodash.isequal';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-
-const selectedGraphSelector = createSelector(
-  state => state.jobs.selected,
-  state => state.jobs.dataSource,
-  (selected, dataSource) => {
-    const graph = selected ? dataSource.find(job => job?.graph?.jobId === selected)?.graph : null;
-
-    if (graph) {
-      const { nodes, edges, timestamp, jobId } = graph;
-      return { nodes, edges, timestamp, jobId };
-    }
-
-    return null;
-  },
-);
+import useActions from './useActions';
 
 const useGraph = () => {
-  const selected = useSelector(selectedGraphSelector, areEqualGraphs);
+  const {
+    jobs: { getLogs },
+  } = useActions();
 
-  return { selected };
+  const graph = useSelector(graphSelector, areEqualGraphs);
+  const task = useSelector(taskIdStatsSelector, isEqual);
+
+  const [logs, setLogs] = useState(null);
+
+  useEffect(() => {
+    const fetchLogs = async () => {
+      const { payload } = await getLogs();
+      const areLogsAvailable = payload?.[0]?.timestamp;
+      setLogs(areLogsAvailable ? payload : null);
+    };
+
+    if (task.id) {
+      fetchLogs();
+    }
+  }, [getLogs, task]);
+
+  return { graph, logs, task };
 };
 
 export default useGraph;

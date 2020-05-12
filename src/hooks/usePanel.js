@@ -1,13 +1,12 @@
 import { MEDIA_QUERIES, PANEL } from '@constants';
 import { useActions } from '@hooks';
-import { Welcome } from '@molecules';
-import { JobPanel, ThemePanel } from '@organisms';
+import { JobPanel, ThemePanel, WelcomePanel } from '@organisms';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { useSelector } from 'react-redux';
 import { createStore } from 'reusable';
 
 const PANEL_CONTENT = {
-  [PANEL.welcome]: Welcome,
+  [PANEL.welcome]: WelcomePanel,
   [PANEL.jobs]: JobPanel,
   [PANEL.theme]: ThemePanel,
 };

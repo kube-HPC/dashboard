@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
-import Thumb from '../Thumb/Thumb.react';
+import Thumb from '../Scrollbar/Thumb.react';
 
 // https://codesandbox.io/s/t4352
 const CustomScrollbars = ({ onScroll, forwardedRef, style, children }) => {

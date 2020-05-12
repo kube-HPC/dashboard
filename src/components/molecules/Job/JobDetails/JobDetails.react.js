@@ -9,6 +9,31 @@ import { prop } from 'styled-tools';
 import tw from 'twin.macro';
 import JobGraph from '../JobGraph/JobGraph.react';
 
+const JobDetails = ({ className, jobGraph, progress, nodesStats, status }) => {
+  const { theme } = useUserTheme();
+  return (
+    <Container className={className}>
+      <JobGraph jobGraph={jobGraph} />
+      <Details>
+        {nodesStats && (
+          <Tasks>
+            <h1>Tasks Stats</h1>
+            {Object.entries(nodesStats).map(([status, count]) => (
+              <li key={status}>
+                <span>{status}</span>
+                <Tag color={theme.colors.task.status[status]}>{count}</Tag>
+              </li>
+            ))}
+          </Tasks>
+        )}
+        <Actions color={theme.colors.pipeline.status[status]}>
+          <Circle animate={true} progress={progress} animationDuration="1s" />
+        </Actions>
+      </Details>
+    </Container>
+  );
+};
+
 const Details = styled.div`
   ${mixins.flexCenter}
   ${tw`w-full`}
@@ -51,31 +76,6 @@ const Actions = styled.div`
     }
   }
 `;
-
-const JobDetails = ({ className, jobGraph, progress, nodesStats, status }) => {
-  const { theme } = useUserTheme();
-  return (
-    <Container className={className}>
-      <JobGraph jobGraph={jobGraph} />
-      <Details>
-        {nodesStats && (
-          <Tasks>
-            <h1>Tasks Stats</h1>
-            {Object.entries(nodesStats).map(([status, count]) => (
-              <li key={status}>
-                <span>{status}</span>
-                <Tag color={theme.colors.task.status[status]}>{count}</Tag>
-              </li>
-            ))}
-          </Tasks>
-        )}
-        <Actions color={theme.colors.pipeline.status[status]}>
-          <Circle animate={true} progress={progress} animationDuration="1s" />
-        </Actions>
-      </Details>
-    </Container>
-  );
-};
 
 JobDetails.className = Container;
 
