@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
   }
   h2 {
     ${tw`text-base md:text-lg`}
+    ${onMode(tw`text-gray-600`, tw`text-gray-300`)}
   }
 
   ${Icon.SC} {

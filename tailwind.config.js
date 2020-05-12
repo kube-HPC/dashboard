@@ -20,6 +20,11 @@ module.exports = {
         mdLight: `0 0px 6px -1px rgba(255, 255, 255, .1), 0 0px 4px -1px rgba(255, 255, 255, .06)`,
         xlLight: `0 0px 25px -5px rgba(255, 255, 255, .1), 0 0px 10px -5px rgba(255, 255, 255, .04)`,
       },
+      maxHeight: {
+        '1/4': `25%`,
+        '1/2': `50%`,
+        '3/4': `75%`,
+      },
     },
   },
 };

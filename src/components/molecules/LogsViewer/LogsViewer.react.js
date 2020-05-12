@@ -1,15 +1,15 @@
-import { mixins } from '@styles';
 import { toUpperCaseFirstLetter } from '@utils';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
+/* eslint-disable no-unused-vars */
 const LogsViewer = ({ className, logs }) => (
   <Container className={className}>
-    {logs.map(({ timestamp, level, message }) => (
+    {logs.map(({ timestamp, level, message }, index) => (
       // Remove ↵ from end of line
-      <Message key={timestamp}>
+      <Message key={index}>
         <span>{toUpperCaseFirstLetter(message.replace(/\u21b5/g, ``))}</span>
       </Message>
     ))}
@@ -17,7 +17,7 @@ const LogsViewer = ({ className, logs }) => (
 );
 
 const Container = styled.div`
-  ${mixins.fillContainer}
+  ${tw`text-left`}
 `;
 
 const Message = styled.div`

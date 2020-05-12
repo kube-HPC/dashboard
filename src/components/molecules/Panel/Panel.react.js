@@ -1,4 +1,4 @@
-import { Thumb } from '@atoms';
+import { Scrollbar } from '@atoms';
 import { usePanel } from '@hooks';
 import { IconExpand } from '@icons';
 import { mixins, spring } from '@styles';
@@ -6,7 +6,6 @@ import { onMode } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
-import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -46,7 +45,7 @@ const Panel = ({ className }) => {
       <TopRight>
         <IconExpand onClick={onClick} expanded={expanded} />
       </TopRight>
-      <Scrollbar renderThumbVertical={Thumb}>
+      <Scrollbar>
         <ContentContainer>
           <Content />
         </ContentContainer>
@@ -54,10 +53,6 @@ const Panel = ({ className }) => {
     </Container>
   );
 };
-
-const Scrollbar = styled(Scrollbars)`
-  ${mixins.fillContainer}
-`;
 
 const ContentContainer = styled.div`
   ${tw`p-3 h-full`}

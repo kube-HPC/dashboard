@@ -36,7 +36,7 @@ const useGraphInfo = (jobGraph, tooltipRef) => {
       },
       blurEdge: () => setEdgeInfo(null),
     }),
-    [],
+    [changeTaskId],
   );
 
   useEffect(() => {

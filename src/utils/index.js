@@ -4,12 +4,15 @@ export { iconsToActions } from './icons';
 export {
   activeStates,
   entrySelector,
+  eyeSelector,
   graphSelector,
+  graphSelectorByJobId,
   itemSizeSelector,
   mapToJobEntry,
   progressSelector,
   selectedStatsSelector,
   statusSelector,
+  taskIdStatsSelector,
 } from './jobs';
 export { getBooleanLSItem, getLocalStorageItem, setLocalStorageItem } from './localStorage';
 export { calc, trans } from './parallax';

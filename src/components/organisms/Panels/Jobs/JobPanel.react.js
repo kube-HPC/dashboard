@@ -1,4 +1,4 @@
-import { Graph, Tag } from '@atoms';
+import { Graph, Scrollbar, Tag } from '@atoms';
 import { PRIORITY } from '@constants';
 import { useGraph, useUserTheme } from '@hooks';
 import { JobGraph, LogsViewer } from '@molecules';
@@ -13,7 +13,7 @@ import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
 const JobPanel = () => {
-  const { graph, logs, taskId } = useGraph();
+  const { graph, logs, task } = useGraph();
   const { nodesStats, priority } = useSelector(selectedStatsSelector, isEqual);
   const { expanded } = useSelector(state => state.panel);
   const { theme } = useUserTheme();
@@ -22,31 +22,63 @@ const JobPanel = () => {
     graph && (
       <Container isExpanded={expanded}>
         <JobGraph jobGraph={graph} />
-        <Item>Current task ID: {taskId}</Item>
-        <Item>{logs ? <LogsViewer logs={logs} /> : `No Logs Available`}</Item>
-        {nodesStats && (
+        <div>
+          <LatestLogs>
+            <h2>Node Logs</h2>
+            <Tag color={theme.colors.task.status[task.status]}>
+              <span>{task.nodeName}</span>:<span>{task.algorithmName}</span>
+            </Tag>
+          </LatestLogs>
+          <LogsScroll isVisible={logs !== null}>{logs && <LogsViewer logs={logs} />}</LogsScroll>
+          {nodesStats && (
+            <Item>
+              <div>Node Stats</div>
+              <Tags>
+                {Object.entries(nodesStats).map(([status, count]) => (
+                  <Tag key={status} color={theme.colors.task.status[status]}>
+                    {status}: {count}
+                  </Tag>
+                ))}
+              </Tags>
+            </Item>
+          )}
           <Item>
-            <div>Node Stats</div>
-            <Tags>
-              {Object.entries(nodesStats).map(([status, count]) => (
-                <Tag key={status} color={theme.colors.task.status[status]}>
-                  {status}: {count}
-                </Tag>
-              ))}
-            </Tags>
+            <div>Priority</div>
+            <Tag color={theme.colors.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
           </Item>
-        )}
-        <Item>
-          <div>Priority</div>
-          <Tag color={theme.colors.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
-        </Item>
+        </div>
       </Container>
     )
   );
 };
 
+const LogsScroll = styled(Scrollbar)`
+  ${tw`p-2`}
+  ${ifProp(`isVisible`, tw`h-40`, tw`h-0`)}
+`;
+
 const Item = styled.div`
   ${mixins.flexBetween}
+  ${Tag.className} {
+    ${tw`mr-1 capitalize`};
+    :last-child {
+      ${tw`mr-0`};
+    }
+  }
+`;
+
+const LatestLogs = styled(Item)`
+  ${Tag.className} {
+    ${tw`normal-case`}
+    & span {
+      &:first-child {
+        ${tw`font-semibold`}
+      }
+      &:last-child {
+        ${tw`font-light`}
+      }
+    }
+  }
 `;
 
 const Container = styled.div`
@@ -54,22 +86,16 @@ const Container = styled.div`
   ${mixins.flexBetween}
   ${tw`flex-col`}
   ${JobGraph.className} {
-    ${tw`flex-grow`}
+    ${tw`flex-grow max-h-1/2`}
     ${Graph.SC} {
       ${ifProp(`isExpanded`, tw`h-64`)}
     }
   }
-  > * {
+  & > * {
     ${tw`w-full`}
   }
   ${Item} {
     ${tw`mt-2`}
-  }
-  ${Tag.className} {
-    ${tw`mr-1 capitalize`};
-    :last-child {
-      ${tw`mr-0`};
-    }
   }
 `;
 
