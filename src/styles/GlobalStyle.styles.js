@@ -26,6 +26,10 @@ const GlobalStyle = createGlobalStyle`
     ${onMode(tw`text-gray-600`, tw`text-gray-300`)}
   }
 
+  span {
+    ${tw`font-light`}
+  }
+
   ${Icon.SC} {
     ${mixins.textSecondary}
     ${mixins.colorOnFocus}
