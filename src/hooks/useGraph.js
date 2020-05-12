@@ -26,7 +26,7 @@ const useGraph = () => {
     }
   }, [getLogs, task]);
 
-  return { graph, logs, task };
+  return { graph, logs, task, areLogsValid: logs !== null };
 };
 
 export default useGraph;

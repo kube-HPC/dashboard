@@ -1,6 +1,6 @@
 import { MEDIA_QUERIES, PANEL } from '@constants';
 import { useActions } from '@hooks';
-import { JobPanel, ThemePanel, WelcomePanel } from '@organisms';
+import { FilterPanel, JobPanel, ThemePanel, WelcomePanel } from '@organisms';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { useSelector } from 'react-redux';
 import { createStore } from 'reusable';
@@ -9,6 +9,7 @@ const PANEL_CONTENT = {
   [PANEL.welcome]: WelcomePanel,
   [PANEL.jobs]: JobPanel,
   [PANEL.theme]: ThemePanel,
+  [PANEL.filter]: FilterPanel,
 };
 
 const usePanel = () => {

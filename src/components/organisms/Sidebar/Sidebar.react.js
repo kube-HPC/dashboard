@@ -12,8 +12,7 @@ import tw from 'twin.macro';
 const Container = styled(motion.div)`
   ${theme(THEME.value.background)}
   ${mixins.flexBetween};
-  ${mixins.upperCase}
-  ${tw`flex-col h-screen py-2`};
+  ${tw`flex-col h-screen py-2 uppercase`};
   ${tw`w-24 xl:w-32`}
   ${tw`px-1 md:px-2`}
   ${Menu.SC.Item}:not(:last-child) {

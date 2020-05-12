@@ -1,7 +1,7 @@
 import { TOP_BAR } from '@config';
 import { PANEL } from '@constants';
 import { NOOP } from '@utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import usePanel from './usePanel';
 
 const useTopActions = () => {
@@ -12,12 +12,27 @@ const useTopActions = () => {
     [setValue, value],
   );
 
-  const topRightIcons = [NOOP, setThemePanel, NOOP, NOOP].map((action, index) => ({
-    name: TOP_BAR.rightIcons[index].name,
-    action,
-  }));
+  const topRightIcons = useMemo(
+    () =>
+      [NOOP, setThemePanel, NOOP, NOOP].map((action, index) => ({
+        name: TOP_BAR.rightIcons[index],
+        action,
+      })),
+    [setThemePanel],
+  );
 
-  return { topRightIcons };
+  const setFilterPanel = useCallback(() => setValue(PANEL.filter), [setValue]);
+
+  const topLeftIcons = useMemo(
+    () =>
+      [setFilterPanel].map((action, index) => ({
+        name: TOP_BAR.leftIcons[index],
+        action,
+      })),
+    [setFilterPanel],
+  );
+
+  return { topRightIcons, topLeftIcons };
 };
 
 export default useTopActions;

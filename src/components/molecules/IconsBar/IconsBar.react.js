@@ -8,18 +8,6 @@ import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
-const Item = styled(motion.div)``;
-
-const Container = styled(motion.div)`
-  ${tw`fill-current`}
-  ${mixins.textSecondary}
-  ${mixins.flexCenter};
-  ${Item}:not(:last-child) {
-    ${ifProp(`vertical`, tw`mb-2`, tw`mr-2`)}
-  }
-  ${ifProp(`vertical`, tw`flex-col`)}
-`;
-
 const item = {
   visible: {
     y: 0,
@@ -51,6 +39,18 @@ const IconsBar = ({ icons = EMPTY_ARRAY, reveal = ``, vertical = false }) => (
     })}
   </Container>
 );
+
+const Item = styled(motion.div)``;
+
+const Container = styled(motion.div)`
+  ${tw`fill-current`}
+  ${mixins.textSecondary}
+  ${mixins.flexCenter};
+  ${Item}:not(:last-child) {
+    ${ifProp(`vertical`, tw`mb-2`, tw`mr-2`)}
+  }
+  ${ifProp(`vertical`, tw`flex-col`)}
+`;
 
 IconsBar.className = Container;
 

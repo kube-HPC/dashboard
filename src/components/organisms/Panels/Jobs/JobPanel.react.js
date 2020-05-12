@@ -13,7 +13,7 @@ import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
 const JobPanel = () => {
-  const { graph, logs, task } = useGraph();
+  const { graph, logs, task, areLogsValid } = useGraph();
   const { nodesStats, priority } = useSelector(selectedStatsSelector, isEqual);
   const { expanded } = useSelector(state => state.panel);
   const { theme } = useUserTheme();
@@ -24,17 +24,17 @@ const JobPanel = () => {
         <JobGraph jobGraph={graph} />
         <div>
           <LatestLogs>
-            <h2>Node Logs</h2>
+            <h2>Node Logs{!areLogsValid && ` Not Available`}</h2>
             <Tag color={theme.colors.task.status[task.status]}>
               <span>{task.nodeName}</span>:<span>{task.algorithmName}</span>
             </Tag>
           </LatestLogs>
-          <LogsScroll areLogsValid={logs !== null}>
+          <LogsScroll areLogsValid={areLogsValid}>
             <Scrollbar>{logs && <LogsViewer logs={logs} />}</Scrollbar>
           </LogsScroll>
           {nodesStats && (
             <Item>
-              <div>Node Stats</div>
+              <h2>Node Stats</h2>
               <Tags>
                 {Object.entries(nodesStats).map(([status, count]) => (
                   <Tag key={status} color={theme.colors.task.status[status]}>
@@ -45,7 +45,7 @@ const JobPanel = () => {
             </Item>
           )}
           <Item>
-            <div>Priority</div>
+            <h2>Priority</h2>
             <Tag color={theme.colors.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
           </Item>
         </div>
@@ -57,7 +57,7 @@ const JobPanel = () => {
 const LogsScroll = styled.div`
   ${mixins.fillContainer}
   ${tw`p-2`}
-  ${ifProp(`areLogsValid`, tw`h-40`, tw`h-0`)}
+  ${ifProp(`areLogsValid`, tw`h-40`, tw`hidden`)}
 `;
 
 const Item = styled.div`
@@ -76,9 +76,6 @@ const LatestLogs = styled(Item)`
     & span {
       &:first-child {
         ${tw`font-semibold`}
-      }
-      &:last-child {
-        ${tw`font-light`}
       }
     }
   }

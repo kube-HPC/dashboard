@@ -47,10 +47,6 @@ const colorOnFocus = css`
   ${onMode(tw`hocus:text-black`, tw`hocus:text-white`)}
 `;
 
-const upperCase = css`
-  ${tw`uppercase`}
-`;
-
 const textSecondary = css`
   ${theme(THEME.value.textSecondary)}
 `;
@@ -76,7 +72,6 @@ const mixins = {
   flexStart,
   rounded,
   textSecondary,
-  upperCase,
   card,
   timingSlow,
 };
