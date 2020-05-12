@@ -123,17 +123,19 @@ export const graphSelector = createSelector(
   },
 );
 
+const defaultNode = {
+  nodeName: ``,
+  algorithmName: ``,
+  stats: ``,
+};
+
 export const taskIdStatsSelector = createSelector(
   state => state.jobs,
   ({ dataSource, selected, taskId }) => {
     const job = findJob({ dataSource, jobId: selected });
     const node = job?.graph.nodes.find(({ taskId: curr }) => curr === taskId);
 
-    const { nodeName, algorithmName, status } = node ?? {
-      nodeName: ``,
-      algorithmName: ``,
-      stats: ``,
-    };
+    const { nodeName, algorithmName, status } = node ?? defaultNode;
 
     return { id: taskId, nodeName, algorithmName, status };
   },

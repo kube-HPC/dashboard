@@ -29,7 +29,9 @@ const JobPanel = () => {
               <span>{task.nodeName}</span>:<span>{task.algorithmName}</span>
             </Tag>
           </LatestLogs>
-          <LogsScroll isVisible={logs !== null}>{logs && <LogsViewer logs={logs} />}</LogsScroll>
+          <LogsScroll areLogsValid={logs !== null}>
+            <Scrollbar>{logs && <LogsViewer logs={logs} />}</Scrollbar>
+          </LogsScroll>
           {nodesStats && (
             <Item>
               <div>Node Stats</div>
@@ -52,9 +54,10 @@ const JobPanel = () => {
   );
 };
 
-const LogsScroll = styled(Scrollbar)`
+const LogsScroll = styled.div`
+  ${mixins.fillContainer}
   ${tw`p-2`}
-  ${ifProp(`isVisible`, tw`h-40`, tw`h-0`)}
+  ${ifProp(`areLogsValid`, tw`h-40`, tw`h-0`)}
 `;
 
 const Item = styled.div`
