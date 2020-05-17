@@ -8,6 +8,7 @@ export {
   graphSelector,
   graphSelectorByJobId,
   itemSizeSelector,
+  jobIdsSelector,
   mapToJobEntry,
   progressSelector,
   selectedStatsSelector,

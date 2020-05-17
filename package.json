@@ -48,8 +48,8 @@
     "ansi-to-react": "^6.0.5",
     "beautiful-react-hooks": "^0.25.2",
     "file-saver": "^2.0.2",
-    "framer-motion": "^1.10.3",
-    "gatsby": "^2.21.30",
+    "framer-motion": "^1.11.0",
+    "gatsby": "^2.21.33",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "lodash.set": "^4.3.2",
@@ -99,10 +99,6 @@
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
     "prop-types": "^15.7.2",
-    "stylelint": "^13.3.3",
-    "stylelint-config-recommended": "^3.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.10.0",
     "twin.macro": "^1.0.0"
   }
 }

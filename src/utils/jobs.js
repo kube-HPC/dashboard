@@ -140,3 +140,8 @@ export const taskIdStatsSelector = createSelector(
     return { id: taskId, nodeName, algorithmName, status };
   },
 );
+
+export const jobIdsSelector = createSelector(
+  state => state.jobs.dataSource,
+  dataSource => dataSource?.map(({ key }) => key),
+);
