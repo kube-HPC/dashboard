@@ -13,7 +13,7 @@ const Container = styled.div`
   ${tw`h-full w-full`}
 `;
 
-const Graph = ({ graph, options = defaultOptions, events = NO_EVENTS }) => {
+const Graph = ({ className, graph, options = defaultOptions, events = NO_EVENTS }) => {
   const $options = useMemo(() => getGraphOptions({ ...defaultOptions, ...options }), [options]);
   const graphRef = useRef();
 
@@ -22,17 +22,18 @@ const Graph = ({ graph, options = defaultOptions, events = NO_EVENTS }) => {
   }, [graph]);
 
   return (
-    <Container>
+    <Container className={className}>
       <VisGraph ref={graphRef} options={$options} events={events} />
     </Container>
   );
 };
 
 Graph.propTypes = {
-  graph: PropTypes.object.isRequired,
-  options: PropTypes.object,
+  className: PropTypes.string,
   events: PropTypes.object,
+  graph: PropTypes.object.isRequired,
   isLightTheme: PropTypes.bool,
+  options: PropTypes.object,
 };
 
 Graph.className = Container;

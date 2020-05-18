@@ -29,7 +29,7 @@ const Decorator = styled.div`
 `;
 
 export default {
-  title: `${SB_LABELS.ATOMS}Auto Suggest`,
+  title: `${SB_LABELS.MOLECULES}Auto Suggest`,
   decorators: [
     S => (
       <Decorator>

@@ -53,7 +53,8 @@ addParameters({
     showRoots: true,
     showPanel: false,
     storySort: (a, b) => b[1].id.localeCompare(a[1].id),
-    selectedPanel: `templates-dashboard--default`,
+    selectedPanel: `storybook/dashboard/default`,
+    sidebarAnimations: false,
     theme,
   },
 });

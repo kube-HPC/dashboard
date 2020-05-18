@@ -4,6 +4,10 @@ import { theme } from 'styled-tools';
 import tw from 'twin.macro';
 import { onMode } from '../utils/styles';
 
+const fillScreen = css`
+  ${tw`w-screen h-screen`}
+`;
+
 const fillContainer = css`
   ${tw`w-full h-full`}
 `;
@@ -62,9 +66,10 @@ const card = css`
 `;
 
 const mixins = {
+  card,
   colorOnFocus,
-  timingNormal,
   fillContainer,
+  fillScreen,
   fixed,
   flexBetween,
   flexCenter,
@@ -72,7 +77,7 @@ const mixins = {
   flexStart,
   rounded,
   textSecondary,
-  card,
+  timingNormal,
   timingSlow,
 };
 
