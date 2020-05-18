@@ -28,6 +28,15 @@ const canPauseOrStop = state => isActive(state) || state === PIPELINE_STATUS.PAU
 
 const findJob = ({ dataSource, jobId }) => dataSource?.find(({ key }) => key === jobId);
 
+export const filteredJobIds = createSelector(
+  state => state.jobs.dataSource,
+  state => state.dashboard.filters.jobs,
+  (dataSource, filters) => {
+    const { jobId } = filters;
+    return dataSource?.map(({ key }) => key).filter(id => id.includes(jobId)) ?? [];
+  },
+);
+
 export const entrySelector = jobIdToFind =>
   createSelector(
     state => state.jobs.dataSource,

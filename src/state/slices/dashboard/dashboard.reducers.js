@@ -13,8 +13,8 @@ export const removeJobTag = (state, { payload: jobId }) => {
   delete state.tags.jobs[jobId];
 };
 
-export const setFilter = (state, { payload: target, filter }) => {
-  state.filters[target] = filter;
+export const setJobsFilter = (state, { payload: { target, filter } }) => {
+  state.filters.jobs[target] = filter;
 };
 
 import { PANEL } from '@constants';

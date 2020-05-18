@@ -1,4 +1,5 @@
 export { default as useActions } from './useActions';
+export { default as useFilter } from './useFilter';
 export { default as useGraph } from './useGraph';
 export { default as useGraphInfo } from './useGraphInfo';
 export { default as useJob } from './useJob';

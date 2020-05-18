@@ -2,7 +2,7 @@ import { JOBS, SOCKET } from '@config';
 import { LOCAL_STORAGE, PANEL } from '@constants';
 import { createSlice } from '@reduxjs/toolkit';
 import { activeStates, getLocalStorageItem } from '@utils';
-import { setPanel, toggleJobEye, togglePanel } from './dashboard.reducers';
+import { setJobsFilter, setPanel, toggleJobEye, togglePanel } from './dashboard.reducers';
 
 /*
 eyes.jobs = { isControlled, isShowDetails }
@@ -27,6 +27,7 @@ const dashboard = createSlice({
     toggleJobEye,
     setPanel,
     togglePanel,
+    setJobsFilter,
   },
   extraReducers: {
     [JOBS.STATE.select]: state => {

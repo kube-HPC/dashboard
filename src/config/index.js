@@ -1,4 +1,5 @@
 export { default as CONNECTION } from './connectionUrls';
+export { default as FILTER } from './filter';
 export { default as getGraphOptions } from './graph';
 export { default as JOBS } from './jobs';
 export { default as META } from './meta';

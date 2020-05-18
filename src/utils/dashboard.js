@@ -4,3 +4,8 @@ export const panelSelector = createSelector(
   state => state.dashboard.panel,
   panel => panel,
 );
+
+export const filterSelector = createSelector(
+  state => state.dashboard.filter,
+  filter => filter,
+);

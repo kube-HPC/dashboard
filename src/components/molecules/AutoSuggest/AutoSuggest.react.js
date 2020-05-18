@@ -5,7 +5,7 @@ import React, { useEffect, useReducer, useRef, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-const AutoSuggest = ({ className, options = [], placeholder }) => {
+const AutoSuggest = ({ className, options = [], placeholder, onChange }) => {
   const [selected, setSelected] = useState(null);
   const [filterValue, setFilterValue] = useState(``);
   const [isFocused, toggleFocus] = useReducer(p => !p, false);
@@ -16,6 +16,10 @@ const AutoSuggest = ({ className, options = [], placeholder }) => {
   useEffect(() => {
     setOffset(inputRef.current.offsetHeight);
   }, []);
+
+  useEffect(() => {
+    onChange(filterValue);
+  }, [filterValue, onChange]);
 
   const filteredOptions = options.filter(option => option.label.includes(filterValue));
 
@@ -67,6 +71,7 @@ AutoSuggest.propTypes = {
   className: PropTypes.string,
   options: PropTypes.array,
   placeholder: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default AutoSuggest;
