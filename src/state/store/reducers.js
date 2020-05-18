@@ -4,7 +4,6 @@ import {
   experimentsSlice,
   jobsSlice,
   notificationsSlice,
-  panelSlice,
   pipelinesSlice,
   socketSlice,
   themeSlice,
@@ -14,7 +13,6 @@ const { reducer: dashboard } = dashboardSlice;
 const { reducer: experiments } = experimentsSlice;
 const { reducer: jobs } = jobsSlice;
 const { reducer: notifications } = notificationsSlice;
-const { reducer: panel } = panelSlice;
 const { reducer: pipelines } = pipelinesSlice;
 const { reducer: socket } = socketSlice;
 const { reducer: theme } = themeSlice;
@@ -24,7 +22,6 @@ const reducer = combineReducers({
   experiments,
   jobs,
   notifications,
-  panel,
   pipelines,
   socket,
   theme,

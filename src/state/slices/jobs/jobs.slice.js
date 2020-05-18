@@ -1,7 +1,7 @@
 import { JOBS, SOCKET } from '@config';
 import { PANEL } from '@constants';
 import { createSlice } from '@reduxjs/toolkit';
-import panelSlice from '../panel';
+import { dashboardSlice } from '..';
 import { changeTaskId, select } from './jobs.reducers';
 
 const initialState = { dataSource: null, selected: null, taskId: null };
@@ -17,7 +17,7 @@ const jobsSlice = createSlice({
     [SOCKET.STATE.pull]: (state, { payload: { jobs } }) => {
       state.dataSource = jobs;
     },
-    [panelSlice.actions.set]: (state, { payload }) => {
+    [dashboardSlice.actions.setPanel]: (state, { payload }) => {
       if (payload !== PANEL.jobs) {
         state.selected = null;
       }
