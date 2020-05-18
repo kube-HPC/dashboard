@@ -20,15 +20,15 @@ export const setFilter = (state, { payload: target, filter }) => {
 import { PANEL } from '@constants';
 
 export const setPanel = (state, { payload }) => {
-  const prevPanel = state.value;
+  const prevPanel = state.panel.value;
   if (prevPanel === PANEL.jobs && payload === PANEL.jobs) {
     // Don't toggle on switching between jobs
     return;
   } else {
-    state.value = prevPanel === payload ? null : payload;
+    state.panel.value = prevPanel === payload ? null : payload;
   }
 };
 
 export const togglePanel = state => {
-  state.expanded = !state.expanded;
+  state.panel.expanded = !state.panel.expanded;
 };

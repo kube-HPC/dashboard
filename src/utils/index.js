@@ -1,4 +1,5 @@
 export { EMPTY_ARRAY, IS_WINDOW_DEFINED, NOOP, safeParserJson } from './common';
+export { panelSelector } from './dashboard';
 export { areEqualGraphs, formatEdge, formatNode } from './graph';
 export { iconsToActions } from './icons';
 export {

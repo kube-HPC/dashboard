@@ -4,6 +4,7 @@ import isEqual from 'lodash.isequal';
 import { useSelector } from 'react-redux';
 import useActions from './useActions';
 import useEye from './useEye';
+import usePanel from './usePanel';
 
 const useJob = jobId => {
   const isSelected = useSelector(state => state.jobs.selected === jobId);
@@ -12,10 +13,10 @@ const useJob = jobId => {
   const { nodesStats, priority, progress, status } = useSelector(progressSelector(jobId), isEqual);
 
   const { isEyed } = useEye(jobId);
+  const { set } = usePanel();
 
   const {
     jobs: { select },
-    panel: { set },
   } = useActions();
 
   const onSelect = () => {

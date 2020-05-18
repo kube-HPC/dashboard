@@ -1,6 +1,6 @@
 import { Graph, Scrollbar, Tag } from '@atoms';
 import { PRIORITY } from '@constants';
-import { useGraph, useUserTheme } from '@hooks';
+import { useGraph, usePanel, useUserTheme } from '@hooks';
 import { JobGraph, LogsViewer } from '@molecules';
 import { mixins } from '@styles';
 import { selectedStatsSelector } from '@utils';
@@ -15,7 +15,7 @@ import tw from 'twin.macro';
 const JobPanel = () => {
   const { graph, logs, task, areLogsValid } = useGraph();
   const { nodesStats, priority } = useSelector(selectedStatsSelector, isEqual);
-  const { expanded } = useSelector(state => state.panel);
+  const { expanded } = usePanel();
   const { theme } = useUserTheme();
 
   return (
