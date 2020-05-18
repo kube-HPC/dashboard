@@ -8,6 +8,7 @@ const graph = {
     hierarchical: true,
     visible: true,
     direction: `LR`,
+    isLightTheme: true,
   },
   types: {
     BATCH: {

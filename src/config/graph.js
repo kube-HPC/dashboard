@@ -1,5 +1,4 @@
 import { GRAPH } from '@constants';
-import tw from 'twin.macro';
 
 const { direction: DIRECTION, defaultOptions, types } = GRAPH;
 
@@ -7,11 +6,21 @@ const { BATCH } = types;
 
 // https://visjs.github.io/vis-network/docs/network/
 
+// https://nerdcave.com/tailwind-cheat-sheet
+// text-gray-500: #a0aec0
+// bg-green-800
+
+const textGray500 = `#a0aec0`;
+const textGray800 = `#2d3748`;
+const textBlue800 = `#2c5282`;
+const textGreen800 = `#276749`;
+
+// TODO: Insert graph colors to theme
 const options = ({
   hierarchical = defaultOptions.hierarchical,
   visible = defaultOptions.visible,
   direction = DIRECTION.LR,
-  color,
+  isLightTheme = defaultOptions.isLightTheme,
 } = defaultOptions) => ({
   autoResize: true,
   layout: {
@@ -34,12 +43,12 @@ const options = ({
     color: {
       border: `transparent`,
       hover: {
-        background: tw`bg-gray-500`.backgroundColor,
+        background: textGray500,
         border: `transparent`,
       },
       highlight: {
-        border: tw`bg-gray-800`.backgroundColor,
-        background: tw`bg-gray-500`.backgroundColor,
+        border: textGray800,
+        background: textGray500,
       },
     },
   },
@@ -57,7 +66,7 @@ const options = ({
       enabled: true,
       type: `cubicBezier`,
     },
-    color,
+    color: isLightTheme ? `black` : textGray500,
   },
   interaction: {
     dragNodes: true,
@@ -74,22 +83,22 @@ const options = ({
   groups: {
     [BATCH.COMPLETED]: {
       color: {
-        background: tw`bg-green-800`.backgroundColor,
+        background: textGreen800,
       },
     },
     [BATCH.RUNNING]: {
       color: {
-        background: tw`bg-blue-800`.backgroundColor,
+        background: textBlue800,
       },
     },
     [BATCH.ERRORS]: {
       color: {
-        background: tw`bg-blue-800`.backgroundColor,
+        background: textBlue800,
       },
     },
     [BATCH.NOT_STARTED]: {
       color: {
-        background: tw`bg-blue-800`.backgroundColor,
+        background: textBlue800,
       },
     },
   },

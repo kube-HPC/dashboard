@@ -32,6 +32,7 @@ Graph.propTypes = {
   graph: PropTypes.object.isRequired,
   options: PropTypes.object,
   events: PropTypes.object,
+  isLightTheme: PropTypes.bool,
 };
 
 Graph.className = Container;

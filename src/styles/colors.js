@@ -60,6 +60,7 @@ const toLightColors = (isLightTheme = true) => {
         [TASK.SUCCEED]: tw`text-green-600`[variant],
         [TASK.WARNING]: tw`text-yellow-500`[variant],
       },
+      batch: toColor(tw`text-orange-400`, tw`text-orange-700`),
     },
   };
 };

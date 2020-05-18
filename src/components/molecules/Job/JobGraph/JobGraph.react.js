@@ -18,10 +18,7 @@ const JobGraph = ({ className, jobGraph, options }) => {
 
   const { isLightTheme } = useUserTheme();
 
-  const themedOptions = useMemo(() => {
-    const colors = isLightTheme ? tw`text-black` : tw`text-gray-500`;
-    return { ...options, ...colors };
-  }, [isLightTheme, options]);
+  const themedOptions = useMemo(() => ({ ...options, isLightTheme }), [isLightTheme, options]);
 
   useEffect(() => {
     // Need some delay for portal the tooltip to canvas
@@ -34,7 +31,7 @@ const JobGraph = ({ className, jobGraph, options }) => {
 
   return (
     <Container className={className} isHovered={nodeInfo !== null}>
-      <Graph graph={graph} options={themedOptions} events={events} />
+      <Graph graph={graph} options={themedOptions} events={events} isLightTheme={isLightTheme} />
       <JobNodeInfo innerRef={setTooltipRef} isVisible={isFirstReveal} {...nodeInfo} />
     </Container>
   );

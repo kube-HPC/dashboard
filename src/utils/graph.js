@@ -66,7 +66,7 @@ const handleBatch = ({ batchInfo, ...rest }) => {
 };
 
 export const formatNode = colors => task => {
-  const isBatch = task.batchInfo;
+  const isBatch = task.batchInfo !== undefined;
   const { nodeName, status, extra, ...rest } = isBatch ? handleBatch(task) : handleTask(task);
 
   const node = {
