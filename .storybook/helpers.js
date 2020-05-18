@@ -1,4 +1,5 @@
-import { useJobs } from '@hooks';
+import { useJobs, usePanel } from '@hooks';
+import { Panel } from '@molecules';
 import { createSelector } from '@reduxjs/toolkit';
 import { NOOP } from '@utils';
 import React, { useCallback, useEffect } from 'react';
@@ -40,4 +41,12 @@ export const JobSelectHelper = () => {
       <div>Selected: {selected || `None`}</div>
     </Container>
   );
+};
+
+export const InPanel = ({ panel }) => {
+  const { set: setValue } = usePanel();
+  useEffect(() => {
+    setValue(panel);
+  }, [setValue]);
+  return <Panel />;
 };

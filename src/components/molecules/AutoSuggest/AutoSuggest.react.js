@@ -5,7 +5,7 @@ import React, { useEffect, useReducer, useRef, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-const AutoSuggest = ({ className, options = [], isSuggestion = false }) => {
+const AutoSuggest = ({ className, options = [], placeholder }) => {
   const [selected, setSelected] = useState(null);
   const [filterValue, setFilterValue] = useState(``);
   const [isFocused, toggleFocus] = useReducer(p => !p, false);
@@ -28,8 +28,9 @@ const AutoSuggest = ({ className, options = [], isSuggestion = false }) => {
         onFocus={toggleFocus}
         onBlur={toggleFocus}
         onChange={setFilterValue}
+        placeholder={placeholder}
       />
-      {isSuggestion && filteredOptions.length !== 0 && (
+      {filteredOptions.length !== 0 && (
         <Dropdown topOffset={offset} totalItems={filteredOptions.length} isVisible={isFocused}>
           <Scrollbar>
             {filteredOptions.map((option, index) => {
@@ -65,7 +66,7 @@ AutoSuggest.className = Container;
 AutoSuggest.propTypes = {
   className: PropTypes.string,
   options: PropTypes.array,
-  isSuggestion: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 export default AutoSuggest;

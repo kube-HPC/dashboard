@@ -6,7 +6,6 @@ import {
   notificationsSlice,
   panelSlice,
   pipelinesSlice,
-  sidebarSlice,
   socketSlice,
   themeSlice,
 } from '@slices';
@@ -17,7 +16,6 @@ const { reducer: jobs } = jobsSlice;
 const { reducer: notifications } = notificationsSlice;
 const { reducer: panel } = panelSlice;
 const { reducer: pipelines } = pipelinesSlice;
-const { reducer: sidebar } = sidebarSlice;
 const { reducer: socket } = socketSlice;
 const { reducer: theme } = themeSlice;
 
@@ -28,7 +26,6 @@ const reducer = combineReducers({
   notifications,
   panel,
   pipelines,
-  sidebar,
   socket,
   theme,
 });

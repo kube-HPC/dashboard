@@ -1,6 +1,5 @@
 import { SIDEBAR } from '@config';
 import { THEME } from '@constants';
-import { useSidebar } from '@hooks';
 import { Menu } from '@molecules';
 import { mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
@@ -8,6 +7,32 @@ import React from 'react';
 import styled from 'styled-components';
 import { theme } from 'styled-tools';
 import tw from 'twin.macro';
+
+const delay = {
+  open: {
+    x: 0,
+    transition: {
+      staggerChildren: 1,
+      ...spring.slow,
+    },
+  },
+  closed: {
+    x: -200,
+    transition: spring.slow,
+  },
+};
+
+const Sidebar = () => (
+  <Container initial="closed" animate="open" variants={delay}>
+    <Header variants={delay}>HKube</Header>
+    <Menu delayAnimation={1} visible>
+      {SIDEBAR.values.map(value => (
+        <div key={value}>{value}</div>
+      ))}
+    </Menu>
+    <div />
+  </Container>
+);
 
 const Container = styled(motion.div)`
   ${theme(THEME.value.background)}
@@ -30,35 +55,6 @@ const Header = styled(motion.div)`
   -webkit-text-fill-color: transparent;
   font-family: 'Rajdhani', sans-serif;
 `;
-
-const delay = {
-  open: {
-    x: 0,
-    transition: {
-      staggerChildren: 1,
-      ...spring.slow,
-    },
-  },
-  closed: {
-    x: -200,
-    transition: spring.slow,
-  },
-};
-
-const Sidebar = () => {
-  const { setValue, visible } = useSidebar();
-  return (
-    <Container initial="closed" animate={visible ? `open` : `closed`} variants={delay}>
-      <Header variants={delay}>Hkube</Header>
-      <Menu delayAnimation={1} visible={visible} onChange={setValue}>
-        {SIDEBAR.values.map(value => (
-          <div key={value}>{value}</div>
-        ))}
-      </Menu>
-      <div />
-    </Container>
-  );
-};
 
 Sidebar.className = Container;
 

@@ -17,7 +17,7 @@ export const DefaultSuggestion = () => <AutoSuggest isSuggestion options={option
 export const JobsSuggestion = () => {
   const jobs = useSelector(jobIdsSelector);
   const jobOptions = jobs?.map(jobId => ({ value: jobId, label: jobId })) ?? [];
-  return <AutoSuggest isSuggestion options={jobOptions} />;
+  return <AutoSuggest options={jobOptions} />;
 };
 
 const Decorator = styled.div`

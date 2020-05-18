@@ -5,6 +5,5 @@ export { default as notificationsSlice } from './notifications';
 export { default as panelSlice } from './panel';
 export { default as pipelinesSlice } from './pipelines';
 export { default as restSlice } from './rest';
-export { default as sidebarSlice } from './sidebar';
 export { default as socketSlice } from './socket';
 export { default as themeSlice } from './theme';
