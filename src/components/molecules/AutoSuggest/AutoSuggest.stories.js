@@ -8,9 +8,8 @@ import AutoSuggest from './AutoSuggest.react';
 
 const options = [`chocolate`, `strawberry`, `vanilla`];
 
-export const DefaultSuggestion = () => (
-  <AutoSuggest placeholder="Taste" isSuggestion options={options} />
-);
+export const DefaultSuggestion = () => <AutoSuggest placeholder="Taste" options={options} />;
+
 export const JobsSuggestion = () => {
   const jobs = useSelector(jobIdsSelector);
   return <AutoSuggest placeholder="Job Id" options={jobs} />;

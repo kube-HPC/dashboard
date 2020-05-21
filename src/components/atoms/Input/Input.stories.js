@@ -4,7 +4,7 @@ import React, { useReducer, useRef, useState } from 'react';
 import { styled, tw } from 'twin.macro';
 import Input from './Input.react';
 
-export const Default = Input;
+export const Default = () => <Input />;
 export const WithActions = () => {
   const inputRef = useRef();
   const [value, setValue] = useState(``);

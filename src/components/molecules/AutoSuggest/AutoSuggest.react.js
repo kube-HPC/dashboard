@@ -1,4 +1,4 @@
-import { Dropdown, Input, Scrollbar } from '@atoms';
+import { Dropdown, Input } from '@atoms';
 import { mixins } from '@styles';
 import { NOOP } from '@utils';
 import PropTypes from 'prop-types';
@@ -29,30 +29,26 @@ const AutoSuggest = ({ className, options = [], placeholder, onChange = NOOP }) 
         ref={inputRef}
         role="combobox"
         value={filterValue}
-        onChange={setFilterValue}
-        placeholder={placeholder}
         onFocus={toggleFocus}
         onBlur={toggleFocus}
+        onChange={setFilterValue}
+        placeholder={placeholder}
       />
-      {filteredOptions.length !== 0 && (
-        <Dropdown topOffset={offset} totalItems={filteredOptions.length} isVisible={isFocused}>
-          <Scrollbar>
-            {filteredOptions.map((option, index) => {
-              const onClick = () => setFilterValue(option);
-              const startIndex = option.indexOf(filterValue);
-              const prefix = option.slice(0, startIndex);
-              const suffix = option.slice(startIndex + filterValue.length, option.length);
-              return (
-                <Dropdown.Option key={index} role="button" onClick={onClick}>
-                  <span>{prefix}</span>
-                  <span>{filterValue}</span>
-                  <span>{suffix}</span>
-                </Dropdown.Option>
-              );
-            })}
-          </Scrollbar>
-        </Dropdown>
-      )}
+      <Dropdown topOffset={offset} totalItems={filteredOptions.length} isVisible={isFocused}>
+        {filteredOptions.map((option, index) => {
+          const onClick = () => setFilterValue(option);
+          const startIndex = option.indexOf(filterValue);
+          const prefix = option.slice(0, startIndex);
+          const suffix = option.slice(startIndex + filterValue.length, option.length);
+          return (
+            <Dropdown.Option key={index} role="button" onClick={onClick}>
+              <span>{prefix}</span>
+              <span>{filterValue}</span>
+              <span>{suffix}</span>
+            </Dropdown.Option>
+          );
+        })}
+      </Dropdown>
     </Container>
   );
 };

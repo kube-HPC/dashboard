@@ -1,9 +1,10 @@
-import { onMode } from '@utils';
+import { NOOP, onMode } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { prop } from 'styled-tools';
 import { styled, tw } from 'twin.macro';
+import Scrollbar from '../Scrollbar/Scrollbar.react';
 
 const ITEM_HEIGHT_PX = 30;
 const DEFAULT_TOTAL_ITEMS = 10;
@@ -13,18 +14,43 @@ const calcHeight = totalItems =>
   (totalItems > DEFAULT_TOTAL_ITEMS ? DEFAULT_TOTAL_ITEMS : totalItems) * ITEM_HEIGHT_PX +
   EXTRA_OFFSET;
 
-/* No variants API usage because of dynamic height */
-const visible = totalItems => ({ opacity: 1, height: calcHeight(totalItems) });
-const hidden = { opacity: 0, height: 0 };
+const variants = {
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
+};
 
-const Dropdown = ({ className, topOffset, totalItems = 0, isVisible = false, children }) => (
-  <Container
-    {...{ className, topOffset }}
-    animate={isVisible ? visible(totalItems) : hidden}
-    initial={hidden}>
-    {children}
-  </Container>
-);
+const Dropdown = ({
+  className,
+  topOffset,
+  isVisible = false,
+  children,
+  options = undefined,
+  onSelect = NOOP,
+  ...props
+}) => {
+  const areOptions = Array.isArray(options);
+  const items = areOptions ? options.length : React.Children.count(children);
+  const getOnClick = (value, index) => () => onSelect(value, index);
+
+  return (
+    <Container
+      {...{ className, topOffset, variants, ...props }}
+      tabIndex="0"
+      height={calcHeight(items)}
+      animate={isVisible && items > 0 ? `visible` : `hidden`}
+      initial="hidden">
+      <Scrollbar>
+        {areOptions
+          ? options.map((value, index) => (
+              <Option key={index} role="button" onClick={getOnClick(value, index)}>
+                <span>{value}</span>
+              </Option>
+            ))
+          : children}
+      </Scrollbar>
+    </Container>
+  );
+};
 
 const Option = styled.div`
   ${onMode(tw`hocus:bg-gray-800`, tw`hocus:bg-gray-800`)}
@@ -38,19 +64,22 @@ const Option = styled.div`
 const Container = styled(motion.div)`
   ${onMode(tw`bg-white`, tw`bg-gray-900`)}
   ${onMode(tw`border-black shadow-xl`, tw`border-white shadow-xlLight`)}
-  ${tw`overflow-hidden w-full absolute h-full rounded-sm border text-left`}
-  ${tw`z-40`}
+  ${tw`overflow-hidden w-full rounded-sm border text-left`}
+  ${tw`z-40 absolute`}
   top: ${prop(`topOffset`)}px;
+  height: ${prop(`height`)}px;
 `;
 
 Dropdown.Option = Option;
 Dropdown.className = Container;
 Dropdown.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
+  isVisible: PropTypes.bool,
+  options: PropTypes.array,
   topOffset: PropTypes.number,
   totalItems: PropTypes.number,
-  isVisible: PropTypes.bool,
-  children: PropTypes.node.isRequired,
+  onSelect: PropTypes.func,
 };
 
 export default Dropdown;

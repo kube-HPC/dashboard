@@ -1,39 +1,34 @@
-import { onMode } from '@utils';
+import { NOOP, onMode } from '@utils';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 import { styled, tw } from 'twin.macro';
 
-const Input = React.forwardRef(
-  ({ className, value = ``, onChange, onFocus, onBlur, ...props }, ref) => {
-    const [inputValue, setInputValue] = useState(value);
-    const $onChange = useCallback(({ target: { value } }) => setInputValue(value), []);
+const Input = React.forwardRef(({ className, value = ``, onChange = NOOP, ...props }, ref) => {
+  const [inputValue, setInputValue] = useState(value);
+  const $onChange = useCallback(({ target: { value } }) => setInputValue(value), []);
 
-    useEffect(() => {
-      onChange(inputValue);
-    }, [onChange, inputValue]);
+  useEffect(() => {
+    onChange(inputValue);
+  }, [onChange, inputValue]);
 
-    useEffect(() => {
-      setInputValue(value);
-    }, [value]);
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
 
-    return (
-      <$Input
-        {...{ className, ref, onFocus, onBlur, ...props }}
-        value={inputValue}
-        onChange={$onChange}
-      />
-    );
-  },
-);
+  return <$Input {...{ className, ref, ...props }} value={inputValue} onChange={$onChange} />;
+});
 
 const $Input = styled.input`
   &::placeholder {
     ${tw`font-normal italic opacity-50`}
     ${onMode(tw`text-black`, tw`text-white`)}
   }
-  ${tw`rounded-sm w-full p-2 bg-transparent border outline-none`}
+  ${tw`rounded-sm w-full p-2 bg-transparent border`}
   ${tw`transition-colors ease-in-out duration-200 hocus:bg-gray-900`}
-  ${onMode(tw`border-black shadow-xl`, tw`border-white shadow-xlLight`)}
+  ${onMode(
+    tw`border-black shadow-xl shadow-2xl`,
+    tw`border-white shadow-xlLight hocus:shadow-2xlLight`,
+  )}
 `;
 
 Input.displayName = `Input`;

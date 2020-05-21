@@ -4,11 +4,14 @@ import React from 'react';
 import { styled, tw } from 'twin.macro';
 import Dropdown from './Dropdown.react';
 
-export const Default = () => (
+const options = [...Array(5).keys()].map(key => `Option-${key}`);
+
+export const Default = () => <Dropdown options={options} isVisible />;
+export const WithChildren = () => (
   <Dropdown totalItems={3} isVisible>
-    {[...Array(5).keys()].map(key => (
-      <Dropdown.Option key={key} role="button">
-        <span>Option-{key + 1}</span>
+    {options.map(option => (
+      <Dropdown.Option key={option} role="button">
+        <span>{option}</span>
       </Dropdown.Option>
     ))}
   </Dropdown>
