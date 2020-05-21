@@ -43,7 +43,7 @@ const Option = styled.div`
 const Container = styled(motion.div)`
   ${onMode(tw`bg-white`, tw`bg-gray-900`)}
   ${onMode(tw`border-black shadow-xl`, tw`border-white shadow-xlLight`)}
-  ${tw`overflow-hidden w-full absolute h-full rounded-sm border`}
+  ${tw`overflow-hidden w-full absolute h-full rounded-sm border text-left`}
   top: ${prop(`topOffset`)}px;
   height: ${prop(`height`)}px;
 `;

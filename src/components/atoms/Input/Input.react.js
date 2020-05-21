@@ -23,7 +23,8 @@ const Input = React.forwardRef(
 );
 
 const $Input = styled.input`
-  ${tw`rounded-sm w-full p-2 bg-transparent border`}
+  ${tw`rounded-sm w-full p-2 bg-transparent border outline-none`}
+  ${tw`transition-colors ease-in-out duration-200 hocus:bg-gray-900`}
   ${onMode(tw`border-black shadow-xl`, tw`border-white shadow-xlLight`)}
 `;
 
