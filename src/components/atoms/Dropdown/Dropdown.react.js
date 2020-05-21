@@ -5,28 +5,23 @@ import React from 'react';
 import { prop } from 'styled-tools';
 import { styled, tw } from 'twin.macro';
 
-const variants = {
-  visible: {
-    opacity: 1,
-  },
-  hidden: {
-    opacity: 0,
-  },
-};
-
 const ITEM_HEIGHT_PX = 30;
 const DEFAULT_TOTAL_ITEMS = 10;
 const EXTRA_OFFSET = 2;
 
-const calcHeight = items =>
-  (items > DEFAULT_TOTAL_ITEMS ? DEFAULT_TOTAL_ITEMS : items) * ITEM_HEIGHT_PX + EXTRA_OFFSET;
+const calcHeight = totalItems =>
+  (totalItems > DEFAULT_TOTAL_ITEMS ? DEFAULT_TOTAL_ITEMS : totalItems) * ITEM_HEIGHT_PX +
+  EXTRA_OFFSET;
+
+/* No variants API usage because of dynamic height */
+const visible = totalItems => ({ opacity: 1, height: calcHeight(totalItems) });
+const hidden = { opacity: 0, height: 0 };
 
 const Dropdown = ({ className, topOffset, totalItems = 0, isVisible = false, children }) => (
   <Container
-    {...{ className, topOffset, variants }}
-    height={calcHeight(totalItems)}
-    animate={isVisible ? `visible` : `hidden`}
-    initial="hidden">
+    {...{ className, topOffset }}
+    animate={isVisible ? visible(totalItems) : hidden}
+    initial={hidden}>
     {children}
   </Container>
 );
@@ -44,8 +39,8 @@ const Container = styled(motion.div)`
   ${onMode(tw`bg-white`, tw`bg-gray-900`)}
   ${onMode(tw`border-black shadow-xl`, tw`border-white shadow-xlLight`)}
   ${tw`overflow-hidden w-full absolute h-full rounded-sm border text-left`}
+  ${tw`z-40`}
   top: ${prop(`topOffset`)}px;
-  height: ${prop(`height`)}px;
 `;
 
 Dropdown.Option = Option;

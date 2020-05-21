@@ -12,6 +12,7 @@ export {
   itemSizeSelector,
   jobIdsSelector,
   mapToJobEntry,
+  pipelineNamesSelector,
   progressSelector,
   selectedStatsSelector,
   statusSelector,

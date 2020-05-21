@@ -63,10 +63,6 @@ const Container = styled(motion.div)`
   ${tw`w-1/4 sm:w-1/2 h-full`}
   ${tw`flex-col`}
   ${onMode(tw`shadow-md`, tw`shadow-mdLight`)}
-
-  ${Scrollbar} {
-    ${tw`flex-grow`}
-  }
 `;
 
 const TopRight = styled.div`

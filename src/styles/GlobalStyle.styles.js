@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
 
   h1 {
     ${theme(THEME.value.textSecondary)}
-    ${tw`text-lg md:text-xl`}
+    ${tw`font-light text-lg md:text-xl`}
   }
 
   h2 {

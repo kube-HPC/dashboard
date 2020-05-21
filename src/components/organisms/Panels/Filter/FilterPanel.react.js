@@ -1,33 +1,43 @@
 import { FILTER } from '@config';
 import { useFilter } from '@hooks';
 import { AutoSuggest } from '@molecules';
-import { jobIdsSelector } from '@utils';
+import { jobIdsSelector, pipelineNamesSelector } from '@utils';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useMemo } from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
 import { styled, tw } from 'twin.macro';
 
+const filterTarget = (target, action) => filter => action({ target, filter });
+
 const FilterPanel = ({ className }) => {
   const jobs = useSelector(jobIdsSelector, shallowEqual);
-  const jobOptions = jobs?.map(jobId => ({ value: jobId, label: jobId })) ?? [];
-
+  const pipelines = useSelector(pipelineNamesSelector, shallowEqual);
   const { setJobsFilter } = useFilter();
 
-  const onFilterJobId = useCallback(
-    filterValue => setJobsFilter({ target: FILTER.target.jobId, filter: filterValue }),
+  const onFilterJobId = useMemo(() => filterTarget(FILTER.target.jobId, setJobsFilter), [
+    setJobsFilter,
+  ]);
+
+  const onFilterPipelineName = useMemo(
+    () => filterTarget(FILTER.target.pipelineName, setJobsFilter),
     [setJobsFilter],
   );
 
   return (
     <Container className={className}>
-      <h1>Filter Table</h1>
-      <AutoSuggest placeholder="Job Id" options={jobOptions} onChange={onFilterJobId} />
+      <h1>Filter Job Table</h1>
+      <AutoSuggest placeholder="Job Id" options={jobs} onChange={onFilterJobId} />
+      <AutoSuggest
+        placeholder="Pipeline Name"
+        options={pipelines}
+        onChange={onFilterPipelineName}
+      />
     </Container>
   );
 };
 
 const Container = styled.div`
-  ${tw`space-y-1`}
+  ${tw`space-y-2`}
 `;
 
 FilterPanel.propTypes = {

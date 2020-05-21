@@ -1,12 +1,13 @@
 import { Dropdown, Input, Scrollbar } from '@atoms';
 import { mixins } from '@styles';
+import { NOOP } from '@utils';
 import PropTypes from 'prop-types';
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { styled, tw } from 'twin.macro';
 
-const AutoSuggest = ({ className, options = [], placeholder, onChange }) => {
-  const [selected, setSelected] = useState(null);
+const AutoSuggest = ({ className, options = [], placeholder, onChange = NOOP }) => {
   const [filterValue, setFilterValue] = useState(``);
+
   const [isFocused, toggleFocus] = useReducer(p => !p, false);
   const [offset, setOffset] = useState(null);
 
@@ -20,7 +21,7 @@ const AutoSuggest = ({ className, options = [], placeholder, onChange }) => {
     onChange(filterValue);
   }, [filterValue, onChange]);
 
-  const filteredOptions = options.filter(option => option.label.includes(filterValue));
+  const filteredOptions = options.filter(option => option.includes(filterValue));
 
   return (
     <Container className={className}>
@@ -28,23 +29,19 @@ const AutoSuggest = ({ className, options = [], placeholder, onChange }) => {
         ref={inputRef}
         role="combobox"
         value={filterValue}
-        onFocus={toggleFocus}
-        onBlur={toggleFocus}
         onChange={setFilterValue}
         placeholder={placeholder}
+        onFocus={toggleFocus}
+        onBlur={toggleFocus}
       />
       {filteredOptions.length !== 0 && (
         <Dropdown topOffset={offset} totalItems={filteredOptions.length} isVisible={isFocused}>
           <Scrollbar>
             {filteredOptions.map((option, index) => {
-              const { value, label } = option;
-              const onClick = () => {
-                setSelected(value);
-                setFilterValue(label);
-              };
-              const startIndex = label.indexOf(filterValue);
-              const prefix = label.slice(0, startIndex);
-              const suffix = label.slice(startIndex + filterValue.length, label.length);
+              const onClick = () => setFilterValue(option);
+              const startIndex = option.indexOf(filterValue);
+              const prefix = option.slice(0, startIndex);
+              const suffix = option.slice(startIndex + filterValue.length, option.length);
               return (
                 <Dropdown.Option key={index} role="button" onClick={onClick}>
                   <span>{prefix}</span>

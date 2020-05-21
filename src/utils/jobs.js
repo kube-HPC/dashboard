@@ -28,12 +28,20 @@ const canPauseOrStop = state => isActive(state) || state === PIPELINE_STATUS.PAU
 
 const findJob = ({ dataSource, jobId }) => dataSource?.find(({ key }) => key === jobId);
 
+// Return strings array
 export const filteredJobIds = createSelector(
-  state => state.jobs.dataSource,
+  state => state.jobs.dataSource?.map(({ key, pipeline: { name } }) => ({ key, name })) ?? [],
   state => state.dashboard.filters.jobs,
   (dataSource, filters) => {
-    const { jobId } = filters;
-    return dataSource?.map(({ key }) => key).filter(id => id.includes(jobId)) ?? [];
+    const { jobId, pipelineName } = filters;
+    let $dataSource = dataSource;
+    if (jobId) {
+      $dataSource = $dataSource.filter(({ key }) => key.includes(jobId));
+    }
+    if (pipelineName) {
+      $dataSource = $dataSource.filter(({ name }) => name.includes(pipelineName));
+    }
+    return $dataSource.map(({ key }) => key);
   },
 );
 
@@ -100,10 +108,7 @@ export const progressSelector = jobId =>
 export const eyeSelector = jobId =>
   createSelector(
     state => state.dashboard.eyes,
-    eyes => {
-      const { isShowDetails } = eyes.jobs[jobId];
-      return isShowDetails;
-    },
+    eyes => eyes.jobs[jobId]?.isShowDetails,
   );
 
 export const itemSizeSelector = createSelector(
@@ -153,4 +158,9 @@ export const taskIdStatsSelector = createSelector(
 export const jobIdsSelector = createSelector(
   state => state.jobs.dataSource,
   dataSource => dataSource?.map(({ key }) => key),
+);
+
+export const pipelineNamesSelector = createSelector(
+  state => state.jobs.dataSource,
+  dataSource => dataSource?.map(({ pipeline: { name } }) => name),
 );

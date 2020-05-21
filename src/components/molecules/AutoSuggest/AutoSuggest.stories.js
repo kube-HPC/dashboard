@@ -6,17 +6,14 @@ import { useSelector } from 'react-redux';
 import { styled, tw } from 'twin.macro';
 import AutoSuggest from './AutoSuggest.react';
 
-const options = [
-  { value: `chocolate`, label: `Chocolate` },
-  { value: `strawberry`, label: `Strawberry` },
-  { value: `vanilla`, label: `Vanilla` },
-];
+const options = [`chocolate`, `strawberry`, `vanilla`];
 
-export const DefaultSuggestion = () => <AutoSuggest isSuggestion options={options} />;
+export const DefaultSuggestion = () => (
+  <AutoSuggest placeholder="Taste" isSuggestion options={options} />
+);
 export const JobsSuggestion = () => {
   const jobs = useSelector(jobIdsSelector);
-  const jobOptions = jobs?.map(jobId => ({ value: jobId, label: jobId })) ?? [];
-  return <AutoSuggest options={jobOptions} />;
+  return <AutoSuggest placeholder="Job Id" options={jobs} />;
 };
 
 const Decorator = styled.div`
