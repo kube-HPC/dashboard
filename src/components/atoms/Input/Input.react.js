@@ -1,8 +1,7 @@
 import { onMode } from '@utils';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 
 const Input = React.forwardRef(
   ({ className, value = ``, onChange, onFocus, onBlur, ...props }, ref) => {

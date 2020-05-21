@@ -1,8 +1,7 @@
 import { SB_LABELS } from '@constants';
 import { mixins } from '@styles';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 import Dropdown from './Dropdown.react';
 
 export const Default = () => (

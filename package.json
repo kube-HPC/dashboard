@@ -30,6 +30,11 @@
       "prettier --write"
     ]
   },
+  "babelMacros": {
+    "twin": {
+      "preset": "styled-components"
+    }
+  },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop -o -p 8080",
@@ -71,7 +76,8 @@
     "styled-components": "^5.1.0",
     "styled-tools": "^1.7.1",
     "typeface-rajdhani": "^0.0.72",
-    "vis-network-react": "^1.2.3"
+    "vis-network-react": "^1.2.3",
+    "twin.macro": "^1.1.2"
   },
   "devDependencies": {
     "@dennisvash/eslint-config": "^3.0.0",
@@ -98,7 +104,6 @@
     "lint-staged": "^10.2.2",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "prop-types": "^15.7.2",
-    "twin.macro": "^1.0.0"
+    "prop-types": "^15.7.2"
   }
 }

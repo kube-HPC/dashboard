@@ -1,7 +1,6 @@
 import { SB_LABELS } from '@constants';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 import Scrollbar from './Scrollbar.react';
 
 const Decorator = styled.div`

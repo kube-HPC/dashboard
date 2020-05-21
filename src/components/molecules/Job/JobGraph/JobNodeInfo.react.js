@@ -5,9 +5,8 @@ import { mixins, variants } from '@styles';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
 import { ifProp, theme } from 'styled-tools';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 import Label from './Label.react';
 
 const JobNodeInfo = ({

@@ -4,9 +4,8 @@ import { Menu } from '@molecules';
 import { mixins, spring } from '@styles';
 import { motion } from 'framer-motion';
 import React from 'react';
-import styled from 'styled-components';
 import { theme } from 'styled-tools';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 
 const delay = {
   open: {

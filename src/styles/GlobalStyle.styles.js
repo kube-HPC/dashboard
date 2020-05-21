@@ -2,7 +2,7 @@ import { THEME } from '@constants';
 import Icon from 'components/atoms/Icons/Icon.react';
 import { createGlobalStyle } from 'styled-components';
 import { theme } from 'styled-tools';
-import tw from 'twin.macro';
+import { tw } from 'twin.macro';
 import { onMode } from '../utils/styles';
 import mixins from './mixins.styles';
 

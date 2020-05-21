@@ -4,8 +4,7 @@ import { JobSelectHelper } from '@storybookHelpers';
 import { selectedStatsSelector } from '@utils';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 import JobDetails from './JobDetails.react';
 
 const Decorator = styled.div`

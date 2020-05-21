@@ -2,8 +2,7 @@ import { Dropdown, Input, Scrollbar } from '@atoms';
 import { mixins } from '@styles';
 import PropTypes from 'prop-types';
 import React, { useEffect, useReducer, useRef, useState } from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 
 const AutoSuggest = ({ className, options = [], placeholder, onChange }) => {
   const [selected, setSelected] = useState(null);

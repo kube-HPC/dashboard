@@ -8,9 +8,8 @@ import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 
 const JobPanel = () => {
   const { graph, logs, task, areLogsValid } = useGraph();

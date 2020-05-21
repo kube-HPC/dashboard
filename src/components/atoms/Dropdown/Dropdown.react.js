@@ -2,9 +2,8 @@ import { onMode } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
 import { prop } from 'styled-tools';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 
 const variants = {
   visible: {

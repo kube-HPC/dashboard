@@ -5,8 +5,7 @@ import { jobIdsSelector } from '@utils';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 
 const FilterPanel = ({ className }) => {
   const jobs = useSelector(jobIdsSelector, shallowEqual);

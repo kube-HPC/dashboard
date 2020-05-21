@@ -1,7 +1,6 @@
 import { THEME } from '@constants';
-import { css } from 'styled-components';
 import { theme } from 'styled-tools';
-import tw from 'twin.macro';
+import { css, tw } from 'twin.macro';
 import { onMode } from '../utils/styles';
 
 const fillScreen = css`

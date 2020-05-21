@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css } from 'twin.macro';
 
 // https://webgradients.com/
 

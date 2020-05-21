@@ -3,9 +3,8 @@ import { useGraphInfo, useUserTheme } from '@hooks';
 import { mixins } from '@styles';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useState } from 'react';
-import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 import JobNodeInfo from './JobNodeInfo.react';
 
 const PORTAL_DELAY = 100;

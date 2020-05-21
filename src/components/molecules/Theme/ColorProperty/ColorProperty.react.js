@@ -3,9 +3,8 @@ import { mixins } from '@styles';
 import { NOOP } from '@utils';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.flexBetween}

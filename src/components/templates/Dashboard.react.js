@@ -2,8 +2,7 @@ import { Notifications, Panel } from '@molecules';
 import { Jobs, Sidebar, TopActions } from '@organisms';
 import { mixins } from '@styles';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.flexStart}

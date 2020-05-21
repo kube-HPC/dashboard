@@ -3,8 +3,7 @@ import prettyMilliseconds from 'pretty-ms';
 import PropTypes from 'prop-types';
 import React, { memo, useEffect, useRef, useState } from 'react';
 import Moment from 'react-moment';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import { styled, tw } from 'twin.macro';
 
 const SEC = 1000;
 
