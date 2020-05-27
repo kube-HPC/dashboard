@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ifProp, theme } from 'styled-tools';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import JobActions from './JobActions.react';
 import JobTypes from './JobTypes.react';
 

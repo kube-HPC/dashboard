@@ -3,7 +3,7 @@ import { useJobs } from '@hooks';
 import { Notifications } from '@molecules';
 import { JobSelectHelper } from '@storybookHelpers';
 import React, { useReducer } from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import JobItem from './JobItem.react';
 import Jobs from './Jobs.react';
 

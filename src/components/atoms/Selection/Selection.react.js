@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { tw } from 'twin.macro';
+import tw from 'twin.macro';
 
 const variants = { visible: { opacity: 1 }, hidden: { opacity: 0 } };
 const whileHover = { opacity: 0.5 };

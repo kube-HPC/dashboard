@@ -1,7 +1,7 @@
 import { SB_LABELS } from '@constants';
 import { iconNames } from '@icons';
 import React, { useState } from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import IconsBar from './IconsBar.react';
 
 export default {

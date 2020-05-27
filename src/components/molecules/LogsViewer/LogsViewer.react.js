@@ -1,7 +1,7 @@
 import { toUpperCaseFirstLetter } from '@utils';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 /* eslint-disable no-unused-vars */
 const LogsViewer = ({ className, logs }) => (

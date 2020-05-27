@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { ifProp, prop } from 'styled-tools';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import Scrollbar from '../Scrollbar/Scrollbar.react';
 
 const ITEM_HEIGHT_PX = 30;

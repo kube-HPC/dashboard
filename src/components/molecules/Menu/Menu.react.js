@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { Children, useEffect, useState } from 'react';
 import { ifProp } from 'styled-tools';
-import { css, styled, tw } from 'twin.macro';
+import tw, { css, styled } from 'twin.macro';
 
 const styleOnSelect = (lightProp, darkProp) => ifProp(`selected`, onMode(lightProp, darkProp));
 

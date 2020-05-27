@@ -1,7 +1,7 @@
 import { Dropdown, Selection } from '@atoms';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const MultiSelect = ({ className, selected = [], options, onSelect, onDeselect }) => {
   const [isVisible, setVisible] = useState(false);

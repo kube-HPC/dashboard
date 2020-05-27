@@ -1,7 +1,7 @@
 import { SB_LABELS } from '@constants';
 import { mixins } from '@styles';
 import React from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import Dropdown from './Dropdown.react';
 
 const options = [...Array(5).keys()].map(key => `Option-${key}`);

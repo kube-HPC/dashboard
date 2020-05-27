@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { ifProp } from 'styled-tools';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const Container = styled.span`
   ${tw`font-light`}

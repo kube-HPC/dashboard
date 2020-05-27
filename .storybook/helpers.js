@@ -4,7 +4,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { NOOP } from '@utils';
 import React, { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const Container = styled.div`
   ${tw`border-black p-2 border-2 m-2`}

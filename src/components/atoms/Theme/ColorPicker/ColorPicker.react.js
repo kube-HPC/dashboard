@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { SketchPicker } from 'react-color-slim';
 import { ifProp } from 'styled-tools';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const PickerWrapper = styled.div``;
 

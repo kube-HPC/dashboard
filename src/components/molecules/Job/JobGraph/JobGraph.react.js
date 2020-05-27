@@ -4,7 +4,7 @@ import { mixins } from '@styles';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useState } from 'react';
 import { ifProp } from 'styled-tools';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import JobNodeInfo from './JobNodeInfo.react';
 
 const PORTAL_DELAY = 100;

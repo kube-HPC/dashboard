@@ -1,6 +1,6 @@
 import { SB_LABELS } from '@constants';
 import React from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import LogsViewer from './LogsViewer.react';
 
 const Decorator = styled.div`

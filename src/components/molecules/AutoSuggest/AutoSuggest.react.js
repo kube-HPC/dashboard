@@ -4,7 +4,7 @@ import { NOOP } from '@utils';
 import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React, { useEffect, useReducer, useRef, useState } from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const AutoSuggest = ({ className, options = [], placeholder, onChange = NOOP }) => {
   const [filterValue, setFilterValue] = useState(``);

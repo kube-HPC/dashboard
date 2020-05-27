@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Circle from 'react-circle';
 import { prop } from 'styled-tools';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import JobGraph from '../JobGraph/JobGraph.react';
 
 const JobDetails = ({ className, jobGraph, progress, nodesStats, status }) => {

@@ -6,7 +6,7 @@ import { onMode } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const container = {
   expanded: {

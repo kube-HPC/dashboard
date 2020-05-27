@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { ifProp } from 'styled-tools';
-import { css, styled, tw } from 'twin.macro';
+import tw, { css, styled } from 'twin.macro';
 
 const horizontal = css`
   ${tw`w-full h-px my-2`}

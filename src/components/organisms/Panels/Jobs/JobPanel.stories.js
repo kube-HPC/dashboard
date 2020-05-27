@@ -2,7 +2,7 @@ import { PANEL, SB_LABELS } from '@constants';
 import { InPanel, JobSelectHelper } from '@storybookHelpers';
 import { mixins } from '@styles';
 import React from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import JobPanel from './JobPanel.react';
 
 export const Content = JobPanel;

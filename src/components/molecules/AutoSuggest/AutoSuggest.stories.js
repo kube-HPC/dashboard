@@ -3,7 +3,7 @@ import { mixins } from '@styles';
 import { jobIdsSelector } from '@utils';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import AutoSuggest from './AutoSuggest.react';
 
 const options = [`chocolate`, `strawberry`, `vanilla`];

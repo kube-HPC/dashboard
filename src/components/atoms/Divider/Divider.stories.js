@@ -1,7 +1,7 @@
 import { SB_LABELS } from '@constants';
 import { mixins } from '@styles';
 import React from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import Divider from './Divider.react';
 
 const Container = styled.div`

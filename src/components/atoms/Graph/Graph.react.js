@@ -2,7 +2,7 @@ import { getGraphOptions } from '@config';
 import { GRAPH } from '@constants';
 import PropTypes from 'prop-types';
 import React, { memo, useEffect, useMemo, useRef } from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import VisGraph from 'vis-network-react';
 
 const { defaultOptions } = GRAPH;

@@ -2,7 +2,7 @@ import { Notification } from '@atoms';
 import { SB_LABELS } from '@constants';
 import { useNotification } from '@hooks';
 import React, { useEffect, useReducer } from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import Notifications from './Notifications.react';
 
 const Container = styled.div`

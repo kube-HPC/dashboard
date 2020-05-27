@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { ifProp } from 'styled-tools';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const JobPanel = () => {
   const { graph, logs, task, areLogsValid } = useGraph();

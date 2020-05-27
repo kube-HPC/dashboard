@@ -1,7 +1,7 @@
 import { NOOP, onMode } from '@utils';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const Input = React.forwardRef(({ className, value = ``, onChange = NOOP, ...props }, ref) => {
   const [inputValue, setInputValue] = useState(value);

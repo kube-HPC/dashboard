@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { areEqual } from 'react-window';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import JobItem from './JobItem.react';
 
 const Container = styled.div`

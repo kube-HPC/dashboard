@@ -5,7 +5,7 @@ import { jobIdsSelector, pipelineNamesSelector } from '@utils';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
-import { styled, tw } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const filterTarget = (target, action) => filter => action({ target, filter });
 
