@@ -24,10 +24,10 @@ const $Input = styled.input`
     ${onMode(tw`text-black`, tw`text-white`)}
   }
   ${tw`rounded-sm w-full p-2 bg-transparent border`}
-  ${tw`transition-colors ease-in-out duration-200 hocus:bg-gray-900`}
+  ${tw`transition-colors ease-in-out duration-200`}
   ${onMode(
-    tw`border-black shadow-xl shadow-2xl`,
-    tw`border-white shadow-xlLight hocus:shadow-2xlLight`,
+    tw`border-black shadow-xl shadow-2xl hocus:bg-gray-300`,
+    tw`border-white shadow-xlLight hocus:shadow-2xlLight hocus:bg-gray-900`,
   )}
 `;
 

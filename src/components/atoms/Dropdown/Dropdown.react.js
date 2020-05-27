@@ -1,8 +1,8 @@
 import { NOOP, onMode } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React from 'react';
-import { prop } from 'styled-tools';
+import React, { useEffect, useState } from 'react';
+import { ifProp, prop } from 'styled-tools';
 import { styled, tw } from 'twin.macro';
 import Scrollbar from '../Scrollbar/Scrollbar.react';
 
@@ -15,8 +15,8 @@ const calcHeight = totalItems =>
   EXTRA_OFFSET;
 
 const variants = {
-  visible: { opacity: 1 },
-  hidden: { opacity: 0 },
+  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: -1 },
 };
 
 const Dropdown = ({
@@ -34,13 +34,20 @@ const Dropdown = ({
   const isAnimate = isVisible && totalItems > 0;
   const onClick = (value, index) => () => onSelect(value, index);
 
+  const [isClickable, setIsClickable] = useState(isVisible);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsClickable(isVisible);
+    }, 100);
+  }, [isVisible]);
+
   return (
     <Container
-      {...{ className, topOffset, ...props }}
+      {...{ className, topOffset, height, variants, ...props }}
       tabIndex="0"
       animate={isAnimate ? `visible` : `hidden`}
-      height={height}
-      variants={variants}
+      isClickable={isClickable}
       initial="hidden">
       <Scrollbar>
         {areOptions
@@ -56,7 +63,7 @@ const Dropdown = ({
 };
 
 const Option = styled.div`
-  ${onMode(tw`hocus:bg-gray-800`, tw`hocus:bg-gray-800`)}
+  ${onMode(tw`hocus:bg-gray-300`, tw`hocus:bg-gray-800`)}
   ${tw`transition-colors ease-in-out duration-300 p-1 truncate`}
   span:nth-child(2) {
     ${tw`font-semibold`}
@@ -65,12 +72,12 @@ const Option = styled.div`
 `;
 
 const Container = styled(motion.div)`
-  ${onMode(tw`bg-white`, tw`bg-gray-900`)}
-  ${onMode(tw`border-black shadow-xl`, tw`border-white shadow-xlLight`)}
-  ${tw`overflow-hidden w-full rounded-sm border text-left`}
-  ${tw`z-40 absolute`}
   top: ${prop(`topOffset`)}px;
   height: ${prop(`height`)}px;
+  ${onMode(tw`border-black shadow-xl bg-white`, tw`border-white shadow-xlLight bg-gray-900`)}
+  ${ifProp(`isClickable`, tw`pointer-events-auto`, tw`pointer-events-none`)}
+  ${tw`overflow-hidden w-full rounded-sm border text-left`}
+  ${tw`z-40 absolute`}
 `;
 
 Dropdown.Option = Option;
