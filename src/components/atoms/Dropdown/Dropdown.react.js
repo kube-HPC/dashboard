@@ -15,8 +15,8 @@ const calcHeight = totalItems =>
   EXTRA_OFFSET;
 
 const variants = {
-  visible: { opacity: 1, y: 0 },
-  hidden: { opacity: 0, y: -1 },
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
 };
 
 const Dropdown = ({
@@ -26,6 +26,7 @@ const Dropdown = ({
   children,
   options = undefined,
   onSelect = NOOP,
+  innerRef,
   ...props
 }) => {
   const areOptions = Array.isArray(options);
@@ -45,6 +46,7 @@ const Dropdown = ({
   return (
     <Container
       {...{ className, topOffset, height, variants, ...props }}
+      ref={innerRef}
       tabIndex="0"
       animate={isAnimate ? `visible` : `hidden`}
       isClickable={isClickable}
@@ -85,11 +87,12 @@ Dropdown.className = Container;
 Dropdown.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  innerRef: PropTypes.object,
   isVisible: PropTypes.bool,
+  onSelect: PropTypes.func,
   options: PropTypes.array,
   topOffset: PropTypes.number,
   totalItems: PropTypes.number,
-  onSelect: PropTypes.func,
 };
 
 export default Dropdown;

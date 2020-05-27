@@ -7,6 +7,7 @@ export { default as useJobActions } from './useJobActions';
 export { default as useJobs } from './useJobs';
 export { default as useLocalStorage } from './useLocalStorage';
 export { default as useNotification } from './useNotification';
+export { default as useOnClickOutside } from './useOnClickOutside';
 export { default as usePanel } from './usePanel';
 export { default as useSidebar } from './useSidebar';
 export { default as useSocket } from './useSocket';

@@ -26,7 +26,6 @@ export const Default = () => {
         onDeselect={onDeselect}
         options={options}
       />
-      <br />
       <h1>Multi Select</h1>
     </>
   );
@@ -34,7 +33,7 @@ export const Default = () => {
 
 const Decorator = styled.div`
   ${mixins.flexCenter}
-  ${tw`flex-col`}
+  ${tw`flex-col space-y-5`}
   ${mixins.fillScreen}
   ${MultiSelect.className} {
     ${tw`w-1/2`}

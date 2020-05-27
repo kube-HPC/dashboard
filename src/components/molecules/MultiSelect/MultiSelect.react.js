@@ -1,34 +1,27 @@
 import { Dropdown, Selection } from '@atoms';
+import { useOnClickOutside } from '@hooks';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import tw, { styled } from 'twin.macro';
 
 const MultiSelect = ({ className, selected = [], options, onSelect, onDeselect }) => {
   const [isVisible, setVisible] = useState(false);
   const [topOffset, setTopOffset] = useState(null);
-
   const inputRef = useRef();
+  const containerRef = useRef();
 
-  const onBlur = () => setVisible(false);
   const onFocus = () => setVisible(true);
 
-  const $onDeselect = () => {
-    onBlur();
-    onDeselect();
-  };
+  const onClickOutside = useCallback(() => setVisible(false), []);
+  useOnClickOutside(containerRef, onClickOutside);
 
   useEffect(() => {
     setTopOffset(inputRef.current.offsetHeight);
   }, []);
 
   return (
-    <Container {...{ className }}>
-      <Selection
-        {...{ onFocus, onBlur }}
-        ref={inputRef}
-        selected={selected}
-        onSelect={$onDeselect}
-      />
+    <Container {...{ className }} ref={containerRef}>
+      <Selection {...{ onFocus, selected }} ref={inputRef} onSelect={onDeselect} />
       <Dropdown {...{ isVisible, topOffset, options, onSelect }} />
     </Container>
   );

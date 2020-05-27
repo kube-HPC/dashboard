@@ -36,7 +36,7 @@ const Selection = React.forwardRef(({ className, selected = [], onSelect, ...pro
 Selection.displayName = `Selection`;
 
 const Option = styled(motion.div)`
-  ${tw`inline-block border p-2 rounded-sm`}
+  ${tw`inline-block border p-2 rounded-sm z-20`}
   ${onMode(tw`border-black`, tw`border-white`)}
 `;
 
