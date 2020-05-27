@@ -1,4 +1,4 @@
-import { JOBS, SOCKET } from '@config';
+import { FILTER, JOBS, SOCKET } from '@config';
 import { LOCAL_STORAGE, PANEL } from '@constants';
 import { createSlice } from '@reduxjs/toolkit';
 import { activeStates, getLocalStorageItem } from '@utils';
@@ -13,8 +13,9 @@ const initialState = {
   tags: { jobs: getLocalStorageItem(LOCAL_STORAGE.TAGS) || {} },
   filters: {
     jobs: {
-      jobId: ``,
-      pipelineName: ``,
+      [FILTER.target.jobId]: ``,
+      [FILTER.target.pipelineName]: ``,
+      [FILTER.target.types]: [],
     },
   },
   panel: { value: null, expanded: false },

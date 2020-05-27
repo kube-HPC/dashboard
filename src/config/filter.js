@@ -3,6 +3,7 @@ const filterConfig = {
   target: {
     jobId: `jobId`,
     pipelineName: `pipelineName`,
+    types: `types`,
   },
 };
 

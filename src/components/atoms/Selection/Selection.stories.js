@@ -5,7 +5,7 @@ import tw, { styled } from 'twin.macro';
 import Selection from './Selection.react';
 
 export const Default = () => {
-  const [selected, setSelected] = useState([0, 1, 2]);
+  const [selected, setSelected] = useState([]);
 
   const onClick = () => setSelected(p => [...p, p.length]);
   const onSelect = (value, index) =>

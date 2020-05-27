@@ -4,7 +4,14 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import tw, { styled } from 'twin.macro';
 
-const MultiSelect = ({ className, selected = [], options, onSelect, onDeselect }) => {
+const MultiSelect = ({
+  className,
+  selected = [],
+  options,
+  onSelect,
+  onDeselect,
+  placeholder = ``,
+}) => {
   const [isVisible, setVisible] = useState(false);
   const [topOffset, setTopOffset] = useState(null);
   const inputRef = useRef();
@@ -21,7 +28,11 @@ const MultiSelect = ({ className, selected = [], options, onSelect, onDeselect }
 
   return (
     <Container {...{ className }} ref={containerRef}>
-      <Selection {...{ onFocus, selected }} ref={inputRef} onSelect={onDeselect} />
+      <Selection
+        {...{ onFocus, selected, placeholder }}
+        innerRef={inputRef}
+        onSelect={onDeselect}
+      />
       <Dropdown {...{ isVisible, topOffset, options, onSelect }} />
     </Container>
   );
@@ -34,6 +45,7 @@ const Container = styled.div`
 MultiSelect.className = Container;
 MultiSelect.propTypes = {
   className: PropTypes.string,
+  placeholder: PropTypes.string,
   onDeselect: PropTypes.func,
   onSelect: PropTypes.func,
   options: PropTypes.array,

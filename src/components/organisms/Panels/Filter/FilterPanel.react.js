@@ -1,11 +1,14 @@
 import { FILTER } from '@config';
+import { pipelineTypes } from '@hkube/consts';
 import { useFilter } from '@hooks';
-import { AutoSuggest } from '@molecules';
+import { AutoSuggest, MultiSelect } from '@molecules';
 import { jobIdsSelector, pipelineNamesSelector } from '@utils';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
 import tw, { styled } from 'twin.macro';
+
+const DEFAULT_OPTIONS = Object.values(pipelineTypes).sort();
 
 const filterTarget = (target, action) => filter => action({ target, filter });
 
@@ -13,6 +16,18 @@ const FilterPanel = ({ className }) => {
   const jobs = useSelector(jobIdsSelector, shallowEqual);
   const pipelines = useSelector(pipelineNamesSelector, shallowEqual);
   const { setJobsFilter } = useFilter();
+
+  const [selected, setSelected] = useState([]);
+  const [options, setOptions] = useState(DEFAULT_OPTIONS);
+
+  const onDeselect = (value, index) =>
+    setSelected(p => {
+      const copy = [...p];
+      copy.splice(index, 1);
+      return copy;
+    });
+
+  const onSelect = value => setSelected(p => [...p, value]);
 
   const onFilterJobId = useMemo(() => filterTarget(FILTER.target.jobId, setJobsFilter), [
     setJobsFilter,
@@ -23,6 +38,11 @@ const FilterPanel = ({ className }) => {
     [setJobsFilter],
   );
 
+  useEffect(() => {
+    filterTarget(FILTER.target.types, setJobsFilter)(selected);
+    setOptions(DEFAULT_OPTIONS.filter(option => !selected.includes(option)));
+  }, [selected, setJobsFilter]);
+
   return (
     <Container className={className}>
       <h1>Filter Job Table</h1>
@@ -32,6 +52,7 @@ const FilterPanel = ({ className }) => {
         options={pipelines}
         onChange={onFilterPipelineName}
       />
+      <MultiSelect {...{ selected, options, onSelect, onDeselect }} placeholder="Job Types" />
     </Container>
   );
 };

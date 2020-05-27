@@ -6,6 +6,6 @@ export const panelSelector = createSelector(
 );
 
 export const filterSelector = createSelector(
-  state => state.dashboard.filter,
+  state => state.dashboard.filters,
   filter => filter,
 );

@@ -4,7 +4,7 @@ import React from 'react';
 import tw, { styled } from 'twin.macro';
 import Dropdown from './Dropdown.react';
 
-const options = [...Array(5).keys()].map(key => `Option-${key}`);
+const options = [...Array(20).keys()].map(key => `Option-${key}`);
 
 export const Default = () => <Dropdown options={options} />;
 export const WithChildren = () => (

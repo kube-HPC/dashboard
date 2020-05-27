@@ -8,7 +8,7 @@ import Scrollbar from '../Scrollbar/Scrollbar.react';
 
 const ITEM_HEIGHT_PX = 30;
 const DEFAULT_TOTAL_ITEMS = 5;
-const EXTRA_OFFSET = 2;
+const EXTRA_OFFSET = 0;
 
 const calcHeight = totalItems =>
   (totalItems > DEFAULT_TOTAL_ITEMS ? DEFAULT_TOTAL_ITEMS : totalItems) * ITEM_HEIGHT_PX +
