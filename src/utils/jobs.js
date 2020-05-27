@@ -30,16 +30,23 @@ const findJob = ({ dataSource, jobId }) => dataSource?.find(({ key }) => key ===
 
 // Return strings array
 export const filteredJobIds = createSelector(
-  state => state.jobs.dataSource?.map(({ key, pipeline: { name } }) => ({ key, name })) ?? [],
+  state =>
+    state.jobs.dataSource?.map(({ key, pipeline: { name, types } }) => ({ key, name, types })) ??
+    [],
   state => state.dashboard.filters.jobs,
   (dataSource, filters) => {
-    const { jobId, pipelineName } = filters;
+    const { jobId, pipelineName, types } = filters;
     let $dataSource = dataSource;
     if (jobId) {
       $dataSource = $dataSource.filter(({ key }) => key.includes(jobId));
     }
     if (pipelineName) {
       $dataSource = $dataSource.filter(({ name }) => name.includes(pipelineName));
+    }
+    if (types.length) {
+      $dataSource = $dataSource.filter(
+        ({ types: $types }) => $types.filter($type => types.includes($type)).length !== 0,
+      );
     }
     return $dataSource.map(({ key }) => key);
   },
