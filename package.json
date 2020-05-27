@@ -75,15 +75,15 @@
     "socket.io-client": "^2.3.0",
     "styled-components": "^5.1.0",
     "styled-tools": "^1.7.1",
+    "twin.macro": "^1.1.2",
     "typeface-rajdhani": "^0.0.72",
-    "vis-network-react": "^1.2.3",
-    "twin.macro": "^1.1.2"
+    "vis-network-react": "^1.2.3"
   },
   "devDependencies": {
     "@dennisvash/eslint-config": "^3.0.0",
     "@dennisvash/prettier-config": "^2.0.1",
     "@storybook/react": "^5.3.18",
-    "@welldone-software/why-did-you-render": "^4.2.1",
+    "@welldone-software/why-did-you-render": "^4.2.2",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.10.7",

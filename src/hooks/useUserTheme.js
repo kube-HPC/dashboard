@@ -21,7 +21,7 @@ const useUserTheme = () => {
   return {
     theme,
     setProperty,
-    setPalette: setPalette,
+    setPalette,
     isLightTheme: theme.mode === THEME.mode.light,
   };
 };

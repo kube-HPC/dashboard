@@ -7,7 +7,7 @@ import { styled, tw } from 'twin.macro';
 import Scrollbar from '../Scrollbar/Scrollbar.react';
 
 const ITEM_HEIGHT_PX = 30;
-const DEFAULT_TOTAL_ITEMS = 10;
+const DEFAULT_TOTAL_ITEMS = 5;
 const EXTRA_OFFSET = 2;
 
 const calcHeight = totalItems =>
@@ -22,27 +22,30 @@ const variants = {
 const Dropdown = ({
   className,
   topOffset,
-  isVisible = false,
+  isVisible = true,
   children,
   options = undefined,
   onSelect = NOOP,
   ...props
 }) => {
   const areOptions = Array.isArray(options);
-  const items = areOptions ? options.length : React.Children.count(children);
-  const getOnClick = (value, index) => () => onSelect(value, index);
+  const totalItems = areOptions ? options.length : React.Children.count(children);
+  const height = calcHeight(totalItems);
+  const isAnimate = isVisible && totalItems > 0;
+  const onClick = (value, index) => () => onSelect(value, index);
 
   return (
     <Container
-      {...{ className, topOffset, variants, ...props }}
+      {...{ className, topOffset, ...props }}
       tabIndex="0"
-      height={calcHeight(items)}
-      animate={isVisible && items > 0 ? `visible` : `hidden`}
+      animate={isAnimate ? `visible` : `hidden`}
+      height={height}
+      variants={variants}
       initial="hidden">
       <Scrollbar>
         {areOptions
           ? options.map((value, index) => (
-              <Option key={index} role="button" onClick={getOnClick(value, index)}>
+              <Option key={index} role="button" onClick={onClick(value, index)}>
                 <span>{value}</span>
               </Option>
             ))

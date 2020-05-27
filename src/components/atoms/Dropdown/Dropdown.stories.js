@@ -6,9 +6,9 @@ import Dropdown from './Dropdown.react';
 
 const options = [...Array(5).keys()].map(key => `Option-${key}`);
 
-export const Default = () => <Dropdown options={options} isVisible />;
+export const Default = () => <Dropdown options={options} />;
 export const WithChildren = () => (
-  <Dropdown totalItems={3} isVisible>
+  <Dropdown totalItems={3}>
     {options.map(option => (
       <Dropdown.Option key={option} role="button">
         <span>{option}</span>

@@ -15,15 +15,6 @@ const Container = ({ children }) => {
   return children;
 };
 
-// if (process.env.NODE_ENV === 'development') {
-//   const whyDidYouRender = require('@welldone-software/why-did-you-render');
-//   whyDidYouRender(React, {
-//     trackAllPureComponents: true,
-//     trackExtraHooks: [[useSelector, 'useSelector']],
-//     exclude: [/List/, /AutoSizer/],
-//   });
-// }
-
 addDecorator(S => {
   const store = createStore();
   return (
@@ -74,3 +65,13 @@ global.__PATH_PREFIX__ = '';
 window.___navigate = pathname => {
   action('NavigateTo:')(pathname);
 };
+
+// import { useSelector} from 'react-redux';
+// if (process.env.NODE_ENV === 'development') {
+//   const whyDidYouRender = require('@welldone-software/why-did-you-render');
+//   whyDidYouRender(React, {
+//     trackAllPureComponents: true,
+//     trackExtraHooks: [[useSelector, 'useSelector']],
+//     exclude: [/List/, /AutoSizer/],
+//   });
+// }

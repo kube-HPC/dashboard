@@ -115,8 +115,8 @@ export const itemSizeSelector = createSelector(
   state => state.jobs.dataSource,
   state => state.dashboard.eyes,
   (dataSource, eyes) => index => {
-    const jobId = dataSource[index]?.key;
-    const { isShowDetails } = eyes.jobs[jobId];
+    const jobId = dataSource?.[index]?.key;
+    const isShowDetails = eyes.jobs[jobId]?.isShowDetails;
 
     return isShowDetails ? STYLE.itemSize.jobs.open : STYLE.itemSize.jobs.normal;
   },

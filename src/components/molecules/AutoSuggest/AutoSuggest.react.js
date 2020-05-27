@@ -1,6 +1,7 @@
 import { Dropdown, Input } from '@atoms';
 import { mixins } from '@styles';
 import { NOOP } from '@utils';
+import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { styled, tw } from 'twin.macro';
@@ -58,7 +59,10 @@ const Container = styled.div`
   ${tw`flex-col w-full relative space-y-2`}
 `;
 
-AutoSuggest.className = Container;
+const Memo = React.memo(AutoSuggest, isEqual);
+
+Memo.displayName = `Auto Suggest`;
+Memo.className = Container;
 AutoSuggest.propTypes = {
   className: PropTypes.string,
   options: PropTypes.array,
@@ -66,4 +70,4 @@ AutoSuggest.propTypes = {
   onChange: PropTypes.func,
 };
 
-export default AutoSuggest;
+export default Memo;

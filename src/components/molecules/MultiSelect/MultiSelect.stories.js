@@ -42,7 +42,7 @@ const Decorator = styled.div`
 `;
 
 export default {
-  title: `${SB_LABELS.MOLECULES}MultiSelect`,
+  title: `${SB_LABELS.MOLECULES}Multi Select`,
   decorators: [
     S => (
       <Decorator>
