@@ -3,8 +3,7 @@ import { useGraph } from '@hooks';
 import { JobSelectHelper } from '@storybookHelpers';
 import { mixins } from '@styles';
 import React, { useMemo, useReducer } from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import JobGraph from './JobGraph.react';
 
 const Flex = styled.div`

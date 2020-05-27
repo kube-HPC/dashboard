@@ -4,21 +4,14 @@ import { IconsBar, Menu } from '@molecules';
 import { mixins } from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
-
-const Container = styled.div`
-  ${mixins.flexBetween}
-  ${mixins.upperCase}
-  ${tw`text-lg w-full`}
-`;
+import tw, { styled } from 'twin.macro';
 
 const TopActions = ({ className }) => {
-  const { topRightIcons } = useTopActions();
+  const { topRightIcons, topLeftIcons } = useTopActions();
 
   return (
     <Container className={className}>
-      <IconsBar key="left" icons={TOP_BAR.leftIcons} reveal="top" />
+      <IconsBar key="left" icons={topLeftIcons} reveal="top" />
       <Menu key="center" horizontal>
         {TOP_BAR.values.map(value => (
           <div key={value}>{value}</div>
@@ -28,6 +21,11 @@ const TopActions = ({ className }) => {
     </Container>
   );
 };
+
+const Container = styled.div`
+  ${mixins.flexBetween}
+  ${tw`text-lg w-full uppercase`}
+`;
 
 TopActions.propTypes = {
   className: PropTypes.string,

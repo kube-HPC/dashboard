@@ -1,7 +1,6 @@
 import { PANEL, SB_LABELS } from '@constants';
-import { usePanel } from '@hooks';
-import { Panel } from '@molecules';
-import React, { useEffect } from 'react';
+import { InPanel } from '@storybookHelpers';
+import React from 'react';
 import tw from 'twin.macro';
 import ThemePanel from './ThemePanel.react';
 
@@ -20,11 +19,4 @@ export default {
 
 export const Content = ThemePanel;
 
-export const InPanel = () => {
-  const { set: setValue } = usePanel();
-  useEffect(() => {
-    setValue(PANEL.theme);
-  }, [setValue]);
-
-  return <Panel />;
-};
+export const InPanel$ = () => <InPanel panel={PANEL.theme} />;

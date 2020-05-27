@@ -1,8 +1,11 @@
 import { THEME } from '@constants';
-import { css } from 'styled-components';
 import { theme } from 'styled-tools';
-import tw from 'twin.macro';
+import tw, { css } from 'twin.macro';
 import { onMode } from '../utils/styles';
+
+const fillScreen = css`
+  ${tw`w-screen h-screen`}
+`;
 
 const fillContainer = css`
   ${tw`w-full h-full`}
@@ -47,10 +50,6 @@ const colorOnFocus = css`
   ${onMode(tw`hocus:text-black`, tw`hocus:text-white`)}
 `;
 
-const upperCase = css`
-  ${tw`uppercase`}
-`;
-
 const textSecondary = css`
   ${theme(THEME.value.textSecondary)}
 `;
@@ -66,9 +65,10 @@ const card = css`
 `;
 
 const mixins = {
+  card,
   colorOnFocus,
-  timingNormal,
   fillContainer,
+  fillScreen,
   fixed,
   flexBetween,
   flexCenter,
@@ -76,8 +76,7 @@ const mixins = {
   flexStart,
   rounded,
   textSecondary,
-  upperCase,
-  card,
+  timingNormal,
   timingSlow,
 };
 

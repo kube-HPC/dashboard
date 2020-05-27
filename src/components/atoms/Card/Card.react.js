@@ -1,7 +1,7 @@
 import { mixins } from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
+import { styled } from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.card}

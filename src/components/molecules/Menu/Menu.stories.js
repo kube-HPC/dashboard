@@ -1,8 +1,7 @@
 import { SIDEBAR, TOP_BAR } from '@config';
 import { SB_LABELS } from '@constants';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import Menu from './Menu.react';
 
 const Container = styled.div`

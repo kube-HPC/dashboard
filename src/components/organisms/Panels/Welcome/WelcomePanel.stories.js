@@ -1,7 +1,6 @@
 import { SB_LABELS } from '@constants';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import { Panel } from '../../../molecules';
 import WelcomePanel from './WelcomePanel.react';
 

@@ -1,9 +1,8 @@
 import { NOOP } from '@utils';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
 import { ifProp, prop } from 'styled-tools';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const Box = styled.div`
   ${tw`h-3 rounded-sm`}

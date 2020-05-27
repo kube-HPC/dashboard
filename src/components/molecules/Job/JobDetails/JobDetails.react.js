@@ -4,9 +4,8 @@ import { mixins } from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Circle from 'react-circle';
-import styled from 'styled-components';
 import { prop } from 'styled-tools';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import JobGraph from '../JobGraph/JobGraph.react';
 
 const JobDetails = ({ className, jobGraph, progress, nodesStats, status }) => {

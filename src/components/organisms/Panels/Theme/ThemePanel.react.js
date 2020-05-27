@@ -5,8 +5,7 @@ import { ColorProperty } from '@molecules';
 import { mixins } from '@styles';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import ThemeProperty from './ThemeProperty.react';
 
 const Container = styled.div`

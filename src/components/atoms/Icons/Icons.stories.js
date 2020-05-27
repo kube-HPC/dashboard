@@ -1,8 +1,7 @@
 import { SB_LABELS } from '@constants';
 import { mixins } from '@styles';
 import React, { useReducer } from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import {
   IconExpand,
   IconFileDownload,

@@ -2,7 +2,7 @@ import { mixins } from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Scrollbars from 'react-custom-scrollbars';
-import styled from 'styled-components';
+import { styled } from 'twin.macro';
 import Thumb from './Thumb.react';
 
 const Scrollbar = ({ className, children, ...props }) => (

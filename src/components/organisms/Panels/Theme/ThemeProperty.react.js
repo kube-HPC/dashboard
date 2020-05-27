@@ -2,8 +2,7 @@ import { ColorProperty } from '@molecules';
 import { mixins, palettes } from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.fillContainer}

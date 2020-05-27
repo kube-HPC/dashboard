@@ -28,6 +28,30 @@ const canPauseOrStop = state => isActive(state) || state === PIPELINE_STATUS.PAU
 
 const findJob = ({ dataSource, jobId }) => dataSource?.find(({ key }) => key === jobId);
 
+// Return strings array
+export const filteredJobIds = createSelector(
+  state =>
+    state.jobs.dataSource?.map(({ key, pipeline: { name, types } }) => ({ key, name, types })) ??
+    [],
+  state => state.dashboard.filters.jobs,
+  (dataSource, filters) => {
+    const { jobId, pipelineName, types } = filters;
+    let $dataSource = dataSource;
+    if (jobId) {
+      $dataSource = $dataSource.filter(({ key }) => key.includes(jobId));
+    }
+    if (pipelineName) {
+      $dataSource = $dataSource.filter(({ name }) => name.includes(pipelineName));
+    }
+    if (types.length) {
+      $dataSource = $dataSource.filter(
+        ({ types: $types }) => $types.filter($type => types.includes($type)).length !== 0,
+      );
+    }
+    return $dataSource.map(({ key }) => key);
+  },
+);
+
 export const entrySelector = jobIdToFind =>
   createSelector(
     state => state.jobs.dataSource,
@@ -91,18 +115,15 @@ export const progressSelector = jobId =>
 export const eyeSelector = jobId =>
   createSelector(
     state => state.dashboard.eyes,
-    eyes => {
-      const { isShowDetails } = eyes.jobs[jobId];
-      return isShowDetails;
-    },
+    eyes => eyes.jobs[jobId]?.isShowDetails,
   );
 
 export const itemSizeSelector = createSelector(
   state => state.jobs.dataSource,
   state => state.dashboard.eyes,
   (dataSource, eyes) => index => {
-    const jobId = dataSource[index]?.key;
-    const { isShowDetails } = eyes.jobs[jobId];
+    const jobId = dataSource?.[index]?.key;
+    const isShowDetails = eyes.jobs[jobId]?.isShowDetails;
 
     return isShowDetails ? STYLE.itemSize.jobs.open : STYLE.itemSize.jobs.normal;
   },
@@ -139,4 +160,14 @@ export const taskIdStatsSelector = createSelector(
 
     return { id: taskId, nodeName, algorithmName, status };
   },
+);
+
+export const jobIdsSelector = createSelector(
+  state => state.jobs.dataSource,
+  dataSource => dataSource?.map(({ key }) => key),
+);
+
+export const pipelineNamesSelector = createSelector(
+  state => state.jobs.dataSource,
+  dataSource => dataSource?.map(({ pipeline: { name } }) => name),
 );

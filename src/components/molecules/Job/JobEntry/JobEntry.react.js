@@ -3,8 +3,7 @@ import { useUserTheme } from '@hooks';
 import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import JobTime from './JobTime.react';
 
 const JobEntry = ({ className, jobId, pipelineName, startTime, status, timeTook }) => {

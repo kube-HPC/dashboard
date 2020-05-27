@@ -6,8 +6,7 @@ import { onMode } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const container = {
   expanded: {
@@ -64,10 +63,6 @@ const Container = styled(motion.div)`
   ${tw`w-1/4 sm:w-1/2 h-full`}
   ${tw`flex-col`}
   ${onMode(tw`shadow-md`, tw`shadow-mdLight`)}
-
-  ${Scrollbar} {
-    ${tw`flex-grow`}
-  }
 `;
 
 const TopRight = styled.div`

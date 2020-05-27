@@ -1,8 +1,7 @@
 import { THEME } from '@constants';
 import React from 'react';
-import styled from 'styled-components';
 import { theme } from 'styled-tools';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const ThumbColored = styled.div`
   ${theme(THEME.value.backgroundDark, tw`bg-gray-500`)}

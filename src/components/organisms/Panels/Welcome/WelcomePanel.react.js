@@ -2,8 +2,7 @@ import { Divider, Link } from '@atoms';
 import { META } from '@config';
 import { mixins } from '@styles';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const SelfCenter = styled.div`
   ${tw`self-center`}

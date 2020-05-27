@@ -10,9 +10,8 @@ import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
 import { ifProp, theme } from 'styled-tools';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import JobActions from './JobActions.react';
 import JobTypes from './JobTypes.react';
 

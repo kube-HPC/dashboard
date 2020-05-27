@@ -19,8 +19,9 @@ const GlobalStyle = createGlobalStyle`
 
   h1 {
     ${theme(THEME.value.textSecondary)}
-    ${tw`text-lg md:text-xl`}
+    ${tw`font-light text-lg md:text-xl`}
   }
+
   h2 {
     ${tw`text-base md:text-lg`}
     ${onMode(tw`text-gray-600`, tw`text-gray-300`)}

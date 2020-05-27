@@ -6,9 +6,8 @@ import { onMode } from '@utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
 import { theme } from 'styled-tools';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const variants = {
   visible: {

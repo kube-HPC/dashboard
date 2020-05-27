@@ -2,8 +2,7 @@ import { mixins } from '@styles';
 import { onMode } from '@utils';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const Href = styled.a`
   ${onMode(tw`text-blue-400 hocus:text-blue-500`, tw`text-blue-300 hocus:text-blue-200`)}

@@ -66,7 +66,7 @@ const handleBatch = ({ batchInfo, ...rest }) => {
 };
 
 export const formatNode = colors => task => {
-  const isBatch = task.batchInfo;
+  const isBatch = task.batchInfo !== undefined;
   const { nodeName, status, extra, ...rest } = isBatch ? handleBatch(task) : handleTask(task);
 
   const node = {
@@ -74,11 +74,12 @@ export const formatNode = colors => task => {
     label: isBatch ? `${nodeName} [${extra.batch}]` : nodeName,
   };
 
-  const color = {
-    background: colors.task.status[status],
-  };
+  // tw macro adds opacity var.
+  const color = isBatch
+    ? undefined
+    : { background: colors.task.status[status].replace(`, var(--text-opacity)`, ``) };
 
-  return { nodeName, status, color: isBatch ? undefined : color, ...node, ...rest };
+  return { nodeName, status, color, ...node, ...rest };
 };
 
 const { ALGORITHM_EXECUTION, WAIT_ANY } = graphEdgeTypes;

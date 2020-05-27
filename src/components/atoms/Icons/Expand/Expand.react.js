@@ -3,7 +3,7 @@ import { NOOP } from '@utils';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
+import { styled } from 'twin.macro';
 import AnimatedPath from './AnimatedPath.react';
 
 const scale = { scale: 1.03 };

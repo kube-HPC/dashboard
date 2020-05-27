@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
 import { prop } from 'styled-tools';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 const defaultColor = tw`bg-gray-500`.backgroundColor;
 

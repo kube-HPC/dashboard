@@ -1,12 +1,13 @@
 import { PANEL, SB_LABELS } from '@constants';
-import { usePanel } from '@hooks';
-import { Panel } from '@molecules';
-import { JobSelectHelper } from '@storybookHelpers';
+import { InPanel, JobSelectHelper } from '@storybookHelpers';
 import { mixins } from '@styles';
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import React from 'react';
+import tw, { styled } from 'twin.macro';
 import JobPanel from './JobPanel.react';
+
+export const Content = JobPanel;
+
+export const InPanel$ = () => <InPanel panel={PANEL.jobs} />;
 
 const Decorator = styled.div`
   ${mixins.flexStart}
@@ -23,14 +24,4 @@ export default {
       </Decorator>
     ),
   ],
-};
-
-export const Content = JobPanel;
-
-export const InPanel = () => {
-  const { set: setValue } = usePanel();
-  useEffect(() => {
-    setValue(PANEL.jobs);
-  }, [setValue]);
-  return <Panel />;
 };

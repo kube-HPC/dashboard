@@ -1,14 +1,18 @@
 export { EMPTY_ARRAY, IS_WINDOW_DEFINED, NOOP, safeParserJson } from './common';
+export { filterSelector, panelSelector } from './dashboard';
 export { areEqualGraphs, formatEdge, formatNode } from './graph';
 export { iconsToActions } from './icons';
 export {
   activeStates,
   entrySelector,
   eyeSelector,
+  filteredJobIds,
   graphSelector,
   graphSelectorByJobId,
   itemSizeSelector,
+  jobIdsSelector,
   mapToJobEntry,
+  pipelineNamesSelector,
   progressSelector,
   selectedStatsSelector,
   statusSelector,

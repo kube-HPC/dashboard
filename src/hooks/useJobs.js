@@ -1,17 +1,12 @@
-import { createSelector } from '@reduxjs/toolkit';
+import { filteredJobIds } from '@utils';
 import isEqual from 'lodash.isequal';
 import { useSelector } from 'react-redux';
 import { createStore } from 'reusable';
 import useActions from './useActions';
 
-const jobIdSelector = createSelector(
-  state => state.jobs.dataSource,
-  dataSource => dataSource?.map(({ key }) => key) ?? [],
-);
-
 const useJobs = () => {
   const selected = useSelector(state => state.jobs.selected);
-  const jobIdList = useSelector(jobIdSelector, isEqual);
+  const jobIdList = useSelector(filteredJobIds, isEqual);
 
   const {
     jobs: { select },

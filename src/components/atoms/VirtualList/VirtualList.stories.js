@@ -2,8 +2,8 @@ import { SB_LABELS } from '@constants';
 import { createSelector } from '@reduxjs/toolkit';
 import { mapToJobEntry } from '@utils';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import { useSelector } from 'react-redux';
+import tw, { styled } from 'twin.macro';
 import VirtualList from './VirtualList.react';
 
 const Container = styled.div`
