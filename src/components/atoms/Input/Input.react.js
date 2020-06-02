@@ -26,7 +26,7 @@ const $Input = styled.input`
   ${tw`rounded-sm w-full p-2 bg-transparent border`}
   ${tw`transition-colors ease-in-out duration-200`}
   ${onMode(
-    tw`border-black shadow-xl shadow-2xl hocus:bg-gray-300`,
+    tw`border-black shadow-xl hocus:shadow-2xl hocus:bg-gray-300`,
     tw`border-white shadow-xlLight hocus:shadow-2xlLight hocus:bg-gray-900`,
   )}
 `;

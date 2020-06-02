@@ -2,6 +2,7 @@ import { FILTER } from '@config';
 import { pipelineTypes } from '@hkube/consts';
 import { useFilter } from '@hooks';
 import { AutoSuggest, MultiSelect } from '@molecules';
+import { mixins } from '@styles';
 import { jobIdsSelector, pipelineNamesSelector } from '@utils';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -58,7 +59,9 @@ const FilterPanel = ({ className }) => {
 };
 
 const Container = styled.div`
-  ${tw`space-y-2`}
+  ${mixins.fillContainer}
+  ${mixins.flexCenter}
+  ${tw`space-y-2 flex-col`}
 `;
 
 FilterPanel.propTypes = {

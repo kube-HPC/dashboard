@@ -5,14 +5,20 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { ReusableProvider } from 'reusable';
 import createStore from 'state/store/createStore';
+import styled from 'styled-components';
 import { GlobalStyle } from 'styles';
 import 'tailwindcss/dist/base.css';
 import 'typeface-rajdhani';
 import { ThemeProvider } from '../src/components';
+import { mixins } from '../src/styles';
+
+const FillScreen = styled.div`
+  ${mixins.fillScreen}
+`;
 
 const Container = ({ children }) => {
   useSocket();
-  return children;
+  return <FillScreen>{children}</FillScreen>;
 };
 
 addDecorator(S => {
