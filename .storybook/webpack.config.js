@@ -1,9 +1,15 @@
 const path = require('path');
 const alias = require(`../src/constants/aliases`);
+const fromEntries = require('object.fromentries');
 
 const SRC = '../src';
 
 const aliases = alias(SRC);
+
+if (!Object.fromEntries) {
+  fromEntries.shim();
+}
+
 const resolvedAliases = Object.fromEntries(
   Object.entries(aliases).map(([key, value]) => [key, path.resolve(__dirname, value)]),
 );
