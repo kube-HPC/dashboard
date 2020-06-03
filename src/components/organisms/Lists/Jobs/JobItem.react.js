@@ -30,17 +30,18 @@ const shadowSelector = state =>
   state.theme.mode === THEME.mode.light ? tw`shadow-md` : tw`shadow-mdLight`;
 
 const JobItem = ({ className, jobId }) => {
-  const whileHover = useSelector(shadowSelector, isEqual);
-
   const [isRevealed, setRevealed] = useState(false);
 
+  const whileHover = useSelector(shadowSelector, isEqual);
   const onHoverStart = waitForAnimation(setRevealed, true);
   const onHoverEnd = waitForAnimation(setRevealed, false);
 
   const { isSelected, isShowDetails, job, jobDetails, onSelect, types } = useJob(jobId);
 
   useEffect(() => {
-    setRevealed(isShowDetails);
+    if (isShowDetails === false) {
+      setRevealed(isShowDetails);
+    }
   }, [isShowDetails]);
 
   return (
@@ -51,7 +52,7 @@ const JobItem = ({ className, jobId }) => {
       animate="visible"
       exit="hidden"
       variants={JOBS.ANIMATION.item}>
-      <Item key={jobId} onHoverEnd={onHoverEnd}>
+      <Item key={jobId} {...{ onHoverEnd }}>
         <JobActions
           jobId={jobId}
           animate={isRevealed ? revealVariants : `hidden`}
@@ -62,13 +63,10 @@ const JobItem = ({ className, jobId }) => {
           initial="visible"
           variants={JOBS.ANIMATION.reveal}
           animate={isRevealed ? `moveRight` : `visible`}>
-          <JobTypes types={types} />
-          <HoverDiv whileHover={whileHover}>
+          <JobTypes {...{ types }} />
+          <HoverDiv {...{ whileHover }}>
             <Entry isSelected={isSelected}>
-              <RevealBox
-                onHoverStart={onHoverStart}
-                isRevealed={isRevealed}
-                isFullHeight={isShowDetails}>
+              <RevealBox {...{ onHoverStart, isRevealed }} isFullHeight={isShowDetails}>
                 <Divider vertical />
               </RevealBox>
               <Content onClick={onSelect}>

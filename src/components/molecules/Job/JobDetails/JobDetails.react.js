@@ -26,7 +26,7 @@ const JobDetails = ({ className, jobGraph, progress, nodesStats, status }) => {
           </Tasks>
         )}
         <Actions color={theme.colors.pipeline.status[status]}>
-          <Circle animate={true} progress={progress} animationDuration="1s" />
+          <Circle animate progress={progress} animationDuration="1s" />
         </Actions>
       </Details>
     </Container>
