@@ -1,5 +1,6 @@
 import { JOBS } from '@config';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { logSourceValueToKey } from '@utils';
 import { saveAs } from 'file-saver';
 import restSlice from '../rest';
 
@@ -26,13 +27,15 @@ export const downloadResults = createAsyncThunk(
 export const getLogs = createAsyncThunk(STATE.getLogs, async (_, { dispatch, getState }) => {
   const {
     jobs: { dataSource, selected, taskId },
+    dashboard: { settings },
   } = getState();
 
   const job = dataSource?.find(({ key }) => key === selected);
   const node = job?.graph.nodes.find(({ taskId: curr }) => curr === taskId);
 
   if (node) {
-    const { podName, taskId, source = `k8s` } = node;
+    const { podName, taskId } = node;
+    const source = logSourceValueToKey(settings.logSource);
 
     const { payload } = await dispatch(
       get({ url: `logs?podName=${podName}&taskId=${taskId}&source=${source}` }),

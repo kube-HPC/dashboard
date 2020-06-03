@@ -3,4 +3,5 @@ export default {
   EXPERIMENT: `experiment`,
   EYES: `eyes`,
   TAGS: `tags`,
+  SETTINGS: `settings`,
 };

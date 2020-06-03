@@ -6,13 +6,13 @@ import { ifProp } from 'styled-tools';
 import tw, { styled } from 'twin.macro';
 
 const Option = ({ children, onChange = NOOP, checked = false }) => (
-  <$Option {...{ checked, onClick: onChange }}>
+  <$Option onClick={onChange} {...{ checked }}>
     <span>{children}</span>
   </$Option>
 );
 
 const Radio = ({ className, value, onChange = NOOP, children, options }) => (
-  <Container className={className}>
+  <Container {...{ className }}>
     {children
       ? React.Children.map(children, (child, key) => {
           const childValue = child.props.value;

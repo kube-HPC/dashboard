@@ -1,8 +1,14 @@
 import { FILTER, JOBS, SOCKET } from '@config';
-import { LOCAL_STORAGE, PANEL } from '@constants';
+import { LOCAL_STORAGE, LOG_SOURCE, PANEL } from '@constants';
 import { createSlice } from '@reduxjs/toolkit';
 import { activeStates, getLocalStorageItem } from '@utils';
-import { setJobsFilter, setPanel, toggleJobEye, togglePanel } from './dashboard.reducers';
+import {
+  setJobsFilter,
+  setLogSource,
+  setPanel,
+  toggleJobEye,
+  togglePanel,
+} from './dashboard.reducers';
 
 /*
 eyes.jobs = { isControlled, isShowDetails }
@@ -19,6 +25,9 @@ const initialState = {
     },
   },
   panel: { value: null, expanded: false },
+  settings: {
+    logSource: getLocalStorageItem(LOCAL_STORAGE.SETTINGS)?.logSource || LOG_SOURCE.k8s,
+  },
 };
 
 const dashboard = createSlice({
@@ -29,6 +38,7 @@ const dashboard = createSlice({
     setPanel,
     togglePanel,
     setJobsFilter,
+    setLogSource,
   },
   extraReducers: {
     [JOBS.STATE.select]: state => {

@@ -9,6 +9,7 @@ export { default as useLocalStorage } from './useLocalStorage';
 export { default as useNotification } from './useNotification';
 export { default as useOnClickOutside } from './useOnClickOutside';
 export { default as usePanel } from './usePanel';
+export { default as useSettings } from './useSettings';
 export { default as useSidebar } from './useSidebar';
 export { default as useSocket } from './useSocket';
 export { default as useTopActions } from './useTopActions';
