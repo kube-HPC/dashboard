@@ -1,26 +1,34 @@
 import { Graph, Scrollbar, Tag } from '@atoms';
-import { PRIORITY } from '@constants';
+import { GRAPH, PRIORITY } from '@constants';
 import { useGraph, usePanel, useUserTheme } from '@hooks';
 import { JobGraph, LogsViewer } from '@molecules';
 import { mixins } from '@styles';
 import { selectedStatsSelector } from '@utils';
 import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useMemo, useReducer } from 'react';
 import { useSelector } from 'react-redux';
 import { ifProp } from 'styled-tools';
 import tw, { styled } from 'twin.macro';
+
+const toggle = p => !p;
 
 const JobPanel = () => {
   const { graph, logs, task, areLogsValid } = useGraph();
   const { nodesStats, priority } = useSelector(selectedStatsSelector, isEqual);
   const { expanded } = usePanel();
   const { theme } = useUserTheme();
+  const [isLrDirection, toggleDirection] = useReducer(toggle, true);
+
+  const options = useMemo(
+    () => ({ direction: isLrDirection ? GRAPH.direction.LR : GRAPH.direction.UD }),
+    [isLrDirection],
+  );
 
   return (
     graph && (
       <Container isExpanded={expanded}>
-        <JobGraph jobGraph={graph} />
+        <JobGraph jobGraph={graph} options={options} />
         <div>
           <LatestLogs>
             <h2>Node Logs{!areLogsValid && ` Not Available`}</h2>
@@ -47,11 +55,22 @@ const JobPanel = () => {
             <h2>Priority</h2>
             <Tag color={theme.colors.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
           </Item>
+          <Item>
+            <h2>Graph Direction</h2>
+            <Button onClick={toggleDirection}>
+              {isLrDirection ? `Left to Right` : `Up to Down`}
+            </Button>
+          </Item>
         </div>
       </Container>
     )
   );
 };
+
+const Button = styled.button`
+  ${tw`transition-opacity duration-200 ease-in-out`}
+  ${tw`border p-2 rounded-md hocus:opacity-50`}
+`;
 
 const LogsScroll = styled.div`
   ${mixins.fillContainer}
