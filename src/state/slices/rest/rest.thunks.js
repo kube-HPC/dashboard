@@ -19,7 +19,6 @@ export const fileDownload = createAsyncThunk(STATE.fileDownload, async url => {
     },
   });
   const content = await rawResponse.blob();
-
   return content;
 });
 
@@ -33,13 +32,23 @@ export const post = createAsyncThunk(STATE.post, async ({ url, body }) => {
     body: stringify(body),
   });
   const content = await rawResponse.json();
-
   return content;
 });
 
 export const get = createAsyncThunk(STATE.get, async ({ url }) => {
   const rawResponse = await fetch(toUrl(url), {
     method: `GET`,
+    headers: {
+      'Content-Type': `application/json`,
+    },
+  });
+  const content = await rawResponse.json();
+  return content;
+});
+
+export const deleteMethod = createAsyncThunk(STATE.delete, async ({ url }) => {
+  const rawResponse = await fetch(toUrl(url), {
+    method: `DELETE`,
     headers: {
       'Content-Type': `application/json`,
     },

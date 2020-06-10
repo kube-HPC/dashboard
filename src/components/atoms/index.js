@@ -1,3 +1,4 @@
+export { default as Button } from './Button/Button.react';
 export { default as Card } from './Card/Card.react';
 export { default as Divider } from './Divider/Divider.react';
 export { default as Dropdown } from './Dropdown/Dropdown.react';
