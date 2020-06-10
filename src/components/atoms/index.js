@@ -1,3 +1,4 @@
+export { default as Button } from './Button/Button.react';
 export { default as Card } from './Card/Card.react';
 export { default as Divider } from './Divider/Divider.react';
 export { default as Dropdown } from './Dropdown/Dropdown.react';
@@ -6,6 +7,7 @@ export { default as Icon } from './Icons/Icon.react';
 export { default as Input } from './Input/Input.react';
 export { default as Link } from './Link/Link.react';
 export { default as Notification } from './Notification/Notification.react';
+export { default as Radio } from './Radio/Radio.react';
 export { default as Scrollbar } from './Scrollbar/Scrollbar.react';
 export { default as Selection } from './Selection/Selection.react';
 export { default as Tag } from './Tag/Tag.react';

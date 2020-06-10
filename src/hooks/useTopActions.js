@@ -12,13 +12,15 @@ const useTopActions = () => {
     [setValue, value],
   );
 
+  const setSettingsPanel = useCallback(() => setValue(PANEL.settings), [setValue]);
+
   const topRightIcons = useMemo(
     () =>
-      [NOOP, setThemePanel, NOOP, NOOP].map((action, index) => ({
+      [NOOP, setThemePanel, setSettingsPanel, NOOP].map((action, index) => ({
         name: TOP_BAR.rightIcons[index],
         action,
       })),
-    [setThemePanel],
+    [setThemePanel, setSettingsPanel],
   );
 
   const setFilterPanel = useCallback(() => setValue(PANEL.filter), [setValue]);

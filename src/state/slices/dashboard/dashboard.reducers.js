@@ -32,3 +32,7 @@ export const setPanel = (state, { payload }) => {
 export const togglePanel = state => {
   state.panel.expanded = !state.panel.expanded;
 };
+
+export const setLogSource = (state, { payload: source }) => {
+  state.settings.logSource = source;
+};

@@ -40,8 +40,13 @@ const jobs = {
     downloadResults: `${name}/downloadResults`,
     getLogs: `${name}/getLogs`,
     select: `${name}/select`,
+    addExperiment: `${name}/addExperiment`,
+    deleteExperiment: `${name}/deleteExperiment`,
   },
   ANIMATION: { reveal, item, showDetails },
+  URL: {
+    experiment: `experiment`,
+  },
 };
 
 export default jobs;

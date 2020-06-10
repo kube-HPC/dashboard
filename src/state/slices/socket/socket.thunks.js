@@ -26,11 +26,11 @@ const getSocketRoom = ({ value, lastValue }) => ({
 export const init = createAsyncThunk(STATE.init, (_, { dispatch, getState }) => {
   socket = io(URL, CLIENT_CONFIG);
 
-  const { experiments } = getState();
+  const { jobs } = getState();
 
   connectionEvents.forEach(event => {
     socket.on(event, () => {
-      const emitOptions = getSocketRoom(experiments);
+      const emitOptions = getSocketRoom(jobs.experiments);
       socket.emit(CONNECTION.register, emitOptions);
       dispatch({ type: STATE.connected });
     });
@@ -45,4 +45,13 @@ export const init = createAsyncThunk(STATE.init, (_, { dispatch, getState }) => 
       dispatch({ type: STATE.disconnected });
     }),
   );
+});
+
+export const changeRoom = createAsyncThunk(STATE.init, (_, { getState }) => {
+  const {
+    jobs: { experiments },
+  } = getState();
+
+  const { name, lastRoom } = getSocketRoom(experiments);
+  socket.emit(CONNECTION.register, { name, lastRoom });
 });

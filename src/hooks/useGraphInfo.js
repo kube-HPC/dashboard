@@ -40,11 +40,11 @@ const useGraphInfo = (jobGraph, tooltipRef) => {
   );
 
   useEffect(() => {
-    const nodes = jobGraph.nodes.map(formatNode(theme.colors));
-    const edges = jobGraph.edges.map(formatEdge);
-    const nodesTool = nodes.map(node => ({ ...node, title: tooltipRef }));
+    const nodes = jobGraph ? jobGraph.nodes.map(formatNode(theme.colors)) : [];
+    const edges = jobGraph.edges.map(formatEdge) ?? [];
+    const nodesWithTooltip = nodes.map(node => ({ ...node, title: tooltipRef }));
 
-    setGraph({ nodes: nodesTool, edges });
+    setGraph({ nodes: nodesWithTooltip, edges });
 
     nodesMap.current = nodes.reduce(
       (acc, { nodeName, ...rest }) => ({ ...acc, [nodeName]: { ...rest } }),

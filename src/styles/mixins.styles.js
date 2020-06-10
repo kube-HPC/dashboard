@@ -64,6 +64,10 @@ const card = css`
   ${theme(THEME.value.background)}
 `;
 
+const opacityFocus = css`
+  ${tw`transition-opacity ease-in-out duration-200 hocus:opacity-50`}
+`;
+
 const mixins = {
   card,
   colorOnFocus,
@@ -78,6 +82,7 @@ const mixins = {
   textSecondary,
   timingNormal,
   timingSlow,
+  opacityFocus,
 };
 
 export default mixins;
