@@ -1,6 +1,6 @@
 import slice from './socket.slice';
-import { init } from './socket.thunks';
+import { changeRoom, init } from './socket.thunks';
 
-const socketSlice = { ...slice, thunks: { init } };
+const socketSlice = { ...slice, thunks: { init, changeRoom } };
 
 export default socketSlice;

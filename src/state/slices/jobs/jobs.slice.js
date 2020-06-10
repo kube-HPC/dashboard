@@ -3,7 +3,7 @@ import { LOCAL_STORAGE, PANEL } from '@constants';
 import { createSlice } from '@reduxjs/toolkit';
 import { getLocalStorageItem } from '@utils';
 import { dashboardSlice } from '..';
-import { changeTaskId, select } from './jobs.reducers';
+import { changeExperiment, changeTaskId, select } from './jobs.reducers';
 
 const initialState = {
   dataSource: null,
@@ -13,7 +13,8 @@ const initialState = {
     dataSource: [],
     value: getLocalStorageItem(LOCAL_STORAGE.EXPERIMENT) || SOCKET.ROOM.default,
     lastValue: null,
-    loading: true,
+    // TODO: Use loading in UI
+    loading: false,
   },
 };
 
@@ -23,6 +24,7 @@ const jobsSlice = createSlice({
   reducers: {
     select,
     changeTaskId,
+    changeExperiment,
   },
   extraReducers: {
     [SOCKET.STATE.pull]: (state, { payload: { jobs, experiments } }) => {

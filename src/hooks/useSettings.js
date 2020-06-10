@@ -20,16 +20,35 @@ const useSettings = () => {
   const { logSource, experiments } = useSelector(settingsSelector);
   const {
     dashboard: { setLogSource },
-    jobs: { addExperiment },
+    jobs: { addExperiment, changeExperiment, deleteExperiment },
+    socket: { changeRoom },
   } = useActions();
 
-  const [, setStorageItem] = useLocalStorage(LOCAL_STORAGE.SETTINGS, { logSource });
+  const [, setStorageSource] = useLocalStorage(LOCAL_STORAGE.SETTINGS, { logSource });
+  const [, setStorageExperiment] = useLocalStorage(LOCAL_STORAGE.EXPERIMENT, experiments.value);
 
   useEffect(() => {
-    setStorageItem(logSource);
-  }, [logSource, setStorageItem]);
+    setStorageSource(logSource);
+  }, [logSource, setStorageSource]);
 
-  return { logSource, setLogSource, experiments, addExperiment };
+  useEffect(() => {
+    setStorageExperiment(experiments.value);
+  }, [experiments.value, setStorageExperiment]);
+
+  useEffect(() => {
+    changeRoom();
+  }, [changeRoom, experiments.value]);
+
+  return {
+    logSource,
+    setLogSource,
+    experiments: {
+      ...experiments,
+      add: addExperiment,
+      set: changeExperiment,
+      remove: deleteExperiment,
+    },
+  };
 };
 
 export default useSettings;

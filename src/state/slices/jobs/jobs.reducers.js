@@ -14,3 +14,8 @@ export const changeTaskId = (state, { payload: taskId }) => {
     state.taskId = taskId;
   }
 };
+
+export const changeExperiment = (state, { payload: value }) => {
+  state.experiments.lastValue = state.experiments.value;
+  state.experiments.value = value;
+};

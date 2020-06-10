@@ -46,3 +46,12 @@ export const init = createAsyncThunk(STATE.init, (_, { dispatch, getState }) => 
     }),
   );
 });
+
+export const changeRoom = createAsyncThunk(STATE.init, (_, { getState }) => {
+  const {
+    jobs: { experiments },
+  } = getState();
+
+  const { name, lastRoom } = getSocketRoom(experiments);
+  socket.emit(CONNECTION.register, { name, lastRoom });
+});

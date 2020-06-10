@@ -26,7 +26,7 @@ const useJob = jobId => {
     }
   };
 
-  const { types, ...job } = jobEntry;
+  const { types, ...job } = jobEntry ?? { types: [] };
 
   return {
     isSelected,

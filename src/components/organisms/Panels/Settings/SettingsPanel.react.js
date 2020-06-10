@@ -10,7 +10,10 @@ import { ifProp } from 'styled-tools';
 import tw, { styled } from 'twin.macro';
 
 const SettingsPanel = ({ className }) => {
-  const { logSource, setLogSource, experiments, addExperiment } = useSettings();
+  const { logSource, setLogSource, experiments } = useSettings();
+
+  const { value, add, set, remove, dataSource } = experiments;
+
   const [experiment, setExperiment] = useState({ name: ``, description: `` });
 
   const onNameChange = useCallback(value => setExperiment(prev => ({ ...prev, name: value })), []);
@@ -18,7 +21,10 @@ const SettingsPanel = ({ className }) => {
     value => setExperiment(prev => ({ ...prev, description: value })),
     [],
   );
-  const onAddExperiment = () => addExperiment(experiment);
+  const [selected, setSelected] = useState(value);
+  const onAddExperiment = () => add(experiment);
+  const onChangeExperiment = () => set(selected);
+  const onDeleteExperiment = () => remove(selected);
 
   return (
     <Container className={className}>
@@ -29,30 +35,42 @@ const SettingsPanel = ({ className }) => {
       </Item>
       <h1>Experiments</h1>
       <Experiments>
-        {experiments.dataSource.map(({ name, description }) => {
-          const isSelected = name === experiments.value;
+        {dataSource.map(({ name, description }) => {
+          const isSelected = name === selected;
+          const isDefinedExperiment = name === value;
+          const onClick = () => setSelected(name);
           return (
-            <Experiment key={name} isSelected={isSelected}>
+            <Experiment key={name} {...{ isDefinedExperiment, isSelected, onClick }}>
               <div>{name}</div>
               <div>{description}</div>
-              {/* {!isSelected && <Button>Remove</Button>} */}
             </Experiment>
           );
         })}
+        <Actions>
+          <Button onClick={onChangeExperiment}>Set Experiment</Button>
+          <Button onClick={onDeleteExperiment}>Delete Experiment</Button>
+        </Actions>
       </Experiments>
-      <Item>
-        <AddExperiment>
-          <Input placeholder="Experiment Name" onChange={onNameChange} />
-          <Input placeholder="Description" onChange={onDescriptionChange} />
-        </AddExperiment>
-      </Item>
+      <hr />
+      <AddExperiment>
+        <Input placeholder="Experiment Name" onChange={onNameChange} />
+        <Input placeholder="Description" onChange={onDescriptionChange} />
+      </AddExperiment>
       <Button onClick={onAddExperiment}>Add Experiment</Button>
     </Container>
   );
 };
 
+const Actions = styled.div`
+  ${mixins.flexCenter}
+  ${tw`w-full space-x-2`}
+  ${Button.className} {
+    ${tw`w-full`}
+  }
+`;
+
 const AddExperiment = styled.div`
-  ${mixins.flexStart}
+  ${mixins.flexCenter}
   ${tw`space-x-2 w-full`}
 `;
 
@@ -61,6 +79,7 @@ const Experiment = styled.div`
   ${mixins.opacityFocus}
   ${tw`border w-full p-2 cursor-pointer`}
   ${ifProp(`isSelected`, onMode(tw`border-black`, `border-yellow`))}
+  ${ifProp(`isDefinedExperiment`, tw`border-2`)}
 `;
 
 const Experiments = styled.div`
