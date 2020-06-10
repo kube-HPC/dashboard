@@ -15,6 +15,9 @@ const SettingsPanel = ({ className }) => {
         <span>Logs Source</span>
         <Radio value={logSource} onChange={setLogSource} options={SETTINGS.logSource} />
       </Item>
+      <Item>
+        <span>Experiment</span>
+      </Item>
     </Container>
   );
 };

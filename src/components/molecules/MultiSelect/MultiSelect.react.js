@@ -10,7 +10,8 @@ const MultiSelect = ({
   options,
   onSelect,
   onDeselect,
-  placeholder = ``,
+  placeholder = `Select`,
+  isSingleSelect = false,
 }) => {
   const [isVisible, setVisible] = useState(false);
   const [topOffset, setTopOffset] = useState(null);
@@ -29,7 +30,7 @@ const MultiSelect = ({
   return (
     <Container {...{ className }} ref={containerRef}>
       <Selection
-        {...{ onFocus, selected, placeholder }}
+        {...{ onFocus, selected, placeholder, isSingleSelect }}
         innerRef={inputRef}
         onSelect={onDeselect}
       />
@@ -50,6 +51,7 @@ MultiSelect.propTypes = {
   onSelect: PropTypes.func,
   options: PropTypes.array,
   selected: PropTypes.array,
+  isSingleSelect: PropTypes.bool,
 };
 
 export default MultiSelect;

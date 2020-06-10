@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import { ifProp } from 'styled-tools';
 import tw from 'twin.macro';
 
 const variants = { visible: { opacity: 1 }, hidden: { opacity: 0 } };
@@ -15,6 +16,7 @@ const Selection = ({
   onSelect,
   placeholder = `Placeholder`,
   innerRef,
+  isSingleSelect = false,
   ...props
 }) => {
   const genOnSelect = useCallback(
@@ -26,7 +28,7 @@ const Selection = ({
   );
   return (
     <Container
-      {...{ className }}
+      {...{ className, isSingleSelect }}
       ref={innerRef}
       tabIndex="0"
       animate="visible"
@@ -66,6 +68,9 @@ const Container = styled(motion.div)`
     tw`border-black shadow-xl hocus:shadow-2xl`,
     tw`border-white shadow-xlLight hocus:shadow-2xlLight`,
   )}
+  ${Option} {
+    ${ifProp(`isSingleSelect`, tw`border-none`)}
+  }
 `;
 
 Selection.Option = Option;
@@ -76,6 +81,7 @@ Selection.propTypes = {
   selected: PropTypes.arrayOf(PropTypes.string),
   innerRef: PropTypes.object,
   onSelect: PropTypes.func,
+  isSingleSelect: PropTypes.bool,
 };
 
 export default Selection;

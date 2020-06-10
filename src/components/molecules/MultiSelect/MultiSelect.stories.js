@@ -31,6 +31,20 @@ export const Default = () => {
   );
 };
 
+export const SingleSelect = () => {
+  const [selected, setSelected] = useState([]);
+
+  const onDeselect = () => setSelected([]);
+  const onSelect = value => setSelected([value]);
+
+  return (
+    <>
+      <MultiSelect {...{ selected, onDeselect, options, onSelect }} isSingleSelect />
+      <h1>Single Select</h1>
+    </>
+  );
+};
+
 const Decorator = styled.div`
   ${mixins.flexCenter}
   ${tw`flex-col space-y-5`}

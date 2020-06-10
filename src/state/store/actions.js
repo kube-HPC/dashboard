@@ -1,6 +1,5 @@
 import {
   dashboardSlice,
-  experimentsSlice,
   jobsSlice,
   notificationsSlice,
   pipelinesSlice,
@@ -10,7 +9,6 @@ import {
 
 const actions = {
   dashboard: dashboardSlice.actions,
-  experiment: experimentsSlice.actions,
   jobs: { ...jobsSlice.actions, ...jobsSlice.thunks },
   notifications: notificationsSlice.actions,
   pipelines: { ...pipelinesSlice.actions, ...pipelinesSlice.thunks },
