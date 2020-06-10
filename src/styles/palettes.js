@@ -21,7 +21,7 @@ const palettes = {
     mode: `dark`,
     [value.backgroundGradient]: gradients.slickCarbon,
     [value.headerGradient]: gradients.cloudyKnoxville,
-    [value.background]: tw`bg-darkGray-500`,
+    [value.background]: tw`bg-transparent`,
     [value.backgroundDark]: tw`bg-darkGray-100`,
     [value.textSecondary]: tw`text-darkGray-100`,
     colors: COLORS_DARK,

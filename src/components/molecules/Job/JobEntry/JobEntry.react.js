@@ -14,9 +14,9 @@ const JobEntry = ({ className, jobId, pipelineName, startTime, status, timeTook 
     <Container className={className}>
       <JobId>{jobId}</JobId>
       <PipelineName>{pipelineName}</PipelineName>
-      <TagContainer>
-        <Tag color={colors.pipeline.status[status]}>{status}</Tag>
-      </TagContainer>
+      {/* <TagContainer>
+        <Tag color={colors.pipeline.status[status]}></Tag>
+      </TagContainer> */}
       <JobTime startTime={startTime} timeTook={timeTook} />
     </Container>
   );
@@ -24,7 +24,7 @@ const JobEntry = ({ className, jobId, pipelineName, startTime, status, timeTook 
 
 const TagContainer = styled.div`
   ${Tag.className} {
-    ${tw`w-auto lg:w-24 xl:w-32 capitalize`}
+    ${tw`w-auto capitalize w-8`}
   }
 `;
 

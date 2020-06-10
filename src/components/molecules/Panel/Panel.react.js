@@ -14,7 +14,7 @@ const container = {
     transition: spring.gentle,
   },
   compressed: isMdQuery => ({
-    width: isMdQuery ? `30%` : `40%`,
+    width: isMdQuery ? `40%` : `50%`,
     transition: spring.gentle,
   }),
   visible: {
@@ -60,7 +60,7 @@ const ContentContainer = styled.div`
 const Container = styled(motion.div)`
   ${mixins.card}
   ${mixins.flexStart}
-  ${tw`w-1/4 sm:w-1/2 h-full`}
+  ${tw`w-1/3 sm:w-1/2 h-full`}
   ${tw`flex-col`}
   ${onMode(tw`shadow-md`, tw`shadow-mdLight`)}
 `;

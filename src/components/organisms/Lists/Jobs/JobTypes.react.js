@@ -8,7 +8,7 @@ const Types = styled.div`
   ${tw`absolute right-0 top-0 mr-2 capitalize`}
   ${tw`hidden lg:block`}
   ${Tag.className} {
-    ${tw`py-px`}
+    ${tw`py-px w-12 h-1`}
     :not(:first-child) {
       ${tw`ml-px lg:ml-2`}
     }
@@ -22,9 +22,7 @@ const JobTypes = ({ className, types }) => {
   return (
     <Types className={className}>
       {types.map(type => (
-        <Tag key={type} color={colors.pipeline.type[type]}>
-          {type}
-        </Tag>
+        <Tag key={type} color={colors.pipeline.type[type]}></Tag>
       ))}
     </Types>
   );

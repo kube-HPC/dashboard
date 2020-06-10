@@ -13,7 +13,7 @@ const vertical = css`
 `;
 
 const Container = styled.div`
-  ${tw`bg-gray-400 clearfix`}
+  ${tw`bg-green-400 clearfix`}
   ${ifProp(`vertical`, vertical, horizontal)}
 `;
 
