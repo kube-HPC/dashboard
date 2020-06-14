@@ -15,7 +15,7 @@ const toggle = p => !p;
 
 const JobPanel = () => {
   const { graph, logs, task, areLogsValid } = useGraph();
-  const { nodesStats, priority } = useSelector(selectedStatsSelector, isEqual);
+  const { nodesStats, priority, status } = useSelector(selectedStatsSelector, isEqual);
   const { expanded } = usePanel();
   const { theme } = useUserTheme();
   const [isLrDirection, toggleDirection] = useReducer(toggle, true);
@@ -39,6 +39,7 @@ const JobPanel = () => {
           <LogsScroll areLogsValid={areLogsValid}>
             <Scrollbar>{logs && <LogsViewer logs={logs} />}</Scrollbar>
           </LogsScroll>
+
           {nodesStats && (
             <Item>
               <h2>Node Stats</h2>
@@ -51,6 +52,10 @@ const JobPanel = () => {
               </Tags>
             </Item>
           )}
+          <Item>
+            <h2>Pipeline Status</h2>
+            <Tag color={theme.colors.pipeline.status[status]}>{status}</Tag>
+          </Item>
           <Item>
             <h2>Priority</h2>
             <Tag color={theme.colors.pipeline.priority[priority]}>{PRIORITY[priority]}</Tag>
@@ -68,8 +73,8 @@ const JobPanel = () => {
 };
 
 const Button = styled.button`
-  ${tw`transition-opacity duration-200 ease-in-out`}
-  ${tw`border p-2 rounded-md hocus:opacity-50`}
+  ${mixins.opacityFocus}
+  ${tw`border p-1 px-2 rounded-md`}
 `;
 
 const LogsScroll = styled.div`

@@ -8,7 +8,7 @@ import JobItem from './JobItem.react';
 import Jobs from './Jobs.react';
 
 const Container = styled.div`
-  ${tw`h-screen`}
+  ${tw`h-screen p-5`}
 `;
 
 const Button = styled.button`

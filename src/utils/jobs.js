@@ -76,11 +76,12 @@ export const selectedStatsSelector = createSelector(
   state => state.jobs,
   ({ dataSource, selected }) => {
     const job = findJob({ dataSource, jobId: selected });
+    const status = job?.status?.status;
     const nodesStats = job?.status.data?.states;
     const progress = job?.status.data?.progress;
     const priority = job?.pipeline.priority;
 
-    return { nodesStats, priority, progress };
+    return { nodesStats, priority, progress, status };
   },
 );
 

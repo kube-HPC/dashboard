@@ -10,14 +10,6 @@ import { areEqual } from 'react-window';
 import tw, { styled } from 'twin.macro';
 import JobItem from './JobItem.react';
 
-const Container = styled.div`
-  ${tw`h-full`}
-`;
-
-const RowItem = styled(motion.div)`
-  ${tw`pr-3 pl-1`}
-`;
-
 const MemoRow = memo(({ data, index, style }) => {
   const { height, ...rest } = style;
   return (
@@ -26,14 +18,6 @@ const MemoRow = memo(({ data, index, style }) => {
     </RowItem>
   );
 }, areEqual);
-
-MemoRow.propTypes = {
-  data: PropTypes.array.isRequired,
-  index: PropTypes.number.isRequired,
-  style: PropTypes.object.isRequired,
-};
-
-MemoRow.displayName = `List Row`;
 
 const Jobs = ({ className }) => {
   const { jobIdList } = useJobs();
@@ -49,6 +33,22 @@ const Jobs = ({ className }) => {
     </Container>
   );
 };
+
+const Container = styled.div`
+  ${tw`h-full`}
+`;
+
+const RowItem = styled(motion.div)`
+  ${tw`pr-3 pl-1`}
+`;
+
+MemoRow.propTypes = {
+  data: PropTypes.array.isRequired,
+  index: PropTypes.number.isRequired,
+  style: PropTypes.object.isRequired,
+};
+
+MemoRow.displayName = `List Row`;
 
 Jobs.propTypes = {
   className: PropTypes.string,

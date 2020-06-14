@@ -40,8 +40,8 @@ const useGraphInfo = (jobGraph, tooltipRef) => {
   );
 
   useEffect(() => {
-    const nodes = jobGraph ? jobGraph.nodes.map(formatNode(theme.colors)) : [];
-    const edges = jobGraph.edges.map(formatEdge) ?? [];
+    const nodes = jobGraph?.nodes.map(formatNode(theme.colors)) ?? [];
+    const edges = jobGraph?.edges.map(formatEdge) ?? [];
     const nodesWithTooltip = nodes.map(node => ({ ...node, title: tooltipRef }));
 
     setGraph({ nodes: nodesWithTooltip, edges });
@@ -50,7 +50,7 @@ const useGraphInfo = (jobGraph, tooltipRef) => {
       (acc, { nodeName, ...rest }) => ({ ...acc, [nodeName]: { ...rest } }),
       {},
     );
-  }, [jobGraph, tooltipRef, theme]);
+  }, [jobGraph, tooltipRef, theme, jobGraph?.nodes?.map, jobGraph?.edges?.map]);
 
   return { graph, edgeInfo, nodeInfo, events };
 };
