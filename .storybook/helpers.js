@@ -49,3 +49,11 @@ export const InPanel = ({ panel }) => {
   }, [setValue]);
   return <Panel />;
 };
+
+export const decorate = Decorator => [
+  Story => (
+    <Decorator>
+      <Story />
+    </Decorator>
+  ),
+];

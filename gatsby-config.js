@@ -10,6 +10,7 @@ module.exports = {
     ...website,
   },
   plugins: [
+    `gatsby-config.js`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-resolve-src`,

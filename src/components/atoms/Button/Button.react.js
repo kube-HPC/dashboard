@@ -1,20 +1,21 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+/* @flow */
+import { mixins } from '@styles';
+import * as React from 'react';
 import tw, { styled } from 'twin.macro';
 
-const Button = ({ className, children, ...props }) => (
-  <Container {...{ className, ...props }}>{children}</Container>
+type $Props = {
+  className?: string,
+  children: React.Node,
+};
+
+const Button = ({ className, children, ...props }: $Props) => (
+  <Container {...{ ...props, className }}>{children}</Container>
 );
 
 const Container = styled.button`
-  ${tw`transition-opacity duration-200 ease-in-out hocus:opacity-50`}
-  ${tw`border p-2 rounded-md`}
+  ${mixins.opacityFocus}
+  ${tw`border py-1 px-2 rounded-md`}
 `;
 
 Button.className = Container;
-Button.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-};
-
 export default Button;

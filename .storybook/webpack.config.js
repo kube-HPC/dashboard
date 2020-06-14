@@ -31,6 +31,9 @@ module.exports = ({ config }) => {
   config.module.rules[0].use[0].options.presets = [
     require.resolve('@babel/preset-react'),
     require.resolve('@babel/preset-env'),
+
+    // Add flow-preset
+    require.resolve('@babel/preset-flow'),
   ];
 
   config.module.rules[0].use[0].options.plugins = [
@@ -39,6 +42,10 @@ module.exports = ({ config }) => {
     // use babel-plugin-remove-graphql-queries to remove static
     // queries from components when rendering in storybook
     require.resolve('babel-plugin-remove-graphql-queries'),
+
+    // flow types to prop-types plugin
+    // https://github.com/atlassian/babel-plugin-react-flow-props-to-prop-types
+    require.resolve('babel-plugin-react-flow-props-to-prop-types'),
   ];
 
   // Prefer Gatsby ES6 entrypoint (module) over commonjs (main) entrypoint

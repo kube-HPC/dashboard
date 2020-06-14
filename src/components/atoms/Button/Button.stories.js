@@ -1,4 +1,6 @@
+/* @flow */
 import { SB_LABELS } from '@constants';
+import { decorate } from '@storybookHelpers';
 import { mixins } from '@styles';
 import React from 'react';
 import tw, { styled } from 'twin.macro';
@@ -14,11 +16,6 @@ const Decorator = styled.div`
 
 export default {
   title: `${SB_LABELS.ATOMS}Button`,
-  decorators: [
-    S => (
-      <Decorator>
-        <S />
-      </Decorator>
-    ),
-  ],
+  component: Button,
+  decorators: decorate(Decorator),
 };
