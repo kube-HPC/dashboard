@@ -1,4 +1,3 @@
-import { Divider } from '@atoms';
 import { JOBS } from '@config';
 import { THEME } from '@constants';
 import { useJob } from '@hooks';
@@ -14,6 +13,7 @@ import { ifProp } from 'styled-tools';
 import tw, { styled } from 'twin.macro';
 import JobActions from './JobActions.react';
 import JobTypes from './JobTypes.react';
+import RevealBox from './RevealBox.react';
 
 const revealVariants = [`visible`, `reveal`];
 const ANIMATION_WAIT_MS = 100;
@@ -66,9 +66,11 @@ const JobItem = ({ className, jobId }) => {
           <JobTypes {...{ types }} />
           <HoverDiv {...{ whileHover }}>
             <Entry isSelected={isSelected}>
-              <RevealBox {...{ onHoverStart, isRevealed }} isFullHeight={isShowDetails}>
-                <Divider vertical />
-              </RevealBox>
+              <RevealBox
+                status={job?.status}
+                {...{ onHoverStart, isRevealed }}
+                isFullHeight={isShowDetails}
+              />
               <Content onClick={onSelect}>
                 <JobEntry {...job} />
                 <DetailsReveal
@@ -98,7 +100,8 @@ const Reveal = styled(motion.div)`
 
 const Entry = styled.div`
   ${mixins.flexStart}
-  ${tw`mt-4 items-center rounded-sm border-t border-gray-700`}
+  ${tw`mt-4 items-center border-t`}
+  ${onMode(tw`border-darkGray-200`, tw`border-darkGray-500`)}
   ${tw`transition-shadow ease-in-out duration-300`}
   ${ifProp(`isSelected`, onMode(tw`shadow-xl`, tw`shadow-xlLight`))}
 `;
@@ -125,17 +128,6 @@ const Item = styled(motion.div)`
 
 const HoverDiv = styled(motion.div)`
   ${tw`w-full rounded-sm`}
-`;
-
-const RevealBox = styled(motion.div)`
-  ${mixins.flexCenter}
-  ${tw`w-6 h-8 ml-1`}
-  ${Divider.className} {
-    ${mixins.timingNormal}
-    ${tw`transition-colors w-1 min-h-0 top-0 rounded-lg`}
-    ${ifProp(`isRevealed`, tw`bg-gray-700`)}
-    ${ifProp(`isFullHeight`, tw`h-12`, tw`h-6`)}
-  }
 `;
 
 JobItem.className = Item;

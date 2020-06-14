@@ -62,7 +62,7 @@ const Container = styled(motion.div)`
   ${mixins.flexStart}
   ${tw`w-1/3 sm:w-1/2 h-full`}
   ${tw`flex-col`}
-  ${onMode(tw`shadow-md`, tw`shadow-mdLight`)}
+  ${onMode(tw`shadow-md`, tw`border border-darkGray-400 border-opacity-25`)}
 `;
 
 const TopRight = styled.div`

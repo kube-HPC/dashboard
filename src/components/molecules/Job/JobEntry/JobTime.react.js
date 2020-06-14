@@ -1,4 +1,3 @@
-import { Divider } from '@atoms';
 import prettyMilliseconds from 'pretty-ms';
 import PropTypes from 'prop-types';
 import React, { memo, useEffect, useRef, useState } from 'react';
@@ -47,8 +46,8 @@ const Container = styled.div`
   ${Time} {
     ${tw`font-medium`}
   }
-  ${FullDate},${Divider.className},${Hour} {
-    ${tw`hidden xl:inline-block font-light`}
+  ${FullDate},${Hour} {
+    ${tw`hidden lg:inline-block font-light`}
   }
 `;
 
