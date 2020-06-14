@@ -1,0 +1,21 @@
+[ignore]
+.*/__tests__.*
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+module.system=node
+
+esproposal.class_static_fields=enable
+esproposal.optional_chaining=enable
+esproposal.nullish_coalescing=enable
+
+module.name_mapper='@styles' -> '<PROJECT_ROOT>/src/styles/index.js'
+module.name_mapper='@constants' -> '<PROJECT_ROOT>/src/constants/index.js'
+module.name_mapper='@storybookHelpers' -> '<PROJECT_ROOT>/.storybook/helpers.js'
+
+[strict]
