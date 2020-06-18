@@ -1,6 +1,8 @@
+// @flow
 import { STYLE } from '@config';
 import { pipelineStatuses as PIPELINE_STATUS } from '@hkube/consts';
 import { createSelector } from '@reduxjs/toolkit';
+import type { AppState } from 'state';
 
 export const mapToJobEntry = ({
   key: jobId,
@@ -52,13 +54,13 @@ export const filteredJobIds = createSelector(
   },
 );
 
-export const entrySelector = jobIdToFind =>
+export const entrySelector = (jobIdToFind: string) =>
   createSelector(
     state => state.jobs.dataSource,
     dataSource => dataSource?.map(mapToJobEntry)?.find(({ jobId }) => jobIdToFind === jobId),
   );
 
-export const statusSelector = jobId =>
+export const statusSelector = (jobId: string) =>
   createSelector(
     state => state.jobs.dataSource,
     dataSource => {
@@ -85,7 +87,7 @@ export const selectedStatsSelector = createSelector(
   },
 );
 
-export const graphSelectorByJobId = jobId =>
+export const graphSelectorByJobId = (jobId: string) =>
   createSelector(
     state => state.jobs.dataSource,
     dataSource => {
@@ -100,7 +102,7 @@ export const graphSelectorByJobId = jobId =>
     },
   );
 
-export const progressSelector = jobId =>
+export const progressSelector = (jobId: string) =>
   createSelector(
     state => state.jobs.dataSource,
     dataSource => {
@@ -113,7 +115,7 @@ export const progressSelector = jobId =>
     },
   );
 
-export const eyeSelector = jobId =>
+export const eyeSelector = (jobId: string) =>
   createSelector(
     state => state.dashboard.eyes,
     eyes => eyes.jobs[jobId]?.isShowDetails,
@@ -171,4 +173,9 @@ export const jobIdsSelector = createSelector(
 export const pipelineNamesSelector = createSelector(
   state => state.jobs.dataSource,
   dataSource => dataSource?.map(({ pipeline: { name } }) => name),
+);
+
+export const tagViewSelector = createSelector(
+  (state: AppState) => state.jobs.types,
+  ({ visible }) => visible,
 );

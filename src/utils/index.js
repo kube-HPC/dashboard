@@ -16,6 +16,7 @@ export {
   progressSelector,
   selectedStatsSelector,
   statusSelector,
+  tagViewSelector,
   taskIdStatsSelector,
 } from './jobs';
 export { getBooleanLSItem, getLocalStorageItem, setLocalStorageItem } from './localStorage';

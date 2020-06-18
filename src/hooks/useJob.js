@@ -18,7 +18,7 @@ const useJob = jobId => {
   const { set } = usePanel();
 
   const {
-    jobs: { select },
+    jobs: { select, toggleTagsView },
   } = useActions();
 
   const onSelect = () => {
@@ -36,6 +36,7 @@ const useJob = jobId => {
     job,
     onSelect,
     types,
+    toggleTagsView,
     jobDetails: {
       nodesStats,
       priority,

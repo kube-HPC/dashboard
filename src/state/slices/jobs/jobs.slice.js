@@ -1,11 +1,26 @@
+// @flow
+
 import { JOBS, SOCKET } from '@config';
 import { LOCAL_STORAGE, PANEL } from '@constants';
 import { createSlice } from '@reduxjs/toolkit';
 import { getLocalStorageItem } from '@utils';
 import { dashboardSlice } from '..';
-import { changeExperiment, changeTaskId, select } from './jobs.reducers';
+import { changeExperiment, changeTaskId, select, toggleTagsView } from './jobs.reducers';
 
-const initialState = {
+export type JobStateProp = {
+  types: { visible: boolean },
+  selected: string | null,
+  taskId: string | null,
+  dataSource: any,
+  experiments: {
+    dataSource: Array<mixed>,
+    value: string,
+    lastValue: string | null,
+    loading: boolean,
+  },
+};
+
+const initialState: JobStateProp = {
   dataSource: null,
   selected: null,
   taskId: null,
@@ -16,6 +31,7 @@ const initialState = {
     // TODO: Use loading in UI
     loading: false,
   },
+  types: { visible: false },
 };
 
 const jobsSlice = createSlice({
@@ -25,6 +41,7 @@ const jobsSlice = createSlice({
     select,
     changeTaskId,
     changeExperiment,
+    toggleTagsView,
   },
   extraReducers: {
     [SOCKET.STATE.pull]: (state, { payload: { jobs, experiments } }) => {

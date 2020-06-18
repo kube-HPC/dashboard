@@ -6,4 +6,5 @@ const jobsSlice = {
   thunks: { downloadResults, getLogs, addExperiment, deleteExperiment },
 };
 
+export type { JobStateProp } from './jobs.slice';
 export default jobsSlice;

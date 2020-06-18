@@ -1,15 +1,25 @@
+// @flow
 import { Tag } from '@atoms';
 import { useUserTheme } from '@hooks';
 import { mixins } from '@styles';
+import { tagViewSelector } from '@utils';
 import { motion } from 'framer-motion';
-import PropTypes from 'prop-types';
+import isEqual from 'lodash.isequal';
 import React, { useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-const JobTypes = ({ className, types }) => {
+type TypesProps = {
+  className?: string,
+  types: Array<string>,
+  onClick: () => void,
+};
+
+const JobTypes = ({ className, types, onClick }: TypesProps) => {
   const { theme } = useUserTheme();
   const [isHovered, setIsHovered] = useState(false);
+  const areTagsVisible = useSelector(tagViewSelector);
 
   const whileHover = useCallback(() => setIsHovered(true), []);
   const onHoverEnd = useCallback(() => setIsHovered(false), []);
@@ -19,8 +29,12 @@ const JobTypes = ({ className, types }) => {
       {types.map(type => {
         const color = theme.colors.pipeline.type[type];
         return (
-          <motion.div {...{ whileHover, onHoverEnd }} key={type}>
-            {isHovered ? <Tag {...{ color }}>{type}</Tag> : <TagUnnamed {...{ color }} />}
+          <motion.div {...{ whileHover, onHoverEnd, onClick }} key={type}>
+            {areTagsVisible || isHovered ? (
+              <Tag {...{ color }}>{type}</Tag>
+            ) : (
+              <TagUnnamed {...{ color }} />
+            )}
           </motion.div>
         );
       })}
@@ -44,9 +58,6 @@ const TagUnnamed = styled(Tag)`
   ${tw`w-8 h-1`}
 `;
 
-JobTypes.propTypes = {
-  className: PropTypes.string,
-  types: PropTypes.array,
-};
-
-export default JobTypes;
+const Memo = React.memo<TypesProps>(JobTypes, isEqual);
+Memo.displayName = `Job Types`;
+export default Memo;
