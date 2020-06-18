@@ -7,7 +7,7 @@ import tw from 'twin.macro';
 import useResizeObserver from 'use-resize-observer';
 
 type SkeletonProps = {
-  className: string,
+  className?: string,
 };
 
 const variants = {

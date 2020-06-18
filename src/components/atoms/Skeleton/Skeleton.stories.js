@@ -1,7 +1,7 @@
 // @flow
 import { SB_LABELS } from '@constants';
 import { mixins } from '@styles';
-import React from 'react';
+import * as React from 'react';
 import tw, { styled } from 'twin.macro';
 import Skeleton from './Skeleton.react';
 
@@ -24,7 +24,7 @@ export default {
   title: `${SB_LABELS.ATOMS}Skeleton`,
   component: Skeleton,
   decorators: [
-    S => (
+    (S: any) => (
       <Decorator>
         <S />
       </Decorator>
