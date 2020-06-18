@@ -4,13 +4,14 @@ import React from 'react';
 import { theme } from 'styled-tools';
 import tw, { styled } from 'twin.macro';
 
-const ThumbColored = styled.div`
+const Thumb = props => <Container {...props} />;
+
+const Container = styled.div`
   ${theme(THEME.value.backgroundDark, tw`bg-darkGray-500`)}
   ${tw`rounded-lg opacity-50 cursor-pointer`}
   ${mixins.opacityFocus}
   ${tw`hocus:opacity-75`}
 `;
 
-const Thumb = props => <ThumbColored {...props} />;
-
+Thumb.className = Container;
 export default Thumb;

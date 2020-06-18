@@ -7,9 +7,6 @@ const { BATCH } = types;
 // https://visjs.github.io/vis-network/docs/network/
 
 // https://nerdcave.com/tailwind-cheat-sheet
-// text-gray-500: #a0aec0
-// bg-green-800
-
 const textGray500 = `#a0aec0`;
 const textGray800 = `#2d3748`;
 const textBlue800 = `#2c5282`;
@@ -21,6 +18,7 @@ const options = ({
   visible = defaultOptions.visible,
   direction = DIRECTION.LR,
   isLightTheme = defaultOptions.isLightTheme,
+  nodeFontSize = 20,
 } = defaultOptions) => ({
   autoResize: true,
   layout: {
@@ -36,7 +34,7 @@ const options = ({
     shape: `box`,
     size: 50,
     font: {
-      size: 20,
+      size: nodeFontSize,
       color: `white`,
     },
     margin: 10,

@@ -1,11 +1,11 @@
-import { Graph, Scrollbar, Tag } from '@atoms';
+/* @flow */
+import { Graph, Tag } from '@atoms';
 import { GRAPH, PRIORITY } from '@constants';
 import { useGraph, usePanel, useUserTheme } from '@hooks';
 import { JobGraph, LogsViewer } from '@molecules';
 import { mixins } from '@styles';
 import { selectedStatsSelector } from '@utils';
 import isEqual from 'lodash.isequal';
-import PropTypes from 'prop-types';
 import React, { useMemo, useReducer } from 'react';
 import { useSelector } from 'react-redux';
 import { ifProp } from 'styled-tools';
@@ -36,9 +36,9 @@ const JobPanel = () => {
               <span>{task.nodeName}</span>:<span>{task.algorithmName}</span>
             </Tag>
           </LatestLogs>
-          <LogsScroll areLogsValid={areLogsValid}>
-            <Scrollbar>{logs && <LogsViewer logs={logs} />}</Scrollbar>
-          </LogsScroll>
+          <Item>
+            <LogsViewer {...{ logs }} />
+          </Item>
 
           {nodesStats && (
             <Item>
@@ -75,12 +75,6 @@ const JobPanel = () => {
 const Button = styled.button`
   ${mixins.opacityFocus}
   ${tw`border p-1 px-2 rounded-md`}
-`;
-
-const LogsScroll = styled.div`
-  ${mixins.fillContainer}
-  ${tw`p-2`}
-  ${ifProp(`areLogsValid`, tw`h-40`, tw`hidden`)}
 `;
 
 const Item = styled.div`
@@ -125,9 +119,5 @@ const Container = styled.div`
 const Tags = styled.div`
   ${mixins.flexCenter}
 `;
-
-JobPanel.propTypes = {
-  className: PropTypes.string,
-};
 
 export default JobPanel;

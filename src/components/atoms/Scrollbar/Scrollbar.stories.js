@@ -4,7 +4,10 @@ import tw, { styled } from 'twin.macro';
 import Scrollbar from './Scrollbar.react';
 
 const Decorator = styled.div`
-  ${tw`h-screen w-1/2 border-2 border-yellow-300 m-2 p-5`}
+  ${tw`h-screen w-1/2 border-2 border-orange-500`}
+  ${Scrollbar.Thumb.className} {
+    ${tw`bg-orange-900`}
+  }
 `;
 
 export default {

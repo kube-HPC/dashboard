@@ -36,7 +36,9 @@ const JobItem = ({ className, jobId }) => {
   const onHoverStart = waitForAnimation(setRevealed, true);
   const onHoverEnd = waitForAnimation(setRevealed, false);
 
-  const { isSelected, isShowDetails, job, jobDetails, onSelect, types } = useJob(jobId);
+  const { isSelected, isShowDetails, job, jobDetails, onSelect, types, toggleTagsView } = useJob(
+    jobId,
+  );
 
   useEffect(() => {
     if (isShowDetails === false) {
@@ -63,7 +65,7 @@ const JobItem = ({ className, jobId }) => {
           initial="visible"
           variants={JOBS.ANIMATION.reveal}
           animate={isRevealed ? `moveRight` : `visible`}>
-          <JobTypes {...{ types }} />
+          <JobTypes {...{ types }} onClick={toggleTagsView} />
           <HoverDiv {...{ whileHover }}>
             <Entry isSelected={isSelected}>
               <RevealBox

@@ -18,6 +18,11 @@ export default {
   ],
 };
 
+const line = {
+  timestamp: 1588869273089,
+  level: `info`,
+  message: `Line Example↵`,
+};
 const logs = [
   { timestamp: 1588869272028, level: `info`, message: `connected to ws://127.0.0.1:3000↵` },
   { timestamp: 1588869272085, level: `info`, message: `got message from worker: initialize↵` },
@@ -31,4 +36,4 @@ const logs = [
   { timestamp: 1588869273089, level: `info`, message: `sending message to worker: done↵` },
 ];
 
-export const Example = () => <LogsViewer logs={logs} />;
+export const Overflow = () => <LogsViewer logs={[...logs, ...Array(20).fill(line)]} />;

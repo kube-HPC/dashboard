@@ -1,6 +1,7 @@
 import { SB_LABELS } from '@constants';
 import { useGraph } from '@hooks';
 import { JobSelectHelper } from '@storybookHelpers';
+import { mixins } from '@styles';
 import { selectedStatsSelector } from '@utils';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -8,7 +9,8 @@ import tw, { styled } from 'twin.macro';
 import JobDetails from './JobDetails.react';
 
 const Decorator = styled.div`
-  ${tw``}
+  ${mixins.fillScreen}
+  ${tw`p-2`}
 `;
 
 export default {
@@ -17,6 +19,7 @@ export default {
     S => (
       <Decorator>
         <JobSelectHelper />
+        <br />
         <S />
       </Decorator>
     ),

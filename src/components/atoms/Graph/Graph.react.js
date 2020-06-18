@@ -1,15 +1,16 @@
 import { getGraphOptions } from '@config';
 import { GRAPH } from '@constants';
+import { mixins } from '@styles';
 import PropTypes from 'prop-types';
 import React, { memo, useEffect, useMemo, useRef } from 'react';
-import tw, { styled } from 'twin.macro';
+import { styled } from 'twin.macro';
 import VisGraph from 'vis-network-react';
 
 const { defaultOptions } = GRAPH;
 const NO_EVENTS = {};
 
 const Container = styled.div`
-  ${tw`h-full w-full`}
+  ${mixins.fillContainer}
 `;
 
 const Graph = ({ className, graph, options = defaultOptions, events = NO_EVENTS }) => {
