@@ -17,6 +17,9 @@ const Container = styled.div`
   ${mixins.fillContainer}
 `;
 
+Scrollbar.className = Container;
+Scrollbar.Thumb = Thumb;
+
 Scrollbar.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,

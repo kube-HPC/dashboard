@@ -62,6 +62,13 @@ const toLightColors = (isLightTheme = true) => {
       },
       batch: toColor(tw`text-orange-400`, tw`text-orange-700`),
     },
+    logs: {
+      level: {
+        info: tw`text-blue-500`,
+        error: tw`text-red-500`,
+        warning: tw`text-orange-500`,
+      },
+    },
   };
 };
 

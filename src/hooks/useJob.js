@@ -6,6 +6,8 @@ import useActions from './useActions';
 import useEye from './useEye';
 import usePanel from './usePanel';
 
+const options = { nodeFontSize: 15 };
+
 const useJob = jobId => {
   const isSelected = useSelector(state => state.jobs.selected === jobId);
   const jobEntry = useSelector(entrySelector(jobId), isEqual);
@@ -40,6 +42,7 @@ const useJob = jobId => {
       progress,
       jobGraph,
       status,
+      options,
     },
   };
 };

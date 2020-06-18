@@ -54,12 +54,8 @@ const textSecondary = css`
   ${theme(THEME.value.textSecondary)}
 `;
 
-const rounded = css`
-  ${tw`rounded-lg`}
-`;
-
 const card = css`
-  ${rounded}
+  ${tw`rounded-md`}
   ${tw`p-3 text-center`}
   ${theme(THEME.value.background)}
 `;
@@ -78,7 +74,6 @@ const mixins = {
   flexCenter,
   flexEnd,
   flexStart,
-  rounded,
   textSecondary,
   timingNormal,
   timingSlow,

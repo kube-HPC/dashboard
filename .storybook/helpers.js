@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import tw, { styled } from 'twin.macro';
 
 const Container = styled.div`
-  ${tw`border-black p-2 border-2 m-2`}
+  ${tw`border-orange-500 p-2 border-2`}
 `;
 
 const listSelector = createSelector(
