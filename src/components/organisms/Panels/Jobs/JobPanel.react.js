@@ -1,3 +1,4 @@
+/* @flow */
 import { Graph, Tag } from '@atoms';
 import { GRAPH, PRIORITY } from '@constants';
 import { useGraph, usePanel, useUserTheme } from '@hooks';
@@ -5,7 +6,6 @@ import { JobGraph, LogsViewer } from '@molecules';
 import { mixins } from '@styles';
 import { selectedStatsSelector } from '@utils';
 import isEqual from 'lodash.isequal';
-import PropTypes from 'prop-types';
 import React, { useMemo, useReducer } from 'react';
 import { useSelector } from 'react-redux';
 import { ifProp } from 'styled-tools';
@@ -119,9 +119,5 @@ const Container = styled.div`
 const Tags = styled.div`
   ${mixins.flexCenter}
 `;
-
-JobPanel.propTypes = {
-  className: PropTypes.string,
-};
 
 export default JobPanel;
