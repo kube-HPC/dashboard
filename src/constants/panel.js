@@ -4,6 +4,7 @@ const panels = {
   theme: `theme`,
   filter: `filter`,
   settings: `settings`,
+  socket: `socket`,
 };
 
 export default panels;

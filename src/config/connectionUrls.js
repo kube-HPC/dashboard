@@ -43,7 +43,7 @@ const connectionConfig = {
 
 const tempHardCodedConfig = {
   monitor: {
-    url: `https:///`,
+    url: `https://cd.hkube.io/`,
     path: `hkube/monitor-server`,
     socketPath: `/hkube/monitor-server/socket.io`,
   },

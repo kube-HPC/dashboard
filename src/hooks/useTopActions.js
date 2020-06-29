@@ -10,22 +10,23 @@ const useTopActions = () => {
   const { value, set: setValue } = usePanel();
   const isSocketConnected = useSelector(socketSlice.selectors.isConnected);
 
-  const setThemePanel = useCallback(
-    () => setValue(value === PANEL.theme ? PANEL.welcome : PANEL.theme),
-    [setValue, value],
-  );
-
-  const setSettingsPanel = useCallback(() => setValue(PANEL.settings), [setValue]);
-
   const topRightIcons = useMemo(() => {
     const rightIcons = isSocketConnected ? TOP_BAR.rightIcons : [`noWifi`, ...TOP_BAR.rightIcons];
+    const setThemePanel = () => setValue(value === PANEL.theme ? PANEL.welcome : PANEL.theme);
+    const setSettingsPanel = () => setValue(PANEL.settings);
+    const setSocketPanel = () => setValue(PANEL.socket);
+
     const rightActions = [setThemePanel, setSettingsPanel, NOOP];
-    const actionsWithConnected = isSocketConnected ? rightActions : [NOOP, ...rightActions];
+
+    const actionsWithConnected = isSocketConnected
+      ? rightActions
+      : [setSocketPanel, ...rightActions];
+
     return actionsWithConnected.map((action, index) => ({
       name: rightIcons[index],
       action,
     }));
-  }, [setThemePanel, setSettingsPanel, isSocketConnected]);
+  }, [isSocketConnected, setValue, value]);
 
   const setFilterPanel = useCallback(() => setValue(PANEL.filter), [setValue]);
 
