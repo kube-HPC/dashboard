@@ -9,7 +9,7 @@ const values = Object.values(mapper);
 
 const topBarConfig = {
   leftIcons: [`filter`],
-  rightIcons: [`signal`, `moon`, `settings`, `warning`],
+  rightIcons: [`moon`, `settings`, `warning`],
   mapper,
   values,
 };
