@@ -6,4 +6,4 @@ export const setProperty = (state, { payload }) => {
   set(state.colors, path, value);
 };
 
-export const setPalette = (state, { payload }) => palettes[payload];
+export const setPalette = (state, { payload: path }) => palettes[path];

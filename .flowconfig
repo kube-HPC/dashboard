@@ -24,6 +24,7 @@ module.name_mapper='@hooks' -> '<PROJECT_ROOT>/src/hooks/index.js'
 module.name_mapper='@constants' -> '<PROJECT_ROOT>/src/constants/index.js'
 module.name_mapper='@utils' -> '<PROJECT_ROOT>/src/utils/index.js'
 module.name_mapper='@storybookHelpers' -> '<PROJECT_ROOT>/.storybook/helpers.js'
+module.name_mapper='@slices' -> '<PROJECT_ROOT>/src/state/slices/index.js'
 module.name_mapper='state' -> '<PROJECT_ROOT>/src/state/index.js'
 
 [strict]

@@ -11,7 +11,7 @@ const useUserTheme = () => {
   const [, setLocalStorageTheme] = useLocalStorage(LOCAL_STORAGE.THEME, theme);
 
   const {
-    theme: { setProperty, setPalette },
+    theme: { setPalette, setProperty },
   } = useActions();
 
   useEffect(() => {
