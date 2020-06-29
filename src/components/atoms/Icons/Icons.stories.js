@@ -9,7 +9,6 @@ import {
   IconMoon,
   IconSearch,
   IconSettings,
-  IconSignal,
   IconWarning,
 } from './index';
 
@@ -36,7 +35,6 @@ export const settings = IconSettings;
 export const filter = IconFilter;
 export const moon = IconMoon;
 export const search = IconSearch;
-export const signal = IconSignal;
 export const fileDownload = IconFileDownload;
 
 export const Expand = () => {

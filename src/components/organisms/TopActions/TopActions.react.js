@@ -17,10 +17,17 @@ const TopActions = ({ className }) => {
           <div key={value}>{value}</div>
         ))}
       </Menu>
-      <IconsBar key="right" icons={topRightIcons} reveal="top" />
+      <Right>
+        <IconsBar key="right" icons={topRightIcons} reveal="top" />
+      </Right>
     </Container>
   );
 };
+
+const Right = styled.div`
+  ${mixins.flexStart}
+  ${tw`flex-row`}
+`;
 
 const Container = styled.div`
   ${mixins.flexBetween}
