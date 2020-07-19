@@ -1,6 +1,17 @@
 module.exports = {
   theme: {
     extend: {
+      fontFamily: {
+        roboto: [
+          `Roboto`,
+          `system-ui`,
+          ` -apple-system`,
+          `BlinkMacSystemFont`,
+          `Segoe UI`,
+          `Helvetica Neue`,
+          `Arial`,
+        ],
+      },
       colors: {
         primary: `hsl(272, 63%, 50%)`,
         secondary: `#868686`,
