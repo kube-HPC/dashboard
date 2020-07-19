@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     ${tw`font-roboto`}
 
     main {
-    ${tw`w-screen h-screen`};
+      ${tw`w-screen h-screen`};
     }
 
     h1 {
@@ -36,7 +36,6 @@ const GlobalStyle = createGlobalStyle`
       ${tw`fill-current w-5 md:w-6 lg:w-8`}
     }
   }
-
 `;
 
 export default GlobalStyle;
