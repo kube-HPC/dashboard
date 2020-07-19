@@ -2,7 +2,7 @@
 import { ERRORS, SOCKET } from '@config';
 import { createSlice } from '@reduxjs/toolkit';
 
-export type LogType = {
+export type ErrorLogType = {
   hostName: string,
   id: string,
   level: string,
@@ -15,7 +15,7 @@ export type LogType = {
 };
 
 export type ErrorStateProp = {
-  logs: null | LogType[],
+  logs: null | ErrorLogType[],
   totalNewWarnings: number,
 };
 
@@ -27,7 +27,7 @@ export const errorsSlice = createSlice({
   extraReducers: {
     [SOCKET.STATE.pull]: (
       state: ErrorStateProp,
-      { payload: { logs } }: { payload: { logs: LogType[] } },
+      { payload: { logs } }: { payload: { logs: ErrorLogType[] } },
     ) => {
       state.logs = logs;
     },

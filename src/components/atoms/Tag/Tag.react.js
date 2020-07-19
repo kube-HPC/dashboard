@@ -3,7 +3,7 @@ import React from 'react';
 import { prop } from 'styled-tools';
 import tw, { styled } from 'twin.macro';
 
-const defaultColor = tw`bg-gray-500`.backgroundColor;
+const defaultColor = tw`text-gray-500`.color;
 
 const Container = styled.div`
   ${tw`rounded-sm inline-block`}

@@ -63,7 +63,7 @@ JobGraph.className = Container;
 
 JobGraph.propTypes = {
   className: PropTypes.string,
-  jobGraph: PropTypes.object.isRequired,
+  jobGraph: PropTypes.object,
   options: PropTypes.object,
 };
 
