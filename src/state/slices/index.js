@@ -1,3 +1,4 @@
+// @flow
 export { default as dashboardSlice } from './dashboard';
 export { errorsSlice } from './errors';
 export type { ErrorLogType, ErrorStateProp } from './errors';

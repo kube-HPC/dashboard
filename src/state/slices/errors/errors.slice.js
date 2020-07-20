@@ -15,11 +15,11 @@ export type ErrorLogType = {
 };
 
 export type ErrorStateProp = {
-  logs: null | ErrorLogType[],
+  logs: ErrorLogType[],
   totalNewWarnings: number,
 };
 
-const initialState: ErrorStateProp = { logs: null, totalNewWarnings: 0 };
+const initialState: ErrorStateProp = { logs: [], totalNewWarnings: 0 };
 
 export const errorsSlice = createSlice({
   name: ERRORS.STATE.name,

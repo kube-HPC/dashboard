@@ -1,3 +1,4 @@
+// @flow
 const panels = {
   welcome: `welcome`,
   jobs: `jobs`,
@@ -5,6 +6,7 @@ const panels = {
   filter: `filter`,
   settings: `settings`,
   socket: `socket`,
+  errors: `errors`,
 };
 
 export default panels;

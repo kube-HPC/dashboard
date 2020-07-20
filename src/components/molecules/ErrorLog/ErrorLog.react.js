@@ -1,34 +1,32 @@
 // @flow
 import { Tag } from '@atoms';
 import type { ErrorLogType } from '@slices';
+import { COLORS } from '@styles';
 import React from 'react';
 import Moment from 'react-moment';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-type ErrorLogProps = {
-  className?: string,
-} & ErrorLogType;
+type ErrorLogProps = { className?: string, as?: string } & ErrorLogType;
 
 export const ErrorLog = ({
   className,
+  as,
   serviceName,
   podName,
   message,
   timestamp,
   level,
-  uptime,
 }: ErrorLogProps) => (
-  <Container {...{ className }}>
+  <Container {...{ className, as }}>
     <ErrorType>
-      <Tag>
+      <Tag color={COLORS.logs.level[level]}>
         <span>{level}</span>
       </Tag>
     </ErrorType>
     <ServiceName>{serviceName}</ServiceName>
     <span>{podName}</span>
     <Message>{message}</Message>
-    <Moment format="HH:mm:ss">{uptime}</Moment>
     <Moment format="DD/MM/YY HH:mm:ss">{timestamp}</Moment>
   </Container>
 );
@@ -43,8 +41,12 @@ const ServiceName = styled.span`
 const Message = styled.span`
   ${tw`font-normal`}
 `;
+
+const gridCols = tw`grid-cols-6`;
+
 const Container = styled.div`
-  ${tw`w-full grid grid-cols-7 gap-2 text-center`}
+  ${gridCols}
+  ${tw`w-full grid gap-2 text-center`}
   ${Message} {
     ${tw`col-span-2`}
   }
@@ -54,3 +56,4 @@ const Container = styled.div`
 `;
 
 ErrorLog.className = Container;
+ErrorLog.gridColsCSS = gridCols;

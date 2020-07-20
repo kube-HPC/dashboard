@@ -18,7 +18,8 @@
       "@queries": ["queries/index"],
       "@reducers": ["state/store/reducers"],
       "@actions": ["state/store/actions"],
-      "@slices": ["state/slices/"],
+      "@slices": ["state/slices/index"],
+      "@selectors": ["state/selectors/index"],
       "@storybookHelpers": ["../.storybook/helpers"]
     }
   }

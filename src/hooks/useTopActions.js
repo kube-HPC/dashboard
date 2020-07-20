@@ -1,7 +1,6 @@
 import { TOP_BAR } from '@config';
 import { PANEL } from '@constants';
 import { socketSlice } from '@slices';
-import { NOOP } from '@utils';
 import { useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import usePanel from './usePanel';
@@ -15,8 +14,9 @@ const useTopActions = () => {
     const setThemePanel = () => setValue(value === PANEL.theme ? PANEL.welcome : PANEL.theme);
     const setSettingsPanel = () => setValue(PANEL.settings);
     const setSocketPanel = () => setValue(PANEL.socket);
+    const setErrorsPanel = () => setValue(PANEL.errors);
 
-    const rightActions = [setThemePanel, setSettingsPanel, NOOP];
+    const rightActions = [setThemePanel, setSettingsPanel, setErrorsPanel];
 
     const actionsWithConnected = isSocketConnected
       ? rightActions
