@@ -1,5 +1,6 @@
 export { default as Jobs } from './Lists/Jobs/Jobs.react';
 export {
+  ErrorsPanel,
   FilterPanel,
   JobPanel,
   SettingsPanel,

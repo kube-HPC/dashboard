@@ -1,6 +1,7 @@
 // @flow
 import {
   dashboardSlice,
+  errorsSlice,
   jobsSlice,
   notificationsSlice,
   pipelinesSlice,
@@ -9,6 +10,7 @@ import {
 } from '@slices';
 
 const actions = {
+  errors: errorsSlice.actions,
   dashboard: dashboardSlice.actions,
   jobs: { ...jobsSlice.actions, ...jobsSlice.thunks },
   notifications: notificationsSlice.actions,

@@ -1,22 +1,27 @@
+// @flow
 import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
+import styled from 'styled-components';
 import { prop } from 'styled-tools';
-import tw, { styled } from 'twin.macro';
+import tw from 'twin.macro';
+const defaultColor = tw`text-gray-500`.color;
 
-const defaultColor = tw`bg-gray-500`.backgroundColor;
+type TagProp = {
+  className?: string,
+  children: React.Node,
+  color?: string,
+};
 
-const Container = styled.div`
+const Tag = ({ className, children, color = defaultColor }: TagProp) => (
+  <Container {...{ className, color }}>{children}</Container>
+);
+
+const Container = styled.blockquote`
   ${tw`rounded-sm inline-block`}
   ${tw`py-px xl:py-1 px-1`}
   ${tw`text-white text-sm xl:text-sm`}
   background-color: ${prop(`color`, defaultColor)};
 `;
-
-const Tag = ({ className, children, color = defaultColor }) => (
-  <Container className={className} color={color}>
-    {children}
-  </Container>
-);
 
 Tag.className = Container;
 

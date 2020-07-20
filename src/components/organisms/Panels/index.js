@@ -1,3 +1,4 @@
+export { ErrorsPanel } from './Errors/ErrorsPanel.react';
 export { default as FilterPanel } from './Filter/FilterPanel.react';
 export { default as JobPanel } from './Jobs/JobPanel.react';
 export { default as SettingsPanel } from './Settings/SettingsPanel.react';

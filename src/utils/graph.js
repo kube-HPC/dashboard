@@ -1,3 +1,4 @@
+// @flow
 import { GRAPH } from '@constants';
 import { graphEdgeTypes } from '@hkube/consts';
 
@@ -74,10 +75,10 @@ export const formatNode = colors => task => {
     label: isBatch ? `${nodeName} [${extra.batch}]` : nodeName,
   };
 
-  // tw macro adds opacity var.
+  // tw macro adds opacity var, need to remove it
   const color = isBatch
     ? undefined
-    : { background: colors.task.status[status].replace(`, var(--text-opacity)`, ``) };
+    : { background: colors.task.status[status]?.replace(`, var(--text-opacity)`, ``) };
 
   return { nodeName, status, color, ...node, ...rest };
 };

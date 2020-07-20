@@ -1,4 +1,6 @@
+// @flow
 export { default as useActions } from './useActions';
+export { useErrors } from './useErrors';
 export { default as useFilter } from './useFilter';
 export { default as useGraph } from './useGraph';
 export { default as useGraphInfo } from './useGraphInfo';

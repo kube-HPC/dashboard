@@ -1,6 +1,8 @@
+// @flow
 import { MEDIA_QUERIES, PANEL } from '@constants';
 import { useActions } from '@hooks';
 import {
+  ErrorsPanel,
   FilterPanel,
   JobPanel,
   SettingsPanel,
@@ -20,6 +22,7 @@ const PANEL_CONTENT = {
   [PANEL.filter]: FilterPanel,
   [PANEL.settings]: SettingsPanel,
   [PANEL.socket]: SocketPanel,
+  [PANEL.errors]: ErrorsPanel,
 };
 
 const usePanel = () => {

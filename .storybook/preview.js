@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { GlobalStyle } from 'styles';
 import 'tailwindcss/dist/base.css';
 import 'typeface-rajdhani';
+import 'typeface-roboto';
 import { ThemeProvider } from '../src/components';
 import { mixins } from '../src/styles';
 

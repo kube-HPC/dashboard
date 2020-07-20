@@ -1,4 +1,5 @@
 export { default as AutoSuggest } from './AutoSuggest/AutoSuggest.react';
+export { ErrorLog } from './ErrorLog/ErrorLog.react';
 export { default as IconsBar } from './IconsBar/IconsBar.react';
 export { JobDetails, JobEntry, JobGraph } from './Job';
 export { default as LogsViewer } from './LogsViewer/LogsViewer.react';

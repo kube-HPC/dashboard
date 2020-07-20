@@ -35,14 +35,15 @@ const LogsViewer = ({ className, logs = [] }: LogsProps) => (
           </Message>
         ))}
       </Container>
+      u
     </Scrollbar>
   </LogsScroll>
 );
 
 const Level = styled.div`
   ${tw`w-3 h-3`}
-  ${tw`bg-blue-500 rounded-full`}
   ${prop(styledKeys.color)}
+  ${tw`bg-current rounded-full`}
 `;
 
 const Container = styled.div`
