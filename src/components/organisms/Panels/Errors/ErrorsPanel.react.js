@@ -14,7 +14,6 @@ export const ErrorsPanel = ({ className }: ErrorsProps) => {
   return (
     <Container {...{ className }}>
       <Header>
-        <span>Level</span>
         <span>Service Name</span>
         <span>Pod Name</span>
         <Message>Message</Message>

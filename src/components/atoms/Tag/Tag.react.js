@@ -16,7 +16,7 @@ const Tag = ({ className, children, color = defaultColor }: TagProp) => (
   <Container {...{ className, color }}>{children}</Container>
 );
 
-const Container = styled.block`
+const Container = styled.blockquote`
   ${tw`rounded-sm inline-block`}
   ${tw`py-px xl:py-1 px-1`}
   ${tw`text-white text-sm xl:text-sm`}
