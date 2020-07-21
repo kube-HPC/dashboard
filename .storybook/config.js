@@ -21,8 +21,8 @@ const Container = ({children}) => {
   return <DefaultDecorator>{children}</DefaultDecorator>;
 };
 
+const store = createStore();
 const decorator = Story => {
-  const store = createStore();
   return (
     <React.StrictMode>
       <Provider store={store}>

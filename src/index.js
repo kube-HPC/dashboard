@@ -1,3 +1,4 @@
+import {ThemeProvider} from '@components';
 import {useSocket} from '@hooks';
 import {GlobalStyle} from '@styles';
 import {Dashboard} from '@templates';
@@ -6,7 +7,6 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {ReusableProvider} from 'reusable';
 import createStore from 'state/store/createStore';
-import {ThemeProvider} from 'styled-components';
 import 'tailwindcss/dist/base.css';
 import 'typeface-rajdhani';
 import 'typeface-roboto';
@@ -17,22 +17,24 @@ const store = createStore();
 const App = () => {
   useSocket();
   return (
-    <Provider store={store}>
+    <>
       <GlobalStyle />
-      <ReusableProvider>
-        <ThemeProvider>
-          <main>
-            <Dashboard />
-          </main>
-        </ThemeProvider>
-      </ReusableProvider>
-    </Provider>
+      <main>
+        <Dashboard />
+      </main>
+    </>
   );
 };
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <ReusableProvider>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </ReusableProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById(`root`),
 );

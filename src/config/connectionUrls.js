@@ -52,7 +52,7 @@ const tempHardCodedConfig = {
 
 // TODO: figure out how to handle env in build
 /* eslint-disable no-console */
-// console.info(`Gatsby env`, process.env.GATSBY_MONITOR_BACKEND_USE_LOCATION);
+// console.info(`Gatsby env`, process.env.REACT_APP_BACKEND_USE_LOCATION);
 // console.info(`Use Location`, monitorUseLocation);
 // console.info(`Connect Config`, fromEnvConfig);
 
