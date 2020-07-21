@@ -1,9 +1,10 @@
-import { NOOP, onMode } from '@utils';
-import { motion } from 'framer-motion';
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { ifProp, prop } from 'styled-tools';
-import tw, { styled } from 'twin.macro';
+// @flow
+import {NOOP, onMode} from '@utils';
+import {motion} from 'framer-motion';
+import type {Node} from 'react';
+import React, {useEffect, useState} from 'react';
+import {ifProp, prop} from 'styled-tools';
+import tw, {styled} from 'twin.macro';
 import Scrollbar from '../Scrollbar/Scrollbar.react';
 
 const ITEM_HEIGHT_PX = 30;
@@ -15,8 +16,29 @@ const calcHeight = totalItems =>
   EXTRA_OFFSET;
 
 const variants = {
-  visible: { opacity: 1 },
-  hidden: { opacity: 0 },
+  visible: {opacity: 1},
+  hidden: {opacity: 0},
+};
+
+// Dropdown.propTypes = {
+// children: PropTypes.node,
+// className: PropTypes.string,
+// innerRef: PropTypes.object,
+// isVisible: PropTypes.bool,
+// onSelect: PropTypes.func,
+// options: PropTypes.array,
+// topOffset: PropTypes.number,
+// totalItems: PropTypes.number,
+// };
+
+type DropdownProps = {
+  children: Node,
+  className?: string,
+  innerRef: {current: null | HTMLDivElement},
+  topOffset: number,
+  isVisible: boolean,
+  options: void | [],
+  onSelect: (option: string, index: number) => void,
 };
 
 const Dropdown = ({
@@ -28,7 +50,7 @@ const Dropdown = ({
   onSelect = NOOP,
   innerRef,
   ...props
-}) => {
+}: DropdownProps) => {
   const areOptions = Array.isArray(options);
   const totalItems = areOptions ? options.length : React.Children.count(children);
   const height = calcHeight(totalItems);
@@ -45,7 +67,7 @@ const Dropdown = ({
 
   return (
     <Container
-      {...{ className, topOffset, height, variants, ...props }}
+      {...{className, topOffset, height, variants, ...props}}
       ref={innerRef}
       tabIndex="0"
       animate={isAnimate ? `visible` : `hidden`}
@@ -54,8 +76,8 @@ const Dropdown = ({
       <Scrollbar>
         {areOptions
           ? options.map((value, index) => (
-              <Option key={index} role="button" onClick={onClick(value, index)}>
-                <span>{value}</span>
+              <Option key={index} onClick={onClick(value, index)}>
+                {value}
               </Option>
             ))
           : children}
@@ -64,9 +86,9 @@ const Dropdown = ({
   );
 };
 
-const Option = styled.div`
+const Option = styled.button`
   ${onMode(tw`hocus:bg-gray-300`, tw`hocus:bg-gray-800`)}
-  ${tw`transition-colors ease-in-out duration-300 p-1 truncate`}
+  ${tw`transition-colors ease-in-out duration-300 p-1 truncate w-full text-left`}
   span:nth-child(2) {
     ${tw`font-semibold`}
   }
@@ -84,15 +106,5 @@ const Container = styled(motion.div)`
 
 Dropdown.Option = Option;
 Dropdown.className = Container;
-Dropdown.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  innerRef: PropTypes.object,
-  isVisible: PropTypes.bool,
-  onSelect: PropTypes.func,
-  options: PropTypes.array,
-  topOffset: PropTypes.number,
-  totalItems: PropTypes.number,
-};
 
 export default Dropdown;
