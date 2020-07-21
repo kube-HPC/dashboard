@@ -1,119 +1,34 @@
 {
-  "name": "dashboard",
-  "description": "Hkube dashboard",
-  "version": "1.0.0",
-  "author": "Dennis Vash <dennisvash@gmail.com>",
-  "license": "MIT",
-  "keywords": [
-    "gatsby",
-    "tailwind",
-    "storybook",
-    "styled-components",
-    "css-in-js"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kube-HPC/dashboard"
-  },
-  "bugs": {
-    "url": "https://github.com/kube-HPC/hkube/issues"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && lint-staged",
-      "pre-push": ""
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,json,md}": [
-      "eslint --cache --fix",
-      "prettier --write"
-    ]
-  },
-  "babelMacros": {
-    "twin": {
-      "preset": "styled-components"
-    }
+  "name": "hkube-dashboard-cra",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
   },
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop -o -p 8080",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "yarn develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "lint:css": "stylelint './src/**/*.js'",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
-    "storybook": "start-storybook -p 6006 -c .storybook",
-    "build-storybook": "yarn build; NODE_PATH=src/ build-storybook --quiet"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "dependencies": {
-    "@hkube/consts": "^1.0.21",
-    "@reduxjs/toolkit": "^1.3.6",
-    "ansi-to-react": "^6.0.5",
-    "beautiful-react-hooks": "^0.25.2",
-    "file-saver": "^2.0.2",
-    "framer-motion": "^1.11.0",
-    "gatsby": "^2.21.33",
-    "lodash.debounce": "^4.0.8",
-    "lodash.isequal": "^4.5.0",
-    "lodash.set": "^4.3.2",
-    "lodash.throttle": "^4.1.1",
-    "object.fromentries": "^2.0.2",
-    "pretty-ms": "^7.0.0",
-    "react": "^16.13.1",
-    "react-circle": "^1.1.1",
-    "react-color-slim": "^2.18.0",
-    "react-custom-scrollbars": "^4.2.1",
-    "react-dom": "^16.13.1",
-    "react-helmet": "^6.0.0",
-    "react-moment": "^0.9.7",
-    "react-redux": "^7.2.0",
-    "react-virtualized-auto-sizer": "^1.0.2",
-    "react-window": "^1.8.5",
-    "reusable": "^1.0.1",
-    "socket.io-client": "^2.3.0",
-    "styled-components": "^5.1.1",
-    "styled-tools": "^1.7.1",
-    "twin.macro": "^1.2.0",
-    "typeface-rajdhani": "^0.0.72",
-    "typeface-roboto": "^0.0.75",
-    "use-resize-observer": "^6.1.0",
-    "vis-network-react": "1.2.3"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "devDependencies": {
-    "@babel/cli": "^7.10.1",
-    "@babel/core": "^7.10.2",
-    "@babel/preset-flow": "^7.10.1",
-    "@dennisvash/eslint-config": "^3.0.0",
-    "@dennisvash/prettier-config": "^2.0.1",
-    "@storybook/addon-storysource": "^5.3.19",
-    "@storybook/react": "^5.3.19",
-    "@welldone-software/why-did-you-render": "^4.2.2",
-    "babel-eslint": "^10.0.3",
-    "babel-loader": "^8.1.0",
-    "babel-plugin-react-flow-props-to-prop-types": "^0.15.0",
-    "babel-plugin-styled-components": "^1.10.7",
-    "babel-preset-gatsby": "^0.4.2",
-    "core-js": "2.5.7",
-    "eslint": "^7.0.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.20.0",
-    "eslint-plugin-react-hooks": "^4.0.2",
-    "flow-bin": "^0.127.0",
-    "gatsby-plugin-alias-imports": "^1.0.5",
-    "gatsby-plugin-flow": "^1.3.5",
-    "gatsby-plugin-manifest": "^2.4.3",
-    "gatsby-plugin-offline": "^3.2.2",
-    "gatsby-plugin-react-helmet": "^3.3.1",
-    "gatsby-plugin-resolve-src": "^2.1.0",
-    "gatsby-plugin-styled-components": "^3.3.1",
-    "husky": "4.2.5",
-    "lint-staged": "^10.2.2",
-    "prettier": "^2.0.5",
-    "pretty-quick": "^2.0.1",
-    "prop-types": "^15.7.2",
-    "prop-types-extra": "^1.1.1"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
