@@ -38,6 +38,6 @@ const Decorator = styled.div`
 `;
 
 export default {
-  title: `${SB_LABELS.ATOMS}Input`,
+  title: `${SB_LABELS.ATOMS}${Input.name}`,
   decorators: decorate(Decorator),
 };

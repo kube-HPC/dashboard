@@ -1,17 +1,33 @@
 import {mixins} from '@styles';
 import {NOOP, onMode} from '@utils';
-import PropTypes from 'prop-types';
 import React from 'react';
+import styled from 'styled-components';
 import {ifProp} from 'styled-tools';
-import tw, {styled} from 'twin.macro';
+import tw from 'twin.macro';
 
-const Option = ({children, onChange = NOOP, checked = false}) => (
+type OnChangeFunc = () => void | ((option: string) => void);
+
+type OptionType = {
+  checked: boolean,
+  children: Node,
+  onChange: OnChangeFunc,
+  value: String,
+};
+
+const Option = ({children, onChange = NOOP, checked = false}: OptionType) => (
   <Label onClick={onChange} {...{checked}}>
     <span>{children}</span>
   </Label>
 );
 
-const Radio = ({className, value, onChange = NOOP, children, options}) => (
+type RadioTypes = {
+  className?: string,
+  onChange?: OnChangeFunc,
+  options: string[],
+  value: string,
+};
+
+const Radio = ({className, value, onChange = NOOP, children, options}: RadioTypes) => (
   <Container {...{className}}>
     {children
       ? React.Children.map(children, (child, key) => {
@@ -53,21 +69,7 @@ const Container = styled.div`
   ${onMode(tw`border-black shadow-xl divide-black`, tw`border-white shadow-xlLight divide-white`)}
 `;
 
-Option.propTypes = {
-  checked: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  onChange: PropTypes.func,
-  value: PropTypes.any,
-};
-
 Radio.Option = Option;
 Radio.className = Container;
-Radio.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  onChange: PropTypes.func,
-  options: PropTypes.array,
-  value: PropTypes.any,
-};
 
 export default Radio;
