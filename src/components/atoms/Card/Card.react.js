@@ -1,13 +1,13 @@
-import { mixins } from '@styles';
+import {mixins} from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { styled } from 'twin.macro';
+import {styled} from 'twin.macro';
 
 const Container = styled.div`
   ${mixins.card}
 `;
 
-const Card = ({ className, children, ...props }) => (
+const Card = ({className, children, ...props}) => (
   <Container className={className} {...props}>
     {children}
   </Container>

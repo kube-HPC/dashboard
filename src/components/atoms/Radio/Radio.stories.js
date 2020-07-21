@@ -1,7 +1,6 @@
-import { SB_LABELS } from '@constants';
-import { mixins } from '@styles';
-import React, { useState } from 'react';
-import tw, { styled } from 'twin.macro';
+// @flow
+import {SB_LABELS} from '@constants';
+import React, {useState} from 'react';
 import Radio from './Radio.react';
 
 export const Children = () => {
@@ -24,19 +23,7 @@ export const Options = () => {
   return <Radio value={value} onChange={setValue} options={OPTIONS} />;
 };
 
-const Decorator = styled.div`
-  ${mixins.flexCenter}
-  ${mixins.fillContainer}
-  ${tw``}
-`;
-
 export default {
-  title: `${SB_LABELS.ATOMS}Radio`,
-  decorators: [
-    S => (
-      <Decorator>
-        <S />
-      </Decorator>
-    ),
-  ],
+  title: `${SB_LABELS.ATOMS}${Radio.name}`,
+  component: Radio,
 };

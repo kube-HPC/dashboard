@@ -1,20 +1,21 @@
-import PropTypes from 'prop-types';
+// @flow
+import type {Node} from 'react';
 import React from 'react';
-import { styled } from 'twin.macro';
+import styled from 'styled-components';
 
-const Container = styled.div``;
+type NotificationProps = {
+  className?: string,
+  title: string,
+  children: Node,
+};
 
-const Notification = ({ className, title, children }) => (
+const Notification = ({className, title, children}: NotificationProps) => (
   <Container className={className}>
     <h1>{title}</h1>
     {children}
   </Container>
 );
 
-Notification.propTypes = {
-  className: PropTypes.string,
-  title: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
+const Container = styled.div``;
 
 export default Notification;

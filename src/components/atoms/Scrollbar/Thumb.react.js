@@ -1,8 +1,9 @@
-import { THEME } from '@constants';
-import { mixins } from '@styles';
+import {THEME} from '@constants';
+import {mixins} from '@styles';
 import React from 'react';
-import { theme } from 'styled-tools';
-import tw, { styled } from 'twin.macro';
+import styled from 'styled-components';
+import {theme} from 'styled-tools';
+import tw from 'twin.macro';
 
 const Thumb = props => <Container {...props} />;
 

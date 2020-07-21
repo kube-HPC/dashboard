@@ -1,9 +1,19 @@
+// @flow
 import {NOOP, onMode} from '@utils';
-import PropTypes from 'prop-types';
 import React, {useCallback, useEffect, useState} from 'react';
 import tw, {styled} from 'twin.macro';
 
-const Input = React.forwardRef(({className, value = ``, onChange = NOOP, ...props}, ref) => {
+type InputProps = {
+  className?: string,
+  onChange?: (value: string | void) => void,
+  value?: string,
+  innerRef?: {current: null | HTMLDivElement},
+  onBlur?: () => void,
+  onFocus?: () => void,
+  role?: string,
+};
+
+const Input = ({className, value = ``, onChange = NOOP, innerRef, ...props}: InputProps) => {
   const [inputValue, setInputValue] = useState(value);
   const $onChange = useCallback(({target: {value}}) => setInputValue(value), []);
 
@@ -15,8 +25,10 @@ const Input = React.forwardRef(({className, value = ``, onChange = NOOP, ...prop
     setInputValue(value);
   }, [value]);
 
-  return <InputInner {...{className, ref, ...props}} value={inputValue} onChange={$onChange} />;
-});
+  return (
+    <InputInner {...{className, ...props}} ref={innerRef} value={inputValue} onChange={$onChange} />
+  );
+};
 
 const InputInner = styled.input`
   &::placeholder {
@@ -30,12 +42,5 @@ const InputInner = styled.input`
 
 Input.displayName = `Input`;
 Input.className = InputInner;
-Input.propTypes = {
-  className: PropTypes.string,
-  onBlur: PropTypes.func,
-  onChange: PropTypes.func,
-  onFocus: PropTypes.func,
-  value: PropTypes.string,
-};
 
 export default Input;

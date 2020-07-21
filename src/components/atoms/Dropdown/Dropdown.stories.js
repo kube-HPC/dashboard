@@ -1,7 +1,5 @@
-import { SB_LABELS } from '@constants';
-import { mixins } from '@styles';
+import {SB_LABELS} from '@constants';
 import React from 'react';
-import tw, { styled } from 'twin.macro';
 import Dropdown from './Dropdown.react';
 
 const options = [...Array(20).keys()].map(key => `Option-${key}`);
@@ -17,21 +15,7 @@ export const WithChildren = () => (
   </Dropdown>
 );
 
-const Decorator = styled.div`
-  ${mixins.fillScreen}
-  ${mixins.flexCenter}
-  ${Dropdown.className} {
-    ${tw`w-1/2`}
-  }
-`;
-
 export default {
-  title: `${SB_LABELS.ATOMS}Dropdown`,
-  decorators: [
-    S => (
-      <Decorator>
-        <S />
-      </Decorator>
-    ),
-  ],
+  title: `${SB_LABELS.ATOMS}${Dropdown.name}`,
+  component: Dropdown,
 };

@@ -1,5 +1,6 @@
 /* @flow */
 import {mixins} from '@styles';
+import {onMode} from '@utils';
 import * as React from 'react';
 import tw, {styled} from 'twin.macro';
 
@@ -15,6 +16,7 @@ const Button = ({className, children, ...props}: $Props) => (
 const Container = styled.button`
   ${mixins.opacityFocus}
   ${tw`border py-1 px-2 rounded-md`}
+  ${onMode(tw`border-black`, tw`border-white`)}
 `;
 
 Button.className = Container;
