@@ -1,14 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { useSocket } from "@hooks";
+import { GlobalStyle } from "@styles";
+import { Dashboard } from "@templates";
+import React from "react";
+import ReactDOM from "react-dom";
+import * as serviceWorker from "./serviceWorker";
+
+const App = () => {
+  useSocket();
+  return (
+    <>
+      <GlobalStyle />
+      <main>
+        <Dashboard />
+      </main>
+    </>
+  );
+};
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

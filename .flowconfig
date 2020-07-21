@@ -1,0 +1,44 @@
+[ignore]
+.*/__tests__.*
+
+[include]
+
+[libs]
+
+[lints]
+all=warn
+
+[options]
+module.system=node
+
+esproposal.class_static_fields=enable
+esproposal.optional_chaining=enable
+esproposal.nullish_coalescing=enable
+
+suppress_type=$FlowIssue
+suppress_type=$FlowFixMe
+suppress_type=$FlowOSSFixMe
+suppress_type=$DownCast
+
+module.name_mapper='^\([^\.].*\)$' -> '<PROJECT_ROOT>/src/\1'
+
+module.name_mapper='@constants' -> '<PROJECT_ROOT>/src/constants/index.js'
+module.name_mapper='@enums' -> '<PROJECT_ROOT>/src/enums/index.js'
+module.name_mapper='@atoms' -> '<PROJECT_ROOT>/src/components/atoms/index.js'
+module.name_mapper='@styles' -> '<PROJECT_ROOT>/src/styles/index.js'
+module.name_mapper='@storybookHelpers' -> '<PROJECT_ROOT>/.storybook/helpers.js'
+module.name_mapper='@state' -> '<PROJECT_ROOT>/src/state/index.js'
+module.name_mapper='@utils' -> '<PROJECT_ROOT>/src/utils/index.js'
+module.name_mapper='@types' -> '<PROJECT_ROOT>/src/types/index.js'
+
+exact_by_default=true
+
+[strict]
+nonstrict-import
+unclear-type
+unsafe-getters-setters
+untyped-import
+untyped-type-import
+sketchy-null
+
+[version]
