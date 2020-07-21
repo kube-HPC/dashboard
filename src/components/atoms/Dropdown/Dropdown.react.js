@@ -20,21 +20,10 @@ const variants = {
   hidden: {opacity: 0},
 };
 
-// Dropdown.propTypes = {
-// children: PropTypes.node,
-// className: PropTypes.string,
-// innerRef: PropTypes.object,
-// isVisible: PropTypes.bool,
-// onSelect: PropTypes.func,
-// options: PropTypes.array,
-// topOffset: PropTypes.number,
-// totalItems: PropTypes.number,
-// };
-
 type DropdownProps = {
   children: Node,
   className?: string,
-  innerRef: {current: null | HTMLDivElement},
+  innerRef?: {current: null | HTMLDivElement},
   topOffset: number,
   isVisible: boolean,
   options: void | [],

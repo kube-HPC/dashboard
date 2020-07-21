@@ -1,7 +1,8 @@
-import { SB_LABELS } from '@constants';
-import { mixins } from '@styles';
-import React, { useReducer } from 'react';
-import tw, { styled } from 'twin.macro';
+import {SB_LABELS} from '@constants';
+import {decorate} from '@storybookHelpers';
+import {mixins} from '@styles';
+import React, {useReducer} from 'react';
+import tw, {styled} from 'twin.macro';
 import {
   IconExpand,
   IconFileDownload,
@@ -11,24 +12,6 @@ import {
   IconSettings,
   IconWarning,
 } from './index';
-
-const Container = styled.div`
-  ${mixins.flexCenter}
-  svg {
-    ${tw`fill-current w-1/3`}
-  }
-`;
-
-export default {
-  title: `${SB_LABELS.ATOMS}Icons`,
-  decorators: [
-    S => (
-      <Container>
-        <S />
-      </Container>
-    ),
-  ],
-};
 
 export const warning = IconWarning;
 export const settings = IconSettings;
@@ -44,4 +27,16 @@ export const Expand = () => {
       <IconExpand expanded={expanded} onClick={toggle} />
     </>
   );
+};
+
+const Container = styled.div`
+  ${mixins.flexCenter}
+  svg {
+    ${tw`fill-current w-1/3`}
+  }
+`;
+
+export default {
+  title: `${SB_LABELS.ATOMS}Icons`,
+  decorators: decorate(Container),
 };

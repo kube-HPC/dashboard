@@ -1,12 +1,14 @@
-import { SB_LABELS } from '@constants';
-import { mixins } from '@styles';
-import React, { useReducer, useRef, useState } from 'react';
-import tw, { styled } from 'twin.macro';
+// @flow
+import {SB_LABELS} from '@constants';
+import {decorate} from '@storybookHelpers';
+import {mixins} from '@styles';
+import React, {useReducer, useRef, useState} from 'react';
+import tw, {styled} from 'twin.macro';
 import Input from './Input.react';
 
 export const Default = () => <Input />;
 export const WithActions = () => {
-  const inputRef = useRef();
+  const inputRef = useRef(null);
   const [value, setValue] = useState(``);
   const [isFocus, toggleFocus] = useReducer(p => !p, false);
 
@@ -16,7 +18,7 @@ export const WithActions = () => {
       <span>Controlled Value: {value}</span>
       <Input
         role="combobox"
-        ref={inputRef}
+        innerRef={inputRef}
         value={value}
         onFocus={toggleFocus}
         onBlur={toggleFocus}
@@ -37,11 +39,5 @@ const Decorator = styled.div`
 
 export default {
   title: `${SB_LABELS.ATOMS}Input`,
-  decorators: [
-    S => (
-      <Decorator>
-        <S />
-      </Decorator>
-    ),
-  ],
+  decorators: decorate(Decorator),
 };

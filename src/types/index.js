@@ -1,1 +1,1 @@
-export type {BatchNode, GraphNode} from './graph.types';
+export type {BatchNode, GraphEdgeEntry, GraphNode, GraphNodeEntry} from './graph.types';

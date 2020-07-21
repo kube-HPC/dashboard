@@ -19,3 +19,13 @@ export type GraphNode = {
   nodeName: string,
   batch?: BatchNode[],
 } & BatchNode;
+
+export type GraphNodeEntry = {
+  id: number,
+  label: string,
+};
+export type GraphEdgeEntry = {
+  id: string,
+  from: string,
+  to: string,
+};
