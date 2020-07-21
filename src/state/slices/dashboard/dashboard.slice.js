@@ -1,14 +1,14 @@
-import { FILTER, JOBS, SOCKET } from '@config';
-import { LOCAL_STORAGE, LOG_SOURCE, PANEL } from '@constants';
-import { createSlice } from '@reduxjs/toolkit';
-import { activeStates, getLocalStorageItem } from '@utils';
+import { FILTER, JOBS, SOCKET } from "@config";
+import { LOCAL_STORAGE, LOG_SOURCE, PANEL } from "@constants";
+import { createSlice } from "@reduxjs/toolkit";
+import { activeStates, getLocalStorageItem } from "@utils";
 import {
   setJobsFilter,
   setLogSource,
   setPanel,
   toggleJobEye,
   togglePanel,
-} from './dashboard.reducers';
+} from "./dashboard.reducers";
 
 /*
 eyes.jobs = { isControlled, isShowDetails }
@@ -26,7 +26,8 @@ const initialState = {
   },
   panel: { value: null, expanded: false },
   settings: {
-    logSource: getLocalStorageItem(LOCAL_STORAGE.SETTINGS)?.logSource || LOG_SOURCE.k8s,
+    logSource:
+      getLocalStorageItem(LOCAL_STORAGE.SETTINGS)?.logSource || LOG_SOURCE.k8s,
   },
 };
 
@@ -41,7 +42,7 @@ const dashboard = createSlice({
     setLogSource,
   },
   extraReducers: {
-    [JOBS.STATE.select]: state => {
+    [JOBS.STATE.select]: (state) => {
       state.panel.value = PANEL.jobs;
     },
     [SOCKET.STATE.pull]: (state, { payload: { jobs } }) => {
@@ -54,7 +55,9 @@ const dashboard = createSlice({
           ...acc,
           [key]: {
             isControlled,
-            isShowDetails: isControlled ? isShowDetails : activeStates.includes(status?.status),
+            isShowDetails: isControlled
+              ? isShowDetails
+              : activeStates.includes(status?.status),
           },
         };
       }, {});

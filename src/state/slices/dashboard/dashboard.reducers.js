@@ -1,3 +1,5 @@
+import { PANEL } from "@constants";
+
 export const toggleJobEye = (state, { payload: jobId }) => {
   state.eyes.jobs[jobId] = {
     isControlled: true,
@@ -17,8 +19,6 @@ export const setJobsFilter = (state, { payload: { target, filter } }) => {
   state.filters.jobs[target] = filter;
 };
 
-import { PANEL } from '@constants';
-
 export const setPanel = (state, { payload }) => {
   const prevPanel = state.panel.value;
   if (prevPanel === PANEL.jobs && payload === PANEL.jobs) {
@@ -29,7 +29,7 @@ export const setPanel = (state, { payload }) => {
   }
 };
 
-export const togglePanel = state => {
+export const togglePanel = (state) => {
   state.panel.expanded = !state.panel.expanded;
 };
 

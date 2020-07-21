@@ -1,5 +1,8 @@
 {
   "name": "hkube-dashboard-cra",
+  "description": "Hkube dashboard v2",
+  "author": "Dennis Vash <dennisvash@hey.com>",
+  "license": "MIT",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -47,6 +50,23 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "babelMacros": {
+    "twin": {
+      "preset": "styled-components"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && lint-staged",
+      "pre-push": ""
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,md}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -66,6 +86,10 @@
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.1.4",
     "@storybook/react": "^5.3.19",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
     "styled-components": "^5.1.1",
     "styled-tools": "^1.7.2",
     "twin.macro": "^1.5.1"

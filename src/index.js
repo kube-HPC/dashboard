@@ -3,6 +3,9 @@ import { GlobalStyle } from "@styles";
 import { Dashboard } from "@templates";
 import React from "react";
 import ReactDOM from "react-dom";
+import "tailwindcss/dist/base.css";
+import "typeface-rajdhani";
+import "typeface-roboto";
 import * as serviceWorker from "./serviceWorker";
 
 const App = () => {
