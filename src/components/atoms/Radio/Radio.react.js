@@ -1,18 +1,18 @@
-import { mixins } from '@styles';
-import { NOOP, onMode } from '@utils';
+import {mixins} from '@styles';
+import {NOOP, onMode} from '@utils';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ifProp } from 'styled-tools';
-import tw, { styled } from 'twin.macro';
+import {ifProp} from 'styled-tools';
+import tw, {styled} from 'twin.macro';
 
-const Option = ({ children, onChange = NOOP, checked = false }) => (
-  <$Option onClick={onChange} {...{ checked }}>
+const Option = ({children, onChange = NOOP, checked = false}) => (
+  <Label onClick={onChange} {...{checked}}>
     <span>{children}</span>
-  </$Option>
+  </Label>
 );
 
-const Radio = ({ className, value, onChange = NOOP, children, options }) => (
-  <Container {...{ className }}>
+const Radio = ({className, value, onChange = NOOP, children, options}) => (
+  <Container {...{className}}>
     {children
       ? React.Children.map(children, (child, key) => {
           const childValue = child.props.value;
@@ -26,7 +26,7 @@ const Radio = ({ className, value, onChange = NOOP, children, options }) => (
       : options.map((option, key) => {
           const $onChange = () => onChange(option);
           return (
-            <Option key={key} checked={value === option} {...{ onChange: $onChange }}>
+            <Option key={key} checked={value === option} {...{onChange: $onChange}}>
               {option}
             </Option>
           );
@@ -34,7 +34,7 @@ const Radio = ({ className, value, onChange = NOOP, children, options }) => (
   </Container>
 );
 
-const $Option = styled.label`
+const Label = styled.label`
   ${tw`px-2 cursor-pointer hocus:opacity-50`}
   ${tw`transition-opacity duration-300 ease-in-out`}
   span {

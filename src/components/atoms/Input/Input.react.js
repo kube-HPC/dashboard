@@ -1,11 +1,11 @@
-import { NOOP, onMode } from '@utils';
+import {NOOP, onMode} from '@utils';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
-import tw, { styled } from 'twin.macro';
+import React, {useCallback, useEffect, useState} from 'react';
+import tw, {styled} from 'twin.macro';
 
-const Input = React.forwardRef(({ className, value = ``, onChange = NOOP, ...props }, ref) => {
+const Input = React.forwardRef(({className, value = ``, onChange = NOOP, ...props}, ref) => {
   const [inputValue, setInputValue] = useState(value);
-  const $onChange = useCallback(({ target: { value } }) => setInputValue(value), []);
+  const $onChange = useCallback(({target: {value}}) => setInputValue(value), []);
 
   useEffect(() => {
     onChange(inputValue);
@@ -15,10 +15,10 @@ const Input = React.forwardRef(({ className, value = ``, onChange = NOOP, ...pro
     setInputValue(value);
   }, [value]);
 
-  return <$Input {...{ className, ref, ...props }} value={inputValue} onChange={$onChange} />;
+  return <InputInner {...{className, ref, ...props}} value={inputValue} onChange={$onChange} />;
 });
 
-const $Input = styled.input`
+const InputInner = styled.input`
   &::placeholder {
     ${tw`font-normal italic opacity-50`}
     ${onMode(tw`text-black`, tw`text-white`)}
@@ -29,7 +29,7 @@ const $Input = styled.input`
 `;
 
 Input.displayName = `Input`;
-Input.className = $Input;
+Input.className = InputInner;
 Input.propTypes = {
   className: PropTypes.string,
   onBlur: PropTypes.func,

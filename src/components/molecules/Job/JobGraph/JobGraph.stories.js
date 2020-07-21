@@ -1,9 +1,9 @@
-import { GRAPH, SB_LABELS } from '@constants';
-import { useGraph } from '@hooks';
-import { JobSelectHelper } from '@storybookHelpers';
-import { mixins } from '@styles';
-import React, { useMemo, useReducer } from 'react';
-import tw, { styled } from 'twin.macro';
+import {GRAPH, SB_LABELS} from '@constants';
+import {useGraph} from '@hooks';
+import {JobSelectHelper} from '@storybookHelpers';
+import {mixins} from '@styles';
+import React, {useMemo, useReducer} from 'react';
+import tw, {styled} from 'twin.macro';
 import JobGraph from './JobGraph.react';
 
 const Flex = styled.div`
@@ -24,12 +24,12 @@ export default {
 
 export const EmptyGraph = () => <JobGraph />;
 
-const { LR, UD } = GRAPH.direction;
+const {LR, UD} = GRAPH.direction;
 
 export const GraphFromSocket = () => {
-  const { graph: graph } = useGraph();
+  const {graph} = useGraph();
   const [direction, toggle] = useReducer(p => !p, true);
-  const options = useMemo(() => ({ direction: direction ? LR : UD }), [direction]);
+  const options = useMemo(() => ({direction: direction ? LR : UD}), [direction]);
 
   return (
     <Flex>

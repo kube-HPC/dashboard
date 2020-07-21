@@ -1,23 +1,23 @@
-import { Graph, Tag } from '@atoms';
-import { useGraphInfo, useUserTheme } from '@hooks';
-import { mixins } from '@styles';
+import {Graph, Tag} from '@atoms';
+import {useGraphInfo, useUserTheme} from '@hooks';
+import {mixins} from '@styles';
 import PropTypes from 'prop-types';
-import React, { useEffect, useMemo, useState } from 'react';
-import { ifProp } from 'styled-tools';
-import tw, { styled } from 'twin.macro';
+import React, {useEffect, useMemo, useState} from 'react';
+import {ifProp} from 'styled-tools';
+import tw, {styled} from 'twin.macro';
 import JobNodeInfo from './JobNodeInfo.react';
 
 const PORTAL_DELAY = 100;
 
-const JobGraph = ({ className, jobGraph, options }) => {
+const JobGraph = ({className, jobGraph, options}) => {
   const [tooltipRef, setTooltipRef] = useState();
   const [isFirstReveal, setIsFirstReveal] = useState(false);
 
-  const { graph, nodeInfo, events } = useGraphInfo(jobGraph, tooltipRef);
+  const {graph, nodeInfo, events} = useGraphInfo(jobGraph, tooltipRef);
 
-  const { isLightTheme } = useUserTheme();
+  const {isLightTheme} = useUserTheme();
 
-  const themedOptions = useMemo(() => ({ ...options, isLightTheme }), [isLightTheme, options]);
+  const themedOptions = useMemo(() => ({...options, isLightTheme}), [isLightTheme, options]);
 
   useEffect(() => {
     // Need some delay for portal the tooltip to canvas
