@@ -1,15 +1,15 @@
 /* @flow */
-import { mixins } from '@styles';
+import {mixins} from '@styles';
 import * as React from 'react';
-import tw, { styled } from 'twin.macro';
+import tw, {styled} from 'twin.macro';
 
 type $Props = {
   className?: string,
   children: React.Node,
 };
 
-const Button = ({ className, children, ...props }: $Props) => (
-  <Container {...{ ...props, className }}>{children}</Container>
+const Button = ({className, children, ...props}: $Props) => (
+  <Container {...{...props, className}}>{children}</Container>
 );
 
 const Container = styled.button`

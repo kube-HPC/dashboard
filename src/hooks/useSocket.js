@@ -1,19 +1,19 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import {useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import useActions from './useActions';
 
 const useSocket = () => {
   const {
-    socket: { init },
+    socket: {init},
   } = useActions();
 
-  const { isConnected } = useSelector(state => state.socket);
+  const {isConnected} = useSelector(state => state.socket);
 
   useEffect(() => {
     init();
   }, [init]);
 
-  return { isConnected };
+  return {isConnected};
 };
 
 export default useSocket;

@@ -1,22 +1,32 @@
-import { useSocket } from "@hooks";
-import { GlobalStyle } from "@styles";
-import { Dashboard } from "@templates";
-import React from "react";
-import ReactDOM from "react-dom";
-import "tailwindcss/dist/base.css";
-import "typeface-rajdhani";
-import "typeface-roboto";
-import * as serviceWorker from "./serviceWorker";
+import {useSocket} from '@hooks';
+import {GlobalStyle} from '@styles';
+import {Dashboard} from '@templates';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {ReusableProvider} from 'reusable';
+import createStore from 'state/store/createStore';
+import {ThemeProvider} from 'styled-components';
+import 'tailwindcss/dist/base.css';
+import 'typeface-rajdhani';
+import 'typeface-roboto';
+import * as serviceWorker from './serviceWorker';
+
+const store = createStore();
 
 const App = () => {
   useSocket();
   return (
-    <>
+    <Provider store={store}>
       <GlobalStyle />
-      <main>
-        <Dashboard />
-      </main>
-    </>
+      <ReusableProvider>
+        <ThemeProvider>
+          <main>
+            <Dashboard />
+          </main>
+        </ThemeProvider>
+      </ReusableProvider>
+    </Provider>
   );
 };
 
@@ -24,7 +34,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById(`root`),
 );
 
 // If you want your app to work offline and load faster, you can change

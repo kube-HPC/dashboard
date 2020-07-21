@@ -22,14 +22,19 @@ suppress_type=$DownCast
 
 module.name_mapper='^\([^\.].*\)$' -> '<PROJECT_ROOT>/src/\1'
 
-module.name_mapper='@constants' -> '<PROJECT_ROOT>/src/constants/index.js'
-module.name_mapper='@enums' -> '<PROJECT_ROOT>/src/enums/index.js'
-module.name_mapper='@atoms' -> '<PROJECT_ROOT>/src/components/atoms/index.js'
 module.name_mapper='@styles' -> '<PROJECT_ROOT>/src/styles/index.js'
-module.name_mapper='@storybookHelpers' -> '<PROJECT_ROOT>/.storybook/helpers.js'
-module.name_mapper='@state' -> '<PROJECT_ROOT>/src/state/index.js'
+module.name_mapper='@atoms' -> '<PROJECT_ROOT>/src/components/atoms/index.js'
+module.name_mapper='@molecules' -> '<PROJECT_ROOT>/src/components/molecules/index.js'
+module.name_mapper='@organisms' -> '<PROJECT_ROOT>/src/components/organisms/index.js'
+module.name_mapper='@templates' -> '<PROJECT_ROOT>/src/components/templates/index.js'
+module.name_mapper='@config' -> '<PROJECT_ROOT>/src/config/index.js'
+module.name_mapper='@hooks' -> '<PROJECT_ROOT>/src/hooks/index.js'
+module.name_mapper='@constants' -> '<PROJECT_ROOT>/src/constants/index.js'
 module.name_mapper='@utils' -> '<PROJECT_ROOT>/src/utils/index.js'
-module.name_mapper='@types' -> '<PROJECT_ROOT>/src/types/index.js'
+module.name_mapper='@storybookHelpers' -> '<PROJECT_ROOT>/.storybook/helpers.js'
+module.name_mapper='@slices' -> '<PROJECT_ROOT>/src/state/slices/index.js'
+module.name_mapper='state' -> '<PROJECT_ROOT>/src/state/index.js'
+module.name_mapper='@selectors' -> '<PROJECT_ROOT>/src/state/selectors/index.js'
 
 exact_by_default=true
 

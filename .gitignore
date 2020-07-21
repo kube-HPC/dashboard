@@ -28,3 +28,5 @@ public
 
 # Vscode
 .vscode
+
+.eslintcache

@@ -1,28 +1,27 @@
-import { addDecorator, addParameters } from "@storybook/react";
-import { create } from "@storybook/theming";
-import { useSocket } from "hooks";
-import React from "react";
-import { Provider } from "react-redux";
-import { ReusableProvider } from "reusable";
-import createStore from "state/store/createStore";
-import styled from "styled-components";
-import { GlobalStyle } from "styles";
-import "tailwindcss/dist/base.css";
-import "typeface-rajdhani";
-import "typeface-roboto";
-import { ThemeProvider } from "../src/components";
-import { mixins } from "../src/styles";
+import {addDecorator, addParameters} from '@storybook/react';
+import {useSocket} from 'hooks';
+import React from 'react';
+import {Provider} from 'react-redux';
+import {ReusableProvider} from 'reusable';
+import createStore from 'state/store/createStore';
+import styled from 'styled-components';
+import {GlobalStyle} from 'styles';
+import 'tailwindcss/dist/base.css';
+import tw from 'twin.macro';
+import 'typeface-rajdhani';
+import 'typeface-roboto';
+import {ThemeProvider} from '../src/components';
 
 const DefaultDecorator = styled.div`
-  ${mixins.fillScreen}
+  ${tw`h-screen`}
 `;
 
-const Container = ({ children }) => {
+const Container = ({children}) => {
   useSocket();
   return <DefaultDecorator>{children}</DefaultDecorator>;
 };
 
-addDecorator((S) => {
+const decorator = Story => {
   const store = createStore();
   return (
     <React.StrictMode>
@@ -31,30 +30,26 @@ addDecorator((S) => {
           <ThemeProvider>
             <GlobalStyle />
             <Container>
-              <S />
+              <Story />
             </Container>
           </ThemeProvider>
         </ReusableProvider>
       </Provider>
     </React.StrictMode>
   );
-});
+};
 
-const theme = create({
-  base: "light",
-  brandTitle: "HKube Dashboard",
-  brandUrl: "http://hkube.io/",
-});
-
-addParameters({
+const parameter = {
   options: {
     showRoots: true,
     showPanel: false,
     storySort: (a, b) => b[1].id.localeCompare(a[1].id),
     sidebarAnimations: false,
-    theme,
   },
-});
+};
+
+addParameters(parameter);
+addDecorator(decorator);
 
 // import { useSelector} from 'react-redux';
 // if (process.env.NODE_ENV === 'development') {
