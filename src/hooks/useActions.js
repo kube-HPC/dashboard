@@ -1,9 +1,8 @@
-// @flow
 import fromEntries from 'object.fromentries';
-import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { createStore } from 'reusable';
-import { actions as actionsMapper } from 'state';
+import {useCallback} from 'react';
+import {useDispatch} from 'react-redux';
+import {createStore} from 'reusable';
+import {actions as actionsMapper} from 'state';
 
 // src/state/store/actions.js
 
@@ -13,7 +12,7 @@ if (!Object.fromEntries) {
 
 type DispatcherType = {
   theme: {
-    setProperty: ({ path: string, value: string }) => void,
+    setProperty: ({path: string, value: string}) => void,
     setPalette: (path: string) => void,
   },
 };

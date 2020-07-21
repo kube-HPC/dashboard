@@ -35,6 +35,7 @@ module.name_mapper='@storybookHelpers' -> '<PROJECT_ROOT>/.storybook/helpers.js'
 module.name_mapper='@slices' -> '<PROJECT_ROOT>/src/state/slices/index.js'
 module.name_mapper='state' -> '<PROJECT_ROOT>/src/state/index.js'
 module.name_mapper='@selectors' -> '<PROJECT_ROOT>/src/state/selectors/index.js'
+module.name_mapper='@types' -> '<PROJECT_ROOT>/src/types/index.js'
 
 exact_by_default=true
 

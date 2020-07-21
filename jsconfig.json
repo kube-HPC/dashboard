@@ -20,6 +20,7 @@
       "@actions": ["state/store/actions"],
       "@slices": ["state/slices/index"],
       "@selectors": ["state/selectors/index"],
+      "@types": ["types/index"],
       "@storybookHelpers": ["../.storybook/helpers"]
     }
   }

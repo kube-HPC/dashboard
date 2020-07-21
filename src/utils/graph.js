@@ -1,43 +1,20 @@
-// @flow
-import { GRAPH } from '@constants';
-import { graphEdgeTypes } from '@hkube/consts';
+import {GRAPH} from '@constants';
+import {graphEdgeTypes} from '@hkube/consts';
+import {GraphNode} from '@types';
 
-const { BATCH } = GRAPH.types;
+const {BATCH} = GRAPH.types;
 
-export const findNodeName = nodeName => node => node.nodeName === nodeName;
+export const findNodeName = (nodeName: string) => (node: GraphNode) => node.nodeName === nodeName;
 
-export const getTaskDetails = node =>
+export const getTaskDetails = (node: GraphNode) =>
   node && node.batch && node.batch.length > 0
     ? node.batch
-    : [{ taskId: node.taskId, podName: node.podName }];
+    : [{taskId: node.taskId, podName: node.podName}];
 
-export const nodeFinder = ({ graph, pipeline }) => nodeName => {
-  const nodeData = graph && graph.nodes ? graph.nodes.find(findNodeName(nodeName)) : [];
-  const node = pipeline.nodes.find(findNodeName(nodeName));
-  const { jobId } = pipeline;
+const handleTask = ({status, ...node}) => ({...node, status, group: status});
 
-  const taskId =
-    nodeData && nodeData.taskId ? nodeData.taskId : nodeData.batch && nodeData.batch[0].taskId;
-  const podName =
-    nodeData && nodeData.podName ? nodeData.podName : nodeData.batch && nodeData.batch[0].podName;
-  const origInput = node ? node.input : [];
-  const payload = {
-    ...nodeData,
-    jobId,
-    taskId,
-    nodeName,
-    podName,
-    origInput,
-    batch: nodeData.batch || [],
-  };
-
-  return payload;
-};
-
-const handleTask = ({ status, ...node }) => ({ ...node, status, group: status });
-
-const handleBatch = ({ batchInfo, ...rest }) => {
-  const { completed, total, idle, running, errors } = batchInfo;
+const handleBatch = ({batchInfo, ...rest}) => {
+  const {completed, total, idle, running, errors} = batchInfo;
   let _completed = running + completed;
   let group = BATCH.RUNNING;
 
@@ -68,7 +45,7 @@ const handleBatch = ({ batchInfo, ...rest }) => {
 
 export const formatNode = colors => task => {
   const isBatch = task.batchInfo !== undefined;
-  const { nodeName, status, extra, ...rest } = isBatch ? handleBatch(task) : handleTask(task);
+  const {nodeName, status, extra, ...rest} = isBatch ? handleBatch(task) : handleTask(task);
 
   const node = {
     id: nodeName,
@@ -78,23 +55,23 @@ export const formatNode = colors => task => {
   // tw macro adds opacity var, need to remove it
   const color = isBatch
     ? undefined
-    : { background: colors.task.status[status]?.replace(`, var(--text-opacity)`, ``) };
+    : {background: colors.task.status[status]?.replace(`, var(--text-opacity)`, ``)};
 
-  return { nodeName, status, color, ...node, ...rest };
+  return {nodeName, status, color, ...node, ...rest};
 };
 
-const { ALGORITHM_EXECUTION, WAIT_ANY } = graphEdgeTypes;
+const {ALGORITHM_EXECUTION, WAIT_ANY} = graphEdgeTypes;
 const dashedGroups = [ALGORITHM_EXECUTION, WAIT_ANY];
 
-export const formatEdge = ({ from, to, edges }) => {
+export const formatEdge = ({from, to, edges}) => {
   const [group] = edges;
-  const { type } = group;
+  const {type} = group;
 
   const edge = {
     id: `${from}${GRAPH.idSeparator}${to}`,
     dashes: dashedGroups.includes(type),
   };
-  return { ...edge, from, to, group };
+  return {...edge, from, to, group};
 };
 
 export const areEqualGraphs = (a, b) => a?.jobId === b?.jobId && a?.timestamp === b?.timestamp;
