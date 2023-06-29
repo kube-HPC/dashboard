@@ -15,7 +15,7 @@
     "beautiful-react-hooks": "^0.27.2",
     "file-saver": "^2.0.2",
     "flow-bin": "^0.129.0",
-    "framer-motion": "^2.1.0",
+    "framer-motion": "^2.9.5",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "lodash.set": "^4.3.2",
