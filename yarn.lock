@@ -1374,10 +1374,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@hkube/consts@^1.0.24":
-  version "1.0.24"
-  resolved "https://registry.yarnpkg.com/@hkube/consts/-/consts-1.0.24.tgz#222750b1756eee1f4484035cc2e6122ad27143ea"
-  integrity sha512-Q9I77WXvJn1mg/ovC+aLWJgZ5iN8McU4pAD5ol2wfcwXlrl7pO6dtLpv+Vdea9j2xCJAO2h6iugYmlm/+Szi9Q==
+"@hkube/consts@^1.0.48":
+  version "1.0.48"
+  resolved "https://registry.yarnpkg.com/@hkube/consts/-/consts-1.0.48.tgz#9c324cb8b02e6ced75e96f4d0c12a4195828107f"
+  integrity sha512-iRv10nt2Eu9ey8S3sgTtmwAaZEy87XCLBhP5f9xs4/gg3PxTV3aX/ORj3TX2yv7MkdKwx0cBaKSZML7GdQb38Q==
 
 "@icons/material@^0.2.4":
   version "0.2.4"
