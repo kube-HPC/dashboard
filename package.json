@@ -34,7 +34,7 @@
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5",
     "reusable": "^1.0.1",
-    "socket.io-client": "^2.3.0",
+    "socket.io-client": "^3.0.5",
     "typeface-rajdhani": "^0.0.72",
     "typeface-roboto": "^0.0.75",
     "use-resize-observer": "^6.1.0",
